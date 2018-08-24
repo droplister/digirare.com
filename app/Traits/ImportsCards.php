@@ -10,26 +10,6 @@ use Droplister\XcpCore\App\Asset;
 trait ImportsCards
 {
     /**
-     * Counterparty API
-     *
-     * @var \JsonRPC\Client
-     */
-    protected $counterparty;
-
-    /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        $this->counterparty = new Client(config('xcp-core.cp.api'));
-        $this->counterparty->authentication(config('xcp-core.cp.user'), config('xcp-core.cp.password'));
-
-        parent::__construct();
-    }
-
-    /**
      * First or Create Card
      * 
      * @param  string  $xcp_core_asset_name
@@ -137,7 +117,10 @@ trait ImportsCards
      */
     private function getIssuances($value)
     {
-        return $this->counterparty->execute('get_issuances', [
+        $counterparty = new Client(config('xcp-core.cp.api'));
+        $counterparty->authentication(config('xcp-core.cp.user'), config('xcp-core.cp.password'));
+
+        return $counterparty->execute('get_issuances', [
             'filters' => [
                 'field' => 'asset_longname',
                 'op' => '==',
