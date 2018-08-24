@@ -104,10 +104,12 @@ class UpdateBookOfOrbs implements ShouldQueue
 
     /**
      * Update or Create Tokens
-     * 
-     * @return [type] [description]
+     *
+     * @param  string  $name
+     * @param  array  $data
+     * @return void
      */
-    private function updateOrCreateToken()
+    private function updateOrCreateToken($name, $data)
     {
         // The Asset
         $xcp_core_asset_name = $this->getAssetName($name);

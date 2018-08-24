@@ -54,7 +54,7 @@ class CollectionsTableSeeder extends Seeder
             ],
             'CrystalsCraft' => [
                 'envCode' => 'eCry',
-                'bundleId' => 'om.bitcrystals.crystalcraft',
+                'bundleId' => 'com.bitcrystals.crystalcraft',
                 'version' => 2,
             ],
             'Diecast' => [
