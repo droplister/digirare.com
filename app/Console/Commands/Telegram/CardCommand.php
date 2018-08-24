@@ -63,7 +63,7 @@ class CardCommand extends Command
         $issuance = $card->token ? $card->token->issuance_normalized : 'Unknown';
         $link = route('cards.show', ['card' => $card->slug]);
 
-        return "> {*$card->name}* Issued: {$issuance} ([view]({$link}))";
+        return "> *{$card->name}* Issued: {$issuance} ([view]({$link}))";
     }
 
     /**
