@@ -69,7 +69,7 @@ class UpdateBitcorn implements ShouldQueue
     private function getAPI()
     {
         // New Curl
-        $curl = new Curl\Curl();
+        $curl = new \Curl\Curl();
 
         // Get API
         $curl->get('https://bitcorns.com/api/cards');

@@ -195,7 +195,7 @@ class UpdateBookOfOrbs implements ShouldQueue
     private function getAPI()
     {
         // New Curl
-        $curl = new Curl\Curl();
+        $curl = new \Curl\Curl();
 
         // Env Code
         $envCode = $this->collection->meta['envCode'];
