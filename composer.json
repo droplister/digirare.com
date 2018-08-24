@@ -16,6 +16,7 @@
         "cviebrock/eloquent-sluggable": "^4.5",
         "droplister/xcp-core": "dev-master",
         "fideloper/proxy": "^4.0",
+        "irazasyed/telegram-bot-sdk": "^2.0",
         "laravel/framework": "5.6.*",
         "laravel/tinker": "^1.0",
         "laravel/horizon": "^1.3",

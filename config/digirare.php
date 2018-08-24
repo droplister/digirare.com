@@ -16,4 +16,9 @@ return [
      * Telegram URL
      */
     'telegram_url' => env('TELEGRAM_URL', 'https://t.me/digirare'),
+
+    /**
+     * Telegram Webhook
+     */
+    'telegram_webhook' => env('TELEGRAM_WEBHOOK'),
 ];

@@ -83,6 +83,30 @@ class Curator extends Model
     }
 
     /**
+     * Active
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('active', '=', 1);
+    }
+
+    /**
+     * Not Active
+     */
+    public function scopeNotActive($query)
+    {
+        return $query->where('active', '=', 0);
+    }
+
+    /**
+     * Primary
+     */
+    public function scopePrimary($query)
+    {
+        return $query->wherePivot('primary', '=', 1);
+    }
+
+    /**
      * Get the route key for the model.
      *
      * @return string
