@@ -9,16 +9,6 @@ use Droplister\XcpCore\App\Asset;
 trait ImportsTokens
 {
     /**
-     * Create a new job instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        parent::__construct();
-    }
-
-    /**
      * First or Create Token
      * 
      * @param  string  $xcp_core_asset_name
@@ -64,10 +54,16 @@ trait ImportsTokens
      */
     private function getImageUrl($url)
     {
-        $contents = $this->curl->get($url);
         $name = substr($url, strrpos($url, '/') + 1);
-        $image_path = Storage::put('public/' . $this->collection->slug . '/' . $name, $contents);
+        $file = $this->collection->slug . '/' . $name;
 
-        return '/storage/' . $this->collection->slug . '/' . $name;
+        // Only Download Once
+        if(! Storage::exists('public/' . $file))
+        {
+            $contents = file_get_contents($url);
+            $image_path = Storage::put('public/' . $file, $contents);
+        }
+
+        return '/storage/' . $file;
     }
 }
