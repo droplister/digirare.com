@@ -55,7 +55,7 @@ class Collection extends Model
      */
     public function tokens()
     {
-        return $this->belongsToMany(Token::class, 'collection_token', 'collection_id', 'token_id')
+        return $this->belongsToMany(Token::class, 'collection_tokens', 'collection_id', 'token_id')
                     ->withPivot('image_url', 'primary');
     }
 
