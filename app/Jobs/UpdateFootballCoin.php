@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class UpdateFootballCoin implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, ImportsTokens, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Curl
