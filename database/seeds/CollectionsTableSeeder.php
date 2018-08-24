@@ -18,7 +18,7 @@ class CollectionsTableSeeder extends Seeder
         {
             Collection::firstOrCreate([
                 'name' => $name,
-                'meta' => $meta,
+                'meta' => json_encode($meta),
             ]);
         }
     }

@@ -21,7 +21,7 @@ trait ImportsTokens
             'xcp_core_asset_name' => $xcp_core_asset_name,
         ],[
             'name' => $name,
-            'meta' => ! empty($meta) ? $meta : null,
+            'meta' => ! empty($meta) ? json_encode($meta) : null,
         ]);
     }
 
