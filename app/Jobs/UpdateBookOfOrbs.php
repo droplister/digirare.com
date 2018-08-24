@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use Curl\Curl;
 use App\Collection;
 use App\Traits\ImportsTokens;
 use Illuminate\Bus\Queueable;
@@ -14,13 +13,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 class UpdateBookOfOrbs implements ShouldQueue
 {
     use Dispatchable, ImportsTokens, InteractsWithQueue, Queueable, SerializesModels;
-
-    /**
-     * Curl
-     *
-     * @var \Curl\Curl
-     */
-    protected $curl;
 
     /**
      * Collection
@@ -36,7 +28,6 @@ class UpdateBookOfOrbs implements ShouldQueue
      */
     public function __construct(Collection $collection)
     {
-        $this->curl = new Curl();
         $this->collection = $collection;
     }
 
@@ -203,16 +194,19 @@ class UpdateBookOfOrbs implements ShouldQueue
      */
     private function getAPI()
     {
+        // New Curl
+        $curl = new \Curl\Curl();
+
         // Env Code
         $envCode = $this->collection->meta['envCode'];
 
         // Get API
-        $this->curl->get('https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center&action=getEnvironment&env='. $envCode .'&responseType=JSON&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd&mainAddress=empty&targetAddress=empty');
+        $curl->get('https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center&action=getEnvironment&env='. $envCode .'&responseType=JSON&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd&mainAddress=empty&targetAddress=empty');
 
         // API Error
-        if ($this->curl->error) return [];
+        if ($curl->error) return [];
 
         // Response
-        return json_decode($this->curl->response, true);
+        return json_decode($curl->response, true);
     }
 }

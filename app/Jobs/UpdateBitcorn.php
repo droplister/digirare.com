@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use Curl\Curl;
 use App\Collection;
 use App\Traits\ImportsTokens;
 use Illuminate\Bus\Queueable;
@@ -14,13 +13,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 class UpdateBitcorn implements ShouldQueue
 {
     use Dispatchable, ImportsTokens, InteractsWithQueue, Queueable, SerializesModels;
-
-    /**
-     * Curl
-     *
-     * @var \Curl\Curl
-     */
-    protected $curl;
 
     /**
      * Collection
@@ -36,7 +28,6 @@ class UpdateBitcorn implements ShouldQueue
      */
     public function __construct(Collection $collection)
     {
-        $this->curl = new Curl();
         $this->collection = $collection;
     }
 
@@ -77,13 +68,16 @@ class UpdateBitcorn implements ShouldQueue
      */
     private function getAPI()
     {
+        // New Curl
+        $curl = new \Curl\Curl();
+
         // Get API
-        $this->curl->get('https://bitcorns.com/api/cards');
+        $curl->get('https://bitcorns.com/api/cards');
 
         // API Error
-        if ($this->curl->error) return [];
+        if ($curl->error) return [];
 
         // Response
-        return json_decode($this->curl->response, true);
+        return json_decode($curl->response, true);
     }
 }
