@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Telegram;
 
+use App\Card;
 use Telegram\Bot\Commands\Command;
 
 class CardCommand extends Command
