@@ -41,8 +41,11 @@ class TelegramController extends Controller
      */
     public function webhookHandler()
     {
-        // Get an Update
+        // Get Update
         $update = $this->telegram->commandsHandler(true);
+
+        // Get Message
+        $message = $update->getMessage();
 
         // Bot Analytics
         $this->botAnalytics($message);
