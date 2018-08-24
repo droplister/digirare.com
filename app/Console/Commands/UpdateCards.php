@@ -16,7 +16,7 @@ class UpdateCards extends Command
      *
      * @var string
      */
-    protected $signature = 'update:cards';
+    protected $signature = 'update:cards {--o}';
 
     /**
      * The console command description.
@@ -64,7 +64,7 @@ class UpdateCards extends Command
     {
         $bitcorn = Curator::findBySlug('bitcorn');
 
-        UpdateBitcorn::dispatchNow($bitcorn);
+        UpdateBitcorn::dispatchNow($bitcorn, $this->option('o'));
     }
 
     /**
@@ -76,7 +76,7 @@ class UpdateCards extends Command
     {
         $mafiawars = Curator::findBySlug('mafiawars');
 
-        UpdateMafiaWars::dispatchNow($mafiawars);
+        UpdateMafiaWars::dispatchNow($mafiawars, $this->option('o'));
     }
 
     /**
@@ -90,7 +90,7 @@ class UpdateCards extends Command
 
         foreach($curators as $curator)
         {
-            UpdateBookOfOrbs::dispatchNow($curator);
+            UpdateBookOfOrbs::dispatchNow($curator, $this->option('o'));
         }
     }
 
@@ -103,6 +103,6 @@ class UpdateCards extends Command
     {
         $footballcoin = Curator::findBySlug('footballcoin');
 
-        UpdateFootballCoin::dispatchNow($footballcoin);
+        UpdateFootballCoin::dispatchNow($footballcoin, $this->option('o'));
     }
 }
