@@ -47,26 +47,33 @@ class UpdateBookOfOrbs implements ShouldQueue
      */
     public function handle()
     {
-        // Book of Orbs API
-        $response = $this->getAPI();
-
-        // Simplest Guard
-        if(empty($reponse)) return false;
-
-        // Update Currency
-        $this->updateCurrency($response);
-
-        // Get Token Array
-        $tokens = $this->fetchTokens($response);
-
-        // Update or Create
-        foreach($tokens as $name => $data)
+        try
         {
-            // Simple Guard
-            if(in_array($name, ['GDCNOVADEMO', 'BITCRYSTALS'])) continue;
+            // Book of Orbs API
+            $response = $this->getAPI();
 
-            // Create Token
-            $this->updateOrCreateToken($name, $data);
+            // Simplest Guard
+            if(empty($reponse)) return false;
+
+            // Update Currency
+            $this->updateCurrency($response);
+
+            // Get Token Array
+            $tokens = $this->fetchTokens($response);
+
+            // Update or Create
+            foreach($tokens as $name => $data)
+            {
+                // Simple Guard
+                if(in_array($name, ['GDCNOVADEMO', 'BITCRYSTALS'])) continue;
+
+                // Create Token
+                $this->updateOrCreateToken($name, $data);
+            }
+        }
+        catch(\Exception $e)
+        {
+            \Log::info($e->getMessage());
         }
     }
 
