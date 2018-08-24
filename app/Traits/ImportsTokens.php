@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use Storage;
 use App\Token;
 use Droplister\XcpCore\App\Asset;
 
