@@ -3,9 +3,8 @@
 namespace App\Jobs;
 
 use Curl\Curl;
-use App\Token;
 use App\Collection;
-use Droplister\XcpCore\App\Asset;
+use App\Traits\ImportsTokens;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -14,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class UpdateBookOfOrbs implements ShouldQueue
 {
-    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, ImportsTokens, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Curl
@@ -120,59 +119,6 @@ class UpdateBookOfOrbs implements ShouldQueue
 
         // Relation
         $token->collections()->sync([$this->collection->id => ['image_url' => $image_url]]);
-    }
-
-    /**
-     * First or Create Token
-     * 
-     * @param  string  $xcp_core_asset_name
-     * @param  string  $name
-     * @param  array  $meta
-     * @return \App\Token
-     */
-    private function firstOrCreateToken($xcp_core_asset_name, $name, $meta)
-    {
-        return Token::firstOrCreate([
-            'xcp_core_asset_name' => $xcp_core_asset_name,
-        ],[
-            'name' => $name,
-            'meta' => $meta,
-        ]);
-    }
-
-    /**
-     * Get Asset Name
-     * 
-     * @param  string  $name
-     * @return string
-     */
-    private function getAssetName($name)
-    {
-        // Catch Subassets
-        if(strpos($name, '.') !== false)
-        {
-            // Get "Real" Name
-            $asset = Asset::where('asset_longname', '=', $name)->first();
-
-            return $asset->asset_name;
-        }
-
-        return $name;
-    }
-
-    /**
-     * Download URL
-     * 
-     * @param  string  $url
-     * @return string
-     */
-    private function getImageUrl($url)
-    {
-        $contents = $this->curl->get($url);
-        $name = substr($url, strrpos($url, '/') + 1);
-        $image_path = Storage::put('public/' . $this->collection->slug . '/' . $name, $contents);
-
-        return '/storage/' . $this->collection->slug . '/' . $name;
     }
 
     /**

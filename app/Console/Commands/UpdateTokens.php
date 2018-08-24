@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Collection;
 use App\Jobs\UpdateBitcorn;
 use App\Jobs\UpdateBookOfOrbs;
-use App\Jobs\UpdateFootballCoin;
 use Illuminate\Console\Command;
 
 class UpdateTokens extends Command
@@ -46,9 +45,6 @@ class UpdateTokens extends Command
 
         // Book of Orbs
         $this->updateBookOfOrbs();
-
-        // FootballCoin
-        $this->updateFootballCoin();
     }
 
     /**
@@ -76,17 +72,5 @@ class UpdateTokens extends Command
         {
             UpdateBookOfOrbs::dispatch($collection);
         }
-    }
-
-    /**
-     * Football Coin
-     * 
-     * @return void
-     */
-    private function updateFootballCoin()
-    {
-        $football = Collection::findBySlug('footballcoin');
-
-        UpdateFootballCoin::dispatch($football);
     }
 }

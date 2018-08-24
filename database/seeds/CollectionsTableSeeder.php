@@ -18,7 +18,7 @@ class CollectionsTableSeeder extends Seeder
         {
             Collection::firstOrCreate([
                 'name' => $name,
-                'meta' => $meta ? $meta : null,
+                'meta' => $meta,
             ]);
         }
     }
@@ -102,9 +102,10 @@ class CollectionsTableSeeder extends Seeder
                 'bundleId' => 'com.spellsofgenesis',
                 'version' => 2,
             ],
-            // Other Source
-            'Bitcorn' => null,
-            'FootballCoin' => null,
+            // Other APIs
+            'Bitcorn' => [
+                'currency' => 'BITCORN',
+            ],
         ];
     }
 }
