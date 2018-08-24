@@ -81,7 +81,7 @@ class UpdateFootballCoin implements ShouldQueue
                     $xcp_core_asset_name = $this->getAssetName($data['cp_asset']);
 
                     // Image URL
-                    $image_url = $this->getImageUrl($data['cardPictureId']['big_url'], $override);
+                    $image_url = $this->getImageUrl($data['cardPictureId']['big_url'], $this->override);
 
                     // Get Meta
                     $meta_data = $this->getMeta($data);

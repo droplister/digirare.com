@@ -123,7 +123,7 @@ class UpdateBookOfOrbs implements ShouldQueue
         $xcp_core_asset_name = $this->getAssetName($name);
 
         // Image URL
-        $image_url = $this->getImageUrl($data['image'], $override);
+        $image_url = $this->getImageUrl($data['image'], $this->override);
 
         // Get Meta
         $meta_data = $this->getMeta($data);

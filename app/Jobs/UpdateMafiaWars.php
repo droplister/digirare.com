@@ -73,7 +73,7 @@ class UpdateMafiaWars implements ShouldQueue
                 $xcp_core_asset_name = $this->getAssetName($data['asset']);
 
                 // Image URL
-                $image_url = $this->getImageUrl($data['image'], $override);
+                $image_url = $this->getImageUrl($data['image'], $this->override);
 
                 // Get Meta
                 $meta_data = $this->getMeta($data);
