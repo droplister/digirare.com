@@ -25,6 +25,8 @@ trait ImportsCards
     {
         $this->counterparty = new Client(config('xcp-core.cp.api'));
         $this->counterparty->authentication(config('xcp-core.cp.user'), config('xcp-core.cp.password'));
+
+        parent::__construct();
     }
 
     /**

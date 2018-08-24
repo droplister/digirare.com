@@ -2,6 +2,8 @@
 
 use Illuminate\Database\Seeder;
 
+use Droplister\XcpCore\Database\Seeds\AssetsTableSeeder;
+
 class DatabaseSeeder extends Seeder
 {
     /**
@@ -11,6 +13,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        $this->call(AssetsTableSeeder::class);
         $this->call(CuratorsTableSeeder::class);
     }
 }
