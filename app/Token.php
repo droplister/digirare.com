@@ -25,6 +25,15 @@ class Token extends Model
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'meta' => 'array',
+    ];
+
+    /**
      * Asset
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

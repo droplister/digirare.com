@@ -40,6 +40,15 @@ class Collection extends Model
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'meta' => 'array',
+    ];
+
+    /**
      * Tokens
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
