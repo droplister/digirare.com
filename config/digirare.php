@@ -13,6 +13,11 @@ return [
     'xfc_akey' => env('XFC_AKEY'),
 
     /**
+     * BotAnalytics
+     */
+    'bot_akey' => env('BOT_AKEY'),
+
+    /**
      * Telegram URL
      */
     'telegram_url' => env('TELEGRAM_URL', 'https://t.me/digirare'),

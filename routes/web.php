@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', 'HomeController@index')->name('home.index');
+Route::get('/', function () {
+    return view('welcome');
+});
 Route::resource('xcpcards', 'CardsController', ['only' => ['index', 'show']]);
 Route::resource('curators', 'CuratorsController', ['only' => ['index', 'show']]);
 Route::resource('collectors', 'CollectorsController', ['only' => ['index', 'show']]);

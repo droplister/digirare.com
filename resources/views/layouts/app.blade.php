@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url(route('home.index')) }}">
+                <a class="navbar-brand" href="{{ url(url('/')) }}">
                     <i class="fa fa-diamond" aria-hidden="true"></i>
                     {{ config('app.name', 'Laravel') }}
                 </a>
@@ -58,10 +58,10 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home.index') }}">{{ __('How it Works') }}</a>
+                            <a class="nav-link" href="{{ url('/') }}">{{ __('How it Works') }}</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('home.index') }}">{{ __('F.A.Q.') }}</a>
+                            <a class="nav-link" href="{{ url('/') }}">{{ __('F.A.Q.') }}</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ config('digirare.telegram_url') }}">{{ __('Support') }}</a>
