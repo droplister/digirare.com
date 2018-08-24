@@ -50,9 +50,6 @@ class UpdateBitcorn implements ShouldQueue
         // Bitcorn Crops API
         $tokens = $this->getAPI();
 
-        // Simplest Guard
-        if(empty($tokens)) return false;
-
         // Update or Create
         foreach($tokens as $data)
         {
