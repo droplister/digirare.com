@@ -3,6 +3,11 @@
 return [
 
     /**
+     * Spells of Genesis
+     */
+    'sog_akey' => env('SOG_AKEY'),
+
+    /**
      * FootballCoin
      */
     'xfc_akey' => env('XFC_AKEY'),

@@ -4,10 +4,29 @@ namespace App\Traits;
 
 use Storage;
 use App\Card;
+use JsonRPC\Client;
 use Droplister\XcpCore\App\Asset;
 
 trait ImportsCards
 {
+    /**
+     * Counterparty API
+     *
+     * @var \JsonRPC\Client
+     */
+    protected $counterparty;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->counterparty = new Client(config('xcp-core.cp.api'));
+        $this->counterparty->authentication(config('xcp-core.cp.user'), config('xcp-core.cp.password'));
+    }
+
     /**
      * First or Create Card
      * 
@@ -24,26 +43,6 @@ trait ImportsCards
             'name' => $name,
             'meta' => ! empty($meta) ? $meta : null,
         ]);
-    }
-
-    /**
-     * Get Asset Name
-     * 
-     * @param  string  $name
-     * @return string
-     */
-    private function getAssetName($name)
-    {
-        // Catch Subassets
-        if(strpos($name, '.') !== false)
-        {
-            // Get "Real" Name
-            $asset = Asset::where('asset_longname', '=', $name)->first();
-
-            return $asset->asset_name;
-        }
-
-        return $name;
     }
 
     /**
@@ -65,5 +64,83 @@ trait ImportsCards
         }
 
         return '/storage/' . $file;
+    }
+
+    /**
+     * Get Asset Name
+     * 
+     * @param  string  $name
+     * @return string
+     */
+    private function getAssetName($name)
+    {
+        // Catch Subassets
+        if(strpos($name, '.') !== false)
+        {
+            $name = $this->getAssetNameOfSubasset($name);
+        }
+
+        return $name;
+    }
+
+    /**
+     * Get Asset Name of Subasset
+     * 
+     * @param  string  $name
+     * @return mixed
+     */
+    private function getAssetNameOfSubasset($name)
+    {
+        $asset = $this->getAssetNameFromDatabase($name);
+
+        if(! $asset)
+        {
+            $asset = $this->getAssetNameFromApi($name);
+        }
+
+        return $asset;
+    }
+
+    /**
+     * Get Asset Name from Database
+     * 
+     * @param  string  $name
+     * @return mixed
+     */
+    private function getAssetNameFromDatabase($name)
+    {
+        $asset = Asset::where('asset_longname', '=', $name)->first();
+
+        return $asset ? $asset->asset_name : null;
+    }
+
+    /**
+     * Get Asset Name from API
+     * 
+     * @param  string  $name
+     * @return mixed
+     */
+    private function getAssetNameFromApi($name)
+    {
+        $issuances = $this->getIssuances($name);
+
+        return empty($issuances) ? $issuances[0]['asset'] : null;
+    }
+
+    /**
+     * Counterparty API
+     * https://counterparty.io/docs/api/#get_table
+     *
+     * @return mixed
+     */
+    private function getIssuances($value)
+    {
+        return $this->counterparty->execute('get_issuances', [
+            'filters' => [
+                'field' => 'asset_longname',
+                'op' => '==',
+                'value' => $value,
+            ]
+        ]);
     }
 }

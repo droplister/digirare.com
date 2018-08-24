@@ -217,11 +217,14 @@ class UpdateBookOfOrbs implements ShouldQueue
      */
     private function getAPI()
     {
+        // API Key
+        $apik = config('digirare.sog_akey');
+
         // Env Code
         $envCode = $this->curator->meta['envCode'];
 
         // Get API
-        $this->curl->get('https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center&action=getEnvironment&env='. $envCode .'&responseType=JSON&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd&mainAddress=empty&targetAddress=empty');
+        $this->curl->get('https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center&action=getEnvironment&env='. $envCode .'&responseType=JSON&apiv=3&apik=' . $apik . '&mainAddress=empty&targetAddress=empty');
 
         // API Error
         if ($this->curl->error) return [];
