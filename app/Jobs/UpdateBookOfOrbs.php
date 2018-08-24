@@ -55,30 +55,23 @@ class UpdateBookOfOrbs implements ShouldQueue
      */
     public function handle()
     {
-        try
+        // Book of Orbs API
+        $response = $this->getAPI();
+
+        // Update Currency
+        $this->updateCurrency($response);
+
+        // Get Card Array
+        $cards = $this->fetchCards($response);
+
+        // Update or Create
+        foreach($cards as $name => $data)
         {
-            // Book of Orbs API
-            $response = $this->getAPI();
+            // Simple Guard
+            if(in_array($name, ['GDCNOVADEMO', 'BITCRYSTALS'])) continue;
 
-            // Update Currency
-            $this->updateCurrency($response);
-
-            // Get Card Array
-            $cards = $this->fetchCards($response);
-
-            // Update or Create
-            foreach($cards as $name => $data)
-            {
-                // Simple Guard
-                if(in_array($name, ['GDCNOVADEMO', 'BITCRYSTALS'])) continue;
-
-                // Create Card
-                $this->updateOrCreateCard($name, $data);
-            }
-        }
-        catch(\Exception $e)
-        {
-            \Log::info($e->getMessage());
+            // Create Card
+            $this->updateOrCreateCard($name, $data);
         }
     }
 
