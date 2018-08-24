@@ -30,6 +30,13 @@ class CardCommand extends Command
 
         // Reply w/ Image
         $this->replyWithImage($card);
+
+        // Reply w/ Message
+        $this->replyWithMessage([
+            'text' => $this->getText($card),
+            'parse_mode' => 'Markdown',
+            'disable_notification' => true,
+        ]);
     }
 
     /**
@@ -43,6 +50,20 @@ class CardCommand extends Command
         $name = explode(' ', $arguments)[0];
 
         return Card::where('name', '=', $name)->first();
+    }
+
+    /**
+     * Get Text
+     *
+     * @param  \App\Card  $card
+     * @return string
+     */
+    private function getText($card)
+    {
+        $issuance = $card->token->issuance_normalized;
+        $link = route('cards.show', ['card' => $card->slug]);
+
+        return "> {*$card->name}* Issued: {$issuance} ([view]({$link}))";
     }
 
     /**
