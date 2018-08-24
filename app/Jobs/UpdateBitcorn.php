@@ -60,7 +60,7 @@ class UpdateBitcorn implements ShouldQueue
             $image_url = $this->getImageUrl($data['card']);
 
             // Creation
-            $token = $this->firstOrCreateToken($xcp_core_asset_name, $image_url);
+            $token = $this->firstOrCreateToken($xcp_core_asset_name, $data['name']);
 
             // Relation
             $token->collections()->sync([$this->collection->id => ['image_url' => $image_url]]);

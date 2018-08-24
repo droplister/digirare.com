@@ -121,7 +121,7 @@ class UpdateBookOfOrbs implements ShouldQueue
         $meta_data = $this->getMeta($data);
 
         // Creation
-        $token = $this->firstOrCreateToken($xcp_core_asset_name, $image_url, $meta_data);
+        $token = $this->firstOrCreateToken($xcp_core_asset_name, $name, $meta_data);
 
         // Relation
         $token->collections()->sync([$this->collection->id => ['image_url' => $image_url]]);

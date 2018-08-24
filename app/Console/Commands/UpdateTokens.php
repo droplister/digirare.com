@@ -4,7 +4,9 @@ namespace App\Console\Commands;
 
 use App\Collection;
 use App\Jobs\UpdateBitcorn;
+use App\Jobs\UpdateMafiaWars;
 use App\Jobs\UpdateBookOfOrbs;
+use App\Jobs\UpdateFootballCoin;
 use Illuminate\Console\Command;
 
 class UpdateTokens extends Command
@@ -43,8 +45,14 @@ class UpdateTokens extends Command
         // Bitcorn Crops
         $this->updateBitcorn();
 
+        // Mafia Wars
+        $this->updateMafiaWars();
+
         // Book of Orbs
         $this->updateBookOfOrbs();
+
+        // FootballCoin
+        $this->updateFootballCoin();
     }
 
     /**
@@ -60,6 +68,18 @@ class UpdateTokens extends Command
     }
 
     /**
+     * Mafia Wars
+     * 
+     * @return void
+     */
+    private function updateMafiaWars()
+    {
+        $mafiawars = Collection::findBySlug('mafiawars');
+
+        UpdateMafiaWars::dispatchNow($mafiawars);
+    }
+
+    /**
      * Book of Orbs
      * 
      * @return void
@@ -72,5 +92,17 @@ class UpdateTokens extends Command
         {
             UpdateBookOfOrbs::dispatchNow($collection);
         }
+    }
+
+    /**
+     * FootballCoin
+     * 
+     * @return void
+     */
+    private function updateFootballCoin()
+    {
+        $footballcoin = Collection::findBySlug('footballcoin');
+
+        UpdateFootballCoin::dispatchNow($footballcoin);
     }
 }

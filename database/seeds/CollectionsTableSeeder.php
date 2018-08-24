@@ -18,6 +18,7 @@ class CollectionsTableSeeder extends Seeder
         {
             Collection::firstOrCreate([
                 'name' => $name,
+            ],[
                 'meta' => $meta,
             ]);
         }
@@ -105,6 +106,12 @@ class CollectionsTableSeeder extends Seeder
             // Other APIs
             'Bitcorn' => [
                 'currency' => 'BITCORN',
+            ],
+            'FootballCoin' => [
+                'currency' => 'XFCCOIN',
+            ],
+            'MafiaWars' => [
+                'currency' => 'MAFIACASH',
             ],
         ];
     }

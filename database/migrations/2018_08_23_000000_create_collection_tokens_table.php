@@ -16,7 +16,7 @@ class CreateCollectionTokensTable extends Migration
         Schema::create('collection_tokens', function (Blueprint $table) {
             $table->unsignedInteger('collection_id')->index();
             $table->unsignedInteger('token_id')->index();
-            $table->string('image_url')->unique();
+            $table->string('image_url');
             $table->boolean('primary')->default(1);
             $table->timestamps();
         });
