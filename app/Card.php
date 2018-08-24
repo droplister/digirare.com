@@ -65,16 +65,6 @@ class Card extends Model
     }
 
     /**
-     * Primary Curator
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
-     */
-    public function primaryCurator()
-    {
-        return $this->curators()->where('primary', '=', 1)->first();
-    }
-
-    /**
      * Get the route key for the model.
      *
      * @return string

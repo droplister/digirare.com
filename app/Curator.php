@@ -103,7 +103,7 @@ class Curator extends Model
      */
     public function scopePrimary($query)
     {
-        return $query->wherePivot('primary', '=', 1);
+        return $query->where('primary', '=', 1);
     }
 
     /**
