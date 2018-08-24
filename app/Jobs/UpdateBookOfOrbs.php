@@ -178,7 +178,7 @@ class UpdateBookOfOrbs implements ShouldQueue
         // Version 2
         if($version === 2)
         {
-            return $response['instance']['assetsCurator'][$bundleId]['Assets'];
+            return $response['instance']['assetsCollection'][$bundleId]['Assets'];
         }
 
         return false;
