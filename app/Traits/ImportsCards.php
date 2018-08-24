@@ -106,7 +106,7 @@ trait ImportsCards
     {
         $issuances = $this->getIssuances($name);
 
-        return empty($issuances) ? $issuances[0]['asset'] : null;
+        return ! empty($issuances) ? $issuances[0]['asset'] : null;
     }
 
     /**
