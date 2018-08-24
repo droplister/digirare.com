@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
-class Collection extends Model
+class Collector extends Model
 {
     use Sluggable, SluggableScopeHelpers;
 
@@ -34,7 +34,7 @@ class Collection extends Model
     }
 
     /**
-     * Token Balances
+     * Card Balances
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
@@ -51,6 +51,17 @@ class Collection extends Model
     public function firstCard()
     {
         return $this->belongsTo(Credit::class, 'xcp_core_credit_id', 'id');
+    }
+
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**

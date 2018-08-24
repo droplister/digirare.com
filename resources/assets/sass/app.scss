@@ -1,9 +1,12 @@
 
 // Fonts
-@import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url("https://fonts.googleapis.com/css?family=Roboto:300,400,600");
 
 // Variables
 @import "variables";
+
+// Icon Font
+@import "node_modules/font-awesome/scss/font-awesome";
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
@@ -11,4 +14,8 @@
 .navbar-laravel {
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
+}
+
+.table-responsive {
+  white-space: nowrap;
 }

@@ -34,13 +34,23 @@ class Card extends Model
     ];
 
     /**
-     * Asset
+     * Token
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function asset()
+    public function token()
     {
         return $this->belongsTo(Asset::class, 'xcp_core_asset_name', 'asset_name');
+    }
+
+    /**
+     * Card Balances
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function cardBalances()
+    {
+        return $this->hasMany(CardBalance::class, 'asset', 'xcp_core_asset_name');
     }
 
     /**
@@ -52,6 +62,16 @@ class Card extends Model
     {
         return $this->belongsToMany(Curator::class, 'card_curator', 'card_id', 'curator_id')
                     ->withPivot('image_url', 'primary');
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**

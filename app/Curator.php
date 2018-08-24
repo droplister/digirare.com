@@ -2,13 +2,15 @@
 
 namespace App;
 
+use Droplister\XcpCore\App\Asset;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 use Illuminate\Database\Eloquent\Model;
 
 class Curator extends Model
 {
-    use Sluggable, SluggableScopeHelpers;
+    use HasRelationships, Sluggable, SluggableScopeHelpers;
 
     /**
      * The attributes that are mass assignable.
@@ -58,6 +60,36 @@ class Curator extends Model
     {
         return $this->belongsToMany(Card::class, 'card_curator', 'curator_id', 'card_id')
                     ->withPivot('image_url', 'primary');
+    }
+
+    /**
+     * Collectors
+     * 
+     * @return \Staudenmeir\EloquentHasManyDeep\HasRelationships
+     */
+    public function collectors()
+    {
+        return $this->hasManyDeep(Collector::class, ['card_curator', Card::class]);
+    }
+
+    /**
+     * Currency
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function currency()
+    {
+        return $this->belongsTo(Asset::class, 'currency', 'asset_name');
+    }
+
+    /**
+     * Get the route key for the model.
+     *
+     * @return string
+     */
+    public function getRouteKeyName()
+    {
+        return 'slug';
     }
 
     /**

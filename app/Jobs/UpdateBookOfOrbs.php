@@ -95,7 +95,7 @@ class UpdateBookOfOrbs implements ShouldQueue
 
         // Update Currency
         $this->curator->update([
-            'meta->currency' => $currency,
+            'currency' => $currency,
         ]);
     }
 
