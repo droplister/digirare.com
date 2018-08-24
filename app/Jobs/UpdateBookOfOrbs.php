@@ -52,8 +52,12 @@ class UpdateBookOfOrbs implements ShouldQueue
             // Book of Orbs API
             $response = $this->getAPI();
 
+            \Log::info('1. ' . serialize($response));
+
             // Simplest Guard
             if(empty($reponse)) return false;
+
+            \Log::info('2. ' . serialize($response));
 
             // Update Currency
             $this->updateCurrency($response);
@@ -64,6 +68,8 @@ class UpdateBookOfOrbs implements ShouldQueue
             // Update or Create
             foreach($tokens as $name => $data)
             {
+                \Log::info($name);
+
                 // Simple Guard
                 if(in_array($name, ['GDCNOVADEMO', 'BITCRYSTALS'])) continue;
 
@@ -217,7 +223,7 @@ class UpdateBookOfOrbs implements ShouldQueue
         $this->curl->get('https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center&action=getEnvironment&env='. $envCode .'&responseType=JSON&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd&mainAddress=empty&targetAddress=empty');
 
         // API Error
-        if ($this->curl->error) return [];
+        if ($this->curl->error) return \Log::info($this->curl->error_code);
 
         // Response
         return json_decode($this->curl->response, true);
