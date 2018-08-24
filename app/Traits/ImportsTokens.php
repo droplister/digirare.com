@@ -8,6 +8,16 @@ use Droplister\XcpCore\App\Asset;
 trait ImportsTokens
 {
     /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    /**
      * First or Create Token
      * 
      * @param  string  $xcp_core_asset_name
