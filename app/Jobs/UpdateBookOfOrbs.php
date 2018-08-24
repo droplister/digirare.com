@@ -16,13 +16,6 @@ class UpdateBookOfOrbs implements ShouldQueue
     use Dispatchable, ImportsTokens, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * Curl
-     *
-     * @var \Curl\Curl
-     */
-    protected $curl;
-
-    /**
      * Collection
      *
      * @var \App\Collection
