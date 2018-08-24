@@ -71,7 +71,7 @@ class UpdateBitcorn implements ShouldQueue
             $card = $this->firstOrCreateCard($xcp_core_asset_name, $data['name']);
 
             // Relation
-            $card->curators()->sync([$this->curator->id => ['image_url' => $image_url]]);
+            $card->curators()->syncWithoutDetaching([$this->curator->id => ['image_url' => $image_url]]);
         }
     }
 

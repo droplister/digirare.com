@@ -132,7 +132,7 @@ class UpdateBookOfOrbs implements ShouldQueue
         $card = $this->firstOrCreateCard($xcp_core_asset_name, $name, $meta_data);
 
         // Relation
-        $card->curators()->sync([$this->curator->id => ['image_url' => $image_url]]);
+        $card->curators()->syncWithoutDetaching([$this->curator->id => ['image_url' => $image_url]]);
     }
 
     /**
