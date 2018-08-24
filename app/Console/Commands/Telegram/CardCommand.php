@@ -60,7 +60,7 @@ class CardCommand extends Command
      */
     private function getText($card)
     {
-        $issuance = $card->token->issuance_normalized;
+        $issuance = $card->token ? $card->token->issuance_normalized : 'Unknown';
         $link = route('cards.show', ['card' => $card->slug]);
 
         return "> {*$card->name}* Issued: {$issuance} ([view]({$link}))";
