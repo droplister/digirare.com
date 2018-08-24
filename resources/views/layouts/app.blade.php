@@ -24,7 +24,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
-                <a class="navbar-brand" href="{{ url(url('/')) }}">
+                <a class="navbar-brand" href="{{ url('/') }}">
                     <i class="fa fa-diamond" aria-hidden="true"></i>
                     {{ config('app.name', 'Laravel') }}
                 </a>
