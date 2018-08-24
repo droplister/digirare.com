@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCollectionsTable extends Migration
+class CreateCardsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,13 @@ class CreateCollectionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('collections', function (Blueprint $table) {
+        Schema::create('cards', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('xcp_core_address')->unique();
-            $table->unsignedInteger('xcp_core_credit_id')->index(); // Creation Event
+            $table->string('xcp_core_asset_name')->unique();
+            $table->string('name');
             $table->string('slug')->unique();
+            $table->text('content')->nullable();
+            $table->json('meta')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +31,6 @@ class CreateCollectionsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collections');
+        Schema::dropIfExists('cards');
     }
 }

@@ -3,22 +3,22 @@
 namespace App\Traits;
 
 use Storage;
-use App\Token;
+use App\Card;
 use Droplister\XcpCore\App\Asset;
 
-trait ImportsTokens
+trait ImportsCards
 {
     /**
-     * First or Create Token
+     * First or Create Card
      * 
      * @param  string  $xcp_core_asset_name
      * @param  string  $name
      * @param  array  $meta
-     * @return \App\Token
+     * @return \App\Card
      */
-    private function firstOrCreateToken($xcp_core_asset_name, $name, $meta=null)
+    private function firstOrCreateCard($xcp_core_asset_name, $name, $meta=null)
     {
-        return Token::firstOrCreate([
+        return Card::firstOrCreate([
             'xcp_core_asset_name' => $xcp_core_asset_name,
         ],[
             'name' => $name,
@@ -52,13 +52,13 @@ trait ImportsTokens
      * @param  string  $url
      * @return string
      */
-    private function getImageUrl($url)
+    private function getImageUrl($url, $override=false)
     {
         $name = substr($url, strrpos($url, '/') + 1);
-        $file = $this->collection->slug . '/' . $name;
+        $file = $this->curator->slug . '/' . $name;
 
         // Only Download Once
-        if(! Storage::exists('public/' . $file))
+        if(! Storage::exists('public/' . $file) || $override)
         {
             $contents = file_get_contents($url);
             $image_path = Storage::put('public/' . $file, $contents);

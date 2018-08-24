@@ -3,8 +3,8 @@
 namespace App\Jobs;
 
 use Curl\Curl;
-use App\Collection;
-use App\Traits\ImportsTokens;
+use App\Curator;
+use App\Traits\ImportsCards;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class UpdateBookOfOrbs implements ShouldQueue
 {
-    use Dispatchable, ImportsTokens, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, ImportsCards, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Curl
@@ -23,20 +23,28 @@ class UpdateBookOfOrbs implements ShouldQueue
     protected $curl;
 
     /**
-     * Collection
+     * Curator
      *
-     * @var \App\Collection
+     * @var \App\Curator
      */
-    protected $collection;
+    protected $curator;
+
+    /**
+     * Override Existing Images
+     *
+     * @var boolean
+     */
+    protected $override;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Collection $collection)
+    public function __construct(Curator $curator, $override=false)
     {
-        $this->collection = $collection;
+        $this->curator = $curator;
+        $this->override = $override;
         $this->curl = new Curl();
     }
 
@@ -55,17 +63,17 @@ class UpdateBookOfOrbs implements ShouldQueue
             // Update Currency
             $this->updateCurrency($response);
 
-            // Get Token Array
-            $tokens = $this->fetchTokens($response);
+            // Get Card Array
+            $cards = $this->fetchCards($response);
 
             // Update or Create
-            foreach($tokens as $name => $data)
+            foreach($cards as $name => $data)
             {
                 // Simple Guard
                 if(in_array($name, ['GDCNOVADEMO', 'BITCRYSTALS'])) continue;
 
-                // Create Token
-                $this->updateOrCreateToken($name, $data);
+                // Create Card
+                $this->updateOrCreateCard($name, $data);
             }
         }
         catch(\Exception $e)
@@ -83,48 +91,48 @@ class UpdateBookOfOrbs implements ShouldQueue
     private function updateCurrency($response)
     {
         // Currency String
-        $currency = $this->getCurrency($response, $this->collection->meta['bundleId'], $this->collection->meta['version']);
+        $currency = $this->getCurrency($response, $this->curator->meta['bundleId'], $this->curator->meta['version']);
 
         // Update Currency
-        $this->collection->update([
+        $this->curator->update([
             'meta->currency' => $currency,
         ]);
     }
 
     /**
-     * Fetch Tokens
+     * Fetch Cards
      * 
      * @param  array  $response
      * @return void
      */
-    private function fetchTokens($response)
+    private function fetchCards($response)
     {
-        return $this->getTokens($response, $this->collection->meta['bundleId'], $this->collection->meta['version']);
+        return $this->getCards($response, $this->curator->meta['bundleId'], $this->curator->meta['version']);
     }
 
     /**
-     * Update or Create Tokens
+     * Update or Create Cards
      *
      * @param  string  $name
      * @param  array  $data
      * @return void
      */
-    private function updateOrCreateToken($name, $data)
+    private function updateOrCreateCard($name, $data)
     {
         // The Asset
         $xcp_core_asset_name = $this->getAssetName($name);
 
         // Image URL
-        $image_url = $this->getImageUrl($data['image']);
+        $image_url = $this->getImageUrl($data['image'], $override);
 
         // Get Meta
         $meta_data = $this->getMeta($data);
 
         // Creation
-        $token = $this->firstOrCreateToken($xcp_core_asset_name, $name, $meta_data);
+        $card = $this->firstOrCreateCard($xcp_core_asset_name, $name, $meta_data);
 
         // Relation
-        $token->collections()->sync([$this->collection->id => ['image_url' => $image_url]]);
+        $card->curators()->sync([$this->curator->id => ['image_url' => $image_url]]);
     }
 
     /**
@@ -152,14 +160,14 @@ class UpdateBookOfOrbs implements ShouldQueue
     }
 
     /**
-     * Get Tokens
+     * Get Cards
      *
      * @param  array  $response
      * @param  string  $bundleId
      * @param  integer  $version
      * @return array
      */
-    private function getTokens($response, $bundleId, $version)
+    private function getCards($response, $bundleId, $version)
     {
         // Version 1
         if($version === 1)
@@ -170,7 +178,7 @@ class UpdateBookOfOrbs implements ShouldQueue
         // Version 2
         if($version === 2)
         {
-            return $response['instance']['assetsCollection'][$bundleId]['Assets'];
+            return $response['instance']['assetsCurator'][$bundleId]['Assets'];
         }
 
         return false;
@@ -196,7 +204,7 @@ class UpdateBookOfOrbs implements ShouldQueue
         // Version 2
         if($version === 2)
         {
-            return $response['instance']['assetsCollection'][$bundleId]['Definition']['MasterCurrency'];
+            return $response['instance']['assetsCurator'][$bundleId]['Definition']['MasterCurrency'];
         }
 
         return false;
@@ -210,7 +218,7 @@ class UpdateBookOfOrbs implements ShouldQueue
     private function getAPI()
     {
         // Env Code
-        $envCode = $this->collection->meta['envCode'];
+        $envCode = $this->curator->meta['envCode'];
 
         // Get API
         $this->curl->get('https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center&action=getEnvironment&env='. $envCode .'&responseType=JSON&apiv=3&apik=18a48545-96cd-4e56-96aa-c8fcae302bfd&mainAddress=empty&targetAddress=empty');

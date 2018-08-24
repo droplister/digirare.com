@@ -7,7 +7,7 @@ use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
 
-class Token extends Model
+class Card extends Model
 {
     use Sluggable, SluggableScopeHelpers;
 
@@ -44,13 +44,13 @@ class Token extends Model
     }
 
     /**
-     * Collections
+     * Curators
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function collections()
+    public function curators()
     {
-        return $this->belongsToMany(Collection::class, 'collection_tokens', 'token_id', 'collection_id')
+        return $this->belongsToMany(Curator::class, 'card_curator', 'card_id', 'curator_id')
                     ->withPivot('image_url', 'primary');
     }
 

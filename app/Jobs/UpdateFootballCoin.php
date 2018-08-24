@@ -3,8 +3,8 @@
 namespace App\Jobs;
 
 use Curl\Curl;
-use App\Collection;
-use App\Traits\ImportsTokens;
+use App\Curator;
+use App\Traits\ImportsCards;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -13,7 +13,7 @@ use Illuminate\Foundation\Bus\Dispatchable;
 
 class UpdateFootballCoin implements ShouldQueue
 {
-    use Dispatchable, ImportsTokens, InteractsWithQueue, Queueable, SerializesModels;
+    use Dispatchable, ImportsCards, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
      * Curl
@@ -23,20 +23,28 @@ class UpdateFootballCoin implements ShouldQueue
     protected $curl;
 
     /**
-     * Collection
+     * Curator
      *
-     * @var \App\Collection
+     * @var \App\Curator
      */
-    protected $collection;
+    protected $curator;
+
+    /**
+     * Override Existing Images
+     *
+     * @var boolean
+     */
+    protected $override;
 
     /**
      * Create a new job instance.
      *
      * @return void
      */
-    public function __construct(Collection $collection)
+    public function __construct(Curator $curator, $override=false)
     {
-        $this->collection = $collection;
+        $this->curator = $curator;
+        $this->override = $override;
         $this->curl = new Curl();
         $this->curl->setHeader('XFC-AKEY', config('digirare.xfc_akey'));
     }
@@ -63,26 +71,26 @@ class UpdateFootballCoin implements ShouldQueue
                 // FootballCoin API
                 $response = $this->getApi($route, $page);
 
-                // Select Tokens
-                $tokens = $response['params'][$param];
+                // Select Cards
+                $cards = $response['params'][$param];
 
                 // Update or Create
-                foreach($tokens as $data)
+                foreach($cards as $data)
                 {
                     // The Asset
                     $xcp_core_asset_name = $this->getAssetName($data['cp_asset']);
 
                     // Image URL
-                    $image_url = $this->getImageUrl($data['cardPictureId']['big_url']);
+                    $image_url = $this->getImageUrl($data['cardPictureId']['big_url'], $override);
 
                     // Get Meta
                     $meta_data = $this->getMeta($data);
 
                     // Creation
-                    $token = $this->firstOrCreateToken($xcp_core_asset_name, $data['cp_asset'], $meta_data);
+                    $card = $this->firstOrCreateCard($xcp_core_asset_name, $data['cp_asset'], $meta_data);
 
                     // Relation
-                    $token->collections()->sync([$this->collection->id => ['image_url' => $image_url]]);
+                    $card->curators()->sync([$this->curator->id => ['image_url' => $image_url]]);
                 }
             }
         }

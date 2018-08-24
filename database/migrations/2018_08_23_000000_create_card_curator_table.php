@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCollectionTokensTable extends Migration
+class CreateCardCuratorTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,9 @@ class CreateCollectionTokensTable extends Migration
      */
     public function up()
     {
-        Schema::create('collection_tokens', function (Blueprint $table) {
-            $table->unsignedInteger('collection_id')->index();
-            $table->unsignedInteger('token_id')->index();
+        Schema::create('card_curator', function (Blueprint $table) {
+            $table->unsignedInteger('curator_id')->index();
+            $table->unsignedInteger('card_id')->index();
             $table->string('image_url');
             $table->boolean('primary')->default(1);
             $table->timestamps();
@@ -29,6 +29,6 @@ class CreateCollectionTokensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('collection_tokens');
+        Schema::dropIfExists('card_curator');
     }
 }

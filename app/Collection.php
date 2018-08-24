@@ -2,6 +2,8 @@
 
 namespace App;
 
+use Droplister\XcpCore\App\Credit;
+use Droplister\XcpCore\App\Address;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -16,47 +18,39 @@ class Collection extends Model
      * @var array
      */
     protected $fillable = [
-        'name',
+        'xcp_core_address',
+        'xcp_core_credit_id', 
         'slug',
-        'content',
-        'image_url',
-        'website_url',
-        'meta',
-        'meta->envCode',
-        'meta->bundleId',
-        'meta->version',
-        'meta->currency',
-        'active',
-        'launched_at',
     ];
 
     /**
-     * The attributes that should be mutated to dates.
-     *
-     * @var array
-     */
-    protected $dates = [
-        'launched_at',
-    ];
-
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'meta' => 'array',
-    ];
-
-    /**
-     * Tokens
+     * Address
      * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function tokens()
+    public function address()
     {
-        return $this->belongsToMany(Token::class, 'collection_tokens', 'collection_id', 'token_id')
-                    ->withPivot('image_url', 'primary');
+        return $this->belongsTo(Address::class, 'xcp_core_address', 'address');
+    }
+
+    /**
+     * Token Balances
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function cardBalances()
+    {
+        return $this->hasMany(CardBalance::class, 'address', 'xcp_core_address');
+    }
+
+    /**
+     * First Card (Credit Event)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function firstCard()
+    {
+        return $this->belongsTo(Credit::class, 'xcp_core_credit_id', 'id');
     }
 
     /**
@@ -68,7 +62,10 @@ class Collection extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'xcp_core_address',
+                'method' => function ($string, $separator) {
+                    return $string;
+                }
             ]
         ];
     }

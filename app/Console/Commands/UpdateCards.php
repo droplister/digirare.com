@@ -2,28 +2,28 @@
 
 namespace App\Console\Commands;
 
-use App\Collection;
+use App\Curator;
 use App\Jobs\UpdateBitcorn;
 use App\Jobs\UpdateMafiaWars;
 use App\Jobs\UpdateBookOfOrbs;
 use App\Jobs\UpdateFootballCoin;
 use Illuminate\Console\Command;
 
-class UpdateTokens extends Command
+class UpdateCards extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-    protected $signature = 'update:tokens';
+    protected $signature = 'update:cards';
 
     /**
      * The console command description.
      *
      * @var string
      */
-    protected $description = 'Update Tokens';
+    protected $description = 'Update Cards';
 
     /**
      * Create a new command instance.
@@ -62,7 +62,7 @@ class UpdateTokens extends Command
      */
     private function updateBitcorn()
     {
-        $bitcorn = Collection::findBySlug('bitcorn');
+        $bitcorn = Curator::findBySlug('bitcorn');
 
         UpdateBitcorn::dispatchNow($bitcorn);
     }
@@ -74,7 +74,7 @@ class UpdateTokens extends Command
      */
     private function updateMafiaWars()
     {
-        $mafiawars = Collection::findBySlug('mafiawars');
+        $mafiawars = Curator::findBySlug('mafiawars');
 
         UpdateMafiaWars::dispatchNow($mafiawars);
     }
@@ -86,11 +86,11 @@ class UpdateTokens extends Command
      */
     private function updateBookOfOrbs()
     {
-        $collections = Collection::whereNotNull('meta->envCode')->get();
+        $curators = Curator::whereNotNull('meta->envCode')->get();
 
-        foreach($collections as $collection)
+        foreach($curators as $curator)
         {
-            UpdateBookOfOrbs::dispatchNow($collection);
+            UpdateBookOfOrbs::dispatchNow($curator);
         }
     }
 
@@ -101,7 +101,7 @@ class UpdateTokens extends Command
      */
     private function updateFootballCoin()
     {
-        $footballcoin = Collection::findBySlug('footballcoin');
+        $footballcoin = Curator::findBySlug('footballcoin');
 
         UpdateFootballCoin::dispatchNow($footballcoin);
     }

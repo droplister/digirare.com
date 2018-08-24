@@ -10,3 +10,8 @@
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+Route::get('/', 'HomeController@index')->name('home.index');
+Route::resource('cards', 'CardsController', ['only' => ['index', 'show']]);
+Route::resource('curators', 'CuratorsController', ['only' => ['index', 'show']]);
+Route::resource('collections', 'CollectionsController', ['only' => ['index', 'show']]);

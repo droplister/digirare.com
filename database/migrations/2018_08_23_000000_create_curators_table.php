@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateTokensTable extends Migration
+class CreateCuratorsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,13 +13,17 @@ class CreateTokensTable extends Migration
      */
     public function up()
     {
-        Schema::create('tokens', function (Blueprint $table) {
+        Schema::create('curators', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('xcp_core_asset_name')->unique();
             $table->string('name');
             $table->string('slug')->unique();
+            $table->string('currency')->nullable();
+            $table->string('image_url')->nullable();
+            $table->string('website_url')->nullable();
             $table->text('content')->nullable();
             $table->json('meta')->nullable();
+            $table->boolean('active')->default(1);
+            $table->timestamp('launched_at')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +35,6 @@ class CreateTokensTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tokens');
+        Schema::dropIfExists('curators');
     }
 }
