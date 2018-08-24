@@ -81,11 +81,11 @@ class CardCommand extends Command
     /**
      * Is Animated
      *
-     * @param  \App\Card  $card
+     * @param  string  $image_url
      * @return array
      */
-    private function isAnimated($card)
+    private function isAnimated($image_url)
     {
-        return substr($data['card'], -3) === 'gif';
+        return substr($image_url, -3) === 'gif';
     }
 }

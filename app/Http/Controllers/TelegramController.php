@@ -62,7 +62,7 @@ class TelegramController extends Controller
     private function botAnalytics($message)
     {
         return $this->curl->post('https://api.botanalytics.co/v1/messages/generic/', [
-            'is_sender_bot' => $message->getFrom()->isBot,
+            'is_sender_bot' => $message->getFrom()->is_bot,
             'user' => [
                 'id' => $message->getFrom()->id,
                 'name' => $message->getFrom()->username, 
