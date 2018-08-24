@@ -56,7 +56,7 @@ class UpdateTokens extends Command
     {
         $bitcorn = Collection::findBySlug('bitcorn');
 
-        UpdateBitcorn::dispatch($bitcorn);
+        UpdateBitcorn::dispatchNow($bitcorn);
     }
 
     /**
@@ -70,7 +70,7 @@ class UpdateTokens extends Command
 
         foreach($collections as $collection)
         {
-            UpdateBookOfOrbs::dispatch($collection);
+            UpdateBookOfOrbs::dispatchNow($collection);
         }
     }
 }
