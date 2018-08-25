@@ -98,7 +98,7 @@ class CardCommand extends Command
      */
     private function getImageUrl($card)
     {
-        return url($card->curators()->primary()->first()->pivot->image_url);
+        return url($card->collections()->primary()->first()->pivot->image_url);
     }
 
     /**

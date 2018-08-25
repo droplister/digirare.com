@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Collector;
+use App\Collection;
 use Illuminate\Http\Request;
 
-class CollectorsController extends Controller
+class CollectionsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,22 +15,22 @@ class CollectorsController extends Controller
      */
     public function index(Request $request)
     {
-        $collectors = Collector::withCount('cardBalances')->get();
+        $collections = Collection::withCount('cards', 'collectors')->get();
 
-        return view('collectors.index', compact('collectors'));
+        return view('collections.index', compact('collections'));
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Collector  $collector
+     * @param  \App\Collection  $collection
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Collector $collector)
+    public function show(Request $request, Collection $collection)
     {
-        $cardBalances = $collector->cardBalances()->paginate(20);
+        $cards = $collection->cards()->paginate(20);
 
-        return view('curators.show', compact('collector', 'cardBalances'));
+        return view('collections.show', compact('collection', 'cards'));
     }
 }

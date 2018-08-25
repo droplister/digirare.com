@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use Curl\Curl;
-use App\Curator;
+use App\Collection;
 use App\Traits\ImportsCards;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -23,11 +23,11 @@ class UpdateBookOfOrbs implements ShouldQueue
     protected $curl;
 
     /**
-     * Curator
+     * Collection
      *
-     * @var \App\Curator
+     * @var \App\Collection
      */
-    protected $curator;
+    protected $collection;
 
     /**
      * Override Existing Images
@@ -41,9 +41,9 @@ class UpdateBookOfOrbs implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Curator $curator, $override=false)
+    public function __construct(Collection $collection, $override=false)
     {
-        $this->curator = $curator;
+        $this->collection = $collection;
         $this->override = $override;
         $this->curl = new Curl();
     }
@@ -84,10 +84,10 @@ class UpdateBookOfOrbs implements ShouldQueue
     private function updateCurrency($response)
     {
         // Currency String
-        $currency = $this->getCurrency($response, $this->curator->meta['bundleId'], $this->curator->meta['version']);
+        $currency = $this->getCurrency($response, $this->collection->meta['bundleId'], $this->collection->meta['version']);
 
         // Update Currency
-        $this->curator->update([
+        $this->collection->update([
             'currency' => $currency,
         ]);
     }
@@ -100,7 +100,7 @@ class UpdateBookOfOrbs implements ShouldQueue
      */
     private function fetchCards($response)
     {
-        return $this->getCards($response, $this->curator->meta['bundleId'], $this->curator->meta['version']);
+        return $this->getCards($response, $this->collection->meta['bundleId'], $this->collection->meta['version']);
     }
 
     /**
@@ -125,7 +125,7 @@ class UpdateBookOfOrbs implements ShouldQueue
         $card = $this->firstOrCreateCard($xcp_core_asset_name, $name, $meta_data);
 
         // Relation
-        $card->curators()->syncWithoutDetaching([$this->curator->id => ['image_url' => $image_url]]);
+        $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
     }
 
     /**
@@ -214,7 +214,7 @@ class UpdateBookOfOrbs implements ShouldQueue
         $apik = config('digirare.sog_akey');
 
         // Env Code
-        $envCode = $this->curator->meta['envCode'];
+        $envCode = $this->collection->meta['envCode'];
 
         // Get API
         $this->curl->get('https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center&action=getEnvironment&env='. $envCode .'&responseType=JSON&apiv=3&apik=' . $apik . '&mainAddress=empty&targetAddress=empty');

@@ -48,9 +48,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('curators.index') }}">
-                                <i class="fa fa-magic" aria-hidden="true"></i>
-                                {{ __('Curators') }}
+                            <a class="nav-link" href="{{ route('collections.index') }}">
+                                <i class="fa fa-th" aria-hidden="true"></i>
+                                {{ __('Collections') }}
                             </a>
                         </li>
                     </ul>

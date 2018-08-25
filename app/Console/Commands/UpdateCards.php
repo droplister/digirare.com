@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Curator;
+use App\Collection;
 use App\Jobs\UpdateBitcorn;
 use App\Jobs\UpdateMafiaWars;
 use App\Jobs\UpdateBookOfOrbs;
@@ -62,7 +62,7 @@ class UpdateCards extends Command
      */
     private function updateBitcorn()
     {
-        $bitcorn = Curator::findBySlug('bitcorn');
+        $bitcorn = Collection::findBySlug('bitcorn');
 
         UpdateBitcorn::dispatchNow($bitcorn, $this->option('o'));
     }
@@ -74,7 +74,7 @@ class UpdateCards extends Command
      */
     private function updateMafiaWars()
     {
-        $mafiawars = Curator::findBySlug('mafiawars');
+        $mafiawars = Collection::findBySlug('mafiawars');
 
         UpdateMafiaWars::dispatchNow($mafiawars, $this->option('o'));
     }
@@ -86,11 +86,11 @@ class UpdateCards extends Command
      */
     private function updateBookOfOrbs()
     {
-        $curators = Curator::whereNotNull('meta->envCode')->get();
+        $collections = Collection::whereNotNull('meta->envCode')->get();
 
-        foreach($curators as $curator)
+        foreach($collections as $collection)
         {
-            UpdateBookOfOrbs::dispatchNow($curator, $this->option('o'));
+            UpdateBookOfOrbs::dispatchNow($collection, $this->option('o'));
         }
     }
 
@@ -101,7 +101,7 @@ class UpdateCards extends Command
      */
     private function updateFootballCoin()
     {
-        $footballcoin = Curator::findBySlug('footballcoin');
+        $footballcoin = Collection::findBySlug('footballcoin');
 
         UpdateFootballCoin::dispatchNow($footballcoin, $this->option('o'));
     }

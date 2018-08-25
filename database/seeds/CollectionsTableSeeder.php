@@ -1,9 +1,9 @@
 <?php
 
-use App\Curator;
+use App\Collection;
 use Illuminate\Database\Seeder;
 
-class CuratorsTableSeeder extends Seeder
+class CollectionsTableSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -12,11 +12,11 @@ class CuratorsTableSeeder extends Seeder
      */
     public function run()
     {
-        $curators = $this->getCurators();
+        $collections = $this->getCollections();
 
-        foreach($curators as $name => $meta)
+        foreach($collections as $name => $meta)
         {
-            Curator::firstOrCreate([
+            Collection::firstOrCreate([
                 'name' => $name,
             ],[
                 'meta' => isset($meta['envCode']) ? $meta : null,
@@ -26,11 +26,11 @@ class CuratorsTableSeeder extends Seeder
     }
 
     /**
-     * Get Curator
+     * Get Collection
      * 
      * @return array
      */
-    private function getCurators()
+    private function getCollections()
     {
         return [
             // Book of Orbs

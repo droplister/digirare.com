@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCuratorsTable extends Migration
+class CreateCollectionsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,7 +13,7 @@ class CreateCuratorsTable extends Migration
      */
     public function up()
     {
-        Schema::create('curators', function (Blueprint $table) {
+        Schema::create('collections', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
             $table->string('slug')->unique();
@@ -35,6 +35,6 @@ class CreateCuratorsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('curators');
+        Schema::dropIfExists('collections');
     }
 }

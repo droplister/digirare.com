@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(AssetsTableSeeder::class);
-        $this->call(CuratorsTableSeeder::class);
+        $this->call(CollectionsTableSeeder::class);
     }
 }

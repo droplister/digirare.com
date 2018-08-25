@@ -3,7 +3,7 @@
 namespace App\Jobs;
 
 use Curl\Curl;
-use App\Curator;
+use App\Collection;
 use App\Traits\ImportsCards;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -23,11 +23,11 @@ class UpdateMafiaWars implements ShouldQueue
     protected $curl;
 
     /**
-     * Curator
+     * Collection
      *
-     * @var \App\Curator
+     * @var \App\Collection
      */
-    protected $curator;
+    protected $collection;
 
     /**
      * Override Existing Images
@@ -41,9 +41,9 @@ class UpdateMafiaWars implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Curator $curator, $override=false)
+    public function __construct(Collection $collection, $override=false)
     {
-        $this->curator = $curator;
+        $this->collection = $collection;
         $this->override = $override;
         $this->curl = new Curl();
     }
@@ -82,7 +82,7 @@ class UpdateMafiaWars implements ShouldQueue
                 $card = $this->firstOrCreateCard($xcp_core_asset_name, $data['asset'], $meta_data);
 
                 // Relation
-                $card->curators()->syncWithoutDetaching([$this->curator->id => ['image_url' => $image_url]]);
+                $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
             }
         } 
     }

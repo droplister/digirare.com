@@ -54,13 +54,13 @@ class Card extends Model
     }
 
     /**
-     * Curators
+     * Collections
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function curators()
+    public function collections()
     {
-        return $this->belongsToMany(Curator::class, 'card_curator', 'card_id', 'curator_id')
+        return $this->belongsToMany(Collection::class, 'card_collection', 'card_id', 'collection_id')
                     ->withPivot('image_url', 'primary');
     }
 

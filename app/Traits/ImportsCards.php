@@ -36,7 +36,7 @@ trait ImportsCards
     private function getImageUrl($url, $override=false)
     {
         $name = substr($url, strrpos($url, '/') + 1);
-        $file = $this->curator->slug . '/' . $name;
+        $file = $this->collection->slug . '/' . $name;
 
         // Only Download Once
         if(! Storage::exists('public/' . $file) || $override)

@@ -15,7 +15,7 @@ class CardsController extends Controller
      */
     public function index(Request $request)
     {
-        $cards = Card::withCount('cardBalances', 'curators')->get();
+        $cards = Card::withCount('cardBalances', 'collections')->get();
 
         return view('cards.index', compact('cards'));
     }
@@ -31,6 +31,6 @@ class CardsController extends Controller
     {
         $cardBalances = $card->cardBalances()->paginate(20);
 
-        return view('curators.show', compact('card', 'cardBalances'));
+        return view('collections.show', compact('card', 'cardBalances'));
     }
 }

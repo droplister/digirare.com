@@ -15,5 +15,5 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::resource('cards', 'CardsController', ['only' => ['index', 'show']]);
-Route::resource('curators', 'CuratorsController', ['only' => ['index', 'show']]);
 Route::resource('collectors', 'CollectorsController', ['only' => ['index', 'show']]);
+Route::resource('collections', 'CollectionsController', ['only' => ['index', 'show']]);

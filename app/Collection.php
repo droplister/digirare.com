@@ -8,7 +8,7 @@ use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 use Illuminate\Database\Eloquent\Model;
 
-class Curator extends Model
+class Collection extends Model
 {
     use HasRelationships, Sluggable, SluggableScopeHelpers;
 
@@ -58,7 +58,7 @@ class Curator extends Model
      */
     public function cards()
     {
-        return $this->belongsToMany(Card::class, 'card_curator', 'curator_id', 'card_id')
+        return $this->belongsToMany(Card::class, 'card_collection', 'collection_id', 'card_id')
                     ->withPivot('image_url', 'primary');
     }
 
@@ -69,7 +69,7 @@ class Curator extends Model
      */
     public function collectors()
     {
-        return $this->hasManyDeep(Collector::class, ['card_curator', Card::class]);
+        return $this->hasManyDeep(Collector::class, ['card_collection', Card::class]);
     }
 
     /**
