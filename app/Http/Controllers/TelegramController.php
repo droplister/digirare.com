@@ -47,8 +47,15 @@ class TelegramController extends Controller
         // Get Message
         $message = $update->getMessage();
 
-        // Bot Analytics
-        $this->botAnalytics($message);
+        try
+        {
+            // Bot Analytics
+            $this->botAnalytics($message);
+        }
+        catch(\Throwable $e)
+        {
+            \Log::info($e->getMessage());
+        }
 
         return 'Ok';
     }

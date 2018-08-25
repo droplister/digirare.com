@@ -60,10 +60,14 @@ class CardCommand extends Command
      */
     private function getText($card)
     {
-        $issuance = $card->token ? number_format($card->token->issuance_normalized) . ' Issued' :  null;
+        // Data
+        $name = $card->name;
         $link = route('cards.show', ['card' => $card->slug]);
-        $text = "*{$card->name}* ([view]({$link}))\n";
-        $text.= $issuance ? "Issued: {$issuance}" : "";
+        $collection = $card->collections()->primary()->first()->name;
+
+        // Text
+        $text = "*{$name}* ([view]({$link}))\n";
+        $text.= "{$collection}";
 
         return $text;
     }
