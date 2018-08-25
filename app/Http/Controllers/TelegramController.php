@@ -30,6 +30,7 @@ class TelegramController extends Controller
     public function __construct(Api $telegram)
     {
         $this->curl = new Curl();
+        $this->curl->setHeader('Content-Type', 'application/json');
         $this->curl->setHeader('Authorization', config('digirare.bot_akey'));
         $this->telegram = $telegram;
     }
