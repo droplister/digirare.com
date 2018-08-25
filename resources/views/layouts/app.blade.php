@@ -44,13 +44,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('collectors.index') }}">
                                 <i class="fa fa-hand-grab-o" aria-hidden="true"></i>
-                                {{ __('Collectors'') }}
+                                {{ __('Collectors') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('curators.index') }}">
                                 <i class="fa fa-hand-magic" aria-hidden="true"></i>
-                                {{ __('Curators'') }}
+                                {{ __('Curators') }}
                             </a>
                         </li>
                     </ul>
