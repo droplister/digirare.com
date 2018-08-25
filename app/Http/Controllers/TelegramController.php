@@ -83,8 +83,8 @@ class TelegramController extends Controller
             ],
         ];
 
-        \Log::info(serialize($data));
+        $this->curl->setOpt(CURLOPT_POSTFIELDS, json_encode($data));
 
-        return $this->curl->post('https://api.botanalytics.co/v1/messages/generic/', $data);
+        return $this->curl->post('https://api.botanalytics.co/v1/messages/generic/');
     }
 }
