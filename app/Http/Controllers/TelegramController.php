@@ -71,7 +71,8 @@ class TelegramController extends Controller
      */
     private function botAnalytics($message)
     {
-        return $this->curl->post('https://api.botanalytics.co/v1/messages/generic/', [
+        $data = [
+            'is_sender_bot' => $message->getFrom()->getIsBot(),
             'user' => [
                 'id' => $message->getFrom()->getId(),
                 'name' => $message->getFrom()->getUsername(), 
@@ -80,7 +81,10 @@ class TelegramController extends Controller
                 'timestamp' => Carbon::now(),
                 'text' => $message->getText(),
             ],
-            'is_sender_bot' => 'false',
-        ]);
+        ];
+
+        $this->curl->setOpt(CURLOPT_POSTFIELDS, $data);
+
+        return $this->curl->post('https://api.botanalytics.co/v1/messages/generic/');
     }
 }
