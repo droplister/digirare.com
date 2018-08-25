@@ -49,7 +49,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('curators.index') }}">
-                                <i class="fa fa-hand-magic" aria-hidden="true"></i>
+                                <i class="fa fa-magic" aria-hidden="true"></i>
                                 {{ __('Curators') }}
                             </a>
                         </li>
