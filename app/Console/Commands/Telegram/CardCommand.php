@@ -69,8 +69,8 @@ class CardCommand extends Command
         $collection = $card->collections()->primary()->first()->name;
 
         // Text
-        $text = "*{$name}* ([info]({$link}))\n";
-        $text.= "{$collection}";
+        $text = "*{$name}*\n";
+        $text.= "{$collection} &nbsp; [Info]({$link})";
 
         return $text;
     }

@@ -71,7 +71,7 @@ class TelegramController extends Controller
      */
     private function botAnalytics($message)
     {
-        $data = [
+        $data = (object) [
             'is_sender_bot' => $message->getFrom()->getIsBot(),
             'user' => [
                 'id' => $message->getFrom()->getId(),
@@ -83,7 +83,7 @@ class TelegramController extends Controller
             ],
         ];
 
-        $this->curl->setOpt(CURLOPT_POSTFIELDS, json_encode($data));
+        $this->curl->setOpt(CURLOPT_POSTFIELDS, $data);
 
         return $this->curl->post('https://api.botanalytics.co/v1/messages/generic/');
     }
