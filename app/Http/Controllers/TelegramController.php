@@ -83,7 +83,7 @@ class TelegramController extends Controller
             ],
         ];
 
-        $this->curl->setOpt(CURLOPT_POSTFIELDS, $data);
+        $this->curl->setOpt(CURLOPT_POSTFIELDS, http_build_query($data));
 
         return $this->curl->post('https://api.botanalytics.co/v1/messages/generic/');
     }
