@@ -26,7 +26,10 @@ class CardCommand extends Command
         $card = $this->getCard($arguments);
 
         // Not Found
-        if(! $card) return false;
+        if(! $card)
+        {
+            $card = Card::inRandomOrder()->first();
+        }
 
         // Reply w/ Image
         $this->replyWithImage($card);
