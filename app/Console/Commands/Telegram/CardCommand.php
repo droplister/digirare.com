@@ -69,7 +69,7 @@ class CardCommand extends Command
         $collection = $card->collections()->primary()->first()->name;
 
         // Text
-        $text = "*{$name}* ([view]({$link}))\n";
+        $text = "*{$name}* ([info]({$link}))\n";
         $text.= "{$collection}";
 
         return $text;
@@ -87,14 +87,7 @@ class CardCommand extends Command
         $image_url = $this->getImageUrl($card);
 
         // Reply w/ Image
-        if($this->isAnimated($image_url))
-        {
-            $this->replyWithDocument(['document' => $image_url]);
-        }
-        else
-        {
-            $this->replyWithPhoto(['photo' => $image_url]);
-        }
+        $this->replyWithDocument(['document' => $image_url]);
     }
 
     /**
@@ -106,16 +99,5 @@ class CardCommand extends Command
     private function getImageUrl($card)
     {
         return url($card->collections()->primary()->first()->pivot->image_url);
-    }
-
-    /**
-     * Is Animated
-     *
-     * @param  string  $image_url
-     * @return array
-     */
-    private function isAnimated($image_url)
-    {
-        return substr($image_url, -3) === 'gif';
     }
 }
