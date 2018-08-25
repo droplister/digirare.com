@@ -70,7 +70,7 @@ class CardCommand extends Command
 
         // Text
         $text = "*{$name}*\n";
-        $text.= "{$collection} &nbsp; [Info]({$link})";
+        $text.= "{$collection}   [Info]({$link})";
 
         return $text;
     }
