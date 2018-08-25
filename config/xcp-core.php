@@ -25,9 +25,9 @@ return [
     'first_block' => env('XCP_CORE_ENV_NET', 'mainnet') === 'mainnet' ? 278270 : 310000,
 
     /**
-     * Syncing (False in Production)
+     * Indexing (Production = true)
      */
-    'syncing' => env('XCP_CORE_SYNCING', true),
+    'indexing' => env('XCP_CORE_INDEXING', false),
 
     /**
      * Sync Size (Maximum = 250)

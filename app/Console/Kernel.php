@@ -24,7 +24,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('update:index')->everyMinute();
+        // Useful Switch
+        if(config('xcp-core.indexing'))
+        {
+            $schedule->command('update:index')->everyMinute();
+        }
+
+        // Poll for Cards
         $schedule->command('update:cards')->daily();
     }
 
