@@ -50,7 +50,9 @@ class TelegramController extends Controller
         try
         {
             // Bot Analytics
-            $this->botAnalytics($message);
+            $response = $this->botAnalytics($message);
+
+            \Log::info(serialize($response->response));
         }
         catch(\Throwable $e)
         {
