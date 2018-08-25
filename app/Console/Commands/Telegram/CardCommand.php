@@ -87,7 +87,10 @@ class CardCommand extends Command
         $image_url = $this->getImageUrl($card);
 
         // Reply w/ Image
-        $this->replyWithDocument(['document' => $image_url]);
+        $this->replyWithDocument([
+            'document' => $image_url,
+            'disable_notification' => true,
+        ]);
     }
 
     /**
