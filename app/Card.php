@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Events\CardWasCreated;
 use Droplister\XcpCore\App\Asset;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -10,6 +11,15 @@ use Illuminate\Database\Eloquent\Model;
 class Card extends Model
 {
     use Sluggable, SluggableScopeHelpers;
+
+    /**
+     * The event map for the model.
+     *
+     * @var array
+     */
+    protected $dispatchesEvents = [
+        'created' => CardWasCreated::class,
+    ];
 
     /**
      * The attributes that are mass assignable.

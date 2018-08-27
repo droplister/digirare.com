@@ -2,6 +2,7 @@
 
 namespace App\Listeners;
 
+use Cache;
 use App\Card;
 use Droplister\XcpCore\App\Events\CreditWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
@@ -37,6 +38,10 @@ class CollectorListener
      */
     private function isCuratedCard($event)
     {
-        return Card::where('xcp_core_asset_name', '=', $event->credit->asset)->exists();
+        $assets = Cache::rememberForever('cards_array', function () {
+            return Card::pluck('xcp_core_asset_name');
+        });
+
+        return in_array($event->credit->asset, $assets);
     }
 }
