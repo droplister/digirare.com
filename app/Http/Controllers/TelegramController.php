@@ -41,9 +41,9 @@ class TelegramController extends Controller
         try
         {
             // Bot Analytics
-            $response = $this->botAnalytics($message);
+            $result = $this->botAnalytics($message);
 
-            \Log::info(serialize($response->response));
+            \Log::info(serialize($result));
         }
         catch(\Throwable $e)
         {
@@ -69,7 +69,8 @@ class TelegramController extends Controller
 
         // Send
         $cb_data = $this->cb->userMessage($user_id, 'Telegram', $text, $intent, $not_handled, false);
-        $result = $this->cb->send($cb_data);
+        
+        return $this->cb->send($cb_data);
     }
 
     /**
