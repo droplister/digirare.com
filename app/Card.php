@@ -81,7 +81,7 @@ class Card extends Model
      */
     public function collectors()
     {
-        return $this->hasManyThrough(Collector::class, CardBalance::class);
+        return $this->hasManyThrough(Collector::class, CardBalance::class, 'xcp_core_asset_name', 'asset_name');
     }
 
     /**
