@@ -1,6 +1,6 @@
 <?php
 
-namespace Droplister\XcpCore\App\Events;
+namespace App\Events;
 
 use App\Card;
 use Illuminate\Broadcasting\Channel;
