@@ -31,7 +31,6 @@ class TelegramController extends Controller
     {
         $this->curl = new Curl();
         $this->curl->setHeader('Content-Type', 'application/json');
-        $this->curl->setHeader('Authorization', config('digirare.bot_akey'));
         $this->telegram = $telegram;
     }
 
@@ -71,20 +70,28 @@ class TelegramController extends Controller
      */
     private function botAnalytics($message)
     {
-        $data = (object) [
-            'is_sender_bot' => $message->getFrom()->getIsBot(),
-            'user' => [
-                'id' => $message->getFrom()->getId(),
-                'name' => $message->getFrom()->getUsername(), 
-            ],
-            'message' => [
-                'timestamp' => Carbon::now(),
-                'text' => $message->getText(),
-            ],
+        // Incoming Message
+        $route = 'https://tracker.dashbot.io/track?platform=generic&v=9.9.1-rest&type=incoming&apiKey=' . config('digirare.bot_akey');
+
+        // Get Message Intent
+        $intent = $this->getIntent($message);
+
+        // Build Data Array
+        $data = [
+            'text' => $message->getText(),
+            'userId' => $message->getFrom()->getId(),
+            'intent' => {
+                'name' => $message->detectType(),
+                'inputs' => [{}],
+            },
+            'platformJson' => {
+                'chat' => $message->getChat(),
+            },
+            'platformJson' => {
+                'user' => $message->getFrom(),
+            }
         ];
 
-        $this->curl->setOpt(CURLOPT_POSTFIELDS, $data);
-
-        return $this->curl->post('https://api.botanalytics.co/v1/messages/generic/');
+        return $this->curl->post($route, $data);
     }
 }

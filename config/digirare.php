@@ -13,7 +13,7 @@ return [
     'xfc_akey' => env('XFC_AKEY'),
 
     /**
-     * BotAnalytics
+     * Dashbot.io
      */
     'bot_akey' => env('BOT_AKEY'),
 

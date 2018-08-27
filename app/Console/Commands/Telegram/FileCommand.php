@@ -35,11 +35,11 @@ class FileCommand extends Command
         $this->replyWithImage($card);
 
         // Reply w/ Message
-        $this->replyWithMessage([
-            'text' => $this->getText($card),
-            'parse_mode' => 'Markdown',
-            'disable_notification' => true,
-        ]);
+        // $this->replyWithMessage([
+        //     'text' => $this->getText($card),
+        //     'parse_mode' => 'Markdown',
+        //     'disable_notification' => true,
+        // ]);
     }
 
     /**
