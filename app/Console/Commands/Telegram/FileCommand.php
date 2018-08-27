@@ -25,23 +25,14 @@ class FileCommand extends Command
      */
     public function handle($arguments)
     {
-        // Get Card
+        // Data
         $card = $this->getCard($arguments);
 
-        // Reply w/ Image
-        $this->replyWithImage($card, true);
+        // Send
+        $image_url = $this->replyWithImage($card, true);
 
-        // Get Data
+        // Track
         $user_id = $this->getUpdate()->getMessage()->getFrom()->getId();
-
-        // Track Data
-        $this->outgoingChat($user_id, $this->getImageUrl($card), 'file_response');
-
-        // Reply w/ Message
-        // $this->replyWithMessage([
-        //     'text' => $this->getText($card),
-        //     'parse_mode' => 'Markdown',
-        //     'disable_notification' => true,
-        // ]);
+        $this->outgoingChat($user_id, $image_url, 'file_response');
     }
 }

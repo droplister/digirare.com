@@ -48,6 +48,24 @@ trait CardCommandHelpers
     }
 
     /**
+     * Reply With Text
+     * 
+     * @param  string  $text
+     * @return mixed
+     */
+    private function replyWithText($text)
+    {
+        // Reply w/ Message
+        $this->replyWithMessage([
+            'text' => $text,
+            'parse_mode' => 'Markdown',
+            'disable_notification' => true,
+        ]);
+
+        return $text;
+    }
+
+    /**
      * Reply With Image
      * 
      * @param  \App\Card  $card
@@ -73,6 +91,8 @@ trait CardCommandHelpers
                 'disable_notification' => true,
             ]);
         }
+
+        return $image_url;
     }
 
     /**

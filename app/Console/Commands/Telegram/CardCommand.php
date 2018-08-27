@@ -25,23 +25,16 @@ class CardCommand extends Command
      */
     public function handle($arguments)
     {
-        // Get Card
+        // Data
         $card = $this->getCard($arguments);
+        $text = $this->getText($card);
 
-        // Reply w/ Image
-        $this->replyWithImage($card);
+        // Send
+        $image_url = $this->replyWithImage($card);
+        $message = $this->replyWithText($text);
 
-        // Get Data
+        // Track
         $user_id = $this->getUpdate()->getMessage()->getFrom()->getId();
-
-        // Track Data
-        $this->outgoingChat($user_id, $this->getImageUrl($card), 'card_response');
-
-        // Reply w/ Message
-        // $this->replyWithMessage([
-        //     'text' => $this->getText($card),
-        //     'parse_mode' => 'Markdown',
-        //     'disable_notification' => true,
-        // ]);
+        $this->outgoingChat($user_id, $image_url . ' ' . $text, 'card_response');
     }
 }

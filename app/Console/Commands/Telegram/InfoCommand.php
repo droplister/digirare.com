@@ -25,20 +25,15 @@ class InfoCommand extends Command
      */
     public function handle($arguments)
     {
-        // Get Card
+        // Data
         $card = $this->getCard($arguments);
+        $text = $this->getText($card);
 
-        // Reply w/ Message
-        $this->replyWithMessage([
-            'text' => $this->getText($card),
-            'parse_mode' => 'Markdown',
-            'disable_notification' => true,
-        ]);
+        // Send
+        $message = $this->replyWithText($text);
 
-        // Get Data
+        // Track
         $user_id = $this->getUpdate()->getMessage()->getFrom()->getId();
-
-        // Track Data
-        $this->outgoingChat($user_id, $this->getText($card), 'info_response');
+        $this->outgoingChat($user_id, $message, 'info_response');
     }
 }
