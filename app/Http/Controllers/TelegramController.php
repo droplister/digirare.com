@@ -109,7 +109,7 @@ class TelegramController extends Controller
         return {
             'name' => $name,
             'inputs' => $inputs,
-        }
+        };
     }
 
     /**
@@ -156,6 +156,6 @@ class TelegramController extends Controller
         return [{
             'name' => $name,
             'value' => $value,
-        }]
+        }];
     }
 }
