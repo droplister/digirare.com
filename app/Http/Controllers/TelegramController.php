@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use Telegram\Bot\Api;
-use ChatbaseAPI\Chatbase;
+use App\Traits\TrackBotAnalytics;
 
 class TelegramController extends Controller
 {
+    use TrackBotAnalytics;
+
     /**
      * Telegram
      *
@@ -21,7 +23,6 @@ class TelegramController extends Controller
      */
     public function __construct(Api $telegram)
     {
-        $this->cb = new Chatbase(config('digirare.bot_akey'));
         $this->telegram = $telegram;
     }
 
@@ -38,39 +39,16 @@ class TelegramController extends Controller
         // Get Message
         $message = $update->getMessage();
 
-        try
-        {
-            // Bot Analytics
-            $result = $this->botAnalytics($message);
-
-            \Log::info(serialize($result));
-        }
-        catch(\Throwable $e)
-        {
-            \Log::info($e->getMessage());
-        }
-
-        return 'Ok';
-    }
-
-    /**
-     * Bot Analytics
-     *
-     * @param  mixed  $message
-     * @return array
-     */
-    private function botAnalytics($message)
-    {
-        // Data
+        // Get Data
         $user_id = $message->getFrom()->getId();
         $text = $message->getText();
         $intent = $message->detectType();
         $not_handled = $this->notHandled($message);
 
-        // Send
-        $cb_data = $this->cb->userMessage($user_id, 'Telegram', $text, $intent, $not_handled, false);
-        
-        return $this->cb->send($cb_data);
+        // Track Data
+        $result = $this->incomingChat($user_id, $text, $intent, $not_handled);
+
+        return 'Ok';
     }
 
     /**

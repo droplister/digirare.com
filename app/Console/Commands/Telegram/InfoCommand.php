@@ -3,10 +3,13 @@
 namespace App\Console\Commands\Telegram;
 
 use App\Card;
+use App\Traits\TrackBotAnalytics;
 use Telegram\Bot\Commands\Command;
 
 class InfoCommand extends Command
 {
+    use TrackBotAnalytics;
+
     /**
      * @var string Command Name
      */
@@ -37,6 +40,12 @@ class InfoCommand extends Command
             'parse_mode' => 'Markdown',
             'disable_notification' => true,
         ]);
+
+        // Get Data
+        $user_id = $this->getUpdate()->getMessage()->getFrom()->getId();
+
+        // Track Data
+        $this->outgoingChat($user_id, $this->getText($card), 'info_command');
     }
 
     /**

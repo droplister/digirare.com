@@ -3,10 +3,13 @@
 namespace App\Console\Commands\Telegram;
 
 use App\Card;
+use App\Traits\TrackBotAnalytics;
 use Telegram\Bot\Commands\Command;
 
 class CardCommand extends Command
 {
+    use TrackBotAnalytics;
+
     /**
      * @var string Command Name
      */
@@ -33,6 +36,12 @@ class CardCommand extends Command
 
         // Reply w/ Image
         $this->replyWithImage($card);
+
+        // Get Data
+        $user_id = $this->getUpdate()->getMessage()->getFrom()->getId();
+
+        // Track Data
+        $this->outgoingChat($user_id, $this->getImageUrl($card), 'card_command');
 
         // Reply w/ Message
         // $this->replyWithMessage([
