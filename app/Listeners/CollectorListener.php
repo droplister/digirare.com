@@ -39,7 +39,7 @@ class CollectorListener
     private function isCuratedCard($event)
     {
         $assets = Cache::rememberForever('cards_array', function () {
-            return Card::pluck('xcp_core_asset_name');
+            return Card::pluck('xcp_core_asset_name')->toArray();
         });
 
         return in_array($event->credit->asset, $assets);
