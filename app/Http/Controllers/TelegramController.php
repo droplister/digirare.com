@@ -2,19 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Curl\Curl;
-use Carbon\Carbon;
 use Telegram\Bot\Api;
+use ChatbaseAPI\Chatbase;
 
 class TelegramController extends Controller
 {
-    /**
-     * Curl
-     *
-     * @var \Curl\Curl
-     */
-    protected $curl;
-
     /**
      * Telegram
      *
@@ -29,8 +21,7 @@ class TelegramController extends Controller
      */
     public function __construct(Api $telegram)
     {
-        $this->curl = new Curl();
-        $this->curl->setHeader('Content-Type', 'application/json');
+        $this->cb = new Chatbase(config('digirare.bot_akey'));
         $this->telegram = $telegram;
     }
 
@@ -70,36 +61,30 @@ class TelegramController extends Controller
      */
     private function botAnalytics($message)
     {
-        // Incoming Message
-        $route = 'https://tracker.dashbot.io/track?platform=generic&v=9.9.1-rest&type=incoming&apiKey=' . config('digirare.bot_akey');
+        // Data
+        $user_id = $message->getFrom()->getId();
+        $text = $message->getText();
+        $intent = $message->detectType()
+        $not_handled = $this->notHandled($message);
 
-        // Build Data Array
-        $data = [
-            'text' => $message->getText(),
-            'userId' => $message->getFrom()->getId(),
-        ];
-
-        return $this->curl->post($route, $data);
+        // Send
+        $cb_data = $this->cb->userMessage($user_id, 'telegram', $text, $intent, $not_handled, false);
+        $result = $cb->this->send($cb_data);
     }
 
     /**
-     * Get Name
+     * Not Handled
      * 
      * @param  mixed $message
      * @return array
      */
-    private function getName($message)
+    private function notHandled($message)
     {
         $commands = ['/c', '/f', '/i'];
         $command = substr($message->getText(), 0, 2);
 
-        if(in_array($command, $commands))
-        {
-            $command = strtoupper(substr($command, -1));
+        if(in_array($command, $commands)) return false;
 
-            return "{$command}_QUERY";
-        }
-
-        return 'NotHandled';
+        return true;
     }
 }
