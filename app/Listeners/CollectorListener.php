@@ -4,6 +4,7 @@ namespace App\Listeners;
 
 use Cache;
 use App\Card;
+use App\Collector;
 use Droplister\XcpCore\App\Events\CreditWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
