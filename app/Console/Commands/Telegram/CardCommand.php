@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Telegram;
 
-use App\Card;
 use App\Traits\TrackBotAnalytics;
 use App\Traits\CardCommandHelpers;
 use Telegram\Bot\Commands\Command;

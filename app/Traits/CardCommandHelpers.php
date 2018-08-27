@@ -2,6 +2,7 @@
 
 namespace App\Traits;
 
+use App\Card;
 
 trait CardCommandHelpers
 {
@@ -14,7 +15,7 @@ trait CardCommandHelpers
     private function getCard($arguments)
     {
         $name = explode(' ', $arguments)[0];
-        
+
         $card = Card::where('name', '=', $name)->first();
 
         // Not Found
