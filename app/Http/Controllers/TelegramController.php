@@ -42,7 +42,7 @@ class TelegramController extends Controller
         // Get Data
         $user_id = $message->getFrom()->getId();
         $text = $message->getText();
-        $intent = $message->detectType();
+        $intent = $update->detectType();
         $not_handled = $this->notHandled($message);
 
         // Track Data
