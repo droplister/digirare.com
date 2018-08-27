@@ -75,6 +75,16 @@ class Card extends Model
     }
 
     /**
+     * Active Collections
+     */
+    public function scopeActive($query)
+    {
+        return $query->whereHas('collections', functions($collection) {
+            return $collection->where('active', '=', 1);
+        });
+    }
+
+    /**
      * Get the route key for the model.
      *
      * @return string

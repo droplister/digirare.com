@@ -4,11 +4,12 @@ namespace App\Console\Commands\Telegram;
 
 use App\Card;
 use App\Traits\TrackBotAnalytics;
+use App\Traits\CardCommandHelpers;
 use Telegram\Bot\Commands\Command;
 
 class CardCommand extends Command
 {
-    use TrackBotAnalytics;
+    use CardCommandHelpers, TrackBotAnalytics;
 
     /**
      * @var string Command Name
@@ -28,12 +29,6 @@ class CardCommand extends Command
         // Get Card
         $card = $this->getCard($arguments);
 
-        // Not Found
-        if(! $card)
-        {
-            $card = Card::inRandomOrder()->first();
-        }
-
         // Reply w/ Image
         $this->replyWithImage($card);
 
@@ -41,7 +36,7 @@ class CardCommand extends Command
         $user_id = $this->getUpdate()->getMessage()->getFrom()->getId();
 
         // Track Data
-        $this->outgoingChat($user_id, $this->getImageUrl($card), 'card_command');
+        $this->outgoingChat($user_id, $this->getImageUrl($card), 'card_response');
 
         // Reply w/ Message
         // $this->replyWithMessage([
@@ -49,88 +44,5 @@ class CardCommand extends Command
         //     'parse_mode' => 'Markdown',
         //     'disable_notification' => true,
         // ]);
-    }
-
-    /**
-     * Get Card
-     *
-     * @param  array  $arguments
-     * @return array
-     */
-    private function getCard($arguments)
-    {
-        $name = explode(' ', $arguments)[0];
-
-        return Card::where('name', '=', $name)->first();
-    }
-
-    /**
-     * Get Text
-     *
-     * @param  \App\Card  $card
-     * @return string
-     */
-    private function getText($card)
-    {
-        // Data
-        $name = $card->name;
-        $link = route('cards.show', ['card' => $card->slug]);
-        $collection = $card->collections()->primary()->first()->name;
-
-        // Text
-        $text = "*{$name}*\n";
-        $text.= "{$collection}   [Info]({$link})";
-
-        return $text;
-    }
-
-    /**
-     * Reply With Image
-     * 
-     * @param  \App\Card  $card
-     * @return mixed
-     */
-    private function replyWithImage($card)
-    {
-        // Image URL
-        $image_url = $this->getImageUrl($card);
-
-        // Reply w/ Image
-        if($this->isAnimated($image_url))
-        {
-            $this->replyWithDocument([
-                'document' => $image_url,
-                'disable_notification' => true,
-            ]);
-        }
-        else
-        {
-            $this->replyWithPhoto([
-                'photo' => $image_url,
-                'disable_notification' => true,
-            ]);
-        }
-    }
-
-    /**
-     * Image URL
-     * 
-     * @param  \App\Card  $card
-     * @return string
-     */
-    private function getImageUrl($card)
-    {
-        return url($card->collections()->primary()->first()->pivot->image_url);
-    }
-
-    /**
-     * Is Animated
-     *
-     * @param  string  $image_url
-     * @return array
-     */
-    private function isAnimated($image_url)
-    {
-        return substr($image_url, -3) === 'gif';
     }
 }

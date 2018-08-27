@@ -4,11 +4,12 @@ namespace App\Console\Commands\Telegram;
 
 use App\Card;
 use App\Traits\TrackBotAnalytics;
+use App\Traits\CardCommandHelpers;
 use Telegram\Bot\Commands\Command;
 
 class InfoCommand extends Command
 {
-    use TrackBotAnalytics;
+    use CardCommandHelpers, TrackBotAnalytics;
 
     /**
      * @var string Command Name
@@ -28,12 +29,6 @@ class InfoCommand extends Command
         // Get Card
         $card = $this->getCard($arguments);
 
-        // Not Found
-        if(! $card)
-        {
-            $card = Card::inRandomOrder()->first();
-        }
-
         // Reply w/ Message
         $this->replyWithMessage([
             'text' => $this->getText($card),
@@ -45,39 +40,6 @@ class InfoCommand extends Command
         $user_id = $this->getUpdate()->getMessage()->getFrom()->getId();
 
         // Track Data
-        $this->outgoingChat($user_id, $this->getText($card), 'info_command');
-    }
-
-    /**
-     * Get Card
-     *
-     * @param  array  $arguments
-     * @return array
-     */
-    private function getCard($arguments)
-    {
-        $name = explode(' ', $arguments)[0];
-
-        return Card::where('name', '=', $name)->first();
-    }
-
-    /**
-     * Get Text
-     *
-     * @param  \App\Card  $card
-     * @return string
-     */
-    private function getText($card)
-    {
-        // Data
-        $name = $card->name;
-        $link = route('cards.show', ['card' => $card->slug]);
-        $collection = $card->collections()->primary()->first()->name;
-
-        // Text
-        $text = "*{$name}*\n";
-        $text.= "{$collection}   [Info]({$link})";
-
-        return $text;
+        $this->outgoingChat($user_id, $this->getText($card), 'info_response');
     }
 }
