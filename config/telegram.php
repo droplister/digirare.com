@@ -57,5 +57,7 @@ return [
     */
     'commands' => [
         App\Console\Commands\Telegram\CardCommand::class,
+        App\Console\Commands\Telegram\FileCommand::class,
+        App\Console\Commands\Telegram\InfoCommand::class,
     ],
 ];

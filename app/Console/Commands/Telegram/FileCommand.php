@@ -5,17 +5,17 @@ namespace App\Console\Commands\Telegram;
 use App\Card;
 use Telegram\Bot\Commands\Command;
 
-class CardCommand extends Command
+class FileCommand extends Command
 {
     /**
      * @var string Command Name
      */
-    protected $name = 'c';
+    protected $name = 'f';
 
     /**
      * @var string Command Description
      */
-    protected $description = 'Show Card Art';
+    protected $description = 'Show Card Art (Uncompressed)';
 
     /**
      * {@inheritdoc}
@@ -87,20 +87,10 @@ class CardCommand extends Command
         $image_url = $this->getImageUrl($card);
 
         // Reply w/ Image
-        if($this->isAnimated($image_url))
-        {
-            $this->replyWithDocument([
-                'document' => $image_url,
-                'disable_notification' => true,
-            ]);
-        }
-        else
-        {
-            $this->replyWithPhoto([
-                'photo' => $image_url,
-                'disable_notification' => true,
-            ]);
-        }
+        $this->replyWithDocument([
+            'document' => $image_url,
+            'disable_notification' => true,
+        ]);
     }
 
     /**
@@ -112,16 +102,5 @@ class CardCommand extends Command
     private function getImageUrl($card)
     {
         return url($card->collections()->primary()->first()->pivot->image_url);
-    }
-
-    /**
-     * Is Animated
-     *
-     * @param  string  $image_url
-     * @return array
-     */
-    private function isAnimated($image_url)
-    {
-        return substr($image_url, -3) === 'gif';
     }
 }

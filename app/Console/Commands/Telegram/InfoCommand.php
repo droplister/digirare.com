@@ -5,17 +5,17 @@ namespace App\Console\Commands\Telegram;
 use App\Card;
 use Telegram\Bot\Commands\Command;
 
-class CardCommand extends Command
+class InfoCommand extends Command
 {
     /**
      * @var string Command Name
      */
-    protected $name = 'c';
+    protected $name = 'i';
 
     /**
      * @var string Command Description
      */
-    protected $description = 'Show Card Art';
+    protected $description = 'Show Full Card Information.';
 
     /**
      * {@inheritdoc}
@@ -30,9 +30,6 @@ class CardCommand extends Command
         {
             $card = Card::inRandomOrder()->first();
         }
-
-        // Reply w/ Image
-        $this->replyWithImage($card);
 
         // Reply w/ Message
         $this->replyWithMessage([
@@ -73,55 +70,5 @@ class CardCommand extends Command
         $text.= "{$collection}   [Info]({$link})";
 
         return $text;
-    }
-
-    /**
-     * Reply With Image
-     * 
-     * @param  \App\Card  $card
-     * @return mixed
-     */
-    private function replyWithImage($card)
-    {
-        // Image URL
-        $image_url = $this->getImageUrl($card);
-
-        // Reply w/ Image
-        if($this->isAnimated($image_url))
-        {
-            $this->replyWithDocument([
-                'document' => $image_url,
-                'disable_notification' => true,
-            ]);
-        }
-        else
-        {
-            $this->replyWithPhoto([
-                'photo' => $image_url,
-                'disable_notification' => true,
-            ]);
-        }
-    }
-
-    /**
-     * Image URL
-     * 
-     * @param  \App\Card  $card
-     * @return string
-     */
-    private function getImageUrl($card)
-    {
-        return url($card->collections()->primary()->first()->pivot->image_url);
-    }
-
-    /**
-     * Is Animated
-     *
-     * @param  string  $image_url
-     * @return array
-     */
-    private function isAnimated($image_url)
-    {
-        return substr($image_url, -3) === 'gif';
     }
 }
