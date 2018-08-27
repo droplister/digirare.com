@@ -79,7 +79,7 @@ class Card extends Model
      */
     public function scopeActive($query)
     {
-        return $query->whereHas('collections', functions($collection) {
+        return $query->whereHas('collections', function($collection) {
             return $collection->where('active', '=', 1);
         });
     }
