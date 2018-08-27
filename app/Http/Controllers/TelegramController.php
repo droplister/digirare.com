@@ -86,26 +86,18 @@ class TelegramController extends Controller
         $data = [
             'text' => $message->getText(),
             'userId' => $message->getFrom()->getId(),
-            'intent' => $intent,
-            'platformJson' => $platformJson,
-            'platformJson' => $platformUserJson,
+            'intent' => (object) [
+                'name' => $this->getName($text),
+            ],
+            'platformJson' => (object) [
+                'chat' => $message->getChat(),
+            ],
+            'platformUserJson' => (object) [
+                'from' => $message->getFrom(),
+            ],
         ];
 
         return $this->curl->post($route, $data);
-    }
-
-    /**
-     * Get Intent
-     * 
-     * @param  string $text
-     * @return mixed
-     */
-    private function getIntent($text)
-    {
-        $intent = new stdClass;
-        $intent->name = $this->getName($text);
-
-        return $intent;
     }
 
     /**
@@ -127,33 +119,5 @@ class TelegramController extends Controller
         }
 
         return 'NotHandled';
-    }
-
-    /**
-     * Get Platform Json
-     * 
-     * @param  mixed $chat
-     * @return object
-     */
-    private function getPlatformJson($chat)
-    {
-        $platform = new stdClass;
-        $platform->chat = $chat;
-
-        return $platform;
-    }
-
-    /**
-     * Get Platform User Json
-     * 
-     * @param  mixed $from
-     * @return object
-     */
-    private function getPlatformUserJson($from)
-    {
-        $user = new stdClass;
-        $user->from = $from;
-
-        return $user;
     }
 }
