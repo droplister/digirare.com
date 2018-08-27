@@ -68,8 +68,8 @@ class TelegramController extends Controller
         $not_handled = $this->notHandled($message);
 
         // Send
-        $cb_data = $this->cb->userMessage($user_id, 'telegram', $text, $intent, $not_handled, false);
-        $result = $cb->this->send($cb_data);
+        $cb_data = $this->cb->userMessage($user_id, 'Telegram', $text, $intent, $not_handled, false);
+        $result = $this->cb->send($cb_data);
     }
 
     /**
