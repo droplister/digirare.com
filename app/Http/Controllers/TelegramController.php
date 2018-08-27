@@ -77,15 +77,6 @@ class TelegramController extends Controller
         $data = [
             'text' => $message->getText(),
             'userId' => $message->getFrom()->getId(),
-            'intent' => (object) [
-                'name' => $this->getName($message),
-            ],
-            'platformJson' => (object) [
-                'chat' => $message->getChat(),
-            ],
-            'platformUserJson' => (object) [
-                'from' => $message->getFrom(),
-            ],
         ];
 
         return $this->curl->post($route, $data);
