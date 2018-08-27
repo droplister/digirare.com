@@ -74,7 +74,7 @@ class TelegramController extends Controller
         $route = 'https://tracker.dashbot.io/track?platform=generic&v=9.9.1-rest&type=incoming&apiKey=' . config('digirare.bot_akey');
 
         // Get Message Intent
-        $intent = $this->getIntent($message);
+        $intent = $this->getIntent($message->getText());
 
         // Build Data Array
         $data = [
@@ -95,20 +95,16 @@ class TelegramController extends Controller
     /**
      * Get Intent
      * 
-     * @param  mixed $message
+     * @param  string $text
      * @return mixed
      */
-    private function getIntent($message)
+    private function getIntent($text)
     {
         // Get Name
-        $name = $this->getName($message->getText());
-
-        // Get Inputs
-        $inputs = $this->getInputs($name, $message);
+        $name = $this->getName($text);
 
         return {
             'name' => $name,
-            'inputs' => $inputs,
         };
     }
 
@@ -130,32 +126,6 @@ class TelegramController extends Controller
             return "{$command}_QUERY";
         }
 
-        return 'CHATTING';
-    }
-
-    /**
-     * Get Intent
-     * 
-     * @param  string $intent
-     * @param  string $message
-     * @return array
-     */
-    private function getInputs($intent, $message)
-    {
-        if($intent === 'CHATTING')
-        {
-            $name = 'type';
-            $value = $message->detectType();
-        }
-        else
-        {
-            $name = 'input';
-            $value = explode(' ', $message->getText())[1];
-        }
-
-        return [{
-            'name' => $name,
-            'value' => $value,
-        }];
+        return 'NotHandled';
     }
 }
