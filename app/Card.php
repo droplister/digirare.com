@@ -75,6 +75,16 @@ class Card extends Model
     }
 
     /**
+     * Collectors
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
+    public function collectors()
+    {
+        return $this->hasManyThrough(Collector::class, CardBalance::class);
+    }
+
+    /**
      * Active Collections
      */
     public function scopeActive($query)

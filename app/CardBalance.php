@@ -40,8 +40,17 @@ class CardBalance extends Balance
         return $this->belongsTo(Card::class, 'asset_name', 'xcp_core_asset_name');
     }
 
+
     /**
-     * Game Tokens
+     * Non Zero
+     */
+    public function scopeNonZero($query)
+    {
+        return $query->where('quantity', '>', 0);
+    }
+
+    /**
+     * Cards Only
      */
     public function scopeCards($query)
     {
