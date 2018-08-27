@@ -78,7 +78,7 @@ class TelegramController extends Controller
             'text' => $message->getText(),
             'userId' => $message->getFrom()->getId(),
             'intent' => (object) [
-                'name' => $this->getName($text),
+                'name' => $this->getName($message),
             ],
             'platformJson' => (object) [
                 'chat' => $message->getChat(),
@@ -94,13 +94,13 @@ class TelegramController extends Controller
     /**
      * Get Name
      * 
-     * @param  string $text
+     * @param  mixed $message
      * @return array
      */
-    private function getName($text)
+    private function getName($message)
     {
         $commands = ['/c', '/f', '/i'];
-        $command = substr($text, 0, 2);
+        $command = substr($message->getText(), 0, 2);
 
         if(in_array($command, $commands))
         {
