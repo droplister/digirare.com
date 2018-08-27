@@ -80,10 +80,7 @@ class TelegramController extends Controller
         $data = [
             'text' => $message->getText(),
             'userId' => $message->getFrom()->getId(),
-            'intent' => {
-                'name' => $message->detectType(),
-                'inputs' => [{}],
-            },
+            'intent' => $intent,
             'platformJson' => {
                 'chat' => $message->getChat(),
             },
@@ -93,5 +90,72 @@ class TelegramController extends Controller
         ];
 
         return $this->curl->post($route, $data);
+    }
+
+    /**
+     * Get Intent
+     * 
+     * @param  mixed $message
+     * @return mixed
+     */
+    private function getIntent($message)
+    {
+        // Get Name
+        $name = $this->getName($message->getText());
+
+        // Get Inputs
+        $inputs = $this->getInputs($name, $message);
+
+        return {
+            'name' => $name,
+            'inputs' => $inputs,
+        }
+    }
+
+    /**
+     * Get Name
+     * 
+     * @param  string $text
+     * @return array
+     */
+    private function getName($text)
+    {
+        $commands = ['/c', '/f', '/i'];
+        $command = substr($text, 0, 2);
+
+        if(in_array($command, $commands))
+        {
+            $command = strtoupper(substr($command, -1));
+
+            return "{$command}_QUERY";
+        }
+
+        return 'CHATTING';
+    }
+
+    /**
+     * Get Intent
+     * 
+     * @param  string $intent
+     * @param  string $message
+     * @return array
+     */
+    private function getInputs($intent, $message)
+    {
+        if($intent === 'CHATTING')
+        {
+            $name = 'type';
+            $value = $message->detectType();
+        }
+        else
+        {
+            $name = 'input';
+            $value = explode(' ', $message->getText())[1];
+        }
+
+        return [{
+            'name' => $name,
+            'value' => $value,
+        }]
     }
 }
