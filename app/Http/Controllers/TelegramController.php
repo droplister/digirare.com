@@ -73,15 +73,6 @@ class TelegramController extends Controller
         // Incoming Message
         $route = 'https://tracker.dashbot.io/track?platform=generic&v=9.9.1-rest&type=incoming&apiKey=' . config('digirare.bot_akey');
 
-        // Get Message Intent
-        $intent = $this->getIntent($message->getText());
-
-        // Get Platform JSON
-        $platformJson = $this->getPlatformJson($message->getChat());
-
-        // Get Platform User JSON
-        $platformUserJson = $this->getPlatformUserJson($message->getFrom());
-
         // Build Data Array
         $data = [
             'text' => $message->getText(),
