@@ -1,6 +1,6 @@
 <div class="card mb-4">
     <div class="card-header">
-        <span class="lead">
+        <span class="lead font-weight-bold">
             {{ $card->name }}
         </span>
         <a href="#" class="btn btn-sm btn-primary float-right">
