@@ -31,6 +31,6 @@ class CollectorsController extends Controller
     {
         $cardBalances = $collector->cardBalances()->paginate(20);
 
-        return view('collections.show', compact('collector', 'cardBalances'));
+        return view('collectors.show', compact('collector', 'cardBalances'));
     }
 }

@@ -2,16 +2,16 @@
     <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">Card</th>
-            <th scope="col">Holders</th>
+            <th scope="col">Collection</th>
+            <th scope="col">Cards</th>
         </tr>
     </thead>
     <tbody>
-        @foreach($cards as $card)
+        @foreach($collections as $collection)
         <tr>
             <th scope="row">{{ $loop->iteration }}</th>
-            <td><a href="{{ $card->url }}">{{ $card->name }}</a></td>
-            <td>{{ $card->balances_count }}</td>
+            <td><a href="{{ $collection->url }}">{{ $collection->name }}</a></td>
+            <td>{{ $collection->cards_count }}</td>
         </tr>
         @endforeach
     </tbody>
