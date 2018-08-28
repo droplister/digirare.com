@@ -15,4 +15,5 @@
         </div>
     </div>
     @include('cards.modals.gallery')
+    @include('cards.modals.last-match')
 @endsection

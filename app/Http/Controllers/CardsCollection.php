@@ -31,9 +31,10 @@ class CardsController extends Controller
     {
         $token = $card->token;
         $balances = $card->balances()->paginate(20);
+        $last_match = $card->lastMatch();
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
         $order_matches_count = $card->backwardOrderMatches()->count() + $card->forwardOrderMatches()->count();
 
-        return view('cards.show', compact('card', 'balances', 'collections', 'order_matches_count', 'token'));
+        return view('cards.show', compact('card', 'balances', 'collections', 'last_match', 'order_matches_count', 'token'));
     }
 }

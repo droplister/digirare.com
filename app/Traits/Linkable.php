@@ -9,7 +9,7 @@ trait Linkable
      *
      * @return string
      */
-    private function getUrlAttribute()
+    public function getUrlAttribute()
     {
         $table = $this->getTable();
         $route = "{$table}.show";
