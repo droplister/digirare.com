@@ -9,7 +9,7 @@
         </a>
     </div>
     <div class="card-body">
-        @if($token->description)
+        @if($token && $token->description)
             <p class="card-text">{{ $token->description }}</p>
         @endif
         @if($card->meta)

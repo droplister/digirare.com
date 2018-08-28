@@ -31,32 +31,32 @@
 <hr />
 <div class="row">
     <div class="col-4 col-sm-3">
-        <p class="text-muted mb-0" title="{{ $token->issuance_normalized }}">
-            <i class="fa fa-{{ $token->locked ? 'lock' : 'unlock-alt' }} text-dark" aria-hidden="true"></i>
+        <p class="text-muted mb-0" title="{{ $token ? $token->issuance_normalized : 'Syncing' }}">
+            <i class="fa fa-{{ $token && $token->locked ? 'lock' : 'unlock-alt' }} text-dark" aria-hidden="true"></i>
             Issued
         </p>
-        <p class="mb-0">{{ number_format($token->issuance_normalized) }}</p>
+        <p class="mb-0">{{ $token ? number_format($token->issuance_normalized) : 'Syncing' }}</p>
     </div>
     <div class="col-4 col-sm-3">
-        <p class="text-muted mb-0" title="{{ $token->burned_normalized }}">
+        <p class="text-muted mb-0" title="{{ $token ? $token->burned_normalized : 'Syncing' }}">
             <i class="fa fa-fire text-dark" aria-hidden="true"></i>
             Burned
         </p>
-        <p class="mb-0">{{ number_format($token->burned_normalized) }}</p>
+        <p class="mb-0">{{ $token ? number_format($token->burned_normalized) : 'Syncing' }}</p>
     </div>
     <div class="col-4 col-sm-3">
-        <p class="text-muted mb-0" title="{{ $token->supply_normalized }}">
+        <p class="text-muted mb-0" title="{{ $token ? $token->supply_normalized : 'Syncing' }}">
             <i class="fa fa-calculator text-dark" aria-hidden="true"></i>
             Supply
         </p>
-        <p class="mb-0">{{ number_format($token->supply_normalized) }}</p>
+        <p class="mb-0">{{ $token ? number_format($token->supply_normalized) : 'Syncing' }}</p>
     </div>
     <div class="col-sm-3 d-none d-sm-inline">
         <p class="text-muted mb-0">
-            <i class="fa fa-{{ $token->divisible ? 'th' : 'square' }} text-dark" aria-hidden="true"></i>
+            <i class="fa fa-{{ $token && $token->divisible ? 'th' : 'square' }} text-dark" aria-hidden="true"></i>
             Divisible
         </p>
-        <p class="mb-0">{{ $token->divisible ? 'YES' : 'NO' }}</p>
+        <p class="mb-0">{{ $token && $token->divisible ? 'YES' : 'NO' }}</p>
     </div>
 </div>
 <hr />
@@ -66,14 +66,14 @@
             <i class="fa fa-chain text-dark" aria-hidden="true"></i>
             Owner
         </p>
-        <p class="mb-0">{{ $token->owner }}</p>
+        <p class="mb-0">{{ $token ? $token->owner : 'Syncing' }}</p>
     </div>
     <div class="d-none d-lg-inline-block col-lg-6">
         <p class="text-muted mb-0">
             <i class="fa fa-chain text-dark" aria-hidden="true"></i>
             Issuer
         </p>
-        <p class="mb-0">{{ $token->issuer }}</p>
+        <p class="mb-0">{{ $token ? $token->issuer : 'Syncing' }}</p>
     </div>
 </div>
 <hr />
