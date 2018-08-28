@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Traits;
+namespace App\Console\Commands\Telegram\Traits;
 
 use App\Card;
 
-trait CardCommandHelpers
+trait CardHelpers
 {
     /**
      * Get Card

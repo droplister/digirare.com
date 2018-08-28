@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use Telegram\Bot\Api;
-use App\Traits\TrackBotAnalytics;
+use ChatbaseAPI\Chatbase;
 
 class TelegramController extends Controller
 {
-    use TrackBotAnalytics;
-
     /**
      * Telegram
      *
@@ -39,18 +37,29 @@ class TelegramController extends Controller
         // Get Message
         $message = $update->getMessage();
 
+        // Track Data
+        $this->logChatroom($message);
+
+        // Okie Doke
+        return 'Ok';
+    }
+
+    /**
+     * Log Chatroom
+     * 
+     * @param  mixed $message
+     * @return array
+     */
+    private function logChatroom($message)
+    {
         // Get Data
         $user_id = $message->getFrom()->getId();
         $text = $message->getText();
         $intent = $this->getIntent($message);
         $not_handled = $this->notHandled($intent);
 
-        \Log::info($intent);
-
-        // Track Data
-        $result = $this->incomingChat($user_id, $text, $intent, $not_handled);
-
-        return 'Ok';
+        // Post API
+        return $this->incomingChat($user_id, $text, $intent, $not_handled);
     }
 
     /**
@@ -85,5 +94,26 @@ class TelegramController extends Controller
     private function notHandled($intent)
     {
         return $intent === 'chat' ? false : true;
+    }
+
+    /**
+     * Incoming Chat
+     *
+     * @param  integer  $user_id
+     * @param  string  $message
+     * @param  string  $intent
+     * @param  boolean  $not_handled
+     * @return object
+     */
+    private function incomingChat($user_id, $message, $intent, $not_handled)
+    {
+        // API
+        $cb = new Chatbase(config('digirare.bot_akey'));
+
+        // data
+        $cb_data = $cb->userMessage($user_id, 'Telegram', $message, $intent, $not_handled, false);
+
+        // Send
+        return $cb->send($cb_data);
     }
 }

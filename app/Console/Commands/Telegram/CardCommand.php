@@ -2,13 +2,13 @@
 
 namespace App\Console\Commands\Telegram;
 
-use App\Traits\TrackBotAnalytics;
-use App\Traits\CardCommandHelpers;
+use App\Console\Commands\Telegram\Traits\Trackable;
+use App\Console\Commands\Telegram\Traits\CardHelpers;
 use Telegram\Bot\Commands\Command;
 
 class CardCommand extends Command
 {
-    use CardCommandHelpers, TrackBotAnalytics;
+    use CardHelpers, Trackable;
 
     /**
      * @var string Command Name
