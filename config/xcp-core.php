@@ -33,4 +33,28 @@ return [
      * Sync Size (Maximum = 250)
      */
     'sync_size' => env('XCP_CORE_SYNC_SIZE', 1),
+
+    /**
+     * Quote Assets
+     */
+    'quote_assets' => [
+        'BTC',
+        'XCP',
+        'XBTC',
+        'FLDC',
+        'NVST',
+        'SJCX',
+        'VACUS',
+        'BITCRYSTALS',
+        'LTBCOIN',
+        'SCOTCOIN',
+        'PEPECASH',
+        'BITCORN',
+        'DATABITS',
+        'MAFIACASH',
+        'PENISIUM',
+        'RUSTBITS',
+        'WILLCOIN',
+        'XFCCOIN',
+    ],
 ];

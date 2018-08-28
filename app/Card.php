@@ -161,7 +161,10 @@ class Card extends Model
     {
         return [
             'slug' => [
-                'source' => 'name'
+                'source' => 'name',
+                'method' => function ($string, $separator) {
+                    return $string;
+                }
             ]
         ];
     }
