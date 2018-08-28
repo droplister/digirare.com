@@ -121,9 +121,13 @@ class Card extends Model
         {
             return $b->confirmed_at > $f->confirmed_at ? $b : $f;
         }
-        else
+        elseif($b || $f)
         {
             return $b ? $b : $f;
+        }
+        else
+        {
+            return null;
         }
 
     }

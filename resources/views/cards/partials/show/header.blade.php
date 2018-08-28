@@ -7,7 +7,7 @@
     {{ $card->name }}
 </h1>
 <p class="text-muted">
-    Issued: {{ $token->confirmed_at->toFormattedDateString() }}
-    Last Traded: {{ $card->lastMatch()->confirmed_at->toFormattedDateString() }}
+    Issued: {{ $token->confirmed_at->toFormattedDateString() }} &nbsp;&nbsp;&nbsp;
+    Last Traded: {{ $card->lastMatch() ? $card->lastMatch()->confirmed_at->toFormattedDateString() : 'N/A' }}
 </p>
 <hr />
