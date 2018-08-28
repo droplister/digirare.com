@@ -84,7 +84,7 @@ class UpdateBookOfOrbs implements ShouldQueue
     private function updateCurrency($response)
     {
         // Currency String
-        $currency = $this->getCurrency($response, $this->collection->meta['bundleId'], $this->collection->meta['version']);
+        $currency = $this->getCurrency($response, $this->collection->meta['bundleId']);
 
         // Update Currency
         $this->collection->update([
@@ -100,7 +100,7 @@ class UpdateBookOfOrbs implements ShouldQueue
      */
     private function fetchCards($response)
     {
-        return $this->getCards($response, $this->collection->meta['bundleId'], $this->collection->meta['version']);
+        return $this->getCards($response, $this->collection->meta['bundleId']);
     }
 
     /**
@@ -157,24 +157,11 @@ class UpdateBookOfOrbs implements ShouldQueue
      *
      * @param  array  $response
      * @param  string  $bundleId
-     * @param  integer  $version
      * @return array
      */
-    private function getCards($response, $bundleId, $version)
+    private function getCards($response, $bundleId)
     {
-        // Version 1
-        if($version === 1)
-        {
-            return $response['Environements'][$bundleId]['Assets'];
-        }
-
-        // Version 2
-        if($version === 2)
-        {
-            return $response['instance']['assetsCollection'][$bundleId]['Assets'];
-        }
-
-        return false;
+        return $response['instance']['assetsCollection'][$bundleId]['Assets'];
     }
 
 
@@ -183,24 +170,11 @@ class UpdateBookOfOrbs implements ShouldQueue
      *
      * @param  array  $response
      * @param  string  $bundleId
-     * @param  integer  $version
      * @return string
      */
-    private function getCurrency($response, $bundleId, $version)
+    private function getCurrency($response, $bundleId)
     {
-        // Version 1
-        if($version === 1)
-        {
-            return $response['Environements'][$bundleId]['Definition']['MasterCurrency'];
-        }
-
-        // Version 2
-        if($version === 2)
-        {
-            return $response['instance']['assetsCollection'][$bundleId]['Definition']['MasterCurrency'];
-        }
-
-        return false;
+        return $response['instance']['assetsCollection'][$bundleId]['Definition']['MasterCurrency'];
     }
 
     /**

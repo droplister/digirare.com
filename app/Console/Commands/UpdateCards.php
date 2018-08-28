@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Collection;
 use App\Jobs\UpdateBitcorn;
+use App\Jobs\UpdateRarePepe;
 use App\Jobs\UpdateMafiaWars;
 use App\Jobs\UpdateBookOfOrbs;
 use App\Jobs\UpdateFootballCoin;
@@ -45,6 +46,9 @@ class UpdateCards extends Command
         // Bitcorn Crops
         $this->updateBitcorn();
 
+        // Rare Pepe
+        $this->updateRarePepe();
+
         // Mafia Wars
         $this->updateMafiaWars();
 
@@ -65,6 +69,18 @@ class UpdateCards extends Command
         $bitcorn = Collection::findBySlug('bitcorn');
 
         UpdateBitcorn::dispatchNow($bitcorn, $this->option('o'));
+    }
+
+    /**
+     * Rare Pepe
+     * 
+     * @return void
+     */
+    private function updateRarePepe()
+    {
+        $rarepepe = Collection::findBySlug('rare-pepe');
+
+        UpdateRarePepe::dispatchNow($rarepepe, $this->option('o'));
     }
 
     /**
