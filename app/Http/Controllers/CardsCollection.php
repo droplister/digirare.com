@@ -15,7 +15,7 @@ class CardsController extends Controller
      */
     public function index(Request $request)
     {
-        $cards = Card::withCount('balances', 'collections')->get();
+        $cards = Card::withCount('balances', 'collections')->orderBy('balances_count', 'desc')->get();
 
         return view('cards.index', compact('cards'));
     }
