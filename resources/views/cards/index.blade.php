@@ -6,7 +6,9 @@
     <div class="container mt-3">
         <div class="row mb-4">
             <div class="col">
-                @include('cards.partials.index.header')
+                <h1 class="display-4 mb-4">
+                    XCP Cards
+                </h1>
                 @include('cards.partials.index.table')
             </div>
         </div>
