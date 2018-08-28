@@ -24,7 +24,7 @@ export default {
   },
   methods: {
     $_chart_update() {
-      var api = 'this.source'
+      var api = this.source
       var self = this
       $.get(api, function(data) {
         var buyOrders = {
