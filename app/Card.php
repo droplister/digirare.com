@@ -94,7 +94,7 @@ class Card extends Model
      */
     public function backwardOrderMatches()
     {
-        return $this->hasMany(OrderMatch::class, 'backward_asset', 'xcp_core_asset_name')
+        return $this->hasMany(OrderMatch::class, 'backward_asset', 'xcp_core_asset_name');
     }
 
     /**
@@ -104,7 +104,7 @@ class Card extends Model
      */
     public function forwardOrderMatches()
     {
-        return $this->hasMany(OrderMatch::class, 'forward_asset', 'xcp_core_asset_name')
+        return $this->hasMany(OrderMatch::class, 'forward_asset', 'xcp_core_asset_name');
     }
 
     /**
