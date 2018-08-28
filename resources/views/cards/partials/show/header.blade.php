@@ -7,6 +7,6 @@
     {{ $card->name }}
 </h1>
 <p class="text-muted">
-    Created: {{ $card->token->confirmed_at->toDateString() }}
+    Issued: {{ $card->token->confirmed_at->toFormattedDateString() }}
 </p>
 <hr />

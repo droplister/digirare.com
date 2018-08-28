@@ -15,7 +15,7 @@ class CardsController extends Controller
      */
     public function index(Request $request)
     {
-        $cards = Card::withCount('cardBalances', 'collections')->get();
+        $cards = Card::withCount('balances', 'collections')->get();
 
         return view('cards.index', compact('cards'));
     }
@@ -29,9 +29,11 @@ class CardsController extends Controller
      */
     public function show(Request $request, Card $card)
     {
+        $token = $card->token;
+        $balances = $card->balances()->paginate(20);
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
-        $cardBalances = $card->cardBalances()->paginate(20);
+        $order_matches_count = $card->backwardOrderMatches()->count() + $card->forwardOrderMatches()->count();
 
-        return view('cards.show', compact('card', 'collections', 'cardBalances'));
+        return view('cards.show', compact('card', 'balances', 'collections', 'order_matches_count', 'token'));
     }
 }

@@ -5,6 +5,8 @@ namespace App;
 use App\Traits\Linkable;
 use App\Events\CardWasCreated;
 use Droplister\XcpCore\App\Asset;
+use Droplister\XcpCore\App\Balance;
+use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -55,13 +57,13 @@ class Card extends Model
     }
 
     /**
-     * Card Balances
+     * Balances
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function cardBalances()
+    public function balances()
     {
-        return $this->hasMany(CardBalance::class, 'asset', 'xcp_core_asset_name');
+        return $this->hasMany(Balance::class, 'asset', 'xcp_core_asset_name')->nonZero();
     }
 
     /**
@@ -83,6 +85,26 @@ class Card extends Model
     public function collectors()
     {
         return $this->hasManyThrough(Collector::class, CardBalance::class, 'asset', 'xcp_core_address', 'xcp_core_asset_name', 'address');
+    }
+
+    /**
+     * Order Matches (Backward)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function backwardOrderMatches()
+    {
+        return $this->hasMany(OrderMatch::class, 'backward_asset', 'xcp_core_asset_name')
+    }
+
+    /**
+     * Order Matches (Forward)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function forwardOrderMatches()
+    {
+        return $this->hasMany(OrderMatch::class, 'forward_asset', 'xcp_core_asset_name')
     }
 
     /**
