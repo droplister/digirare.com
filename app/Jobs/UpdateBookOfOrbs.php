@@ -136,6 +136,8 @@ class UpdateBookOfOrbs implements ShouldQueue
      */
     private function getMeta($data)
     {
+        if($this->collection->slug === 'crystalscraft') return null;
+
         $data = array_change_key_case($data, CASE_LOWER);
 
         return array_except($data, [
