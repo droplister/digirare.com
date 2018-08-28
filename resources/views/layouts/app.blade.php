@@ -49,8 +49,14 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('collectors.index') }}">
-                                <i class="fa fa-hand-grab-o ml-1" aria-hidden="true"></i>
+                                <i class="fa fa-hand-grab-o mr-1" aria-hidden="true"></i>
                                 {{ __('Collectors') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('random.index') }}">
+                                <i class="fa fa-random" aria-hidden="true"></i>
+                                {{ __('Randomize') }}
                             </a>
                         </li>
                     </ul>

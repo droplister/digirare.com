@@ -14,6 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::resource('random', 'RandomController', ['only' => ['index']]);
 Route::resource('cards', 'CardsController', ['only' => ['index', 'show']]);
 Route::resource('collectors', 'CollectorsController', ['only' => ['index', 'show']]);
 Route::resource('collections', 'CollectionsController', ['only' => ['index', 'show']]);
