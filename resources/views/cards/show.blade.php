@@ -10,6 +10,7 @@
             </div>
             <div class="col-md-8 mb-4">
                 @include('cards.partials.show.header')
+                @include('cards.partials.show.analytics')
             </div>
         </div>
     </div>
