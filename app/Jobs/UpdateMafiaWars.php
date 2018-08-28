@@ -70,7 +70,7 @@ class UpdateMafiaWars implements ShouldQueue
             foreach($cards as $data)
             {
                 // Simple Guard
-                if(in_array($name, [$this->collection->currency])) continue;
+                if(in_array($data['asset'], [$this->collection->currency])) continue;
             
                 // The Asset
                 $xcp_core_asset_name = $this->getAssetName($data['asset']);
