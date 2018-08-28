@@ -12,7 +12,7 @@
         @if($token && $token->description)
             <p class="card-text">{{ $token->description }}</p>
         @endif
-        @if($card->meta)
+        @if($card->meta && $collection->slug !== 'crystalscraft')
             <ul>
                 @foreach($card->meta as $key => $value)
                     <li>{{ ucfirst($key) }} - {{ ucfirst($value) }}</li>
