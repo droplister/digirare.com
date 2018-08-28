@@ -30,7 +30,7 @@
         <p class="text-muted mb-0">
             Issued:
         </p>
-        <p class="mb-0"><i class="fa fa-{{ $token->locked ? 'lock' : 'unlock-alt' }}" aria-hidden="true"></i> {{ nu }}</p>
+        <p class="mb-0"><i class="fa fa-{{ $token->locked ? 'lock' : 'unlock-alt' }}" aria-hidden="true"></i> {{ $token->issuance_normalized }}</p>
     </div>
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
