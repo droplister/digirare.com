@@ -13,4 +13,4 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::get('/cards/{card}/order-history', 'CardChartsController@orderHistory')->name('api.cards.order-history');
+Route::get('/cards/{card}/order-history', 'Api\CardChartsController@orderHistory')->name('api.cards.order-history');
