@@ -74,11 +74,11 @@ class Collection extends Model
     }
 
     /**
-     * Currency
+     * Official Currency
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function currency()
+    public function officialCurrency()
     {
         return $this->belongsTo(Asset::class, 'currency', 'asset_name');
     }
