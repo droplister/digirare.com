@@ -8,10 +8,12 @@
         @if($token->description)
             <p class="card-text">{{ $token->description }}</p>
         @endif
-        <ul>
-        @foreach($card->meta as $key => $value)
-            <li>{{ $key }} - {{ $value }}</li>
-        @endforeach
-        </ul>
+        @if($card->meta)
+            <ul>
+                @foreach($card->meta as $key => $value)
+                <li>{{ $key }} - {{ $value }}</li>
+                @endforeach
+            </ul>
+        @endif
     </div>
 </div>
