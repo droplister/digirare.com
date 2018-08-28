@@ -108,6 +108,27 @@ class Card extends Model
     }
 
     /**
+     * Last Match
+     * 
+     * @return \Droplister\XcpCore\App\OrderMatch
+     */
+    public function lastMatch()
+    {
+        $b = $this->backwardOrderMatches()->latest('confirmed_at')->first();
+        $f = $this->forwardOrderMatches()->latest('confirmed_at')->first();
+
+        if($b && $f)
+        {
+            return $b->confirmed_at > $f->confirmed_at ? $b : $f;
+        }
+        else
+        {
+            return $b ? $b : $f;
+        }
+
+    }
+
+    /**
      * Active Collections
      */
     public function scopeActive($query)
