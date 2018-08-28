@@ -13,4 +13,5 @@
             </div>
         </div>
     </div>
+    @include('cards.modals.gallery')
 @endsection
