@@ -42,8 +42,8 @@ class TelegramController extends Controller
         // Get Data
         $user_id = $message->getFrom()->getId();
         $text = $message->getText();
-        $intent = $message->detectType();
-        $not_handled = $this->notHandled($message);
+        $intent = $this->getIntent($message);
+        $not_handled = $this->notHandled($intent);
 
         \Log::info($intent);
 
@@ -54,18 +54,36 @@ class TelegramController extends Controller
     }
 
     /**
-     * Not Handled
+     * Get Intent
      * 
      * @param  mixed $message
      * @return array
      */
-    private function notHandled($message)
+    private function getIntent($message)
     {
-        $commands = ['/c', '/f', '/i'];
         $command = substr($message->getText(), 0, 2);
 
-        if(in_array($command, $commands)) return false;
+        switch ($command)
+        {
+            case '/c':
+                return 'card_query';
+            case '/f':
+                return 'file_query';
+            case '/i':
+                return 'info_query';
+            default:
+                return 'chat';
+        }
+    }
 
-        return true;
+    /**
+     * Not Handled
+     * 
+     * @param  string $intent
+     * @return array
+     */
+    private function notHandled($intent)
+    {
+        return $intent === 'chat' ? false : true;
     }
 }
