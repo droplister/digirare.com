@@ -39,9 +39,9 @@ export default {
           name: 'Order Matches',
           data: data.order_matches,
         };
-        this.chartOptions.series.push(buyOrders);
-        this.chartOptions.series.push(sellOrders);
-        this.chartOptions.series.push(orderMatches);
+        self.chartOptions.series.push(buyOrders);
+        self.chartOptions.series.push(sellOrders);
+        self.chartOptions.series.push(orderMatches);
       });
     },
   },
