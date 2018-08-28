@@ -36,13 +36,13 @@
         <p class="text-muted mb-0">
             Burned:
         </p>
-        <p class="mb-0"><i class="fa fa-fire" aria-hidden="true"></i> </p>
+        <p class="mb-0"><i class="fa fa-fire" aria-hidden="true"></i> {{ $token->burned_normalized }}</p>
     </div>
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
             Supply:
         </p>
-        <p class="mb-0"><i class="fa fa-calculator" aria-hidden="true"></i> </p>
+        <p class="mb-0"><i class="fa fa-calculator" aria-hidden="true"></i> {{ $token->supply_normalized }}</p>
     </div>
     <div class="col-sm-3 d-none d-sm-inline">
         <p class="text-muted mb-0">
@@ -74,7 +74,7 @@
         </p>
         <p class="mb-0">
             @foreach($collections as $collection)
-                 {{ strtoupper(pathinfo($collection->image_url, PATHINFO_EXTENSION)) }}{{ $loop->last ? '' : ' / ' }}
+                 {{ strtoupper(pathinfo($collection->pivot->image_url, PATHINFO_EXTENSION)) }}{{ $loop->last ? '' : ' / ' }}
             @endforeach
         </p>
     </div>
