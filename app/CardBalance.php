@@ -54,10 +54,10 @@ class CardBalance extends Balance
      */
     public function scopeCards($query)
     {
-        $cards = Cache::remember('cards', 1440, function () {
-            return Card::pluck('xcp_core_asset_name');
+        $assets = Cache::rememberForever('cards_array', function () {
+            return Card::pluck('xcp_core_asset_name')->toArray();
         });
 
-        return $query->whereIn('asset', $cards);
+        return $query->whereIn('asset', $assets);
     }
 }
