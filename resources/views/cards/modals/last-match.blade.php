@@ -8,26 +8,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <table class="table table-borderless">
-                    <thead>
-                        <tr>
-                            <th scope="col">{{ $last_match->forwardAssetModel->display_name }}/{{ $last_match->backwardAssetModel->display_name }}</th>
-                            <th scope="col">{{ $last_match->backwardAssetModel->display_name }}/{{ $last_match->forwardAssetModel->display_name }}</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>
-                                {{ $last_match->backward_quantity_normalized / $last_match->forward_quantity_normalized }}
-                                {{ $last_match->backwardAssetModel->display_name }}
-                            </td>
-                            <td>
-                                {{ $last_match->forward_quantity_normalized / $last_match->backward_quantity_normalized }}
-                                {{ $last_match->forwardAssetModel->display_name }}
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
