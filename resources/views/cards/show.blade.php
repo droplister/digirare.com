@@ -15,6 +15,7 @@
         </div>
         @include('cards.partials.show.description')
     </div>
+    <card-orders card="{{ $card->slug }}" source="{{ route('api.cards.order-history', ['card' => $card->slug]) }}"></card-orders>
     @include('cards.modals.gallery')
     @include('cards.modals.last-match')
 @endsection

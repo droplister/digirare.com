@@ -20,6 +20,8 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
-        "font-awesome": "^4.7.0"
+        "font-awesome": "^4.7.0",
+        "highcharts": "^6.1.1",
+        "highcharts-vue": "^1.1.0"
     }
 }
