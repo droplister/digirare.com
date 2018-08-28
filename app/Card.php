@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Linkable;
 use App\Events\CardWasCreated;
 use Droplister\XcpCore\App\Asset;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    use Sluggable, SluggableScopeHelpers;
+    use Linkable, Sluggable, SluggableScopeHelpers;
 
     /**
      * The event map for the model.

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Traits\Linkable;
 use Droplister\XcpCore\App\Asset;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -10,7 +11,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Collection extends Model
 {
-    use HasRelationships, Sluggable, SluggableScopeHelpers;
+    use HasRelationships, Linkable, Sluggable, SluggableScopeHelpers;
 
     /**
      * The attributes that are mass assignable.
