@@ -77,6 +77,9 @@ class UpdateFootballCoin implements ShouldQueue
                 // Update or Create
                 foreach($cards as $data)
                 {
+                    // Simple Guard
+                    if(in_array($name, [$this->collection->currency])) continue;
+            
                     // The Asset
                     $xcp_core_asset_name = $this->getAssetName($data['cp_asset']);
 

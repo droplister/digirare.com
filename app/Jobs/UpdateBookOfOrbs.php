@@ -66,9 +66,9 @@ class UpdateBookOfOrbs implements ShouldQueue
 
         // Update or Create
         foreach($cards as $name => $data)
-        {
+        {           
             // Simple Guard
-            if(in_array($name, ['GDCNOVADEMO', 'BITCRYSTALS'])) continue;
+            if(in_array($name, ['GDCNOVADEMO', 'BITCRYSTALS', $this->collection->currency])) continue;
 
             // Create Card
             $this->updateOrCreateCard($name, $data);

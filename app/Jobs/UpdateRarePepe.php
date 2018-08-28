@@ -61,6 +61,9 @@ class UpdateRarePepe implements ShouldQueue
         // Update or Create
         foreach($cards as $name => $data)
         {
+            // Simple Guard
+            if(in_array($name, [$this->collection->currency])) continue;
+
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($name);
 
