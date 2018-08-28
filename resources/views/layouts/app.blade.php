@@ -42,15 +42,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('collectors.index') }}">
-                                <i class="fa fa-hand-grab-o" aria-hidden="true"></i>
-                                {{ __('Collectors') }}
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('collections.index') }}">
                                 <i class="fa fa-th" aria-hidden="true"></i>
                                 {{ __('Collections') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('collectors.index') }}">
+                                <i class="fa fa-hand-grab-o ml-1" aria-hidden="true"></i>
+                                {{ __('Collectors') }}
                             </a>
                         </li>
                     </ul>
