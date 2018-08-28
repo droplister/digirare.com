@@ -61,14 +61,14 @@
 </div>
 <hr />
 <div class="row">
-    <div class="col-sm-6">
+    <div class="col-12 col-lg-6">
         <p class="text-muted mb-0">
             <i class="fa fa-chain text-dark" aria-hidden="true"></i>
             Owner
         </p>
         <p class="mb-0">{{ $token->owner }}</p>
     </div>
-    <div class="col-sm-6">
+    <div class="d-none d-lg-inline-block col-lg-6">
         <p class="text-muted mb-0">
             <i class="fa fa-chain text-dark" aria-hidden="true"></i>
             Issuer
@@ -81,7 +81,7 @@
     <div class="col-6">
         <p class="text-muted mb-0">
             <i class="fa fa-image text-dark" aria-hidden="true"></i>
-            {{ str_plural('Format', $collections->count()) }}
+            Format
         </p>
         <p class="mb-0">
             @foreach($collections as $collection)
