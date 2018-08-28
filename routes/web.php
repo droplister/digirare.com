@@ -17,3 +17,4 @@ Route::get('/', function () {
 Route::resource('cards', 'CardsController', ['only' => ['index', 'show']]);
 Route::resource('collectors', 'CollectorsController', ['only' => ['index', 'show']]);
 Route::resource('collections', 'CollectionsController', ['only' => ['index', 'show']]);
+Auth::routes();
