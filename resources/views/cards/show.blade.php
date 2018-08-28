@@ -13,8 +13,8 @@
                 @include('cards.partials.show.analytics')
             </div>
         </div>
+        @include('cards.partials.show.description')
     </div>
-    @include('cards.partials.show.description')
     @include('cards.modals.gallery')
     @include('cards.modals.last-match')
 @endsection
