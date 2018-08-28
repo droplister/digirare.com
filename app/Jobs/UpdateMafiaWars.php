@@ -100,6 +100,7 @@ class UpdateMafiaWars implements ShouldQueue
         return array_except($data, [
             'asset',
             'image',
+            'name',
         ]);
     }
 

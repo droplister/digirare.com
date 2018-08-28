@@ -32,6 +32,6 @@ class CardsController extends Controller
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
         $cardBalances = $card->cardBalances()->paginate(20);
 
-        return view('collections.show', compact('card', 'collections', 'cardBalances'));
+        return view('cards.show', compact('card', 'collections', 'cardBalances'));
     }
 }
