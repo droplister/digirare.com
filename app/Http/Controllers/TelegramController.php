@@ -93,7 +93,7 @@ class TelegramController extends Controller
      */
     private function notHandled($intent)
     {
-        return $intent === 'chat' ? false : true;
+        return $intent === 'chat' ? true : false;
     }
 
     /**
