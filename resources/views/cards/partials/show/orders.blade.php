@@ -1,8 +1,8 @@
 <div class="card mb-4">
     <div class="card-header">
-        {{ $type }} Orders
+        <span class="lead font-weight-bold">{{ $type }} Orders</span>
     </div>
-    <table class="table table-bordered">
+    <table class="table mb-0">
         <thead>
             <tr>
                 <th scope="col">Expires</th>
