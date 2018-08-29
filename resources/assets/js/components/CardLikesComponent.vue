@@ -1,11 +1,7 @@
 <template>
   <span class="pull-right">
-    <button class="btn btn-link" v-on:click="$_like">
-        <i class="fa text-success" v-bind:class="up"></i> {{ likes }}
-    </button>
-    <button class="btn btn-link" v-on:click="$_dislike">
-        <i class="fa text-danger" v-bind:class="down"></i> {{ dislikes }}
-    </button>
+    <i class="fa text-success" v-bind:class="up" v-on:click="$_like"></i> {{ likes }}
+    <i class="fa text-danger" v-bind:class="down" v-on:click="$_dislike"></i> {{ dislikes }}
   </span>
 </template>
 
