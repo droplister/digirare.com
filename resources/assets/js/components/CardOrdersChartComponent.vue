@@ -16,7 +16,12 @@ export default {
     return {
       chartOptions: {
         chart: {
-            type: 'column'
+            type: 'column',
+            events: {
+               load() {
+                   setTimeout(this.reflow.bind(this))
+               }
+            }
         },
         title: {
           text: 'Counterparty Trades (DEX)'
