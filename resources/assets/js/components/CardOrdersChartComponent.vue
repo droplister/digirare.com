@@ -19,7 +19,7 @@ export default {
             type: 'column'
         },
         title: {
-          text: 'Dex Order Activity'
+          text: 'Counterparty Trades (DEX)'
         },
         subtitle: {
           text: 'Source: DIGIRARE.com'

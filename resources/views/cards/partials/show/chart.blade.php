@@ -1,7 +1,7 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Dex Order Activity
+            Buys &amp; Sells
         </span>
     </div>
     <div class="card-body">
