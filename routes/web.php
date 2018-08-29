@@ -11,9 +11,7 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'HomeController@index')->name('home.index');
 Route::resource('random', 'RandomController', ['only' => ['index']]);
 Route::resource('cards', 'CardsController', ['only' => ['index', 'show']]);
 Route::resource('collectors', 'CollectorsController', ['only' => ['index', 'show']]);
