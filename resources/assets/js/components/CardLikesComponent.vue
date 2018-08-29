@@ -53,9 +53,11 @@ export default {
       axios.post(api, {type: 'like'})
         .then(function (response) {
           self.likes++
-          self.dislikes--
           self.liked = true
           self.disliked = false
+          if(self.dislikes > 0) {
+            self.dislikes--
+          }
         })
         .catch(function (error) {
           console.log(error);
@@ -66,10 +68,12 @@ export default {
       var self = this
       axios.post(api, {type: 'dislike'})
         .then(function (response) {
-          self.likes--
           self.dislikes++
-          self.liked = false
           self.disliked = true
+          self.liked = false
+          if(self.likes > 0) {
+            self.likes--
+          }
         })
         .catch(function (error) {
           console.log(error);

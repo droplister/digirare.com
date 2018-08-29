@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="container mt-3">
-        <div class="row mb-4">
+        <div class="row">
             <div class="col-md-4 mb-4">
                 @include('cards.partials.show.carousel')
             </div>
