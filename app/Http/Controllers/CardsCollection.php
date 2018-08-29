@@ -33,10 +33,10 @@ class CardsController extends Controller
         $last_match = $card->lastMatch();
         $likes = $card->likes()->count();
         $dislikes = $card->dislikes()->count();
-        $buy_orders = $card->backwardOrders()->get();
-        $sell_orders = $card->forwardOrders()->get();
         $balances = $card->balances()->paginate(20);
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
+        $buy_orders = $card->backwardOrders()->orderBy('expire_index', 'asc')->get();
+        $sell_orders = $card->forwardOrders()->orderBy('expire_index', 'asc')->get();
         $order_matches_count = $card->backwardOrderMatches()->count() + $card->forwardOrderMatches()->count();
 
         return view('cards.show', compact('card', 'balances', 'buy_orders', 'collections', 'dislikes', 'last_match', 'likes', 'order_matches_count', 'sell_orders', 'token'));
