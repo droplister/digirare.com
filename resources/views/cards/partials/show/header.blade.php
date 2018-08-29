@@ -3,7 +3,10 @@
         <a href="{{ $collection->url }}">{{ $collection->name }}</a>{{ $loop->last ? '' : ' / ' }}
     @endforeach
     @if(Auth::check())
-    <card-likes card="{{ $card->slug }}" likes="{{ $likes }}" dislikes="{{ $dislikes }}"></card-likes>
+    <card-likes card="{{ $card->slug }}"
+        likes="{{ $likes }}"
+        dislikes="{{ $dislikes }}">
+    </card-likes>
     @else
     <span class="pull-right">
         <a href="{{ route('login') }}"><i class="fa fa-thumbs-o-up text-success"></i></a> {{ $likes }} &nbsp;

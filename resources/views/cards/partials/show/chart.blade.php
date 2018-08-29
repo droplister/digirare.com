@@ -4,5 +4,9 @@
             Dex Order Activity
         </span>
     </div>
-    <card-orders card="{{ $card->slug }}" source="{{ route('api.cards.order-history', ['card' => $card->slug]) }}"></card-orders>
+    <div class="card-body">
+        <card-orders card="{{ $card->slug }}"
+            source="{{ route('api.cards.order-history', ['card' => $card->slug]) }}">
+        </card-orders>
+    </div>
 </div>
