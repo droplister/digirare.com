@@ -50,7 +50,7 @@ export default {
     $_like() {
       var api = '/cards/' + this.card + '/likes'
       var self = this
-      axios.post(api, {type: 'liked'})
+      axios.post(api, {type: 'like'})
         .then(function (response) {
           self.liked = true
           self.likes = self.likes++
@@ -62,7 +62,7 @@ export default {
     $_dislike() {
       var api = '/cards/' + this.card + '/likes'
       var self = this
-      axios.post(api, {type: 'disliked'})
+      axios.post(api, {type: 'dislike'})
         .then(function (response) {
           self.disliked = true
           self.dislikes = self.dislikes++
