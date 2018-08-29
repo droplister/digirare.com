@@ -1,3 +1,4 @@
+@if($order_matches_count > 0)
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
@@ -10,3 +11,4 @@
         </card-orders>
     </div>
 </div>
+@endif

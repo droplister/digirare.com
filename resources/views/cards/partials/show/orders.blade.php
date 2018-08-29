@@ -22,6 +22,11 @@
                 <td>{{ $order->trading_pair_normalized }}</td>
             </tr>
             @endforeach
+            @if($orders->count() === 0)
+            <tr>
+                <td colspan="5" class="text-center"><em>No Open {{ $type }} Orders</em></td>
+            </tr>
+            @endif
         </tbody>
     </table>
 </div>
