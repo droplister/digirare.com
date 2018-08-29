@@ -38,7 +38,7 @@ class CardLikesController extends Controller
         }
 
         // Neither
-        return false;
+        return 'false';
     }
 
     /**
