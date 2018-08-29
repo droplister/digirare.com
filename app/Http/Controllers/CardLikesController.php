@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\Api;
+namespace App\Http\Controllers;
 
 use App\Card;
 use App\Like;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 
 class CardLikesController extends Controller
 {

@@ -28,7 +28,7 @@ export default {
   },
   methods: {
     $_liked_update() {
-      var api = '/api/cards/' + this.card + '/likes'
+      var api = '/cards/' + this.card + '/likes'
       var self = this
       axios.get(api)
         .then(function (response) {
@@ -48,7 +48,7 @@ export default {
         });
     },
     $_like() {
-      var api = '/api/cards/' + this.card + '/likes'
+      var api = '/cards/' + this.card + '/likes'
       var self = this
       axios.post(api, {type: 'liked'})
         .then(function (response) {
@@ -60,7 +60,7 @@ export default {
         });
     },
     $_dislike() {
-      var api = '/api/cards/' + this.card + '/likes'
+      var api = '/cards/' + this.card + '/likes'
       var self = this
       axios.post(api, {type: 'disliked'})
         .then(function (response) {
