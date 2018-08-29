@@ -2,7 +2,14 @@
     @foreach($collections as $collection)
         <a href="{{ $collection->url }}">{{ $collection->name }}</a>{{ $loop->last ? '' : ' / ' }}
     @endforeach
+    @if(Auth::check())
     <card-likes card="{{ $card->slug }}" likes="{{ $likes }}" dislikes="{{ $dislikes }}"></card-likes>
+    @else
+    <span class="pull-right">
+        <a href="{{ route('login') }}"><i class="fa fa-thumbs-o-up text-success"></i></a> {{ $likes }} &nbsp;
+        <a href="{{ route('login') }}"><i class="fa fa-thumbs-o-down text-danger"></i></a> {{ $dislikes }}
+    </span>
+    @endif
 </p>
 <h1 class="display-4 mb-0">
     {{ $card->name }}
