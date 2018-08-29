@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\Linkable;
 use App\Events\CardWasCreated;
 use Droplister\XcpCore\App\Asset;
+use Droplister\XcpCore\App\Order;
 use Droplister\XcpCore\App\Balance;
 use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
