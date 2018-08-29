@@ -6,7 +6,7 @@
         <div class="row">
             @foreach($cards as $card)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
-                <a href="{{ $card->pivot->url }}">
+                <a href="{{ $card->url }}">
                     <img src="{{ $card->pivot->image_url }}" alt="{{ $card->name }}" width="100%" />
                 </a>
                 <h5 class="card-title mt-3 mb-1">

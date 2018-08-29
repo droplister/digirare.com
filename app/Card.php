@@ -108,6 +108,26 @@ class Card extends Model
     }
 
     /**
+     * Orders (Backward)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function backwardOrders()
+    {
+        return $this->hasMany(Order::class, 'get_asset', 'xcp_core_asset_name')->where('status', '=', 'open');
+    }
+
+    /**
+     * Orders (Forward)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function forwardOrders()
+    {
+        return $this->hasMany(Order::class, 'get_asset', 'xcp_core_asset_name')->where('status', '=', 'open');
+    }
+
+    /**
      * Likes
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
