@@ -53,7 +53,7 @@ export default {
       axios.post(api, {type: 'liked'})
         .then(function (response) {
           self.liked = true
-          self.likes = this.likes++
+          self.likes = self.likes++
         })
         .catch(function (error) {
           console.log(error);
@@ -65,7 +65,7 @@ export default {
       axios.post(api, {type: 'disliked'})
         .then(function (response) {
           self.disliked = true
-          self.dislikes = this.dislikes++
+          self.dislikes = self.dislikes++
         })
         .catch(function (error) {
           console.log(error);
