@@ -28,6 +28,14 @@
                     <i class="fa fa-diamond" aria-hidden="true"></i>
                     {{ config('app.name', 'Laravel') }}
                 </a>
+                <ul class="navbar-nav ml-auto mr-3 d-inline-block d-md-none">
+                    <li class="nav-item">
+                        <a href="https://digirare.com/random" class="nav-link">
+                            <i aria-hidden="true" class="fa fa-random"></i>
+                            Random
+                        </a>
+                    </li>
+                </ul>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -53,7 +61,7 @@
                                 {{ __('Collectors') }}
                             </a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item d-none d-lg-inline-block">
                             <a class="nav-link" href="{{ route('random.index') }}">
                                 <i class="fa fa-random" aria-hidden="true"></i>
                                 {{ __('Randomize') }}
@@ -66,7 +74,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ url('/') }}">{{ __('How it Works') }}</a>
                         </li>
-                        <li class="nav-item">
+                        <li class="nav-item d-none d-lg-inline-block">
                             <a class="nav-link" href="{{ url('/') }}">{{ __('F.A.Q.') }}</a>
                         </li>
                         <li class="nav-item">
