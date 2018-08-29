@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Card;
+use App\Http\Resources\CountResource;
 use Droplister\XcpCore\App\Order;
 use Droplister\XcpCore\App\OrderMatch;
 use Illuminate\Http\Request;
@@ -39,6 +40,10 @@ class CardChartsController extends Controller
             ->orderBy('date')
             ->get();
 
-        return compact('buy_orders', 'sell_orders', 'order_matches');
+        return [
+            'buy_orders' => CountResource::collection($buy_orders),
+            'sell_orders' => CountResource::collection($sell_orders),
+            'order_matches' => CountResource::collection($order_matches),
+        ];
     }
 }
