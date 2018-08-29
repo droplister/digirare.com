@@ -29,7 +29,7 @@ class CollectionsController extends Controller
      */
     public function show(Request $request, Collection $collection)
     {
-        $cards = $collection->cards()->paginate(20);
+        $cards = $collection->cards()->withCount('balances')->paginate(20);
 
         return view('collections.show', compact('collection', 'cards'));
     }
