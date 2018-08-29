@@ -1,6 +1,6 @@
 <template>
   <span class="pull-right">
-    <i class="fa text-success" v-bind:class="up" v-on:click="$_like"></i> {{ likes }}
+    <i class="fa text-success" v-bind:class="up" v-on:click="$_like"></i> {{ likes }} &nbsp;
     <i class="fa text-danger" v-bind:class="down" v-on:click="$_dislike"></i> {{ dislikes }}
   </span>
 </template>
@@ -29,35 +29,44 @@ export default {
   methods: {
     $_liked_update() {
       var api = '/api/cards/' + this.card + '/likes'
-      var self = this
-      $.get(api, function(data) {
-        if(data === 'liked') {
-            self.liked = true
-            self.disliked = false
-        } else if(data === 'disliked') {
-            self.liked = false
-            self.disliked = true
-        } else {
-            self.liked = false
-            self.disliked = false
-        }
-      });
+      axios.get(api)
+        .then(function (response) {
+          if(response === 'liked') {
+            this.liked = true
+            this.disliked = false
+          } else if(response === 'disliked') {
+            this.liked = false
+            this.disliked = true
+          } else {
+            this.liked = false
+            this.disliked = false
+          }
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
     $_like() {
-      // Local
-      this.liked = true
-      this.likes = this.likes++
-      // Global
       var api = '/api/cards/' + this.card + '/likes'
-      $.post(api,{'type': 'like'})
+      axios.post(api, {type: 'liked'})
+        .then(function (response) {
+          this.liked = true
+          this.likes = this.likes++
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
     $_dislike() {
-      // Local
-      this.disliked = true
-      this.dislikes = this.dislikes++
-      // Global
       var api = '/api/cards/' + this.card + '/likes'
-      $.post(api, {'type': 'dislike'})
+      axios.post(api, {type: 'disliked'})
+        .then(function (response) {
+          this.disliked = true
+          this.dislikes = this.dislikes++
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     },
   },
 }
