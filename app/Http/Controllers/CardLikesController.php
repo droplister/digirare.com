@@ -47,6 +47,7 @@ class CardLikesController extends Controller
      */
     public function store(Request $request, Card $card)
     {
+        \Log::info(serialize($request->all()));
         $request->validate([
             'type' => 'required|in:like,dislike',
         ]);
