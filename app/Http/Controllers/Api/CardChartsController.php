@@ -22,24 +22,27 @@ class CardChartsController extends Controller
     {
         // Buy Orders
         $buy_orders = Order::where('get_asset', '=', $card->xcp_core_asset_name)
-            ->selectRaw('DATE(confirmed_at) as date, COUNT(*) as count')
-            ->groupBy('date')
-            ->orderBy('date')
+            ->selectRaw('YEAR(confirmed_at) as year, MONTH(confirmed_at) as month, COUNT(*) as count')
+            ->groupBy('month', 'year')
+            ->orderBy('year')
+            ->orderBy('month')
             ->get();
 
         // Sell Orders
         $sell_orders = Order::where('give_asset', '=', $card->xcp_core_asset_name)
-            ->selectRaw('DATE(confirmed_at) as date, COUNT(*) as count')
-            ->groupBy('date')
-            ->orderBy('date')
+            ->selectRaw('YEAR(confirmed_at) as year, MONTH(confirmed_at) as month, COUNT(*) as count')
+            ->groupBy('month', 'year')
+            ->orderBy('year')
+            ->orderBy('month')
             ->get();
 
         // Order Matches
         $order_matches = OrderMatch::where('forward_asset', '=', $card->xcp_core_asset_name)
             ->orWhere('backward_asset', '=', $card->xcp_core_asset_name)
-            ->selectRaw('DATE(confirmed_at) as date, COUNT(*) as count')
-            ->groupBy('date')
-            ->orderBy('date')
+            ->selectRaw('YEAR(confirmed_at) as year, MONTH(confirmed_at) as month, COUNT(*) as count')
+            ->groupBy('month', 'year')
+            ->orderBy('year')
+            ->orderBy('month')
             ->get();
 
         return [

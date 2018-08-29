@@ -15,6 +15,9 @@ export default {
   data() {
     return {
       chartOptions: {
+        chart: {
+            type: 'column'
+        },
         title: {
           text: 'Dex Order Activity'
         },
@@ -22,7 +25,7 @@ export default {
           text: 'Source: DIGIRARE.com'
         },
         xAxis: {
-          type: 'datetime'
+          type: 'category'
         },
         yAxis: {
           title: {

@@ -2,7 +2,6 @@
 
 namespace App\Http\Resources;
 
-use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\Resource;
 
 class CountResource extends Resource
@@ -16,7 +15,7 @@ class CountResource extends Resource
     public function toArray($request)
     {
         return [
-            Carbon::createFromFormat('Y-m-d', $this->date)->timestamp * 1000,
+            $this->year . '-' . $this->month,
             $this->count,
         ];
     }
