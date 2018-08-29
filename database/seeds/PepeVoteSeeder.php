@@ -9,20 +9,29 @@ class PepeVoteSeeder extends Seeder
     use ImportsCards;
 
     /**
+     * Collection
+     *
+     * @var \App\Collection
+     */
+    protected $collection;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->collection = Collection::findBySlug('pepe-vote');
+    }
+
+    /**
      * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        // Pepe Vote
-        $collection = Collection::findBySlug('pepe-vote');
-
-        // Collection
-        $collection->update([
-            'website_url' => 'https://pepevote.com/',
-        ]);
-
         // Get the Cards
         $cards = $this->getCards();
 
@@ -39,7 +48,7 @@ class PepeVoteSeeder extends Seeder
             $card = $this->firstOrCreateCard($xcp_core_asset_name, $name, $data['meta']);
 
             // Relation
-            $card->collections()->syncWithoutDetaching([$collection->id => ['image_url' => $image_url]]);
+            $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
         }
     }
 

@@ -9,20 +9,29 @@ class RareScrillaSeeder extends Seeder
     use ImportsCards;
 
     /**
+     * Collection
+     *
+     * @var \App\Collection
+     */
+    protected $collection;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->collection = Collection::findBySlug('rare-scrilla');
+    }
+
+    /**
      * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        // Rare Scrilla
-        $collection = Collection::findBySlug('rare-scrilla');
-
-        // Collection
-        $collection->update([
-            'website_url' => 'https://rarescrilla.com/',
-        ]);
-
         // Get the Cards
         $cards = $this->getCards();
 
@@ -39,7 +48,7 @@ class RareScrillaSeeder extends Seeder
             $card = $this->firstOrCreateCard($xcp_core_asset_name, $name, $data['meta']);
 
             // Relation
-            $card->collections()->syncWithoutDetaching([$collection->id => ['image_url' => $image_url]]);
+            $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
         }
     }
 

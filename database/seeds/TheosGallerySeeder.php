@@ -9,20 +9,29 @@ class TheosGallerySeeder extends Seeder
     use ImportsCards;
 
     /**
+     * Collection
+     *
+     * @var \App\Collection
+     */
+    protected $collection;
+
+    /**
+     * Create a new job instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->collection = Collection::findBySlug('theos-gallery');
+    }
+
+    /**
      * Run the database seeds.
      *
      * @return void
      */
     public function run()
     {
-        // Theos Gallery
-        $collection = Collection::findBySlug('theos-gallery');
-
-        // Collection
-        $collection->update([
-            'website_url' => 'http://theos.gallery/',
-        ]);
-
         // Get the Cards
         $cards = $this->getCards();
 
@@ -39,7 +48,7 @@ class TheosGallerySeeder extends Seeder
             $card = $this->firstOrCreateCard($xcp_core_asset_name, $name, $data['meta']);
 
             // Relation
-            $card->collections()->syncWithoutDetaching([$collection->id => ['image_url' => $image_url]]);
+            $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
         }
     }
 
