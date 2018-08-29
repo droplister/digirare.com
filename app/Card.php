@@ -108,6 +108,26 @@ class Card extends Model
     }
 
     /**
+     * Likes
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function likes()
+    {
+        return $this->hasMany(Like::class)->whereType('like');
+    }
+
+    /**
+     * Dislikes
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function dislikes()
+    {
+        return $this->hasMany(Like::class)->whereType('dislike');
+    }
+
+    /**
      * Last Match
      * 
      * @return \Droplister\XcpCore\App\OrderMatch

@@ -26,4 +26,24 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+    /**
+     * Likes
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function likes()
+    {
+        return $this->hasMany(Like::class)->whereType('like');
+    }
+
+    /**
+     * Dislikes
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function dislikes()
+    {
+        return $this->hasMany(Like::class)->whereType('dislike');
+    }
 }

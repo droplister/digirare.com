@@ -2,6 +2,7 @@
     @foreach($collections as $collection)
         <a href="{{ $collection->url }}">{{ $collection->name }}</a>{{ $loop->last ? '' : ' / ' }}
     @endforeach
+    <card-likes card="{{ $card->slug }}" likes="{{ $likes }}" dislikes="{{ $dislikes }}"></card-likes>
 </p>
 <h1 class="display-4 mb-0">
     {{ $card->name }}

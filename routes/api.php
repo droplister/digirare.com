@@ -13,4 +13,5 @@ use Illuminate\Http\Request;
 |
 */
 
+Route::resource('/cards/{card}/likes', 'Api\CardLikesController', ['only' => ['index', 'store']]);
 Route::get('/cards/{card}/order-history', 'Api\CardChartsController@orderHistory')->name('api.cards.order-history');
