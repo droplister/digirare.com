@@ -29,17 +29,18 @@ export default {
   methods: {
     $_liked_update() {
       var api = '/api/cards/' + this.card + '/likes'
+      var self = this
       axios.get(api)
         .then(function (response) {
-          if(response === 'liked') {
-            this.liked = true
-            this.disliked = false
-          } else if(response === 'disliked') {
-            this.liked = false
-            this.disliked = true
+          if(response.data === 'liked') {
+            self.liked = true
+            self.disliked = false
+          } else if(response.data === 'disliked') {
+            self.liked = false
+            self.disliked = true
           } else {
-            this.liked = false
-            this.disliked = false
+            self.liked = false
+            self.disliked = false
           }
         })
         .catch(function (error) {
@@ -48,10 +49,11 @@ export default {
     },
     $_like() {
       var api = '/api/cards/' + this.card + '/likes'
+      var self = this
       axios.post(api, {type: 'liked'})
         .then(function (response) {
-          this.liked = true
-          this.likes = this.likes++
+          self.liked = true
+          self.likes = this.likes++
         })
         .catch(function (error) {
           console.log(error);
@@ -59,10 +61,11 @@ export default {
     },
     $_dislike() {
       var api = '/api/cards/' + this.card + '/likes'
+      var self = this
       axios.post(api, {type: 'disliked'})
         .then(function (response) {
-          this.disliked = true
-          this.dislikes = this.dislikes++
+          self.disliked = true
+          self.dislikes = this.dislikes++
         })
         .catch(function (error) {
           console.log(error);
