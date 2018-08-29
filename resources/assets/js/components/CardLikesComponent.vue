@@ -55,7 +55,7 @@ export default {
           self.liked = true
           self.likes = self.likes++
           self.disliked = false
-          self.dislikes = self.likes--
+          self.dislikes = self.dislikes--
         })
         .catch(function (error) {
           console.log(error);
