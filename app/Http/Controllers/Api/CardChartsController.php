@@ -24,7 +24,7 @@ class CardChartsController extends Controller
             ->selectRaw('DATE(confirmed_at) as date, COUNT(*) as count')
             ->groupBy('date')
             ->orderBy('date')
-            ->lists('count', 'date');
+            ->pluck('count', 'date');
 
         $buy_order = $this->fillDates($buy_orders);
 
@@ -33,7 +33,7 @@ class CardChartsController extends Controller
             ->selectRaw('DATE(confirmed_at) as date, COUNT(*) as count')
             ->groupBy('date')
             ->orderBy('date')
-            ->lists('count', 'date');
+            ->pluck('count', 'date');
 
         $sell_orders = $this->fillDates($sell_orders);
 
@@ -43,7 +43,7 @@ class CardChartsController extends Controller
             ->selectRaw('DATE(confirmed_at) as date, COUNT(*) as count')
             ->groupBy('date')
             ->orderBy('date')
-            ->lists('count', 'date');
+            ->pluck('count', 'date');
 
         $order_matches = $this->fillDates($order_matches);
 
@@ -58,11 +58,11 @@ class CardChartsController extends Controller
      * Fill Dates
      * 
      * @param  \App\Card  $card
-     * @param  array  $list
+     * @param  array  $array
      * @param  string  $order
      * @return mixed
      */
-    private function fillDates($card, $list, $order='desc')
+    private function fillDates($card, $array, $order='desc')
     {
         $endDate = Carbon::today();
         $startDate = $card->token->confirmed_at;
@@ -74,11 +74,11 @@ class CardChartsController extends Controller
 
         while ($dateCycleHolder->ne($dateCycleEnd)) {
             $dateCurr = $dateCycleHolder->format('Y-m-d');
-            $filledList->put($dateCurr, $list->get($dateCurr, 0));
+            $filledList->put($dateCurr, $array->get($dateCurr, 0));
             $dateCycleHolder->addDay($dateInc);
         }
         $dateCurr = $dateCycleHolder->format('Y-m-d');    
-        $filledList->put($dateCurr, $list->get($dateCurr, 0));
+        $filledList->put($dateCurr, $array->get($dateCurr, 0));
 
         return $filledList;
     }
