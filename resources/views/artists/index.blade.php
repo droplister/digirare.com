@@ -1,13 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'Collections')
+@section('title', 'Artists')
 
 @section('content')
     <div class="container mt-3">
         <div class="row mb-4">
             <div class="col">
                 <h1 class="display-4 mb-4">
-                    Collections
+                    Artists
                 </h1>
                 <div class="card mb-4">
                     <div class="card-header">
@@ -15,7 +15,7 @@
                             List View
                         </span>
                     </div>
-                    @include('collections.partials.index.table')
+                    @include('artists.partials.index.table')
                 </div>
             </div>
         </div>

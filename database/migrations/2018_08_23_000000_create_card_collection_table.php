@@ -14,8 +14,9 @@ class CreateCardCollectionTable extends Migration
     public function up()
     {
         Schema::create('card_collection', function (Blueprint $table) {
-            $table->unsignedInteger('collection_id')->index();
             $table->unsignedInteger('card_id')->index();
+            $table->unsignedInteger('collection_id')->index();
+            $table->unsignedInteger('artist_id')->nullable()->index();
             $table->string('image_url');
             $table->boolean('primary')->default(1);
             $table->timestamps();

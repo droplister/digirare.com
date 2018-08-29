@@ -53,6 +53,17 @@ class Collection extends Model
     ];
 
     /**
+     * Artists
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function artists()
+    {
+        return $this->belongsToMany(Artist::class, 'card_collection', 'collection_id', 'artist_id')
+                    ->withPivot('image_url', 'primary');
+    }
+
+    /**
      * Cards
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

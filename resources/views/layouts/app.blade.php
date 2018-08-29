@@ -55,17 +55,21 @@
                                 {{ __('Collections') }}
                             </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('collectors.index') }}">
-                                <i class="fa fa-hand-grab-o mr-1" aria-hidden="true"></i>
-                                {{ __('Collectors') }}
-                            </a>
-                        </li>
                         <li class="nav-item d-none d-lg-inline-block">
                             <a class="nav-link" href="{{ route('random.index') }}">
                                 <i class="fa fa-random" aria-hidden="true"></i>
                                 {{ __('Randomize') }}
                             </a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              Dropdown
+                            </a>
+                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                              <a class="dropdown-item" href="{{ route('artists.index') }}">Artists</a>
+                              <a class="dropdown-item" href="{{ route('collectors.index') }}">Collectors</a>
+                              <a class="dropdown-item" href="#">Want Ads</a>
+                            </div>
                         </li>
                     </ul>
 

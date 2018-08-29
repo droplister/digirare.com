@@ -48,13 +48,14 @@ class Card extends Model
     ];
 
     /**
-     * Token
+     * Artists
      * 
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
-    public function token()
+    public function artists()
     {
-        return $this->belongsTo(Asset::class, 'xcp_core_asset_name', 'asset_name');
+        return $this->belongsToMany(Artist::class, 'card_collection', 'card_id', 'artist_id')
+                    ->withPivot('image_url', 'primary');
     }
 
     /**
@@ -146,6 +147,16 @@ class Card extends Model
     public function dislikes()
     {
         return $this->hasMany(Like::class)->whereType('dislike');
+    }
+
+    /**
+     * Token
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function token()
+    {
+        return $this->belongsTo(Asset::class, 'xcp_core_asset_name', 'asset_name');
     }
 
     /**

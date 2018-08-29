@@ -14,6 +14,7 @@
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::resource('random', 'RandomController', ['only' => ['index']]);
 Route::resource('cards', 'CardsController', ['only' => ['index', 'show']]);
+Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
 Route::resource('collectors', 'CollectorsController', ['only' => ['index', 'show']]);
 Route::resource('collections', 'CollectionsController', ['only' => ['index', 'show']]);
 Route::resource('cards/{card}/likes', 'CardLikesController', ['only' => ['index', 'store']]);

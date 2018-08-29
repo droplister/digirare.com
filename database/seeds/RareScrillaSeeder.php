@@ -1,5 +1,6 @@
 <?php
 
+use App\Artist;
 use App\Collection;
 use App\Traits\ImportsCards;
 use Illuminate\Database\Seeder;
@@ -35,6 +36,8 @@ class RareScrillaSeeder extends Seeder
         // Get the Cards
         $cards = $this->getCards();
 
+        $artist = Artist::where('name', '=', '$crilla Ventura')->first();
+
         // Related Cards
         foreach($cards as $name => $data)
         {
@@ -48,7 +51,12 @@ class RareScrillaSeeder extends Seeder
             $card = $this->firstOrCreateCard($xcp_core_asset_name, $name, $data['meta']);
 
             // Relation
-            $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
+            $card->collections()->syncWithoutDetaching([
+                $this->collection->id => [
+                    'artist_id' => $artist->id,
+                    'image_url' => $image_url
+                ]
+            ]);
         }
     }
 

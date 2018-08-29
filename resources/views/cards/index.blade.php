@@ -9,7 +9,14 @@
                 <h1 class="display-4 mb-4">
                     XCP Cards
                 </h1>
-                @include('cards.partials.index.table')
+                <div class="card mb-4">
+                    <div class="card-header">
+                        <span class="lead font-weight-bold">
+                            List View
+                        </span>
+                    </div>
+                    @include('cards.partials.index.table')
+                </div>
             </div>
         </div>
     </div>

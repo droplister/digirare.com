@@ -28,6 +28,16 @@ class User extends Authenticatable
     ];
 
     /**
+     * Artist
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function artist()
+    {
+        return $this->hasOne(Artist::class);
+    }
+
+    /**
      * Likes
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
