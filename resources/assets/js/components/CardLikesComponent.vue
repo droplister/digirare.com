@@ -17,10 +17,10 @@ export default {
   },
   computed: {
     up() {
-      return this.liked ? 'fa-thumbs-up' : 'fa-thumbs-o-up'
+      return this.liked === true ? 'fa-thumbs-up' : 'fa-thumbs-o-up'
     },
     down() {
-      return this.disliked ? 'fa-thumbs-down' : 'fa-thumbs-o-down'
+      return this.disliked === true ? 'fa-thumbs-down' : 'fa-thumbs-o-down'
     },
   },
   mounted() {
@@ -54,6 +54,8 @@ export default {
         .then(function (response) {
           self.liked = true
           self.likes = self.likes++
+          self.disliked = false
+          self.dislikes = self.likes--
         })
         .catch(function (error) {
           console.log(error);
@@ -64,6 +66,8 @@ export default {
       var self = this
       axios.post(api, {type: 'dislike'})
         .then(function (response) {
+          self.liked = false
+          self.likes = self.likes--
           self.disliked = true
           self.dislikes = self.dislikes++
         })
