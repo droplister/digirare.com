@@ -3,25 +3,14 @@
 @section('title', $collection->name)
 
 @section('content')
-    <div class="card mb-4">
-        <div class="card-header">
-            Gallery View
-        </div>
-        <div class="card-body">
-            <div class="row">
-                @foreach($cards as $card)
-                <div class="col-6 col-sm-4 col-lg-3 mb-4">
-                    <a href="{{ $card->pivot->url }}">
-                        <img src="{{ $card->pivot->image_url }}" alt="{{ $card->name }}" width="100%" />
-                    </a>
-                    <h5 class="card-title mt-3 mb-1">
-                        <strong>{{ $card->name }}</strong>
-                    </h5>
-                    <p class="card-text">Supply: {{ number_format($card->supply) }} <span class="float-right d-none d-md-inline">Holders: {{ $card->balances_count }}</span></p>
-                </div>
-            @endforeach
+    <div class="container mt-3">
+        <div class="row mb-4">
+            <div class="col">
+                <h1 class="display-4 mb-4">
+                    {{ $collection->name }}
+                </h1>
+                @include('collections.partials.index.gallery')
             </div>
         </div>
     </div>
-    {!! $cards->links() !!}
 @endsection
