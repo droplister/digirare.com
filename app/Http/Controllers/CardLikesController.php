@@ -48,7 +48,7 @@ class CardLikesController extends Controller
     public function store(Request $request, Card $card)
     {
         $request->validate([
-            'type' => 'required',
+            'type' => 'required|in:like,dislike',
         ]);
 
         return Like::updateOrCreate([

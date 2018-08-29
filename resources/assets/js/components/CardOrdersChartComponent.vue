@@ -15,6 +15,26 @@ export default {
   data() {
     return {
       chartOptions: {
+        title: {
+          text: 'Dex Order Activity'
+        },
+        subtitle: {
+          text: 'Source: DIGIRARE.com'
+        },
+        xAxis: {
+          type: 'datetime'
+        },
+        yAxis: {
+          title: {
+            text: 'Count (#)'
+          }
+        },
+        tooltip: {
+          shared: true
+        },
+        credits: {
+          enabled: false
+        },
         series: []
       }
     }
