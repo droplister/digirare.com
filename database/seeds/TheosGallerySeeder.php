@@ -1,5 +1,6 @@
 <?php
 
+use App\Artist;
 use App\Collection;
 use App\Traits\ImportsCards;
 use Illuminate\Database\Seeder;
