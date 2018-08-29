@@ -26,4 +26,9 @@ return [
      * Telegram Webhook
      */
     'telegram_webhook' => env('TELEGRAM_WEBHOOK'),
+
+    /**
+     * Feature Address
+     */
+    'feature_address' => env('FEATURE_ADDRESS', '1Promo6RngL8NpZtYwnstctgJj5gue7DKg'),
 ];
