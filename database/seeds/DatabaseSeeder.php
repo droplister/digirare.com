@@ -15,6 +15,8 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(AssetsTableSeeder::class);
         $this->call(CollectionsTableSeeder::class);
+        $this->call(PenisiumSeeder::class);
+        $this->call(PepeVoteSeeder::class);
         $this->call(RareScrillaSeeder::class);
         $this->call(TheosGallerySeeder::class);
     }

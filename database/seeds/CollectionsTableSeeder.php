@@ -93,8 +93,17 @@ class CollectionsTableSeeder extends Seeder
             'FootballCoin' => [
                 'currency' => 'XFCCOIN',
             ],
+            'Kaleidoscope' => [
+                'currency' => 'XCP',
+            ],
             'MafiaWars' => [
                 'currency' => 'MAFIACASH',
+            ],
+            'Penisium' => [
+                'currency' => 'PENISIUM',
+            ],
+            'Pepe Vote' => [
+                'currency' => 'PEPECASH',
             ],
             'Rare Pepe' => [
                 'currency' => 'PEPECASH',

@@ -36,7 +36,7 @@ class TheosGallerySeeder extends Seeder
             $image_url = $this->getImageUrl($data['image_url']);
 
             // Creation
-            $card = $this->firstOrCreateCard($xcp_core_asset_name, $name);
+            $card = $this->firstOrCreateCard($xcp_core_asset_name, $name, $data['meta']);
 
             // Relation
             $card->collections()->syncWithoutDetaching([$collection->id => ['image_url' => $image_url]]);

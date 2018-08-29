@@ -8,6 +8,7 @@ use App\Jobs\UpdateRarePepe;
 use App\Jobs\UpdateMafiaWars;
 use App\Jobs\UpdateBookOfOrbs;
 use App\Jobs\UpdateFootballCoin;
+use App\Jobs\UpdateKaleidoscope;
 use Illuminate\Console\Command;
 
 class UpdateCards extends Command
@@ -57,6 +58,9 @@ class UpdateCards extends Command
 
         // FootballCoin
         $this->updateFootballCoin();
+
+        // Kaleidoscope
+        $this->updateKaleidoscope();
     }
 
     /**
@@ -120,5 +124,17 @@ class UpdateCards extends Command
         $footballcoin = Collection::findBySlug('footballcoin');
 
         UpdateFootballCoin::dispatchNow($footballcoin, $this->option('o'));
+    }
+
+    /**
+     * Kaleidoscope
+     * 
+     * @return void
+     */
+    private function updateKaleidoscope()
+    {
+        $kaleidoscope = Collection::findBySlug('kaleidoscope');
+
+        UpdateKaleidoscope::dispatchNow($kaleidoscope, $this->option('o'));
     }
 }
