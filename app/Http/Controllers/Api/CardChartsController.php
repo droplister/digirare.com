@@ -26,7 +26,7 @@ class CardChartsController extends Controller
             ->orderBy('date')
             ->pluck('count', 'date');
 
-        $buy_order = $this->fillDates($buy_orders);
+        $buy_order = $this->fillDates($card, $buy_orders);
 
         // Sell Orders
         $sell_orders = Order::where('give_asset', '=', $card->xcp_core_asset_name)
@@ -35,7 +35,7 @@ class CardChartsController extends Controller
             ->orderBy('date')
             ->pluck('count', 'date');
 
-        $sell_orders = $this->fillDates($sell_orders);
+        $sell_orders = $this->fillDates($card, $sell_orders);
 
         // Order Matches
         $order_matches = OrderMatch::where('forward_asset', '=', $card->xcp_core_asset_name)
@@ -45,7 +45,7 @@ class CardChartsController extends Controller
             ->orderBy('date')
             ->pluck('count', 'date');
 
-        $order_matches = $this->fillDates($order_matches);
+        $order_matches = $this->fillDates($card, $order_matches);
 
         return [
             'buy_orders' => CountResource::collection($buy_orders),

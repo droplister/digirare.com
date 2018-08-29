@@ -28,11 +28,11 @@ class CardLikesController extends Controller
         if($request->user())
         {
             // Liked
-            $liked = $request->user()->likes->contains([$card->id]);
+            $liked = $request->user()->likes()->where('card_id', $card->id)->exists();
             if($liked) return 'liked';
 
             // Disliked
-            $disliked = $request->user()->dislikes->contains([$card->id]);
+            $disliked = $request->user()->dislikes()->where('card_id', $card->id)->exists();
             if($disliked) return 'disliked';
         }
 
