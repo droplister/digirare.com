@@ -87,7 +87,7 @@ class CollectionsTableSeeder extends Seeder
                 'bundleId' => 'com.spellsofgenesis',
             ],
             // Other APIs
-            'Bitcorn' => [
+            'Bitcorn Crops' => [
                 'currency' => 'BITCORN',
             ],
             'FootballCoin' => [
@@ -97,6 +97,12 @@ class CollectionsTableSeeder extends Seeder
                 'currency' => 'MAFIACASH',
             ],
             'Rare Pepe' => [
+                'currency' => 'PEPECASH',
+            ],
+            'Rare Scrilla' => [
+                'currency' => 'PEPECASH',
+            ],
+            'Theos Gallery' => [
                 'currency' => 'PEPECASH',
             ],
         ];

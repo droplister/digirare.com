@@ -66,7 +66,7 @@ class UpdateCards extends Command
      */
     private function updateBitcorn()
     {
-        $bitcorn = Collection::findBySlug('bitcorn');
+        $bitcorn = Collection::findBySlug('bitcorn-crops');
 
         UpdateBitcorn::dispatchNow($bitcorn, $this->option('o'));
     }
