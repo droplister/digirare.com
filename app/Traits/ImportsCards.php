@@ -41,7 +41,14 @@ trait ImportsCards
         // Only Download Once
         if(! Storage::exists('public/' . $file) || $override)
         {
-            $contents = file_get_contents($url);
+            $context = [
+                'ssl' => [
+                    'verify_peer' => false,
+                    'verify_peer_name' => false,
+                ],
+            ];
+
+            $contents = file_get_contents($url, false, stream_context_create($context));
             $image_path = Storage::put('public/' . $file, $contents);
         }
 
