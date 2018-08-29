@@ -50,21 +50,16 @@ export default {
       var api = this.source
       var self = this
       $.get(api, function(data) {
-        var buyOrders = {
-          name: 'Buy Orders',
-          data: data.buy_orders,
+        var buys = {
+          name: 'Buys',
+          data: data.buys,
         };
-        var sellOrders = {
-          name: 'Sell Orders',
-          data: data.sell_orders,
+        var sells = {
+          name: 'Sells',
+          data: data.sells,
         };
-        var orderMatches = {
-          name: 'Order Matches',
-          data: data.order_matches,
-        };
-        self.chartOptions.series.push(buyOrders);
-        self.chartOptions.series.push(sellOrders);
-        self.chartOptions.series.push(orderMatches);
+        self.chartOptions.series.push(buys);
+        self.chartOptions.series.push(sells);
       });
     },
   },
