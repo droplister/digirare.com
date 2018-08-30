@@ -136,22 +136,22 @@ class Card extends Model
      */
     public function lastMatch()
     {
-        $b = $this->token->backwardOrderMatches()->latest('confirmed_at')->first();
-        $f = $this->token->forwardOrderMatches()->latest('confirmed_at')->first();
+        if($this->token)
+        {
+            $b = $this->token->backwardOrderMatches()->latest('confirmed_at')->first();
+            $f = $this->token->forwardOrderMatches()->latest('confirmed_at')->first();
 
-        if($b && $f)
-        {
-            return $b->confirmed_at > $f->confirmed_at ? $b : $f;
-        }
-        elseif($b || $f)
-        {
-            return $b ? $b : $f;
-        }
-        else
-        {
-            return null;
+            if($b && $f)
+            {
+                return $b->confirmed_at > $f->confirmed_at ? $b : $f;
+            }
+            elseif($b || $f)
+            {
+                return $b ? $b : $f;
+            }
         }
 
+        return null;
     }
 
     /**
