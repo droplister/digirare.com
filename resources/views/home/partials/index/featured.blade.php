@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">Featured</span>
@@ -21,4 +18,3 @@
         </div>
     </div>
 </div>
-@endsection
