@@ -128,7 +128,7 @@ class UpdateMetrics implements ShouldQueue
      */
     private function updateCards($interval, $dates)
     {
-        $count = Card::whereHas('token', function($token) {
+        $count = Card::whereHas('token', function ($token) use ($dates) {
             return $token->whereBetween('confirmed_at', [$dates['start'], $dates['end']]);
         })->count();
 
