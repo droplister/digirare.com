@@ -299,7 +299,7 @@ class UpdateMetrics implements ShouldQueue
             'category' => $category,
             'type' => $type,
             'value' => $value,
-            'timestamp' => $timetamp,
+            'timestamp' => $timestamp,
         ]);
     }
 
@@ -326,7 +326,7 @@ class UpdateMetrics implements ShouldQueue
             'category' => $category,
             'type' => $type,
             'value' => $value,
-            'timestamp' => $timetamp,
+            'timestamp' => $timestamp,
         ]);
     }
 }
