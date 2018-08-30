@@ -12,5 +12,3 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-
-Route::get('/cards/{card}/order-history', 'Api\CardChartsController@orderHistory')->name('api.cards.order-history');
