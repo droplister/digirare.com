@@ -16,6 +16,10 @@ class EventServiceProvider extends ServiceProvider
         'App\Events\CardWasCreated' => [
             'App\Listeners\CardListener',
         ],
+        'Droplister\XcpCore\App\Events\BlockWasCreated' => [
+            'App\Listeners\MetricListener',
+            'App\Listeners\FeatureListener',
+        ],
         'Droplister\XcpCore\App\Events\CreditWasCreated' => [
             'App\Listeners\CollectorListener',
         ],
