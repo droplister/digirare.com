@@ -90,43 +90,13 @@ class Card extends Model
     }
 
     /**
-     * Order Matches (Backward)
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     * Metrics
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function backwardOrderMatches()
+    public function metrics()
     {
-        return $this->hasMany(OrderMatch::class, 'backward_asset', 'xcp_core_asset_name');
-    }
-
-    /**
-     * Order Matches (Forward)
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function forwardOrderMatches()
-    {
-        return $this->hasMany(OrderMatch::class, 'forward_asset', 'xcp_core_asset_name');
-    }
-
-    /**
-     * Orders (Backward)
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function backwardOrders()
-    {
-        return $this->hasMany(Order::class, 'get_asset', 'xcp_core_asset_name')->where('status', '=', 'open');
-    }
-
-    /**
-     * Orders (Forward)
-     * 
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
-     */
-    public function forwardOrders()
-    {
-        return $this->hasMany(Order::class, 'give_asset', 'xcp_core_asset_name')->where('status', '=', 'open');
+        return $this->morphMany(Metric::class, 'chartable');
     }
 
     /**

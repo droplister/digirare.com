@@ -5,15 +5,21 @@
             Last Price
         </p>
         @if($last_match)
-        <p class="mb-0">{{ $last_match->trading_price_normalized }} {{ explode('/', $last_match->trading_pair_normalized)[1] }}</p>
+        <p class="mb-0">{{ $last_match->trading_price_normalized }}</p>
+        @else
+        <p class="mb-0">N/A</p>
         @endif
     </div>
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
-            <i class="fa fa-area-chart text-dark" aria-hidden="true"></i>
-            Volume
+            <i class="fa fa-money text-dark" aria-hidden="true"></i>
+            Currency
         </p>
-        <p class="mb-0"></p>
+        @if($last_match)
+        <p class="mb-0">{{ explode('/', $last_match->trading_pair_normalized)[1] }}</p>
+        @else
+        <p class="mb-0">N/A</p>
+        @endif
     </div>
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
@@ -85,6 +91,7 @@
     @if($artists->count() > 0)
     <div class="col-6">
         <p class="text-muted mb-0">
+            <i class="fa fa-paint-brush text-dark" aria-hidden="true"></i>
             {{ str_plural('Artist', $artists->count()) }}
         </p>
         <p class="mb-0">

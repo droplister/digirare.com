@@ -2,12 +2,12 @@
 
 namespace App\Listeners;
 
-use App\Jobs\UpdateFeatured;
+use App\Jobs\UpdateMetrics;
 use Droplister\XcpCore\App\Events\BlockWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class FeatureListener
+class MetricListener
 {
     /**
      * Handle the event.
@@ -17,6 +17,6 @@ class FeatureListener
      */
     public function handle(BlockWasCreated $event)
     {
-        UpdateFeatured::dispatch($event->block->block_index);
+        UpdateMetrics::dispatch($event->block);
     }
 }
