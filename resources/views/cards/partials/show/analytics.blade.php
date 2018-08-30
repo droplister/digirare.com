@@ -4,7 +4,9 @@
             <i class="fa fa-gavel text-dark" aria-hidden="true"></i>
             Last Price
         </p>
-        <p class="mb-0"></p>
+        @if($last_match)
+        <p class="mb-0">{{ $last_match->trading_price_normalized }} {{ explode('/', $last_match->trading_pair_normalized)[1] }}</p>
+        @endif
     </div>
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
