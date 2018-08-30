@@ -78,7 +78,7 @@ class UpdateFeatured implements ShouldQueue
         return Send::where('asset', '=', 'XCP')
             ->where('destination', '=', config('digirare.feature_address'))
             ->where('status', '=', 'valid')
-            ->where('block_index', '<=', $block_index - 2)
+            ->where('block_index', '<=', $this->block_index - 2)
             ->get();
     }
 }
