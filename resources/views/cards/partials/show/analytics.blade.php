@@ -61,21 +61,23 @@
         <p class="mb-0">{{ $token && $token->divisible ? 'YES' : 'NO' }}</p>
     </div>
 </div>
-<hr class="d-none d-lg-block" />
-<div class="row d-none d-lg-block">
-    <div class="col-lg-6">
-        <p class="text-muted mb-0">
-            <i class="fa fa-chain text-dark" aria-hidden="true"></i>
-            Owner
-        </p>
-        <p class="mb-0">{{ $token ? $token->owner : 'Syncing' }}</p>
-    </div>
-    <div class="col-lg-6">
-        <p class="text-muted mb-0">
-            <i class="fa fa-chain text-dark" aria-hidden="true"></i>
-            Issuer
-        </p>
-        <p class="mb-0">{{ $token ? $token->issuer : 'Syncing' }}</p>
+<div class="d-none d-lg-block">
+    <hr />
+    <div class="row">
+        <div class="col-6">
+            <p class="text-muted mb-0">
+                <i class="fa fa-chain text-dark" aria-hidden="true"></i>
+                Owner
+            </p>
+            <p class="mb-0">{{ $token ? $token->owner : 'Syncing' }}</p>
+        </div>
+        <div class="col-6">
+            <p class="text-muted mb-0">
+                <i class="fa fa-chain text-dark" aria-hidden="true"></i>
+                Issuer
+            </p>
+            <p class="mb-0">{{ $token ? $token->issuer : 'Syncing' }}</p>
+        </div>
     </div>
 </div>
 <hr />
