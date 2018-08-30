@@ -61,16 +61,16 @@
         <p class="mb-0">{{ $token && $token->divisible ? 'YES' : 'NO' }}</p>
     </div>
 </div>
-<hr />
-<div class="row">
-    <div class="col-12 col-lg-6">
+<hr class="d-none d-lg-block" />
+<div class="row d-none d-lg-block">
+    <div class="col-lg-6">
         <p class="text-muted mb-0">
             <i class="fa fa-chain text-dark" aria-hidden="true"></i>
             Owner
         </p>
         <p class="mb-0">{{ $token ? $token->owner : 'Syncing' }}</p>
     </div>
-    <div class="d-none d-lg-inline-block col-lg-6">
+    <div class="col-lg-6">
         <p class="text-muted mb-0">
             <i class="fa fa-chain text-dark" aria-hidden="true"></i>
             Issuer
@@ -79,7 +79,19 @@
     </div>
 </div>
 <hr />
-<div class="row d-none d-lg-block">
+<div class="row">
+    @if($artists->count() > 0)
+    <div class="col-6">
+        <p class="text-muted mb-0">
+            {{ str_plural('Artist', $artists->count()) }}
+        </p>
+        <p class="mb-0">
+            @foreach($artists as $artist)
+                <a href="{{ $artist->url }}">{{ $artist->name }}</a>{{ $loop->last ? '' : ' / ' }}
+            @endforeach
+        </p>
+    </div>
+    @endif    
     <div class="col-6">
         <p class="text-muted mb-0">
             <i class="fa fa-image text-dark" aria-hidden="true"></i>
