@@ -13,7 +13,7 @@
                     <img src="{{ $featured->card->pivot->image_url }}" alt="{{ $featured->card->name }}" width="100%" />
                 </a>
                 <h5 class="card-title mt-3 mb-1">
-                    <strong>{{ $card->name }}</strong>
+                    <strong>{{ $featured->card->name }}</strong>
                 </h5>
                 <p class="card-text">Supply: {{ number_format($featured->card->token->supply_normalized) }} <span class="float-right d-none d-md-inline">{{ $featured->card->collections()->primary()->first()->name }}</span></p>
             </div>
