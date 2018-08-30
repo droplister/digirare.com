@@ -37,4 +37,12 @@ class Feature extends Model
     {
         return $this->belongsTo(Card::class);
     }
+
+    /**
+     * Highest Bids
+     */
+    public function scopeHighestBids($query)
+    {
+        return $query->orderBy('bid', 'desc')->latest('created_at')->take(4);
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Feature;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -14,6 +15,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        return view('welcome');
+        $featured = Feature::highestBids()->with('card.token')->get();
+
+        return view('home', compact('featured'));
     }
 }

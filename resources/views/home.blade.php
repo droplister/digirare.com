@@ -1,22 +1,23 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Dashboard</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    You are logged in!
-                </div>
+<div class="card mb-4">
+    <div class="card-header">
+        <span class="lead font-weight-bold">Featured</span>
+    </div>
+    <div class="card-body">
+        <div class="row">
+            @foreach($features as $features)
+            <div class="col-6 col-sm-4 col-lg-3 mb-4">
+                <a href="{{ $featured->card->url }}">
+                    <img src="{{ $featured->card->pivot->image_url }}" alt="{{ $featured->card->name }}" width="100%" />
+                </a>
+                <h5 class="card-title mt-3 mb-1">
+                    <strong>{{ $card->name }}</strong>
+                </h5>
+                <p class="card-text">Supply: {{ number_format($featured->card->token->supply_normalized) }} <span class="float-right d-none d-md-inline">{{ $featured->card->collections()->primary()->first()->name }}</span></p>
             </div>
+            @endforeach
         </div>
     </div>
 </div>

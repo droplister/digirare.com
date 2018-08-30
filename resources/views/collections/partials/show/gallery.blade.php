@@ -14,7 +14,7 @@
                 </h5>
                 <p class="card-text">Supply: {{ number_format($card->token->supply_normalized) }} <span class="float-right d-none d-md-inline">Holders: {{ $card->balances_count }}</span></p>
             </div>
-        @endforeach
+            @endforeach
         </div>
     </div>
 </div>
