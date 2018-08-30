@@ -15,7 +15,7 @@ class CollectorsController extends Controller
      */
     public function index(Request $request)
     {
-        $collectors = Collector::withCount('cardBalances')->get();
+        $collectors = Collector::withCount('cardBalances')->orderBy('card_balances_count', 'desc')->paginate(100);
 
         return view('collectors.index', compact('collectors'));
     }
