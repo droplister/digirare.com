@@ -126,7 +126,7 @@ class Card extends Model
      */
     public function forwardOrders()
     {
-        return $this->hasMany(Order::class, 'get_asset', 'xcp_core_asset_name')->where('status', '=', 'open');
+        return $this->hasMany(Order::class, 'give_asset', 'xcp_core_asset_name')->where('status', '=', 'open');
     }
 
     /**
