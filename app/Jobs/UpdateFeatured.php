@@ -4,8 +4,7 @@ namespace App\Jobs;
 
 use App\Card;
 use App\Feature;
-use JsonRPC\Client;
-use Cache, Log, Throwable;
+use Droplister\XcpCore\App\Send;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -17,11 +16,11 @@ class UpdateFeatured implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     /**
-     * Counterparty API
+     * Block Index
      *
-     * @var \JsonRPC\Client
+     * @var integer
      */
-    protected $counterparty;
+    protected $block_index;
 
     /**
      * Create a new job instance.
@@ -29,10 +28,9 @@ class UpdateFeatured implements ShouldQueue
      * @param  \App\Cause  $cause
      * @return void
      */
-    public function __construct()
+    public function __construct($block_index)
     {
-        $this->counterparty = new Client(config('xcp-core.cp.api'));
-        $this->counterparty->authentication(config('xcp-core.cp.user'), config('xcp-core.cp.password'));
+        $this->block_index = $block_index;
     }
 
     /**
@@ -42,30 +40,13 @@ class UpdateFeatured implements ShouldQueue
      */
     public function handle()
     {
-        try
-        {
-            $this->updateFeatured();
-        }
-        catch(Throwable $e)
-        {
-            Log::error($e->getMessage());
-        }      
-    }
-
-    /**
-     * Update Featured
-     * 
-     * @return void
-     */
-    private function updateFeatured()
-    {
         // API Data
-        $feature_data = $this->getFeatureData();
+        $sends = $this->getSends();
 
-        foreach($feature_data as $data)
+        foreach($sends as $send)
         {
             // Card to Feature
-            $name = trim($data['memo']);
+            $name = trim($send->memo);
 
             // Flexible Inputs
             $card = Card::where('name', '=', $name)
@@ -76,14 +57,14 @@ class UpdateFeatured implements ShouldQueue
             if($card)
             {
                 Feature::firstOrCreate([
-                    'xcp_core_tx_index' => $data['tx_index'],
+                    'xcp_core_tx_index' => $send->tx_index,
                 ],[
                     'card_id' => $card->id,
-                    'address' => $data['source'],
-                    'bid' => $data['quantity'],
+                    'address' => $send->source,
+                    'bid' => $send->quantity,
                 ]);
             }
-        }
+        }    
     }
 
     /**
@@ -92,14 +73,12 @@ class UpdateFeatured implements ShouldQueue
      *
      * @return mixed
      */
-    private function getFeatureData()
+    private function getSends()
     {
-        return $this->counterparty->execute('get_sends', [
-            'filters' => [
-                ['field' => 'asset', 'op' => '==', 'value' => 'XCP'],
-                ['field' => 'destination', 'op' => '==', 'value' => config('digirare.feature_address')],
-                ['field' => 'status', 'op' => '==', 'value' => 'valid']
-            ],
-        ]);
+        return Send::where('asset', '=', 'XCP')
+            ->where('destination', '=', config('digirare.feature_address'))
+            ->where('status', '=', 'valid')
+            ->where('block_index', '<=', $block_index - 2)
+            ->get();
     }
 }

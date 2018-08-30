@@ -16,6 +16,6 @@ class FeatureListener
      */
     public function handle(BlockWasCreated $event)
     {
-        UpdateFeatured::dispatch();
+        UpdateFeatured::dispatch($event->block->block_index);
     }
 }
