@@ -81,12 +81,12 @@ class UpdateMetrics implements ShouldQueue
         $bt = $this->block->confirmed_at;
 
         // Intervals
-        $startOfDay = $bt->startOfYear()->toDateTimeString();
-        $endOfDay = $bt->endOfYear()->toDateTimeString();
+        $startOfDay = $bt->startOfDay()->toDateTimeString();
+        $endOfDay = $bt->endOfDay()->toDateTimeString();
         $startOfMonth = $bt->startOfMonth()->toDateTimeString();
         $endOfMonth = $bt->endOfMonth()->toDateTimeString();
-        $startOfYear = $bt->startOfDay()->toDateTimeString();
-        $endOfYear = $bt->endOfDay()->toDateTimeString();
+        $startOfYear = $bt->startOfYear()->toDateTimeString();
+        $endOfYear = $bt->endOfYear()->toDateTimeString();
 
         return [
             'day' => [
@@ -289,7 +289,7 @@ class UpdateMetrics implements ShouldQueue
     private function updateMetric($card, $category, $type, $value, $interval, $timestamp)
     {
         // Date
-        $date = $this->block->confirmed_at->toDateString();
+        $date = Carbon::parse($timestamp)->toDateString();
 
         // Save
         $card->metrics()->updateOrCreate([
@@ -316,7 +316,7 @@ class UpdateMetrics implements ShouldQueue
     private function updateSimpleMetric($category, $type, $value, $interval, $timestamp)
     {
         // Date
-        $date = $this->block->confirmed_at->toDateString();
+        $date = Carbon::parse($timestamp)->toDateString();
 
         // Save
         Metric::updateOrCreate([
