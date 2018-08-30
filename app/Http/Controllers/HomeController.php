@@ -15,8 +15,8 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $featured = Feature::highestBids()->with('card.token')->get();
+        $features = Feature::highestBids()->with('card.token')->get();
 
-        return view('home', compact('featured'));
+        return view('home', compact('features'));
     }
 }

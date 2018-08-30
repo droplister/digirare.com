@@ -7,7 +7,7 @@
     </div>
     <div class="card-body">
         <div class="row">
-            @foreach($features as $features)
+            @foreach($features as $featured)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
                 <a href="{{ $featured->card->url }}">
                     <img src="{{ $featured->card->pivot->image_url }}" alt="{{ $featured->card->name }}" width="100%" />
