@@ -111,6 +111,13 @@
         <main class="py-4">
             @yield('content')
         </main>
+
+        <div class="container">
+            <div class="alert alert-warning text-center">
+                Website Under Construction
+            </div>
+        </div>
+
     </div>
 </body>
 </html>
