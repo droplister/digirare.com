@@ -18,6 +18,11 @@ return [
     'bot_akey' => env('BOT_AKEY'),
 
     /**
+     * Google UA (Analytics)
+     */
+    'google_ua' => env('GOOGLE_UA'),
+
+    /**
      * Telegram URL
      */
     'telegram_url' => env('TELEGRAM_URL', 'https://t.me/digirare'),
