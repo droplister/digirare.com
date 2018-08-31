@@ -20,6 +20,6 @@ class DatabaseSeeder extends Seeder
         $this->call(PepeVoteSeeder::class);
         $this->call(RareScrillaSeeder::class);
         $this->call(TheosGallerySeeder::class);
-        $this->call(ArtistsToCardsSeeder::class);
+        // $this->call(ArtistsToCardsSeeder::class);
     }
 }
