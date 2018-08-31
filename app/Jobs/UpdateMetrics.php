@@ -338,8 +338,8 @@ class UpdateMetrics implements ShouldQueue
         Metric::updateOrCreate([
             'date' => $date,
             'interval' => $interval,
-        ],[
             'category' => $category,
+        ],[
             'type' => $type,
             'value' => $value,
             'timestamp' => $timestamp,
