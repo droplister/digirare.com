@@ -41,7 +41,7 @@ class Collector extends Model
      */
     public function cardBalances()
     {
-        return $this->hasMany(CardBalance::class, 'address', 'xcp_core_address');
+        return $this->hasMany(CardBalance::class, 'address', 'xcp_core_address')->nonZero();
     }
 
     /**

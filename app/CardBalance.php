@@ -40,7 +40,6 @@ class CardBalance extends Balance
         return $this->belongsTo(Card::class, 'asset', 'xcp_core_asset_name');
     }
 
-
     /**
      * Non Zero
      */

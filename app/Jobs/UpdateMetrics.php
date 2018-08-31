@@ -4,8 +4,8 @@ namespace App\Jobs;
 
 use App\Card;
 use App\Metric;
+use App\Collector;
 use Carbon\Carbon;
-use App\CardBalance;
 use Droplister\XcpCore\App\Block;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -146,7 +146,7 @@ class UpdateMetrics implements ShouldQueue
      */
     private function updateCollectors($interval, $dates)
     {
-        $count = CardBalance::nonZero()->count();
+        $count = Collector::has('cardBalances')->count();
 
         $this->updateSimpleMetric('collectors', 'count', $count, $interval, $dates['start']);
     }
