@@ -75,12 +75,16 @@ export default {
         self.chartOptions.series.push({
           name: self.label,
           data: data.data,
+          yAxis: 0,
+          zIndex: 2,
+          color: 'rgba(71, 236, 71)',
         })
         if (self.cumulative === 'true') {
           self.chartOptions.series.push({
             name: 'Cumulative',
             yAxis: 1,
             zIndex: 1,
+            color: 'rgba(0, 0, 0, 0.20)',
             data: self.$_chart_accumulate(data.data),
           })
         }
