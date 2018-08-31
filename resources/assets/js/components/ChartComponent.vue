@@ -7,7 +7,7 @@
 <script>
 import {Chart} from 'highcharts-vue'
 export default {
-  props: ['title', 'label', 'source'],
+  props: ['title', 'label', 'source', 'cummulative'],
   components: {
     highcharts: Chart
   },
@@ -40,6 +40,20 @@ export default {
             },
             opposite: true
         }],
+        yAxis: this.cumulative === 'true' ? [{
+          title: {
+            text: this.label
+          },
+        },{
+          title: {
+            text: 'Cumulative'
+          },
+          opposite: true
+        }] : {
+          title: {
+            text: this.label
+          },
+        },
         tooltip: {
           shared: true
         },
@@ -62,12 +76,14 @@ export default {
           name: self.label,
           data: data.data,
         })
-        self.chartOptions.series.push({
-          name: 'Cumulative',
-          yAxis: 1,
-          zIndex: 1,
-          data: self.$_chart_accumulate(data.data),
-        })
+        if (self.cummulative === 'true') {
+          self.chartOptions.series.push({
+            name: 'Cumulative',
+            yAxis: 1,
+            zIndex: 1,
+            data: self.$_chart_accumulate(data.data),
+          })
+        }
       })
     },
     $_chart_accumulate(data) {
