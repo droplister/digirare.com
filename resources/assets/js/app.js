@@ -16,6 +16,7 @@ window.Vue = require('vue');
  */
 
 Vue.component('card-likes', require('./components/CardLikesComponent.vue'));
+Vue.component('chart', require('./components/ChartComponent.vue'));
 
 const app = new Vue({
     el: '#app'
