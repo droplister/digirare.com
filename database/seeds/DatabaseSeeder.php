@@ -2,7 +2,6 @@
 
 use Illuminate\Database\Seeder;
 
-use Artisan;
 use Droplister\XcpCore\Database\Seeds\AssetsTableSeeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,7 +20,7 @@ class DatabaseSeeder extends Seeder
         $this->call(PepeVoteSeeder::class);
         $this->call(RareScrillaSeeder::class);
         $this->call(TheosGallerySeeder::class);
-        Artisan::call('update:cards');
+        \Artisan::call('update:cards');
         $this->call(ArtistsToCardsSeeder::class);
     }
 }
