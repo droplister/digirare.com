@@ -13,7 +13,7 @@
                 <p>Send your bid (XCP ONLY) to this address and enter the name of the card you want featured in the memo field. The current high bids are as follows:</p>
                 @foreach($features as $featured)
                     <p>{{ $loop->iteration }}. {{ $featured->bid_normalized }} XCP</p>
-                @endif
+                @endforeach
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
