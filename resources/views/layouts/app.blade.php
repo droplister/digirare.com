@@ -41,7 +41,6 @@
                 </button>
 
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cards.index') }}">
@@ -66,23 +65,34 @@
                               Dropdown
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                              <a class="dropdown-item" href="{{ route('artists.index') }}">Artists</a>
-                              <a class="dropdown-item" href="{{ route('collectors.index') }}">Collectors</a>
+                                <a class="dropdown-item" href="{{ route('artists.index') }}">
+                                    <i aria-hidden="true" class="fa fa-paint-brush"></i>
+                                    Artists
+                                </a>
+                                <a class="dropdown-item" href="{{ route('collectors.index') }}">
+                                    <i aria-hidden="true" class="fa fa-hand-grab-o"></i>
+                                    Collectors
+                                </a>
                             </div>
                         </li>
                     </ul>
 
-                    <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ config('digirare.telegram_url') }}">{{ __('Support') }}</a>
+                            <a class="nav-link" href="{{ config('digirare.telegram_url') }}">
+                                {{ __('Support') }}
+                            </a>
                         </li>
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                                <a class="nav-link" href="{{ route('register') }}">
+                                    {{ __('Register') }}
+                                </a>
                             </li>
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
+                                <a class="nav-link" href="{{ route('login') }}">
+                                    {{ __('Login') }}
+                                </a>
                             </li>
                         @else
                             <li class="nav-item dropdown">
