@@ -29,8 +29,8 @@ class CollectorsController extends Controller
      */
     public function show(Request $request, Collector $collector)
     {
-        $cardBalances = $collector->cardBalances()->paginate(20);
+        $balances = $collector->cardBalances()->with('card')->paginate(20);
 
-        return view('collectors.show', compact('collector', 'cardBalances'));
+        return view('collectors.show', compact('collector', 'balances'));
     }
 }

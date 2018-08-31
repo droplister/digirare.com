@@ -1,6 +1,6 @@
 <div class="card mb-4">
     <div class="card-header">
-        Gallery View
+        <span class="lead font-weight-bold">Gallery View</span>
     </div>
     <div class="card-body">
         <div class="row">
