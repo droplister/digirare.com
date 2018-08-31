@@ -311,9 +311,9 @@ class UpdateMetrics implements ShouldQueue
         $card->metrics()->updateOrCreate([
             'date' => $date,
             'interval' => $interval,
-        ],[
             'category' => $category,
             'type' => $type,
+        ],[
             'value' => $value,
             'timestamp' => $timestamp,
         ]);
@@ -336,11 +336,13 @@ class UpdateMetrics implements ShouldQueue
 
         // Save
         Metric::updateOrCreate([
+            'chartable_id' => null,
+            'chartable_type' => null,
             'date' => $date,
             'interval' => $interval,
             'category' => $category,
-        ],[
             'type' => $type,
+        ],[
             'value' => $value,
             'timestamp' => $timestamp,
         ]);
