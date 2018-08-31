@@ -39,25 +39,4 @@ class Metric extends Model
     {
         return $this->morphTo();
     }
-
-    /**
-     * Lifetime
-     */
-    public function scopeLifetime($query, $type='count')
-    {
-        return $query->where('type', '=', $type)
-            ->selectRaw('SUM(value) as value, category')
-            ->groupBy('category');
-    }
-
-    /**
-     * Last Thirty
-     */
-    public function scopeLastThirty($query, $type='count')
-    {
-        return $query->where('type', '=', $type)
-            ->selectRaw('SUM(value) as value, category')
-            ->where('timestamp', '>=', Carbon::now()->subDays(30))
-            ->groupBy('category');
-    }
 }

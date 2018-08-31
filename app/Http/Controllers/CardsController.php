@@ -15,8 +15,7 @@ class CardsController extends Controller
      */
     public function index(Request $request)
     {
-        $cards = Card::with('lifetimeMetrics', 'lastThirtyMetrics')->withCount('balances')
-            ->orderBy('balances_count', 'desc')->paginate(100);
+        $cards = Card::withCount('balances')->orderBy('balances_count', 'desc')->paginate(100);
 
         return view('cards.index', compact('cards'));
     }
