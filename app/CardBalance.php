@@ -37,7 +37,7 @@ class CardBalance extends Balance
      */
     public function card()
     {
-        return $this->belongsTo(Card::class, 'asset_name', 'xcp_core_asset_name');
+        return $this->belongsTo(Card::class, 'asset', 'xcp_core_asset_name');
     }
 
 
