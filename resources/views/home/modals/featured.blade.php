@@ -1,5 +1,5 @@
 <div class="modal fade" id="howToModal" tabindex="-1" role="dialog" aria-labelledby="howToModalLabel" aria-hidden="true">
-    <div class="modal-dialog{{ $collections[0]->slug === 'age-of-chains' ? ' modal-lg' : '' }}" role="document">
+    <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">Get Featured</h5>
