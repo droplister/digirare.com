@@ -12,3 +12,5 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+
+Route::get('/metrics/count', 'Api\MetricsController@showCount')->name('metrics.count');

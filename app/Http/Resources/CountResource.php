@@ -15,8 +15,8 @@ class CountResource extends Resource
     public function toArray($request)
     {
         return [
-            $this->year . '-' . $this->month,
-            $this->count,
+            $this->timestamp->timestamp * 1000,
+            $this->value,
         ];
     }
 }
