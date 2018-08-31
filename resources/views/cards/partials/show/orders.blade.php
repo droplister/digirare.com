@@ -6,7 +6,7 @@
         <table class="table mb-0">
             <thead>
                 <tr>
-                    <th scope="col">Expires</th>
+                    <th scope="col">Expired In</th>
                     <th scope="col">Amount</th>
                     <th scope="col">Price</th>
                     <th scope="col">Total</th>
@@ -16,7 +16,7 @@
             <tbody>
                 @foreach($orders as $order)
                 <tr>
-                    <th scope="row">{{ $order->expire_index - Cache::get('block_index') }} Blocks</th>
+                    <th scope="row">{{ \Carbon\Carbon::now()->addMinutes((($order->expire_index - Cache::get('block_index')) * 10)->diffForHumans() }}</th>
                     <td>{{ $order->get_quantity_normalized }}</td>
                     <td>{{ $order->trading_price_normalized }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
                     <td>{{ normalizeQuantity($order->get_quantity_normalized * $order->trading_price_normalized, false) }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
