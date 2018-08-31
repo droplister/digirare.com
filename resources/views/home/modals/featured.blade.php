@@ -17,6 +17,7 @@
                     <b>#{{ $loop->iteration }} Spot</b> &nbsp; {{ $featured->bid_normalized }} XCP @if(! $loop->last) <br /> @endif
                 @endforeach
                 </p>
+                <p><em>Our system waits two (2) confirmations before counting new bids.</em></p>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

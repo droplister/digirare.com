@@ -8,6 +8,7 @@
             <div class="col">
                 @include('home.partials.index.featured')
                 @include('home.partials.index.cards-chart')
+                @include('home.partials.index.order-matches-chart')
                 @include('home.partials.index.collectors-chart')
             </div>
         </div>

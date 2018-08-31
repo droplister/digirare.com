@@ -100,6 +100,26 @@ class Card extends Model
     }
 
     /**
+     * Metrics (Lifetime)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function lifetimeMetrics()
+    {
+        return $this->morphMany(Metric::class, 'chartable')->lifetime();
+    }
+
+    /**
+     * Metrics (Last Thirty)
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
+    public function lastThirtyMetrics()
+    {
+        return $this->morphMany(Metric::class, 'chartable')->lastThirty();
+    }
+
+    /**
      * Likes
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
