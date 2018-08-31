@@ -6,7 +6,6 @@
                 <th scope="col">Collection</th>
                 <th scope="col">Cards</th>
                 <th scope="col">Artists</th>
-                <th scope="col">Collectors</th>
             </tr>
         </thead>
         <tbody>
@@ -16,7 +15,6 @@
                 <td><a href="{{ $collection->url }}">{{ $collection->name }}</a></td>
                 <td>{{ $collection->cards_count }}</td>
                 <td>{{ $collection->artists_count }}</td>
-                <td>{{ $collection->collectors_count }}</td>
             </tr>
             @endforeach
         </tbody>
