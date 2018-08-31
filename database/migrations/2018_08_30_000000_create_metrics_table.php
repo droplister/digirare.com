@@ -20,7 +20,7 @@ class CreateMetricsTable extends Migration
             $table->string('interval');
             $table->string('date');
             $table->string('type');
-            $table->integer('value');
+            $table->unsignedBigInteger('value');
             $table->timestamp('timestamp')->nullable();
             $table->timestamps();
         });
