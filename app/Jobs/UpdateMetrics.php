@@ -50,9 +50,12 @@ class UpdateMetrics implements ShouldQueue
         // Day, Month, Year
         foreach($intervals as $interval => $dates)
         {
-            // Site Metrics
-            $this->updateCards($interval, $dates);
-            $this->updateCollectors($interval, $dates);
+            if(Card::has('token')->count() > 0)
+            {
+                // Site Metrics
+                $this->updateCards($interval, $dates);
+                $this->updateCollectors($interval, $dates);
+            }
 
             // Card Metrics
             foreach($cards as $card)
