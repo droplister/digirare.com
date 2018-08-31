@@ -5,6 +5,7 @@ namespace App\Jobs;
 use App\Card;
 use App\Metric;
 use Carbon\Carbon;
+use App\CardBalance;
 use Droplister\XcpCore\App\Block;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
@@ -51,6 +52,7 @@ class UpdateMetrics implements ShouldQueue
         {
             // Site Metrics
             $this->updateCards($interval, $dates);
+            $this->updateCollectors($interval, $dates);
 
             // Card Metrics
             foreach($cards as $card)
@@ -133,6 +135,20 @@ class UpdateMetrics implements ShouldQueue
         })->count();
 
         $this->updateSimpleMetric('cards', 'count', $count, $interval, $dates['start']);
+    }
+
+    /**
+     * Update Collectors
+     *
+     * @param  string  $interval
+     * @param  array  $dates
+     * @return void
+     */
+    private function updateCollectors($interval, $dates)
+    {
+        $count = CardBalance::nonZero()->count();
+
+        $this->updateSimpleMetric('collectors', 'count', $count, $interval, $dates['start']);
     }
 
     /**
