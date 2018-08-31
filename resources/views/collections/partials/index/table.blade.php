@@ -1,5 +1,5 @@
 <div class="table-responsive">
-    <table class="table">
+    <table class="table mb-0">
         <thead>
             <tr>
                 <th scope="col">#</th>
