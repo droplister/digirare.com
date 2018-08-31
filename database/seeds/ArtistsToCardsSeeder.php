@@ -78,11 +78,6 @@ class ArtistsToCardsSeeder extends Seeder
                 ],
             ],
             'Memorychain' => [
-                'davinci9' => [
-                    'SHITCOINER',
-                    'HODLONME',
-                    'THEFINTECH',
-                ],
                 'Rare Designer' => [
                     'MEMEPARTNERS',
                 ],
