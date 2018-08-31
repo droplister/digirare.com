@@ -1,6 +1,6 @@
 <div class="card mb-4">
     <div class="card-header">
-        <span class="lead font-weight-bold">Featured</span>
+        <span class="lead font-weight-bold">Featured Cards</span>
         <a href="#" class="btn btn-sm btn-primary float-right" role="button" data-toggle="modal" data-target="#howToModal">
             <i class="fa fa-gavel" aria-hidden="true"></i>
             Get Featured
