@@ -68,7 +68,6 @@
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                               <a class="dropdown-item" href="{{ route('artists.index') }}">Artists</a>
                               <a class="dropdown-item" href="{{ route('collectors.index') }}">Collectors</a>
-                              <a class="dropdown-item" href="#">Want Ads</a>
                             </div>
                         </li>
                     </ul>
@@ -76,15 +75,12 @@
                     <!-- Right Side Of Navbar -->
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('How it Works') }}</a>
-                        </li>
-                        <li class="nav-item d-none d-lg-inline-block">
-                            <a class="nav-link" href="{{ url('/') }}">{{ __('F.A.Q.') }}</a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="{{ config('digirare.telegram_url') }}">{{ __('Support') }}</a>
                         </li>
                         @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
                             </li>
