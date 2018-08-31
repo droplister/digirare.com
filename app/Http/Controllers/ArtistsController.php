@@ -15,7 +15,7 @@ class ArtistsController extends Controller
      */
     public function index(Request $request)
     {
-        $artists = Artist::withCount('cards', 'collections')->get();
+        $artists = Artist::withCount('cards')->get();
 
         return view('artists.index', compact('artists'));
     }

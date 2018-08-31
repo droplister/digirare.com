@@ -5,7 +5,6 @@
                 <th scope="col">#</th>
                 <th scope="col">Artist</th>
                 <th scope="col">Cards</th>
-                <th scope="col">Collections</th>
             </tr>
         </thead>
         <tbody>
@@ -14,7 +13,6 @@
                 <th scope="row">{{ $loop->iteration }}</th>
                 <td><a href="{{ $artist->url }}">{{ $artist->name }}</a></td>
                 <td>{{ $artist->cards_count }}</td>
-                <td>{{ $artist->collections_count }}</td>
             </tr>
             @endforeach
         </tbody>
