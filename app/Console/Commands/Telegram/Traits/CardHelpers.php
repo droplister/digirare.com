@@ -38,7 +38,7 @@ trait CardHelpers
         // Data
         $name = $card->name;
         $link = route('cards.show', ['card' => $card->slug]);
-        $collection = $card->collections()->primary()->first()->name;
+        $collection = $card->primaryCollection->name;
 
         // Text
         $text = "*{$name}*\n";
@@ -74,7 +74,7 @@ trait CardHelpers
     private function replyWithImage($card, $only_doc=false)
     {
         // Image URL
-        $image_url = $this->getImageUrl($card);
+        $image_url = url($card->primary_image_url);
 
         // Reply w/ Image
         if($this->isAnimated($image_url) || $only_doc)
@@ -93,17 +93,6 @@ trait CardHelpers
         }
 
         return $image_url;
-    }
-
-    /**
-     * Image URL
-     * 
-     * @param  \App\Card  $card
-     * @return string
-     */
-    private function getImageUrl($card)
-    {
-        return url($card->collections()->primary()->first()->pivot->image_url);
     }
 
     /**

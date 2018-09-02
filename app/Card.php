@@ -48,6 +48,16 @@ class Card extends Model
     ];
 
     /**
+     * Primary Image URL
+     *
+     * @return string
+     */
+    public function getPrimaryImageUrlAttribute()
+    {
+        return $this->primaryCollection->pivot->image_url;
+    }
+
+    /**
      * Artists
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
@@ -77,6 +87,18 @@ class Card extends Model
     {
         return $this->belongsToMany(Collection::class, 'card_collection', 'card_id', 'collection_id')
                     ->withPivot('image_url', 'primary');
+    }
+
+    /**
+     * Primay Collection
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToOne
+     */
+    public function primaryCollection()
+    {
+        return $this->belongsToOne(Collection::class, 'card_collection', 'card_id', 'collection_id')
+                    ->withPivot('image_url', 'primary')
+                    ->primary();
     }
 
     /**
