@@ -47,6 +47,9 @@ class UpdateMetrics implements ShouldQueue
         // Interval Period
         $intervals = $this->getIntervals();
 
+        // End of Day Only
+        if(! $this->isEndOfDay()) return false;
+
         // Day, Month, Year
         foreach($intervals as $interval => $dates)
         {
@@ -348,5 +351,16 @@ class UpdateMetrics implements ShouldQueue
             'value' => $value,
             'timestamp' => $timestamp,
         ]);
+    }
+
+    /**
+     * Is End of Day
+     * 
+     * @return boolean
+     */
+    private function isEndOfDay()
+    {
+        // > 10:00pm
+        return (int) $this->block->confirmed_at->format('h') >= 22;
     }
 }
