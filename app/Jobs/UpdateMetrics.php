@@ -48,30 +48,31 @@ class UpdateMetrics implements ShouldQueue
         $intervals = $this->getIntervals();
 
         // End of Day Only
-        if(! $this->isEndOfDay()) return false;
-
-        // Day, Month, Year
-        foreach($intervals as $interval => $dates)
+        if($this->isEndOfDay())
         {
-            // Site Metrics
-            $this->updateCards($interval, $dates);
-            $this->updateCollectors($interval, $dates);
-
-            // Card Metrics
-            foreach($cards as $card)
+            // Day, Month, Year
+            foreach($intervals as $interval => $dates)
             {
+                // Site Metrics
+                $this->updateCards($interval, $dates);
+                $this->updateCollectors($interval, $dates);
+
+                // Card Metrics
+                foreach($cards as $card)
+                {
 /*
-                $this->updateCredits($card, $interval, $dates);
-                $this->updateDebits($card, $interval, $dates);
-                $this->updateOrders($card, $interval, $dates);
-                $this->updateOrderMatches($card, $interval, $dates);
-                $this->updateSends($card, $interval, $dates);
+                    $this->updateCredits($card, $interval, $dates);
+                    $this->updateDebits($card, $interval, $dates);
+                    $this->updateOrders($card, $interval, $dates);
+                    $this->updateOrderMatches($card, $interval, $dates);
+                    $this->updateSends($card, $interval, $dates);
 */
 
-                // Balances (edge-case)
-                if($interval === 'day')
-                {
-                    $this->updateBalances($card, $interval, $dates);
+                    // Balances (edge-case)
+                    if($interval === 'day')
+                    {
+                        $this->updateBalances($card, $interval, $dates);
+                    }
                 }
             }
         }
