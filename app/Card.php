@@ -10,11 +10,12 @@ use Droplister\XcpCore\App\Balance;
 use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Megapixel23\Database\Eloquent\Relations\BelongsToOneTrait;
 use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    use Linkable, Sluggable, SluggableScopeHelpers;
+    use BelongsToOneTrait, Linkable, Sluggable, SluggableScopeHelpers;
 
     /**
      * The event map for the model.
