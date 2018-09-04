@@ -362,6 +362,6 @@ class UpdateMetrics implements ShouldQueue
     private function isEndOfDay()
     {
         // > 10:00pm
-        return (int) $this->block->confirmed_at->format('h') >= 22;
+        return (int) $this->block->confirmed_at->format('H') >= 22;
     }
 }
