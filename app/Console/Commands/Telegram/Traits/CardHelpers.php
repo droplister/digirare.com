@@ -38,7 +38,7 @@ trait CardHelpers
         // Data
         $name = $card->name;
         $link = route('cards.show', ['card' => $card->slug]);
-        $collection = $card->primaryCollection->name;
+        $collection = $card->primaryCollection->first()->name;
 
         // Text
         $text = "*{$name}*\n";

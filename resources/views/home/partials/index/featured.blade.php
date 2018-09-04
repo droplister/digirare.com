@@ -16,7 +16,7 @@
                 <h5 class="card-title mt-3 mb-1">
                     <strong>{{ $featured->card->name }}</strong>
                 </h5>
-                <p class="card-text">Supply: {{ number_format($featured->card->token->supply_normalized) }} <span class="float-right d-none d-md-inline">{{ $featured->card->primaryCollection->name }}</span></p>
+                <p class="card-text">Supply: {{ number_format($featured->card->token->supply_normalized) }} <span class="float-right d-none d-md-inline">{{ $featured->card->primaryCollection()->first()->name }}</span></p>
             </div>
             @endforeach
         </div>

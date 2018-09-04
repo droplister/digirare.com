@@ -55,7 +55,7 @@ class Card extends Model
      */
     public function getPrimaryImageUrlAttribute()
     {
-        return $this->primaryCollection->pivot->image_url;
+        return $this->primaryCollection()->first()->pivot->image_url;
     }
 
     /**
