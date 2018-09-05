@@ -14,7 +14,7 @@
             </div>
         </div>
         <h2 class="display-4 mb-4">
-            <small class="text-muted"><i aria-hidden="true" class="fa fa-chain"></i></small>
+            <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
             DEX Orders
         </h2>
         <div class="row">
