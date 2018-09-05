@@ -77,8 +77,8 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    <i aria-hidden="true" class="fa fa-sign-in"></i>
-                                    Sign up
+                                    <i aria-hidden="true" class="fa fa-save"></i>
+                                    Create Account
                                 </button>
                             </div>
                         </div>
