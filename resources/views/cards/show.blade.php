@@ -25,8 +25,8 @@
                 @include('cards.partials.show.orders', ['orders' => $sell_orders, 'type' => 'Sell'])
             </div>
         </div>
+        @include('cards.partials.show.collectors-chart')
     </div>
     @include('cards.modals.gallery')
     @include('cards.modals.last-match')
-    @include('cards.partials.show.collectors-chart')
 @endsection
