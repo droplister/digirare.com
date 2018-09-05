@@ -6,19 +6,19 @@
         <table class="table mb-0">
             <thead>
                 <tr>
-                    <th scope="col">Expires</th>
-                    <th scope="col">Amount</th>
                     <th scope="col">Price</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">Amount</th>
+                    <th scope="col">Market</th>
+                    <th scope="col">Expires In</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($orders as $order)
                 <tr>
-                    <th scope="row">{{ \Carbon\Carbon::now()->addMinutes(($order->expire_index - Cache::get('block_index')) * 10)->diffForHumans() }}</th>
-                    <td>{{ $order->get_quantity_normalized }} {{ $card->name }}</td>
-                    <td>{{ $order->trading_price_normalized }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
-                    <td>{{ normalizeQuantity($order->get_quantity_normalized * $order->trading_price_normalized, false) }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
+                    <td title="{{ $order->trading_price_normalized }} {{ explode('/', $order->trading_pair_normalized)[1] }}">{{ number_format($order->trading_price_normalized) }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
+                    <td title="{{ $order->get_quantity_normalized }} {{ $card->name }}">{{ number_format($order->get_quantity_normalized) }} {{ $card->name }}</td>
+                    <td>{{ $order->trading_pair_normalized }}</td>
+                    <td>{{ \Carbon\Carbon::now()->addMinutes(($order->expire_index - Cache::get('block_index')) * 10)->diffForHumans() }}</td>
                 </tr>
                 @endforeach
                 @if($orders->count() === 0)
