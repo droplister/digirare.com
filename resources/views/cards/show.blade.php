@@ -28,4 +28,5 @@
     </div>
     @include('cards.modals.gallery')
     @include('cards.modals.last-match')
+    @include('cards.partials.show.collectors-chart')
 @endsection
