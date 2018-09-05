@@ -14,7 +14,13 @@
                 @foreach($orders as $order)
                 <tr>
                     <td>{{ $order->trading_price_normalized }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
-                    <td title="{{ $type === 'Buy' ? $order->get_quantity_normalized : $order->give_quantity_normalized }}">{{ $type === 'Buy' ? number_format($order->get_quantity_normalized) : number_format($order->give_quantity_normalized) }}</td>
+                    <td>
+                    @if($card->token->divisible)
+                        {{ $type === 'Buy' ? $order->get_quantity_normalized : $order->give_quantity_normalized }}
+                    @else
+                        {{ $type === 'Buy' ? number_format($order->get_quantity_normalized) : number_format($order->give_quantity_normalized) }}
+                    @endif
+                    </td>
                 </tr>
                 @endforeach
                 @if($orders->count() === 0)
