@@ -34,7 +34,7 @@ class MetricsController extends Controller
             $card = Card::findBySlug($request->card);
 
             // Reset Query
-            $metrics = $metrics->where('card_id', '=', $card->id);
+            $metrics = $card->metrics()->query();
         }
 
         // Get Metrics
