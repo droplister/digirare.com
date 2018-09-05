@@ -7,6 +7,7 @@
         <div class="row mb-4">
             <div class="col">
                 <h1 class="display-4 mb-4">
+                    <small><i aria-hidden="true" class="fa fa-th"></i></small>
                     Collections
                 </h1>
                 <div class="card mb-4">
