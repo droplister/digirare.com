@@ -78,12 +78,12 @@
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ config('digirare.telegram_url') }}">
-                                {{ __('Support') }}
-                            </a>
-                        </li>
                         @guest
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ config('digirare.telegram_url') }}">
+                                    {{ __('Support') }}
+                                </a>
+                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('register') }}">
                                     {{ __('Sign up') }}
@@ -97,14 +97,18 @@
                         @else
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <i aria-hidden="true" class="fa fa-user"></i>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="{{ config('digirare.telegram_url') }}">
+                                        {{ __('Support') }}
+                                    </a>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        {{ __('Log out') }}
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
