@@ -33,8 +33,9 @@ class MetricsController extends Controller
             // Get Card
             $card = Card::findBySlug($request->card);
 
-            // Reset Query
-            $metrics = $card->metrics();
+            // Filtering
+            $metrics = $metrics->where('chartable_type', '=', 'App\Card')
+                ->where('chartable_id', '=', $card->id);
         }
 
         // Get Metrics
