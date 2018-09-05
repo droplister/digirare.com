@@ -7,7 +7,7 @@
             <thead>
                 <tr>
                     <th scope="col">Price</th>
-                    <th scope="col">{{ explode('/', $order->trading_pair_normalized)[0] }}</th>
+                    <th scope="col">{{ $card->name }}</th>
                     <th scope="col">Total</th>
                     <th scope="col">Expires In</th>
                 </tr>
