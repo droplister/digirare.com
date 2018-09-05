@@ -122,12 +122,6 @@
             @yield('content')
         </main>
 
-        <div class="container mb-5">
-            <div class="alert alert-warning text-center">
-                Website Under Construction
-            </div>
-        </div>
-
     </div>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('digirare.google_ua') }}"></script>

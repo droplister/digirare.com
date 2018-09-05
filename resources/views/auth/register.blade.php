@@ -1,11 +1,19 @@
 @extends('layouts.app')
 
+@section('title', 'Register')
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1 class="display-4 mb-4">
+                <small class="text-highlight"><i aria-hidden="true" class="fa fa-sign-in"></i></small>
+                Register
+            </h1>
             <div class="card">
-                <div class="card-header">{{ __('Register') }}</div>
+                <div class="card-header">
+                    <span class="lead font-weight-bold">Create your FREE account:</span>
+                </div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}" aria-label="{{ __('Register') }}">
@@ -54,10 +62,15 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="password-confirm" class="col-md-4 col-form-label text-md-right">{{ __('Confirm Password') }}</label>
+                            <div class="col-md-6 offset-md-4">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="terms" id="terms" {{ old('terms') ? 'checked' : '' }}>
 
-                            <div class="col-md-6">
-                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required>
+                                    <label class="form-check-label" for="terms">
+                                        {{ __('I agree to the') }}
+                                        <a href="#" target="_blank">{{ __('Terms of Service') }}</a>.
+                                    </label>
+                                </div>
                             </div>
                         </div>
 
