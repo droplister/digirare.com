@@ -1,12 +1,20 @@
 @extends('layouts.app')
 
+@section('title', 'Login')
+
 @section('content')
-<div class="container">
+<div class="container mt-3">
     <div class="row justify-content-center">
         <div class="col-md-8">
+            <h1 class="display-4 mb-4">
+                <small class="text-highlight"><i aria-hidden="true" class="fa fa-sign-in"></i></small>
+                Login
+            </h1>
             <div class="card">
                 <div class="card-header">{{ __('Login') }}</div>
-
+                <div class="card-header">
+                    <span class="lead font-weight-bold">Create your FREE account:</span>
+                </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
                         @csrf
@@ -54,6 +62,7 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
+                                    <i aria-hidden="true" class="fa fa-sign-in"></i>
                                     {{ __('Login') }}
                                 </button>
 
