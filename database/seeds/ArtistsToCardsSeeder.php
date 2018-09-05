@@ -77,6 +77,15 @@ class ArtistsToCardsSeeder extends Seeder
                     'ROOSTERCORN',
                 ],
             ],
+            'MafiaWars' => [
+                'mrHANSEL' => [
+                    'GOOMAHBOOST',
+                    'GUARDDOG',
+                    'PUMPACTION',
+                    'MARKEDMAN',
+                    'PINKPOODLE',
+                ],
+            ],
             'Memorychain' => [
                 'davinci9' => [
                     'SHITCOINER',
