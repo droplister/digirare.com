@@ -13,6 +13,10 @@
                 @include('cards.partials.show.analytics')
             </div>
         </div>
+        <h2 class="display-4 mb-4">
+            <small class="text-muted"><i aria-hidden="true" class="fa fa-chain"></i></small>
+            DEX Orders
+        </h2>
         <div class="row">
             <div class="col-md-6 mb-4">
                 @include('cards.partials.show.orders', ['orders' => $buy_orders, 'type' => 'Buy'])
