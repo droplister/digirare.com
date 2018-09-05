@@ -1,6 +1,6 @@
 <div class="card mb-4">
     <div class="card-header">
-        <span class="lead font-weight-bold text-capitalize">{{ $type }}</span>
+        <span class="lead font-weight-bold text-uppercase">{{ $type }}</span>
     </div>
     <div class="table-responsive">
         <table class="table mb-0">
@@ -15,7 +15,7 @@
                 @foreach($orders as $order)
                 <tr>
                     <td>{{ $order->trading_price_normalized }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
-                    <td class="text-right">{{ $order->get_quantity_normalized }}</td>
+                    <td title="{{ $order->get_quantity_normalized }}">{{ number_format($order->get_quantity_normalized) }}</td>
                     <td>{{ \Carbon\Carbon::now()->addMinutes(($order->expire_index - Cache::get('block_index')) * 10)->diffForHumans() }}</td>
                 </tr>
                 @endforeach
