@@ -11,9 +11,8 @@
                 Login
             </h1>
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
                 <div class="card-header">
-                    <span class="lead font-weight-bold">Create your FREE account:</span>
+                    <span class="lead font-weight-bold">{{ __('Login') }}</span>
                 </div>
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}">
