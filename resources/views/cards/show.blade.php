@@ -26,7 +26,7 @@
             </div>
         </div>
         <h2 class="display-4 mb-4">
-            <small class="text-highlight"><i aria-hidden="true" class="fa fa-hand-grab-o"></i></small>
+            <small class="text-highlight"><i aria-hidden="true" class="fa fa-hand-grab-o mr-1"></i></small>
             Collectors
         </h2>
         @include('cards.partials.show.collectors-chart')
