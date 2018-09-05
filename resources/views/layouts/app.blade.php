@@ -50,7 +50,7 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('collections.index') }}">
-                                <i class="fa fa-th" aria-hidden="true"></i>
+                                <i class="fa fa-image" aria-hidden="true"></i>
                                 {{ __('Collections') }}
                             </a>
                         </li>
