@@ -8,7 +8,7 @@
         <div class="col-md-8">
             <h1 class="display-4 mb-4">
                 <small class="text-highlight"><i aria-hidden="true" class="fa fa-sign-in"></i></small>
-                Register
+                Sign up
             </h1>
             <div class="card">
                 <div class="card-header">
@@ -77,7 +77,8 @@
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
-                                    {{ __('Register') }}
+                                    <i aria-hidden="true" class="fa fa-sign-in"></i>
+                                    Sign up
                                 </button>
                             </div>
                         </div>
