@@ -36,8 +36,8 @@ class CardsController extends Controller
         $balances = $card->balances()->paginate(20);
         $artists = $card->artists()->orderBy('primary', 'desc')->get();
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
-        $buy_orders = $token ? $token->getOrders()->where('status', '=', 'open')->orderBy('expire_index', 'asc')->get()->sortBy('trading_pair_normalized')->sortByDesc('trading_price_normalized') : collect([]);
-        $sell_orders = $token ? $token->giveOrders()->where('status', '=', 'open')->orderBy('expire_index', 'asc')->get()->sortBy('trading_pair_normalized')->sortBy('trading_price_normalized') : collect([]);
+        $buy_orders = $token ? $token->getOrders()->where('status', '=', 'open')->orderBy('expire_index', 'asc')->get()->sortByDesc('trading_price_normalized') : collect([]);
+        $sell_orders = $token ? $token->giveOrders()->where('status', '=', 'open')->orderBy('expire_index', 'asc')->get()->sortBy('trading_price_normalized') : collect([]);
         $order_matches_count = $token ? $token->backwardOrderMatches()->count() + $token->forwardOrderMatches()->count() : 0;
 
         return view('cards.show', compact('card', 'artists', 'balances', 'buy_orders', 'collections', 'dislikes', 'last_match', 'likes', 'order_matches_count', 'sell_orders', 'token'));
