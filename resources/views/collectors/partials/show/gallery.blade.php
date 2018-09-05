@@ -13,8 +13,8 @@
                     <strong>{{ $balance->card->name }}</strong>
                 </h5>
                 <p class="card-text">
-                    Balance: {{ $balance->quantity_normalized }}
-                    <span class="float-right font-weigh-bold">{{ $balance->card->token->owner === $balance->address ? 'OWNER' : '' }}</span>
+                    Balance: {{ number_format($balance->quantity_normalized) }}
+                    <span class="float-right font-weight-bold">{{ $balance->card->token->owner === $balance->address ? 'OWNER' : '' }}</span>
                 </p>
             </div>
         @endforeach
