@@ -52,6 +52,7 @@ class OrdersController extends Controller
                 ->where('get_asset', '=', $request->currency)
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index)
+                ->orderBy('expire_index', 'asc')
                 ->get();
         }
         else
@@ -64,6 +65,7 @@ class OrdersController extends Controller
                 ->whereIn('get_asset', $currencies)
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index)
+                ->orderBy('expire_index', 'asc')
                 ->get();
         }
 
