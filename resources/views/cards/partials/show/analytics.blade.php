@@ -24,7 +24,7 @@
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
             <i class="fa fa-users text-dark" aria-hidden="true"></i>
-            Holders
+            Collectors
         </p>
         <p class="mb-0"><a href="{{ route('cards.balances.index', ['card' => $card->slug]) }}">{{ number_format($balances->total()) }}</a></p>
     </div>
