@@ -4,7 +4,8 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Card</th>
-                <th scope="col">Holders</th>
+                <th scope="col">Collectors</th>
+                <th scope="col">Issued On</th>
             </tr>
         </thead>
         <tbody>
@@ -12,7 +13,8 @@
             <tr>
                 <th scope="row">{{ $loop->iteration }}.</th>
                 <td><a href="{{ $card->url }}">{{ $card->name }}</a></td>
-                <td>{{ $card->balances_count }}</td>
+                <td>{{ number_format($card->balances_count) }}</td>
+                <td>{{ $card->token->confirmed_at->toDateString() }}</td>
             </tr>
             @endforeach
         </tbody>
