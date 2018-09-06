@@ -4,6 +4,7 @@ namespace App;
 
 use App\Traits\Linkable;
 use Droplister\XcpCore\App\Asset;
+use Droplister\XcpCore\App\Balance;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
