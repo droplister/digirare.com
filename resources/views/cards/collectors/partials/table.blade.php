@@ -1,6 +1,9 @@
 <div class="card">
     <div class="card-header">
-        <span class="lead font-weight-bold">Balances</span>
+        <span class="lead font-weight-bold">
+            Balances
+            <small class="ml-1 text-muted">{{ number_format($balances->count()) }} Found</small>
+        </span>
     </div>
     <div class="table-responsive">
         <table class="table mb-0">

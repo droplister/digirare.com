@@ -14,6 +14,7 @@
                     <div class="card-header">
                         <span class="lead font-weight-bold">
                             List View
+                            <small class="ml-1 text-muted">{{ number_format($collections->count()) }} Found</small>
                         </span>
                     </div>
                     @include('collections.partials.index.table')

@@ -1,6 +1,9 @@
 <div class="card">
     <div class="card-header">
-        <span class="lead font-weight-bold">Trade History</span>
+        <span class="lead font-weight-bold">
+            Trade History
+            <small class="ml-1 text-muted">{{ number_format($order_matches->count()) }} Found</small>
+        </span>
     </div>
     <div class="table-responsive">
         <table class="table mb-0">
