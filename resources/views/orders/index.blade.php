@@ -14,9 +14,9 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Action</a>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item{{ $request->input('action', null) === null ? ' active' : '' }}" href="{{ route('orders.index', ['action' => null, collection' => $request->input('collection', null), 'currency' => $request->input('currency', null)]) }}">All</a>
-                            <a class="dropdown-item{{ $request->input('action', null) === 'buying' ? ' active' : '' }}" href="{{ route('orders.index', ['action' => 'buying', collection' => $request->input('collection', null), 'currency' => $request->input('currency', null)]) }}">Buying</a>
-                            <a class="dropdown-item{{ $request->input('action', null) === 'selling' ? ' active' : '' }}" href="{{ route('orders.index', ['action' => 'selling', collection' => $request->input('collection', null), 'currency' => $request->input('currency', null)]) }}">Selling</a>
+                            <a class="dropdown-item{{ $request->input('action', null) === null ? ' active' : '' }}" href="{{ route('orders.index', ['action' => null, 'collection' => $request->input('collection', null), 'currency' => $request->input('currency', null)]) }}">All</a>
+                            <a class="dropdown-item{{ $request->input('action', null) === 'buying' ? ' active' : '' }}" href="{{ route('orders.index', ['action' => 'buying', 'collection' => $request->input('collection', null), 'currency' => $request->input('currency', null)]) }}">Buying</a>
+                            <a class="dropdown-item{{ $request->input('action', null) === 'selling' ? ' active' : '' }}" href="{{ route('orders.index', ['action' => 'selling', 'collection' => $request->input('collection', null), 'currency' => $request->input('currency', null)]) }}">Selling</a>
                         </div>
                     </li>
                     <li class="nav-item dropdown">
