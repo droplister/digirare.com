@@ -33,7 +33,7 @@
             <i class="fa fa-handshake-o text-dark" aria-hidden="true"></i>
             Trades
         </p>
-        <p class="mb-0">{{ number_format($order_matches_count) }}</p>
+        <p class="mb-0">{{ number_format($order_matches->count()) }}</p>
     </div>
 </div>
 <hr />

@@ -24,6 +24,9 @@
             <div class="col-md-6 mb-4">
                 @include('cards.partials.show.orders', ['orders' => $sell_orders, 'type' => 'Sell'])
             </div>
+            <div class="col-md-12 mb-4">
+                @include('cards.partials.show.matches')
+            </div>
         </div>
         <h2 class="display-4 mb-4">
             <small class="text-highlight"><i aria-hidden="true" class="fa fa-hand-grab-o mr-1"></i></small>
