@@ -15,7 +15,7 @@ class CardsController extends Controller
      */
     public function index(Request $request)
     {
-        $cards = Card::with('token', 'primaryCollection')->withCount('balances', 'collections')->orderBy('balances_count', 'desc')->paginate(100);
+        $cards = Card::with('token', 'primaryCollection')->withCount('backwardOrderMatches', 'forwardOrderMatches', 'balances', 'collections')->orderBy('balances_count', 'desc')->paginate(100);
 
         return view('cards.index', compact('cards'));
     }

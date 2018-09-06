@@ -6,6 +6,8 @@
                 <th scope="col">Name</th>
                 <th scope="col">Collection</th>
                 <th scope="col">Collectors</th>
+                <th scope="col">Trades</th>
+                <th scope="col">Last Traded</th>
                 <th scope="col">Created On</th>
             </tr>
         </thead>
@@ -21,6 +23,8 @@
                     @endif
                 </td>
                 <td><a href="{{ route('balances.index', ['card' => $card->slug]) }}">{{ number_format($card->balances_count) }}</a></td>
+                <td><a href="{{ route('trades.index', ['card' => $card->slug]) }}">{{ number_format($card->backward_order_matches_count + $card->forward_order_matches_count) }}</a></td>
+                <td>{{ $card->lastMatch() ? $card->lastMatch()->confirmed_at->toDateString() : 'N/A' }}</td>
                 <td>{{ $card->token->confirmed_at->toDateString() }}</td>
             </tr>
             @endforeach

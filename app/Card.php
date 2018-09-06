@@ -113,6 +113,26 @@ class Card extends Model
     }
 
     /**
+     * Order Matches (Backward)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function backwardOrderMatches()
+    {
+        return $this->hasMany(OrderMatch::class, 'backward_asset', 'xcp_core_asset_name');
+    }
+
+    /**
+     * Order Matches (Forward)
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function forwardOrderMatches()
+    {
+        return $this->hasMany(OrderMatch::class, 'forward_asset', 'xcp_core_asset_name');
+    }
+
+    /**
      * Metrics
      *
      * @return \Illuminate\Database\Eloquent\Relations\MorphMany
