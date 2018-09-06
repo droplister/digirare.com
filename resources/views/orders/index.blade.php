@@ -25,7 +25,7 @@
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Currencies</a>
                         <div class="dropdown-menu">
-                        @foreach($currancies as $currency)
+                        @foreach($currencies as $currency)
                             <a class="dropdown-item" href="{{ route('orders.index', ['currency' => $currency, 'collection' => $request->input('collection', null)]) }}">{{ $currency }}</a>
                         @endforeach
                         </div>
