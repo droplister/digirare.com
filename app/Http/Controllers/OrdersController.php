@@ -57,9 +57,11 @@ class OrdersController extends Controller
         else
         {
             $orders = Order::whereIn('get_asset', $assets)
+                ->whereIn('give_asset', $currencies)
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index)
                 ->orWhereIn('give_asset', $assets)
+                ->whereIn('get_asset', $currencies)
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index)
                 ->get();
