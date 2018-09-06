@@ -86,7 +86,7 @@ return [
 
     'repository'   => [
         'provider' => 'github',
-        'url'      => 'https://github.com/saleem-hadad/larecipe'
+        'url'      => 'https://github.com/droplister/digirare.com'
     ],
 
     /*
