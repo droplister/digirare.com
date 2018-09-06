@@ -7,8 +7,8 @@
             <thead>
                 <tr>
                     <th scope="col" style="width: 50px">#</th>
-                    <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
+                    <th scope="col">Price</th>
                     <th scope="col">Total</th>
                     <th scope="col">Source</th>
                     <th scope="col">Traded</th>
@@ -18,7 +18,6 @@
                 @foreach($order_matches as $match)
                 <tr>
                     <th scope="row">{{ $order_matches->count() - $loop->index }}.</th>
-                    <td>{{ $match->trading_price_normalized }} {{ explode('/', $match->trading_pair_normalized)[1] }}</td>
                     <td>
                     @if($card->token->divisible)
                         {{ $match->forward_asset === $card->name ? $match->forward_quantity_normalized : $match->backward_quantity_normalized }}
@@ -27,6 +26,7 @@
                     @endif
                         {{ $card->name }}
                     </td>
+                    <td>{{ $match->trading_price_normalized }} {{ explode('/', $match->trading_pair_normalized)[1] }}</td>
                     <td>{{ $match->forward_asset === $card->name ? $match->backward_quantity_normalized : $match->forward_quantity_normalized }} {{ explode('/', $match->trading_pair_normalized)[1] }}</td>
                     <td><a href="{{ route('collectors.show', ['collector' => $match->tx1_address]) }}">{{ str_limit($match->tx1_address, 8) }}</a></td>
                     <td>{{ $match->confirmed_at->diffForHumans() }}</td>
