@@ -3,13 +3,15 @@
 namespace App;
 
 use App\Traits\Linkable;
+use Droplister\XcpCore\App\Balance;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
+use Staudenmeir\EloquentHasManyDeep\HasRelationships;
 use Illuminate\Database\Eloquent\Model;
 
 class Artist extends Model
 {
-    use Linkable, Sluggable, SluggableScopeHelpers;
+    use HasRelationships, Linkable, Sluggable, SluggableScopeHelpers;
 
     /**
      * The attributes that are mass assignable.
@@ -22,6 +24,29 @@ class Artist extends Model
         'slug',
         'content',
     ];
+
+    /**
+     * Balances
+     * 
+     * @return \Staudenmeir\EloquentHasManyDeep\HasRelationships
+     */
+    public function balances()
+    {
+        return $this->hasManyDeep(
+            Balance::class,
+            ['card_collection', Card::class],
+            [           
+               'artist_id',
+               'id',
+               'asset',
+            ],
+            [          
+              'id',
+              'card_id',
+              'xcp_core_asset_name',
+            ]
+        )->nonZero();
+    }
 
     /**
      * Cards

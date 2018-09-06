@@ -6,6 +6,8 @@
                 <th scope="col">Artist</th>
                 <th scope="col">Cards</th>
                 <th scope="col">Collections</th>
+                <th scope="col">Collectors</th>
+                <th scope="col">Balances</th>
             </tr>
         </thead>
         <tbody>
@@ -15,6 +17,8 @@
                 <td><a href="{{ $artist->url }}">{{ $artist->name }}</a></td>
                 <td>{{ $artist->cards_count }}</td>
                 <td>{{ $artist->collections()->get()->unique('name')->count() }}</td>
+                <td>{{ number_format($artist->balances->unique('address')->count()) }}</td>
+                <td>{{ number_format($artist->balances_count) }}</td>
             </tr>
             @endforeach
         </tbody>
