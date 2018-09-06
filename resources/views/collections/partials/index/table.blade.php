@@ -16,7 +16,7 @@
             <tr>
                 <th scope="row">{{ $loop->iteration }}.</th>
                 <td><a href="{{ $collection->url }}">{{ $collection->name }}</a></td>
-                <td>{{ $collection->currency }}</td>
+                <td><a href="{{ route('orders.index', ['currency' => $collection->currency]) }}">{{ $collection->currency }}</a></td>
                 <td>{{ number_format($collection->cards_count) }}</td>
                 <td>{{ number_format($collection->balances->unique('address')->count()) }}</td>
                 <td>{{ number_format($collection->balances_count) }}</td>
