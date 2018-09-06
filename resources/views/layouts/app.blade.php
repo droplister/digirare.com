@@ -69,6 +69,10 @@
                                     <i aria-hidden="true" class="fa fa-paint-brush"></i>
                                     Artists
                                 </a>
+                                <a class="dropdown-item" href="{{ route('orders.index') }}">
+                                    <i aria-hidden="true" class="fa fa-list"></i>
+                                    Big Board
+                                </a>
                                 <a class="dropdown-item" href="{{ route('collectors.index') }}">
                                     <i aria-hidden="true" class="fa fa-hand-grab-o"></i>
                                     Collectors
