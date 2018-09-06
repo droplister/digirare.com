@@ -13,7 +13,7 @@
             @foreach($orders as $order)
             <tr>
                 <td class="{{ in_array($order->get_asset, $currencies) ? 'text-danger' : 'text-success' }}">{{ in_array($order->get_asset, $currencies) ? 'Selling' : 'Buying' }}</td>
-                <td>{{ in_array($order->get_asset, $currencies) ? number_format($order->give_quantity_normalized, 8) : number_format($order->get_quantity_normalized, 8) }} {{ in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset }}</td>
+                <td>{{ in_array($order->get_asset, $currencies) ? number_format($order->give_quantity_normalized, 8) : number_format($order->get_quantity_normalized, 8) }} <a href="{{ route('cards.show', ['card' => in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset]) }}">{{ in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset }}</a></td>
                 <td>{{ number_format($order->trading_price_normalized, 8) }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
                 <td>{{ in_array($order->get_asset, $currencies) ? number_format($order->give_quantity_normalized * $order->trading_price_normalized, 8) : number_format($order->get_quantity_normalized * $order->trading_price_normalized, 8) }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
                 <td>{{ $order->expire_index - $block->block_index }} {{ str_plural('block', $order->expire_index - $block->block_index) }}</td>
