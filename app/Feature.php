@@ -43,6 +43,6 @@ class Feature extends Model
      */
     public function scopeHighestBids($query)
     {
-        return $query->orderBy('bid', 'desc')->latest('created_at')->take(4);
+        return $query->orderBy('bid', 'desc')->orderBy('xcp_core_tx_index', 'desc')->take(4);
     }
 }
