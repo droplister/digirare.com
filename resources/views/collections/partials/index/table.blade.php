@@ -19,7 +19,7 @@
                 <td>{{ number_format($collection->cards_count) }}</td>
                 <td>{{ number_format($collection->balances->unique('address')->count()) }}</td>
                 <td>{{ number_format($collection->balances_count) }}</td>
-                <td>{{ number_format($collection->balances_count / $collection->balances->unique('address')->count(), 1) }} cards</td>
+                <td>{{ $collection->balances->unique('address')->count() > 0 ? number_format($collection->balances_count / $collection->balances->unique('address')->count(), 1) : '0' }} cards</td>
                 <td>{{ $collection->launched_at->toDateString() }}</td>
             </tr>
             @endforeach
