@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <span class="lead font-weight-bold text-uppercase">Trade History</span>
+        <span class="lead font-weight-bold">Trade History</span>
     </div>
     <div class="table-responsive">
         <table class="table mb-0">
@@ -8,8 +8,8 @@
                 <tr>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
-                    <th scope="col">Total Paid</th>
-                    <th scope="col">Time Ago</th>
+                    <th scope="col">Total</th>
+                    <th scope="col">Traded</th>
                 </tr>
             </thead>
             <tbody>
@@ -22,6 +22,7 @@
                     @else
                         {{ $match->forward_asset === $card->name ? number_format($match->forward_quantity_normalized) : number_format($match->backward_quantity_normalized) }}
                     @endif
+                        {{ $card->name }}
                     </td>
                     <td>{{ $match->forward_asset === $card->name ? $match->backward_quantity_normalized : $match->forward_quantity_normalized }} {{ explode('/', $match->trading_pair_normalized)[1] }}</td>
                     <td>{{ $match->confirmed_at->diffForHumans() }}</td>

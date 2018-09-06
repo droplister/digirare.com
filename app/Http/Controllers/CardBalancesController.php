@@ -21,7 +21,7 @@ class CardBalancesController extends Controller
         $likes = $card->likes()->count();
         $dislikes = $card->dislikes()->count();
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
-        $balances = $card->balances()->get();
+        $balances = $card->balances()->orderBy('quantity', 'desc')->get();
 
         return view('cards.balances.show', compact('card', 'balances', 'collections', 'dislikes', 'last_match', 'likes', 'token'));
     }
