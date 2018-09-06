@@ -15,7 +15,7 @@
                 <th scope="row">{{ $loop->iteration }}.</th>
                 <td><a href="{{ $collector->url }}">{{ $collector->xcp_core_address }}</a></td>
                 <td>{{ number_format($collector->card_balances_count) }}</td>
-                <td>{{ $collector->firstCard->asset }}</td>
+                <td><a href="{{ route('cards.show', ['card' => $collector->firstCard->asset]) }}">{{ $collector->firstCard->asset }}</a></td>
                 <td>{{ $collector->firstCard->confirmed_at->toDateString() }}</td>
             </tr>
             @endforeach
