@@ -19,6 +19,13 @@ class OrdersController extends Controller
      */
     public function index(Request $request)
     {
+        // Simple Validation
+        $request->validate([
+            'action' => 'sometimes|nullable|in:buying,selling',
+            'collection' => 'sometimes|nullable|exists:collections,slug',
+            'currency' => 'sometimes|nullable|exists:collections,currency',
+        ]);
+
         // All Card Asset Names
         $assets = Cache::rememberForever('cards_array', function () {
             return Card::pluck('xcp_core_asset_name')->toArray();
