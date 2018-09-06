@@ -7,8 +7,8 @@
             <thead>
                 <tr>
                     <th scope="col">Price</th>
-                    <th scope="col">Forward</th>
-                    <th scope="col">Backward</th>
+                    <th scope="col">{{ $card->name }}</th>
+                    <th scope="col">Total</th>
                     <th scope="col">Time Ago</th>
                 </tr>
             </thead>
@@ -16,8 +16,14 @@
                 @foreach($order_matches as $match)
                 <tr>
                     <td>{{ $match->trading_price_normalized }} {{ explode('/', $match->trading_pair_normalized)[1] }}</td>
-                    <td>{{ $match->forward_quantity_normalized }} {{ $match->forward_asset }}</td>
-                    <td>{{ $match->backward_quantity_normalized }} {{ $match->backward_asset }}</td>
+                    <td>
+                    @if($card->token->divisible)
+                        {{ $match->forward_asset === $card->name ? $match->forward_quantity_normalized : $match->backward_quantity_normalized }}
+                    @else
+                        {{ $match->forward_asset === $card->name ? number_format($match->forward_quantity_normalized) : number_format($match->backward_quantity_normalized) }}
+                    @endif
+                    </td>
+                    <td>{{ $match->forward_asset === $card->name ? $match->backward_quantity_normalized : $match->forward_quantity_normalized }} {{ explode('/', $match->trading_pair_normalized)[1] }}</td>
                     <td>{{ $match->confirmed_at->diffForHumans() }}</td>
                 </tr>
                 @endforeach
