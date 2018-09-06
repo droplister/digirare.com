@@ -10,7 +10,7 @@
         <tbody>
             @foreach($collections as $collection)
             <tr>
-                <th scope="row">{{ $loop->iteration }}</th>
+                <th scope="row">{{ $loop->iteration }}.</th>
                 <td><a href="{{ $collection->url }}">{{ $collection->name }}</a></td>
                 <td>{{ $collection->cards_count }}</td>
             </tr>
