@@ -14,7 +14,7 @@
             <tr>
                 <th scope="row">{{ $loop->iteration }}.</th>
                 <td><a href="{{ $card->url }}">{{ $card->name }}</a></td>
-                <td><a href="{{ $card->primaryCollection->url }}">{{ $card->primaryCollection->name }}</a></td>
+                <td><a href="{{ $card->primaryCollection()->first()->url }}">{{ $card->primaryCollection()->first()->name }}</a></td>
                 <td>{{ number_format($card->balances_count) }}</td>
                 <td>{{ $card->token->confirmed_at->toDateString() }}</td>
             </tr>
