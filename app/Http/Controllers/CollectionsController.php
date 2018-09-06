@@ -15,7 +15,7 @@ class CollectionsController extends Controller
      */
     public function index(Request $request)
     {
-        $collections = Collection::with('balances')->withCount('cards')->oldest('launched_at')->get();
+        $collections = Collection::with('balances')->withCount('balances', 'cards')->orderBy('balances_count', 'desc')->get();
 
         return view('collections.index', compact('collections'));
     }
