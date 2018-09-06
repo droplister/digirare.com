@@ -7,8 +7,8 @@
             <thead>
                 <tr>
                     <th scope="col">Price</th>
-                    <th scope="col">{{ $card->name }}</th>
-                    <th scope="col">Total</th>
+                    <th scope="col">Quantity</th>
+                    <th scope="col">Total Paid</th>
                     <th scope="col">Time Ago</th>
                 </tr>
             </thead>
