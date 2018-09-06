@@ -2,8 +2,9 @@
     <table class="table mb-0">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col" style="width: 50px">#</th>
                 <th scope="col">Card</th>
+                <th scope="col">Collection</th>
                 <th scope="col">Collectors</th>
                 <th scope="col">Issued On</th>
             </tr>
@@ -13,6 +14,7 @@
             <tr>
                 <th scope="row">{{ $loop->iteration }}.</th>
                 <td><a href="{{ $card->url }}">{{ $card->name }}</a></td>
+                <td><a href="{{ $card->primaryCollection->url }}">{{ $card->primaryCollection->name }}</a></td>
                 <td>{{ number_format($card->balances_count) }}</td>
                 <td>{{ $card->token->confirmed_at->toDateString() }}</td>
             </tr>
