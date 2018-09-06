@@ -2,7 +2,7 @@
     <table class="table mb-0">
         <thead>
             <tr>
-                <th scope="col">#</th>
+                <th scope="col" style="width: 50px">#</th>
                 <th scope="col">Artist</th>
                 <th scope="col">Cards</th>
                 <th scope="col">Collections</th>

@@ -1,14 +1,15 @@
 <div class="card">
     <div class="card-header">
-        <span class="lead font-weight-bold text-uppercase">Balances</span>
+        <span class="lead font-weight-bold">Balances</span>
     </div>
     <div class="table-responsive">
         <table class="table mb-0">
             <thead>
                 <tr>
-                    <th scope="col">#</th>
+                    <th scope="col" style="width: 50px">#</th>
                     <th scope="col">Address</th>
                     <th scope="col">Quantity</th>
+                    <th scope="col">Last Changed</th>
                 </tr>
             </thead>
             <tbody>
@@ -17,6 +18,7 @@
                     <th scope="row">{{ $loop->iteration }}.</th>
                     <td><a href="{{ route('collectors.show', ['collector' => $balance->address]) }}">{{ $balance->address }}</a></td>
                     <td>{{ $token && ! $token->divisible ? number_format($balance->quantity_normalized) : $balance->quantity_normalized }}</td>
+                    <td>{{ $balance->confirmed_at->diffForHumans() }}</td>
                 </tr>
                 @endforeach
             </tbody>
