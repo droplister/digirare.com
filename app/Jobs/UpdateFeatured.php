@@ -46,7 +46,7 @@ class UpdateFeatured implements ShouldQueue
         foreach($sends as $send)
         {
             // Card to Feature
-            $name = trim($send->memo);
+            $name = hex2bin($send->memo);
 
             // Flexible Inputs
             $card = Card::where('name', '=', $name)
