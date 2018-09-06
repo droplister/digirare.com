@@ -60,12 +60,13 @@ class UpdateMetrics implements ShouldQueue
                 // Card Metrics
                 foreach($cards as $card)
                 {
+/*
                     $this->updateCredits($card, $interval, $dates);
                     $this->updateDebits($card, $interval, $dates);
                     $this->updateOrders($card, $interval, $dates);
                     $this->updateOrderMatches($card, $interval, $dates);
                     $this->updateSends($card, $interval, $dates);
-
+*/
                     // Balances (edge-case)
                     if($interval === 'day')
                     {
