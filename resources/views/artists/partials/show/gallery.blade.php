@@ -15,9 +15,9 @@
                 <h5 class="card-title mt-3 mb-1">
                     <strong>{{ $card->name }}</strong>
                 </h5>
-                <p class="card-text">Supply: {{ number_format($card->token ? $card->token->supply_normalized : 0) }} <span class="float-right d-none d-md-inline">Holders: {{ $card->balances_count }}</span></p>
+                <p class="card-text">Supply: {{ number_format($card->token ? $card->token->supply_normalized : 0) }} <span class="float-right d-none d-md-inline">Collectors: {{ $card->balances_count }}</span></p>
             </div>
-        @endforeach
+            @endforeach
         </div>
     </div>
 </div>
