@@ -42,7 +42,51 @@ class OrdersController extends Controller
         }
 
         // Filter by Currency
-        if($request->has('currency'))
+        if($request->has('currency') && $request->has('action'))
+        {
+            // Buying/Selling
+            if($request->action === 'buying')
+            {
+                $orders = Order::whereIn('get_asset', $assets)
+                    ->where('give_asset', '=', $request->currency)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc')
+                    ->get();
+            }
+            else
+            {
+                $orders = Order::whereIn('give_asset', $assets)
+                    ->where('get_asset', '=', $request->currency)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc')
+                    ->get();
+            }
+        }
+        elseif($request->has('action'))
+        {
+            // Buying/Selling
+            if($request->action === 'buying')
+            {
+                $orders = Order::whereIn('get_asset', $assets)
+                    ->whereIn('give_asset', $currencies)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc')
+                    ->get();
+            }
+            else
+            {
+                $orders = Order::whereIn('give_asset', $assets)
+                    ->whereIn('get_asset', $currencies)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc')
+                    ->get();
+            }
+        }
+        elseif($request->has('currency'))
         {
             $orders = Order::whereIn('get_asset', $assets)
                 ->where('give_asset', '=', $request->currency)
