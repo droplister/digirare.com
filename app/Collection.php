@@ -75,13 +75,26 @@ class Collection extends Model
     }
 
     /**
-     * Collectors
+     * Balances
      * 
      * @return \Staudenmeir\EloquentHasManyDeep\HasRelationships
      */
-    public function collectors()
+    public function balances()
     {
-        return $this->hasManyDeep(Collector::class, ['card_collection', Card::class]);
+        return $this->hasManyDeep(
+            Balance::class,
+            ['card_collection', Card::class],
+            [           
+               'collection_id',
+               'id',
+               'asset',
+            ],
+            [          
+              'id',
+              'card_id',
+              'xcp_core_asset_name',
+            ]
+        );
     }
 
     /**
