@@ -16,9 +16,9 @@
                     <td>{{ $order->trading_price_normalized }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
                     <td>
                     @if($card->token->divisible)
-                        {{ $type === 'Buy' ? $order->get_quantity_normalized : $order->give_quantity_normalized }}
+                        {{ $type === 'Buy' ? $order->get_remaining_normalized : $order->give_remaining_normalized }}
                     @else
-                        {{ $type === 'Buy' ? number_format($order->get_quantity_normalized) : number_format($order->give_quantity_normalized) }}
+                        {{ $type === 'Buy' ? number_format($order->get_remaining_normalized) : number_format($order->give_remaining_normalized) }}
                     @endif
                     </td>
                 </tr>
