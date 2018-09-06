@@ -37,7 +37,7 @@
                 @endforeach
                 @if($order_matches->count() === 0)
                 <tr>
-                    <td colspan="5" class="text-center"><em>No Trades Found</em></td>
+                    <td colspan="6" class="text-center"><em>No Trades Found</em></td>
                 </tr>
                 @endif
             </tbody>
