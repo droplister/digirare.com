@@ -10,7 +10,7 @@
                 <a class="nav-link" href="{{ $card->url }}">Overview</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('cards.balances.index', ['card' => $card->slug]) }}">Collectors</a>
+                <a class="nav-link active" href="{{ route('cards.collectors.index', ['card' => $card->slug]) }}">Collectors</a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">Trade History</a>
@@ -18,7 +18,7 @@
         </ul>
         <div class="row">
             <div class="col-md-12 mb-4">
-                @include('cards.balances.partials.table')
+                @include('cards.collectors.partials.table')
             </div>
         </div>
     </div>

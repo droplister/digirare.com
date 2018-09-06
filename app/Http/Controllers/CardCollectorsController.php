@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Card;
 use Illuminate\Http\Request;
 
-class CardBalancesController extends Controller
+class CardCollectorsController extends Controller
 {
     /**
      * Display the specified resource.
@@ -23,6 +23,6 @@ class CardBalancesController extends Controller
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
         $balances = $card->balances()->orderBy('quantity', 'desc')->get();
 
-        return view('cards.balances.show', compact('card', 'balances', 'collections', 'dislikes', 'last_match', 'likes', 'token'));
+        return view('cards.collectors.show', compact('card', 'balances', 'collections', 'dislikes', 'last_match', 'likes', 'token'));
     }
 }
