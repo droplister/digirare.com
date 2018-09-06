@@ -7,7 +7,7 @@
                 <th scope="col">Cards</th>
                 <th scope="col">Collectors</th>
                 <th scope="col">Balances</th>
-                <th scope="col" title="Average # of Unique Cards Collected by Collectors">Average</th>
+                <th scope="col">Currency</th>
                 <th scope="col">Announced</th>
             </tr>
         </thead>
@@ -19,7 +19,7 @@
                 <td>{{ number_format($collection->cards_count) }}</td>
                 <td>{{ number_format($collection->balances->unique('address')->count()) }}</td>
                 <td>{{ number_format($collection->balances_count) }}</td>
-                <td>{{ $collection->balances->unique('address')->count() > 0 ? number_format($collection->balances_count / $collection->balances->unique('address')->count(), 1) : '0' }} cards</td>
+                <td>{{ $collection->currency }}</td>
                 <td>{{ $collection->launched_at->toDateString() }}</td>
             </tr>
             @endforeach
