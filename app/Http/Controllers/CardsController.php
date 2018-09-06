@@ -38,7 +38,7 @@ class CardsController extends Controller
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
         $buy_orders = $token ? $token->getOrders()->where('status', '=', 'open')->orderBy('expire_index', 'asc')->get()->sortByDesc('trading_price_normalized') : collect([]);
         $sell_orders = $token ? $token->giveOrders()->where('status', '=', 'open')->orderBy('expire_index', 'asc')->get()->sortBy('trading_price_normalized') : collect([]);
-        $order_matches = $token ? $token->backwardOrderMatches->merge($token->forwardOrderMatches)->sortByDesc('confirmed_at');
+        $order_matches = $token ? $token->backwardOrderMatches->merge($token->forwardOrderMatches)->sortByDesc('confirmed_at') : collect([]);
 
         return view('cards.show', compact('card', 'artists', 'balances', 'buy_orders', 'collections', 'dislikes', 'last_match', 'likes', 'order_matches', 'sell_orders', 'token'));
     }
