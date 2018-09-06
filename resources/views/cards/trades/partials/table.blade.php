@@ -1,6 +1,6 @@
 <div class="card">
     <div class="card-header">
-        <span class="lead font-weight-bold text-uppercase">Trades</span>
+        <span class="lead font-weight-bold text-uppercase">Trade History</span>
     </div>
     <div class="table-responsive">
         <table class="table mb-0">

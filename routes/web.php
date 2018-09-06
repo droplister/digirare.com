@@ -18,4 +18,6 @@ Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
 Route::resource('collectors', 'CollectorsController', ['only' => ['index', 'show']]);
 Route::resource('collections', 'CollectionsController', ['only' => ['index', 'show']]);
 Route::resource('cards/{card}/likes', 'CardLikesController', ['only' => ['index', 'store']]);
+Route::resource('cards/{card}/balances', 'CardBalancesController', ['only' => ['index']]);
+Route::resource('cards/{card}/trades', 'CardTradesController', ['only' => ['index']]);
 Auth::routes();

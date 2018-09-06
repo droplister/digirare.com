@@ -29,15 +29,13 @@
             <small class="text-highlight"><i aria-hidden="true" class="fa fa-hand-grab-o mr-1"></i></small>
             Collectors
         </h2>
-        @include('cards.partials.show.collectors-chart')
-        <h2 class="display-4 mb-4">
-            <small class="text-highlight"><i aria-hidden="true" class="fa fa-refresh"></i></small>
-            DEX Trades
-        </h2>
-        <div class="row">
-            <div class="col-md-12 mb-4">
-                @include('cards.partials.show.matches')
+        <div class="card mb-4">
+            <div class="card-header">
+                <span class="lead font-weight-bold">Active Collectors</span>
             </div>
+            <chart title="Crypto Collectors (XCP)" label="Active Collectors"
+                source="{{ route('metrics.count', ['card' => $card->name, 'category' => 'balances', 'interval' => 'day']) }}">
+            </chart>
         </div>
     </div>
     @include('cards.modals.gallery')

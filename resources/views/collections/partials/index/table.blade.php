@@ -5,6 +5,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Collection</th>
                 <th scope="col">Cards</th>
+                <th scope="col">Currency</th>
                 <th scope="col">Announced</th>
             </tr>
         </thead>
@@ -14,6 +15,7 @@
                 <th scope="row">{{ $loop->iteration }}.</th>
                 <td><a href="{{ $collection->url }}">{{ $collection->name }}</a></td>
                 <td>{{ $collection->cards_count }}</td>
+                <td>{{ $collection->currency }}</td>
                 <td>{{ $collection->launched_at->toDateString() }}</td>
             </tr>
             @endforeach

@@ -1,0 +1,25 @@
+<div class="card">
+    <div class="card-header">
+        <span class="lead font-weight-bold text-uppercase">Balances</span>
+    </div>
+    <div class="table-responsive">
+        <table class="table mb-0">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Address</th>
+                    <th scope="col">Quantity</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach($balances as $balance)
+                <tr>
+                    <th scope="row">{{ $loop->iteration }}.</th>
+                    <td><a href="{{ route('collectors.show', ['collector' => $balance->address]) }}">{{ $balance->address }}</a></td>
+                    <td>{{ $token && ! $token->divisible ? number_format($balance->quantity_normalized) : $balance->quantity_normalized }}</td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+</div>
