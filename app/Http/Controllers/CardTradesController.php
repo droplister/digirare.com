@@ -23,6 +23,6 @@ class CardTradesController extends Controller
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
         $order_matches = $token ? $token->backwardOrderMatches->merge($token->forwardOrderMatches)->sortByDesc('confirmed_at') : collect([]);
 
-        return view('cards.CardTradesController.show', compact('card', 'collections', 'dislikes', 'last_match', 'likes', 'order_matches', 'token'));
+        return view('cards.trades.show', compact('card', 'collections', 'dislikes', 'last_match', 'likes', 'order_matches', 'token'));
     }
 }

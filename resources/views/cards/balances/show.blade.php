@@ -4,11 +4,7 @@
 
 @section('content')
     <div class="container mt-3">
-        <div class="row">
-            <div class="col-md-12 mb-4">
-                @include('cards.partials.show.header')
-            </div>
-        </div>
+        @include('cards.partials.show.header')
         <ul class="nav nav-tabs border-bottom-0">
             <li class="nav-item">
                 <a class="nav-link" href="{{ $card->url }}">Overview</a>

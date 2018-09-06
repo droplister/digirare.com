@@ -23,4 +23,3 @@
         Last Traded: <a href="#" role="button" data-toggle="modal" data-target="#lastMatchModal" class="text-muted">{{ $last_match->confirmed_at->toFormattedDateString() }}</a>
     @endif
 </p>
-<hr />
