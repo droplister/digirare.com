@@ -69,6 +69,6 @@ class OrdersController extends Controller
                 ->get();
         }
 
-        return view('orders.index', compact('collections', 'currencies', 'orders', 'request'));
+        return view('orders.index', compact('block', 'collections', 'currencies', 'orders', 'request'));
     }
 }
