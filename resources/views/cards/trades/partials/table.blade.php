@@ -10,6 +10,7 @@
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Total</th>
+                    <th scope="col">Source</th>
                     <th scope="col">Traded</th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                         {{ $card->name }}
                     </td>
                     <td>{{ $match->forward_asset === $card->name ? $match->backward_quantity_normalized : $match->forward_quantity_normalized }} {{ explode('/', $match->trading_pair_normalized)[1] }}</td>
+                    <td><a href="{{ route('collectors.show', ['collector' => $match->tx1_address]) }}">{{ str_limit($match->tx1_address, 8) }}</a></td>
                     <td>{{ $match->confirmed_at->diffForHumans() }}</td>
                 </tr>
                 @endforeach
