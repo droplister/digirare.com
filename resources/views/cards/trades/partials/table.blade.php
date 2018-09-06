@@ -6,6 +6,7 @@
         <table class="table mb-0">
             <thead>
                 <tr>
+                    <th scope="col" style="width: 50px">#</th>
                     <th scope="col">Price</th>
                     <th scope="col">Quantity</th>
                     <th scope="col">Total</th>
@@ -15,6 +16,7 @@
             <tbody>
                 @foreach($order_matches as $match)
                 <tr>
+                    <th scope="row">{{ $order_matches->count() - $loop->index }}.</th>
                     <td>{{ $match->trading_price_normalized }} {{ explode('/', $match->trading_pair_normalized)[1] }}</td>
                     <td>
                     @if($card->token->divisible)
@@ -30,7 +32,7 @@
                 @endforeach
                 @if($order_matches->count() === 0)
                 <tr>
-                    <td colspan="4" class="text-center"><em>No Trades Found</em></td>
+                    <td colspan="5" class="text-center"><em>No Trades Found</em></td>
                 </tr>
                 @endif
             </tbody>
