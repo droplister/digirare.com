@@ -95,7 +95,7 @@ class Collection extends Model
               'card_id',
               'xcp_core_asset_name',
             ]
-        );
+        )->nonZero();
     }
 
     /**
