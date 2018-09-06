@@ -5,7 +5,7 @@
                 <th scope="col">#</th>
                 <th scope="col">Collection</th>
                 <th scope="col">Cards</th>
-                <th scope="col">Launched</th>
+                <th scope="col">Announced</th>
             </tr>
         </thead>
         <tbody>
