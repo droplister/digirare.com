@@ -26,14 +26,14 @@
             <i class="fa fa-users text-dark" aria-hidden="true"></i>
             Holders
         </p>
-        <p class="mb-0"><a href="{{ route('balances.index', ['card' => $card->slug]) }}">{{ number_format($balances->total()) }}</a></p>
+        <p class="mb-0"><a href="{{ route('cards.balances.index', ['card' => $card->slug]) }}">{{ number_format($balances->total()) }}</a></p>
     </div>
     <div class="col-sm-3 d-none d-sm-inline">
         <p class="text-muted mb-0">
             <i class="fa fa-handshake-o text-dark" aria-hidden="true"></i>
             Trades
         </p>
-        <p class="mb-0"><a href="{{ route('trades.index', ['card' => $card->slug]) }}">{{ number_format($order_matches_count) }}</a></p>
+        <p class="mb-0"><a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">{{ number_format($order_matches_count) }}</a></p>
     </div>
 </div>
 <hr />

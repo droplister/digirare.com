@@ -10,10 +10,10 @@
                 <a class="nav-link" href="{{ $card->url }}">Overview</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link active" href="{{ route('balances.index', ['card' => $card->slug]) }}">Balances</a>
+                <a class="nav-link active" href="{{ route('cards.balances.index', ['card' => $card->slug]) }}">Balances</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('trades.index', ['card' => $card->slug]) }}">Trade History</a>
+                <a class="nav-link" href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">Trade History</a>
             </li>
         </ul>
         <div class="row">

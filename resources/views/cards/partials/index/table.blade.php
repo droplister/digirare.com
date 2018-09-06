@@ -22,8 +22,8 @@
                         <small class="text-muted">+ {{ $card->collections_count - 1 }}</small>
                     @endif
                 </td>
-                <td><a href="{{ route('balances.index', ['card' => $card->slug]) }}">{{ number_format($card->balances_count) }}</a></td>
-                <td><a href="{{ route('trades.index', ['card' => $card->slug]) }}">{{ number_format($card->backward_order_matches_count + $card->forward_order_matches_count) }}</a></td>
+                <td><a href="{{ route('cards.balances.index', ['card' => $card->slug]) }}">{{ number_format($card->balances_count) }}</a></td>
+                <td><a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">{{ number_format($card->backward_order_matches_count + $card->forward_order_matches_count) }}</a></td>
                 <td>{{ $card->lastMatch() ? $card->lastMatch()->confirmed_at->toDateString() : 'N/A' }}</td>
                 <td>{{ $card->token->confirmed_at->toDateString() }}</td>
             </tr>

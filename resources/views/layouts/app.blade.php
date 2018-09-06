@@ -31,7 +31,7 @@
                 <ul class="navbar-nav ml-auto mr-3 d-inline-block d-md-none">
                     <li class="nav-item">
                         <a href="https://digirare.com/random" class="nav-link">
-                            <i aria-hidden="true" class="fa fa-random"></i>
+                            <i aria-hidden="true" class="fa fa-random text-highlight"></i>
                             Random
                         </a>
                     </li>
