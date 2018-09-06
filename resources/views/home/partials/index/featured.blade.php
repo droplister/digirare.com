@@ -11,7 +11,7 @@
             @foreach($features as $featured)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
                 <a href="{{ $featured->card->url }}">
-                    <img src="{{ $featured->card->pivot->image_url }}" alt="{{ $featured->card->name }}" width="100%" />
+                    <img src="{{ $featured->card->primary_image_url }}" alt="{{ $featured->card->name }}" width="100%" />
                 </a>
                 <h5 class="card-title mt-3 mb-1">
                     <strong>{{ $featured->card->name }}</strong>
