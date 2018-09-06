@@ -18,7 +18,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Collections</a>
                         <div class="dropdown-menu">
                         @foreach($collections as $collection)
-                            <a class="dropdown-item" href="{{ route('orders.index', ['collection' => $collection->slug, 'currency' => $request->input('currency', null)]) }}">{{ $collection->name }}</a>
+                            <a class="dropdown-item{{ $collection->slug === $request->input('collection', null) ? ' active' : '' }}" href="{{ route('orders.index', ['collection' => $collection->slug, 'currency' => $request->input('currency', null)]) }}">{{ $collection->name }}</a>
                         @endforeach
                         </div>
                     </li>
@@ -26,7 +26,7 @@
                         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Currencies</a>
                         <div class="dropdown-menu">
                         @foreach($currencies as $currency)
-                            <a class="dropdown-item" href="{{ route('orders.index', ['currency' => $currency, 'collection' => $request->input('collection', null)]) }}">{{ $currency }}</a>
+                            <a class="dropdown-item{{ $currency === $request->input('currency', null) ? ' active' : '' }}" href="{{ route('orders.index', ['currency' => $currency, 'collection' => $request->input('collection', null)]) }}">{{ $currency }}</a>
                         @endforeach
                         </div>
                     </li>
