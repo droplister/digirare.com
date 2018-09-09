@@ -3,6 +3,7 @@
 namespace App\Listeners;
 
 use Cache;
+use App\Collector;
 use App\Events\CardWasCreated;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
