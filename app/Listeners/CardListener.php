@@ -18,7 +18,7 @@ class CardListener
     public function handle(CardWasCreated $event)
     {
         // Card Credits
-        $credits = $event->card->token ? $event->card->token->credits()->orderBy('tx_index', 'asc')->get() : [];
+        $credits = $event->card->token ? $event->card->token->credits()->get() : [];
 
         // Find Missing
         foreach($credits as $credit)
