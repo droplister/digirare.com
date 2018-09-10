@@ -35,7 +35,7 @@ class ArtistsController extends Controller
     public function show(Request $request, Artist $artist)
     {
         // View File
-        $view = $request->has('view') ? 'artists.show.table' : 'artists.show';
+        $view = $request->has('view') ? 'table' : 'gallery';
 
         // Get Cards
         $cards = $artist->cards()->withCount('balances')
@@ -43,7 +43,7 @@ class ArtistsController extends Controller
             ->paginate(20);
 
         // Show View
-        return view($view, compact('artist', 'cards', 'view'));
+        return view('artists.show', compact('artist', 'cards', 'view'));
     }
 
     /**

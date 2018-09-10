@@ -11,17 +11,17 @@
                 </h1>
                 <ul class="nav nav-tabs border-bottom-0">
                     <li class="nav-item">
-                        <a class="nav-link{{ $view === 'artists.show' ? ' active' : '' }}" href="{{ route('artists.show', ['artist' => $artist->slug]) }}">
+                        <a class="nav-link{{ $view === 'gallery' ? ' active' : '' }}" href="{{ route('artists.show', ['artist' => $artist->slug]) }}">
                             Gallery
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link{{ $view === 'artists.show.table' ? ' active' : '' }}" href="{{ route('artists.show', ['artist' => $artist->slug, 'view' => 'table']) }}">
+                        <a class="nav-link{{ $view === 'table' ? ' active' : '' }}" href="{{ route('artists.show', ['artist' => $artist->slug, 'view' => 'table']) }}">
                             Table
                         </a>
                     </li>
                 </ul>
-                @if($view === 'artists.show.table')
+                @if($view === 'table')
                     @include('artists.partials.show.table')
                 @else
                     @include('artists.partials.show.gallery')
