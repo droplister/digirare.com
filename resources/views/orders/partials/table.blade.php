@@ -24,11 +24,11 @@
                     <td>
                         {{ in_array($order->getAssetModel->display_name, $currencies) ? number_format($order->give_remaining_normalized, 8) : number_format($order->get_remaining_normalized, 8) }}
                         @if($request->has('card'))
-                            <a href="{{ route('cards.trades.index', ['card' => in_array($order->$order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name]) }}">
+                            <a href="{{ route('cards.trades.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name]) }}">
                                 {{ in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name }}
                             </a>
                         @else
-                            <a href="{{ route('orders.index', ['card' => in_array($order->$order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->$order->getAssetModel->display_name, 'currency' => $request->input('currency', null), 'collector' => $request->input('collector', null)]) }}">
+                            <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => $request->input('currency', null), 'collector' => $request->input('collector', null)]) }}">
                                 {{ in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name }}
                             </a>
                         @endif
