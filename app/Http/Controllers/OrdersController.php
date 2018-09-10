@@ -27,7 +27,8 @@ class OrdersController extends Controller
             'card' => 'sometimes|nullable|exists:cards,slug',
             'collection' => 'sometimes|nullable|exists:collections,slug',
             'collector' => 'sometimes|nullable|exists:addresses,address',
-            'currency' => 'sometimes|nullable|exists:collections,currency'
+            'currency' => 'sometimes|nullable|exists:collections,currency',
+            'sort' => 'sometimes|nullable|in:ending,newest',
         ]);
 
         // Current Block Index
@@ -98,8 +99,7 @@ class OrdersController extends Controller
                     ->where('source', '=', $request->collector)
                     ->where('give_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
+                    ->where('expire_index', '>', $block->block_index);
             }
             else
             {
@@ -108,8 +108,7 @@ class OrdersController extends Controller
                     ->where('source', '=', $request->collector)
                     ->where('get_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
+                    ->where('expire_index', '>', $block->block_index);
             }
         }
         elseif($request->has('currency') && $request->has('action'))
@@ -121,8 +120,7 @@ class OrdersController extends Controller
                     ->whereIn('get_asset', $assets)
                     ->where('give_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
+                    ->where('expire_index', '>', $block->block_index);
             }
             else
             {
@@ -130,8 +128,7 @@ class OrdersController extends Controller
                     ->whereIn('give_asset', $assets)
                     ->where('get_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
+                    ->where('expire_index', '>', $block->block_index);
             }
         }
         elseif($request->has('collector') && $request->has('action'))
@@ -143,8 +140,7 @@ class OrdersController extends Controller
                     ->whereIn('get_asset', $assets)
                     ->where('source', '=', $request->collector)
                     ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
+                    ->where('expire_index', '>', $block->block_index);
             }
             else
             {
@@ -152,8 +148,7 @@ class OrdersController extends Controller
                     ->whereIn('give_asset', $assets)
                     ->where('source', '=', $request->collector)
                     ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
+                    ->where('expire_index', '>', $block->block_index);
             }
         }
         elseif($request->has('currency') && $request->has('collector'))
@@ -168,8 +163,7 @@ class OrdersController extends Controller
                 ->where('get_asset', '=', $request->currency)
                 ->where('source', '=', $request->collector)
                 ->where('status', '=', 'open')
-                ->where('expire_index', '>', $block->block_index)
-                ->orderBy('expire_index', 'asc');
+                ->where('expire_index', '>', $block->block_index);
         }
         elseif($request->has('action'))
         {
@@ -180,8 +174,7 @@ class OrdersController extends Controller
                     ->whereIn('get_asset', $assets)
                     ->whereIn('give_asset', $currencies)
                     ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
+                    ->where('expire_index', '>', $block->block_index);
             }
             else
             {
@@ -189,8 +182,7 @@ class OrdersController extends Controller
                     ->whereIn('give_asset', $assets)
                     ->whereIn('get_asset', $currencies)
                     ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
+                    ->where('expire_index', '>', $block->block_index);
             }
         }
         elseif($request->has('currency'))
@@ -203,8 +195,7 @@ class OrdersController extends Controller
                 ->orWhereIn('give_asset', $assets)
                 ->where('get_asset', '=', $request->currency)
                 ->where('status', '=', 'open')
-                ->where('expire_index', '>', $block->block_index)
-                ->orderBy('expire_index', 'asc');
+                ->where('expire_index', '>', $block->block_index);
         }
         elseif($request->has('collector'))
         {
@@ -216,8 +207,7 @@ class OrdersController extends Controller
                 ->orWhereIn('give_asset', $assets)
                 ->where('source', '=', $request->collector)
                 ->where('status', '=', 'open')
-                ->where('expire_index', '>', $block->block_index)
-                ->orderBy('expire_index', 'asc');
+                ->where('expire_index', '>', $block->block_index);
         }
         else
         {
@@ -229,9 +219,11 @@ class OrdersController extends Controller
                 ->orWhereIn('give_asset', $assets)
                 ->whereIn('get_asset', $currencies)
                 ->where('status', '=', 'open')
-                ->where('expire_index', '>', $block->block_index)
-                ->orderBy('expire_index', 'asc');
+                ->where('expire_index', '>', $block->block_index);
         }
+
+        // Sorting
+        $orders = $request->input('sort', 'newest') === 'newest' ? $orders->orderBy('confirmed_at', 'desc') : $orders->orderBy('expire_index', 'asc');
 
         // Paginate
         return $orders->paginate(100);

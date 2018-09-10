@@ -95,21 +95,8 @@
     </div>
 </div>
 <hr />
-<div class="row">
-    @if($artists->count() > 0)
-    <div class="col-6">
-        <p class="text-muted mb-0">
-            <i class="fa fa-paint-brush text-dark" aria-hidden="true"></i>
-            {{ str_plural('Artist', $artists->count()) }}
-        </p>
-        <p class="mb-0">
-            @foreach($artists as $artist)
-                <a href="{{ $artist->url }}">{{ $artist->name }}</a>{{ $loop->last ? '' : ' / ' }}
-            @endforeach
-        </p>
-    </div>
-    @endif    
-    <div class="col-6">
+<div class="row">  
+    <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
             <i class="fa fa-image text-dark" aria-hidden="true"></i>
             Format
@@ -120,4 +107,20 @@
             @endforeach
         </p>
     </div>
+    @if($artists->count() > 0)
+    <div class="col-4 col-sm-3">
+        <p class="text-muted mb-0">
+            <i class="fa fa-paint-brush text-dark" aria-hidden="true"></i>
+            {{ str_plural('Artist', $artists->count()) }}
+        </p>
+        <p class="mb-0">
+            @foreach($artists as $artist)
+                <a href="{{ $artist->url }}">{{ $artist->name }}</a>{{ $loop->last ? '' : ' / ' }}
+            @endforeach
+            @if($artists->count() === 0)
+                <a href="{{ route('artists.card.claim', ['card' => $card->slug]) }}">&plus; CLAIM</a>
+            @endif
+        </p>
+    </div>
+    @endif  
 </div>
