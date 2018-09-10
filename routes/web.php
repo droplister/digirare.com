@@ -21,5 +21,6 @@ Route::resource('orders', 'OrdersController', ['only' => ['index']]);
 Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
 Route::get('artists/{artist}/table', 'ArtistsController@showTable')->name('artists.show.table');
 Route::resource('collectors', 'CollectorsController', ['only' => ['index', 'show']]);
+Route::resource('collectors/{collector}/trades', 'CollectorTradesController', ['only' => ['index'], 'names' => ['index' => 'collectors.trades.index']]);
 Route::resource('collections', 'CollectionsController', ['only' => ['index', 'show']]);
 Auth::routes();
