@@ -15,7 +15,7 @@
                 <tr>
                     <td>
                         {{ $order->trading_price_normalized }}
-                        <a href="{{ route('orders.index', ['collection' => $card->primaryCollection()->first()->slug, 'currency' => explode('/', $last_match->trading_pair_normalized)[1]]) }}">
+                        <a href="{{ route('orders.index', ['card' => $card->display_name, 'currency' => explode('/', $last_match->trading_pair_normalized)[1]]) }}">
                             {{ explode('/', $last_match->trading_pair_normalized)[1] }}
                         </a>
                     </td>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Cache;
 use App\Card;
 use App\Collection;
+use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Block;
 use Droplister\XcpCore\App\Order;
 use Illuminate\Http\Request;
@@ -48,7 +49,79 @@ class OrdersController extends Controller
             $assets = $collection->cards()->pluck('xcp_core_asset_name')->toArray();
         }
 
-        // Filter by Currency
+        // Filters
+        if($request->has('card') && $request->has('currency') && $request->has('action'))
+        {
+            // Get Card Asset
+            $asset = Asset::where('asset_name', '=', $request->card)
+                ->orWhere('asset_longname', '=', $request->card)
+                ->first();
+
+            // Buying/Selling
+            if($request->action === 'buying')
+            {
+                $orders = Order::whereIn('get_asset', [$asset->asset_name, $asset->asset_longname])
+                    ->where('give_asset', '=', $request->currency)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc')
+                    ->get();
+            }
+            else
+            {
+                $orders = Order::whereIn('give_asset', [$asset->asset_name, $asset->asset_longname])
+                    ->where('get_asset', '=', $request->currency)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc')
+                    ->get();
+            }
+        }
+        elseif($request->has('card') && $request->has('action'))
+        {
+            // Get Card Asset
+            $asset = Asset::where('asset_name', '=', $request->card)
+                ->orWhere('asset_longname', '=', $request->card)
+                ->first();
+
+            // Buying/Selling
+            if($request->action === 'buying')
+            {
+                $orders = Order::whereIn('get_asset', [$asset->asset_name, $asset->asset_longname])
+                    ->whereIn('give_asset', $currencies)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc')
+                    ->get();
+            }
+            else
+            {
+                $orders = Order::whereIn('give_asset', [$asset->asset_name, $asset->asset_longname])
+                    ->whereIn('get_asset', $currencies)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc')
+                    ->get();
+            }
+        }
+        elseif($request->has('card') && $request->has('currency'))
+        {
+            // Get Card Asset
+            $asset = Asset::where('asset_name', '=', $request->card)
+                ->orWhere('asset_longname', '=', $request->card)
+                ->first();
+
+            $orders = Order::whereIn('get_asset', [$asset->asset_name, $asset->asset_longname])
+                ->where('give_asset', '=', $request->currency)
+                ->where('status', '=', 'open')
+                ->where('expire_index', '>', $block->block_index)
+                ->orWhereIn('give_asset', [$asset->asset_name, $asset->asset_longname])
+                ->where('get_asset', '=', $request->currency)
+                ->where('status', '=', 'open')
+                ->where('expire_index', '>', $block->block_index)
+                ->orderBy('expire_index', 'asc')
+                ->get();
+        }
         if($request->has('currency') && $request->has('action'))
         {
             // Buying/Selling
