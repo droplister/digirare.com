@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Card;
+use App\Feature;
 use App\Collection;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Block;
@@ -29,19 +30,37 @@ class OrdersController extends Controller
             'currency' => 'sometimes|nullable|exists:collections,currency'
         ]);
 
-        // All Card Asset Names
-        $assets = Cache::rememberForever('cards_array', function () {
-            return Card::pluck('xcp_core_asset_name')->toArray();
-        });
-
-        // Current Block Index
-        $block = Block::latest('block_index')->first();
-
         // All TCG Collections
         $collections = Collection::get();
 
         // All TCG "Currencies"
         $currencies = Collection::get()->unique('currency')->pluck('currency')->toArray();
+
+        // Get Matching Orders
+        $orders = $this->getOrders($request, $currencies);
+
+        // Featured
+        $features = Feature::highestBids()->with('card.token')->get();
+
+        return view('orders.index', compact('block', 'collections', 'currencies', 'orders', 'features', 'request'));
+    }
+
+    /**
+     * Get Orders
+     * 
+     * @param  \Illuminate\Http\Request  $request
+     * @param  array $currencies
+     * @return \App\Order
+     */
+    private function getOrders($request, $currencies)
+    {
+        // Current Block Index
+        $block = Block::latest('block_index')->first();
+
+        // All Card Asset Names
+        $assets = Cache::rememberForever('cards_array', function () {
+            return Card::pluck('xcp_core_asset_name')->toArray();
+        });
 
         // Filter by Collection
         if($request->has('collection'))
@@ -209,8 +228,7 @@ class OrdersController extends Controller
         }
 
         // Paginate
-        $orders = $orders->paginate(100);
-
-        return view('orders.index', compact('block', 'collections', 'currencies', 'orders', 'request'));
+        return $orders->paginate(100);
     }
+
 }
