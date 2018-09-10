@@ -35,7 +35,7 @@ class OrdersController extends Controller
         $block = Block::latest('block_index')->first();
 
         // All TCG Collections
-        $collections = Collection::withCount('balances')->orderBy('balances_count', 'desc')->get();
+        $collections = Collection::orderBy('name', 'asc')->get();
 
         // All TCG "Currencies"
         $currencies = Collection::get()->unique('currency')->pluck('currency')->toArray();
