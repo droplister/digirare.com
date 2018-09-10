@@ -10,7 +10,7 @@
                     <a href="{{ url('/') }}">DIGIRARE</a>
                 </p>
                 <h1 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-page"></i></small>
+                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-diamond"></i></small>
                     Disclaimer
                 </h1>
                 <div class="card mb-4">
