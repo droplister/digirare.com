@@ -19,7 +19,7 @@ class CardsController extends Controller
     public function index(Request $request)
     {
         // Sorting
-        $sort = $request->input('sort', 'balances');
+        $sort = $request->input('sort', 'collectors');
 
         // Cards
         $cards = Cache::remember('cards_index_' . $sort, 1440, function () use ($sort) {
@@ -89,7 +89,7 @@ class CardsController extends Controller
 
         switch($sort)
         {
-            case 'balance':
+            case 'collectors':
                 $cards = $cards->orderBy('balances_count', 'desc')->take(100)->get();
                 break;
             case 'trades':

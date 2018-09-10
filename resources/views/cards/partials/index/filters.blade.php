@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs border-bottom-0">
     <li class="nav-item">
-        <a class="nav-link{{ $sort === 'balances' ? ' active' : '' }}" href="{{ route('cards.index') }}">
-            Balances
+        <a class="nav-link{{ $sort === 'collectors' ? ' active' : '' }}" href="{{ route('cards.index') }}">
+            Collectors
         </a>
     </li>
     <li class="nav-item">
