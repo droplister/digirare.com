@@ -9,7 +9,7 @@
                 <p class="text-muted mb-0">
                     <a href="{{ url('/') }}">DIGIRARE</a>
                 </p>
-                <h1 class="display-4 mb-0">
+                <h1 class="display-4 mb-4">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-page"></i></small>
                     Terms of Use
                 </h1>
