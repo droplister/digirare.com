@@ -37,9 +37,17 @@ class CollectionsController extends Controller
      */
     public function show(Request $request, Collection $collection)
     {
-        $cards = $collection->cards()->withCount('balances')->paginate(20);
+        // View File
+        $view = $request->has('view') ? 'table' : 'gallery';
 
-        return view('collections.show', compact('collection', 'cards'));
+        // Get Cards
+        $cards = $collection->cards()
+            ->withCount('balances')
+            ->orderBy('balances_count', 'desc')
+            ->paginate(20);
+
+        // Show View
+        return view('collections.show', compact('collection', 'cards', 'view'));
     }
 
     /**

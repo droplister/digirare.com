@@ -9,7 +9,12 @@
                 <h1 class="display-4 mb-4">
                     {{ $collection->name }}
                 </h1>
-                @include('collections.partials.show.gallery')
+                @include('collections.partials.index.filter')
+                @if($view === 'table')
+                    @include('collections.partials.show.table')
+                @else
+                    @include('collections.partials.show.gallery')
+                @endif
             </div>
         </div>
     </div>
