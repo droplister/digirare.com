@@ -3,6 +3,7 @@
         <span class="lead font-weight-bold">
             Artist Profile
         </span>
+    </div>
     <div class="card-body pb-2">
         @markdown($artist->content)
     </div>
