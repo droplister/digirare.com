@@ -30,15 +30,21 @@ class OrdersController extends Controller
             'currency' => 'sometimes|nullable|exists:collections,currency'
         ]);
 
+        // Current Block Index
+        $block = Block::latest('block_index')->first();
+
         // All TCG Collections
         $collections = Collection::get();
 
         // All TCG "Currencies"
         $currencies = Collection::get()->unique('currency')->pluck('currency')->toArray();
 
+        // Unique Cache Slug
+        $slug = 'orders_index_' . $block->block_index . '_' . str_slug(serialize($request->all()));
+
         // Get Matching Orders
-        $orders = Cache::remember('orders_index_' . str_slug(serialize($request->all())), 5, function () use ($request, $currencies) {
-            return $this->getOrders($request, $currencies);
+        $orders = Cache::remember($slug, 5, function () use ($block, $currencies, $request) {
+            return $this->getOrders($block, $currencies, $request);
         });
 
         // Featured
@@ -49,16 +55,14 @@ class OrdersController extends Controller
 
     /**
      * Get Orders
-     * 
-     * @param  \Illuminate\Http\Request  $request
+     *
+     * @param  \App\Block  $block
      * @param  array $currencies
+     * @param  \Illuminate\Http\Request  $request
      * @return \App\Order
      */
-    private function getOrders($request, $currencies)
+    private function getOrders($block, $currencies, $request)
     {
-        // Current Block Index
-        $block = Block::latest('block_index')->first();
-
         // All Card Asset Names
         $assets = Cache::rememberForever('cards_array', function () {
             return Card::pluck('xcp_core_asset_name')->toArray();
