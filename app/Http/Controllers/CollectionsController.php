@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Cache;
+use App\Feature;
 use App\Collection;
 use Illuminate\Http\Request;
 
@@ -24,8 +25,11 @@ class CollectionsController extends Controller
             return $this->getCollections($sort);
         });
 
+        // Featured
+        $features = Feature::highestBids()->with('card.token')->get();
+
         // Index View
-        return view('collections.index', compact('collections', 'sort'));
+        return view('collections.index', compact('collections', 'sort', 'features'));
     }
 
     /**

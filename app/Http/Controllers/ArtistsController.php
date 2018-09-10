@@ -49,11 +49,8 @@ class ArtistsController extends Controller
             ->orderBy('balances_count', 'desc')
             ->paginate(20);
 
-        // Featured
-        $features = Feature::highestBids()->with('card.token')->get();
-
         // Show View
-        return view('artists.show', compact('artist', 'cards', 'view', 'features', 'request'));
+        return view('artists.show', compact('artist', 'cards', 'view', 'request'));
     }
 
     /**
