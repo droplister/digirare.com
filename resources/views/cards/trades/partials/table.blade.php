@@ -58,11 +58,6 @@
                         </tr>
                         @endforeach
                         @if($order_matches->count() === 0)
-                        <tr>
-                            <td colspan="6" class="text-center"><em>No Trades Found</em></td>
-                        </tr>
-                        @endif
-                        @if($order_matches->count() === 0)
                             <tr>
                                 <td colspan="7" class="text-center"><em>None Found</em></td>
                             </tr>
