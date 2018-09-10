@@ -7,7 +7,7 @@
         @if($last_match)
         <p class="mb-0">
             <a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">
-                {{ $last_match->trading_price_normalized }}
+                {{ number_format($last_match->trading_price_normalized, 8) }}
             </a>
         </p>
         @else
