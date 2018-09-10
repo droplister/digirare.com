@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\Card;
 use Droplister\XcpCore\App\Block;
 use Droplister\XcpCore\App\Order;
@@ -17,9 +18,16 @@ class CardsController extends Controller
      */
     public function index(Request $request)
     {
-        $cards = Card::with('token', 'primaryCollection')->withCount('backwardOrderMatches', 'forwardOrderMatches', 'balances', 'collections')->orderBy('balances_count', 'desc')->paginate(100);
+        // Sorting
+        $sort = $request->input('sort', 'balances');
 
-        return view('cards.index', compact('cards'));
+        // Cards
+        $cards = Cache::remember('cards_index_' . $sort, 1440, function () use ($sort) {
+            return $this->getCards($sort);
+        });
+
+        // Index View
+        return view('cards.index', compact('cards', 'sort'));
     }
 
     /**
@@ -65,5 +73,43 @@ class CardsController extends Controller
         $order_matches_count = $token ? $token->backwardOrderMatches->merge($token->forwardOrderMatches)->count() : 0;
 
         return view('cards.show', compact('card', 'artists', 'balances', 'buy_orders', 'collections', 'dislikes', 'last_match', 'likes', 'order_matches_count', 'sell_orders', 'token'));
+    }
+
+
+    /**
+     * Get Cards
+     * 
+     * @param  string  $sort
+     * @return \App\Card
+     */
+    private function getCards($sort)
+    {
+        $cards = Card::with('token', 'primaryCollection')
+            ->withCount('backwardOrderMatches', 'forwardOrderMatches', 'balances', 'collections');
+
+        switch($sort)
+        {
+            case 'balance':
+                $cards = $cards->orderBy('balances_count', 'desc')->take(100)->get();
+                break;
+            case 'trades':
+                $cards = $cards->get()->sortByDesc('trades_count')->splice(0, 99);
+                break;
+            case 'oldest':
+                $cards = $cards->get()->sortBy(function($card) {
+                    return $card->token->confirmed_at;
+                })->splice(0, 99);
+                break;
+            case 'newest':
+                $cards = $cards->get()->sortByDesc(function($card) {
+                    return $card->token->confirmed_at;
+                })->splice(0, 99);
+                break;
+            default:
+                $cards = $cards->orderBy('balances_count', 'desc')->take(100)->get();
+                break;
+        }
+
+        return $cards;
     }
 }

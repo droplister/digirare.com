@@ -59,6 +59,16 @@ class Card extends Model
     }
 
     /**
+     * Trades Count
+     *
+     * @return string
+     */
+    public function getTradesCountAttribute()
+    {
+        return $this->backwardOrderMatches()->count() + $this->forwardOrderMatches()->count();
+    }
+
+    /**
      * Artists
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany

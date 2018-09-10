@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\Artist;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,9 @@ class ArtistsController extends Controller
         $sort = $request->input('sort', 'balances');
 
         // Artists
-        $artists = $this->getArtists($sort);
+        $artists = Cache::remember('artists_index_' . $sort, 1440, function () use ($sort) {
+            return $this->getArtists($sort);
+        });
 
         // Index View
         return view('artists.index', compact('artists', 'sort'));
