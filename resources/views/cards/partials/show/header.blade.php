@@ -20,6 +20,6 @@
 <p class="text-muted">
     Issued: {{ $token ? $token->confirmed_at->toFormattedDateString() : 'Syncing' }} &nbsp;&nbsp;&nbsp;
     @if($last_match)
-        Last Traded: <a href="#" role="button" data-toggle="modal" data-target="#lastMatchModal" class="text-muted">{{ $last_match->confirmed_at->toFormattedDateString() }}</a>
+        Last Traded: {{ $last_match->confirmed_at->toFormattedDateString() }}
     @endif
 </p>
