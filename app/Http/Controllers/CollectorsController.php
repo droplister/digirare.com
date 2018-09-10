@@ -15,8 +15,12 @@ class CollectorsController extends Controller
      */
     public function index(Request $request)
     {
-        $collectors = Collector::with('firstCard')->withCount('cardBalances')->orderBy('card_balances_count', 'desc')->paginate(100);
+        // Get Collectors
+        $collectors = Collector::has('cardBalances')->with('firstCard')->withCount('cardBalances')
+            ->orderBy('card_balances_count', 'desc')
+            ->paginate(100);
 
+        // Index View
         return view('collectors.index', compact('collectors'));
     }
 
@@ -29,8 +33,10 @@ class CollectorsController extends Controller
      */
     public function show(Request $request, Collector $collector)
     {
-        $balances = $collector->cardBalances()->nonZero()->with('card')->paginate(20);
+        // Get Balances
+        $balances = $collector->cardBalances()->with('card')->paginate(20);
 
+        // Show View
         return view('collectors.show', compact('collector', 'balances'));
     }
 }
