@@ -1,5 +1,5 @@
-@if($request->has('card') || $request->has('collection') || $request->has('currency'))
 <p class="text-muted">
+@if($request->has('card') || $request->has('collection') || $request->has('currency'))
     Filters: 
     @if($request->has('action'))
         <a href="{{ route('orders.index', $request->except('action')) }}" type="button" class="btn btn-danger btn-sm ml-3 py-0 px-1">
@@ -21,5 +21,7 @@
             x {{ title_case(str_replace('-', ' ', $request->collection)) }}
         </a>
     @endif
-</p>
+@else
+    Filter <a href="https://xcpdex.com/" target="_blank" class="text-muted">Counterparty DEX</a> orders for collectibles.
 @endif
+</p>
