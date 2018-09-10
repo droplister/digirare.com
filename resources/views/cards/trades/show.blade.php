@@ -22,5 +22,4 @@
             </div>
         </div>
     </div>
-    @include('cards.modals.last-match')
 @endsection
