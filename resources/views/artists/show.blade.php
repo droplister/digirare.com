@@ -6,6 +6,9 @@
     <div class="container mt-3">
         <div class="row mb-4">
             <div class="col">
+                <p class="text-muted mb-0">
+                    <a href="{{ route('artists.index') }}">Artists</a>
+                </p>
                 <h1 class="display-4 mb-4">
                     {{ $artist->name }}
                 </h1>

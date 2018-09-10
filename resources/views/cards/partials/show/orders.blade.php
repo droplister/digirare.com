@@ -13,7 +13,12 @@
             <tbody>
                 @foreach($orders as $order)
                 <tr>
-                    <td>{{ $order->trading_price_normalized }} {{ explode('/', $order->trading_pair_normalized)[1] }}</td>
+                    <td>
+                        {{ $order->trading_price_normalized }}
+                        <a href="{{ route('markets.show', ['market' => str_replace('/', '_', $last_match->trading_pair_normalized)]) }}">
+                            {{ explode('/', $last_match->trading_pair_normalized)[1] }}
+                        </a>
+                    </td>
                     <td>
                     @if($card->token->divisible)
                         {{ $type === 'Buy' ? $order->get_remaining_normalized : $order->give_remaining_normalized }}

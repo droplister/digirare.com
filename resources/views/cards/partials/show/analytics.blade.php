@@ -16,7 +16,11 @@
             Currency
         </p>
         @if($last_match)
-        <p class="mb-0">{{ explode('/', $last_match->trading_pair_normalized)[1] }}</p>
+        <p class="mb-0">
+            <a href="{{ route('markets.show', ['market' => str_replace('/', '_', $last_match->trading_pair_normalized)]) }}">
+                {{ explode('/', $last_match->trading_pair_normalized)[1] }}
+            </a>
+        </p>
         @else
         <p class="mb-0">N/A</p>
         @endif
@@ -75,14 +79,14 @@
                 <i class="fa fa-chain text-dark" aria-hidden="true"></i>
                 Owner
             </p>
-            <p class="mb-0">{{ $token ? $token->owner : 'Syncing' }}</p>
+            <p class="mb-0"><a href="{{ route('collectors.show', ['collector' => $token ? $token->owner : 'Syncing']) }}">{{ $token ? $token->owner : 'Syncing' }}</a></p>
         </div>
         <div class="col-6">
             <p class="text-muted mb-0">
                 <i class="fa fa-chain text-dark" aria-hidden="true"></i>
                 Issuer
             </p>
-            <p class="mb-0">{{ $token ? $token->issuer : 'Syncing' }}</p>
+            <p class="mb-0"><a href="{{ route('collectors.show', ['collector' => $token ? $token->issuer : 'Syncing']) }}">{{ $token ? $token->issuer : 'Syncing' }}</a></p>
         </div>
     </div>
 </div>
