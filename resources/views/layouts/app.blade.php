@@ -146,7 +146,9 @@
             <a href="{{ route('pages.privacy') }}" class="text-muted mr-1">Privacy</a>
             <a href="{{ route('pages.terms') }}" class="text-muted mr-1">Terms</a>
             <br />
-            &copy; 2018 <a href="https://familymediallc.com/" class="text-muted" target="_blank">Family Media LLC</a>
+            <small>
+                &copy; 2018 <a href="https://familymediallc.com/" class="text-muted" target="_blank">Family Media LLC</a>
+            </small>
         </footer>
 
     </div>
