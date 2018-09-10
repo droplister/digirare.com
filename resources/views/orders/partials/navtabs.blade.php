@@ -12,7 +12,7 @@
         <div class="dropdown-menu">
             <a class="dropdown-item{{ $request->input('collection', null) === null ? ' active' : '' }}" href="{{ route('orders.index', ['collection' => null, 'currency' => $request->input('currency', null), 'action' => $request->input('action', null), 'card' => $request->input('card', null)]) }}">All</a>
         @foreach($collections as $collection)
-            <a class="dropdown-item{{ $collection->slug === $request->input('collection', null) ? ' active' : '' }}" href="{{ route('orders.index', ['collection' => $collection->slug, 'currency' => $request->input('currency', null), 'action' => $request->input('action', null), 'card' => $request->input('card', null)]) }}">{{ $collection->name }}</a>
+            <a class="dropdown-item{{ $collection->slug === $request->input('collection', null) ? ' active' : '' }}" href="{{ route('orders.index', ['collection' => $collection->slug, 'currency' => $request->input('currency', null), 'action' => $request->input('action', null)]) }}">{{ $collection->name }}</a>
         @endforeach
         </div>
     </li>
