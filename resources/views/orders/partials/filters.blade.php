@@ -1,5 +1,5 @@
 <p class="text-muted">
-@if($request->has('card') || $request->has('collection') || $request->has('currency'))
+@if($request->has('card') || $request->has('collection') || $request->has('currency') || $request->has('collector'))
     Filters: 
     @if($request->has('action'))
         <a href="{{ route('orders.index', $request->except('action')) }}" type="button" class="btn btn-danger btn-sm ml-3 py-0 px-1">
