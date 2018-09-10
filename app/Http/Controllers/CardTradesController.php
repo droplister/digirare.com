@@ -20,6 +20,9 @@ class CardTradesController extends Controller
         // Relations
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
 
+        // Convenience
+        $token = $card->token;
+
         // Sentiment
         $likes = $card->likes()->count();
         $dislikes = $card->dislikes()->count();
@@ -37,6 +40,6 @@ class CardTradesController extends Controller
         $last_match = $card->lastMatch();
 
         // Index View
-        return view('cards.trades.index', compact('card', 'collections', 'likes', 'dislikes', 'last_match', 'order_matches'));
+        return view('cards.trades.index', compact('card', 'token', 'collections', 'likes', 'dislikes', 'last_match', 'order_matches'));
     }
 }
