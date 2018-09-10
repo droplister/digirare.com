@@ -22,6 +22,6 @@
         </a>
     @endif
 @else
-    Filter <a href="https://counterparty.io/docs/buy_and_sell_assets_on_the_dex/" target="_blank" class="text-muted">Counterparty DEX</a> orders for collectibles.
+    Filter <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" target="_blank" class="text-muted">Counterparty DEX</a> orders for collectibles.
 @endif
 </p>
