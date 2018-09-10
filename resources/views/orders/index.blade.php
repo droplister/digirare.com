@@ -6,7 +6,7 @@
     <div class="container mt-3">
         <div class="row mb-4">
             <div class="col">
-                <h1 class="display-4 mb-4">
+                <h1 class="display-4 {{ $request->has('card') || $request->has('collection') || $request->has('currency') ? 'mb-0' : 'mb-4' }}">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-list"></i></small>
                     Big Board
                 </h1>

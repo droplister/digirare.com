@@ -2,7 +2,7 @@
     <div class="card-header">
         <span class="lead font-weight-bold">
             Table View
-            <small class="ml-1 text-muted">{{ number_format($orders->count()) }} Found</small>
+            <small class="ml-1 text-muted">{{ number_format($orders->total()) }} Found</small>
         </span>
     </div>
     <div class="table-responsive">
