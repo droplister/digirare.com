@@ -22,12 +22,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link{{ $sort === 'collectors' ? ' active' : '' }}" href="{{ route('artists.index', ['sort' => 'collectors') }}">
+                        <a class="nav-link{{ $sort === 'collectors' ? ' active' : '' }}" href="{{ route('artists.index', ['sort' => 'collectors']) }}">
                             Collectors
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link{{ $sort === 'collections' ? ' active' : '' }}" href="{{ route('artists.index', ['sort' => 'collections') }}">
+                        <a class="nav-link{{ $sort === 'collections' ? ' active' : '' }}" href="{{ route('artists.index', ['sort' => 'collections']) }}">
                             Collections
                         </a>
                     </li>
