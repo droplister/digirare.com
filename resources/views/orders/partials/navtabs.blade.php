@@ -28,8 +28,8 @@
     <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Sort Order</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item{{ $request->input('sort', 'newest') === 'newest' ? ' active' : '' }}" href="{{ route('orders.index', ['sort' => 'newest', currency' => $currency, 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'card' => $request->input('card', null), 'collector' => $request->input('collector', null)]) }}">Newest</a>
-            <a class="dropdown-item{{ $request->input('sort', 'newest') === 'ending' ? ' active' : '' }}" href="{{ route('orders.index', ['sort' => 'ending''currency' => null, 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'card' => $request->input('card', null), 'collector' => $request->input('collector', null)]) }}">Ending</a>
+            <a class="dropdown-item{{ $request->input('sort', 'newest') === 'newest' ? ' active' : '' }}" href="{{ route('orders.index', ['sort' => 'newest', 'currency' => $request->input('currency', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'card' => $request->input('card', null), 'collector' => $request->input('collector', null)]) }}">Newest</a>
+            <a class="dropdown-item{{ $request->input('sort', 'newest') === 'ending' ? ' active' : '' }}" href="{{ route('orders.index', ['sort' => 'ending', 'currency' => $request->input('currency', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'card' => $request->input('card', null), 'collector' => $request->input('collector', null)]) }}">Ending</a>
         </div>
     </li>
 </ul>
