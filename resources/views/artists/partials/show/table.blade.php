@@ -12,6 +12,7 @@
                     <th scope="col">Name</th>
                     <th scope="col">Supply</th>
                     <th scope="col">Collectors</th>
+                    <th scope="col">Created</th>
                 </tr>
             </thead>
             <tbody>
@@ -20,6 +21,7 @@
                     <th scope="row"><a href="{{ $card->url }}">{{ $card->name }}</a></th>
                     <td>{{ number_format($card->token->supply_normalized) }}</td>
                     <td>{{ number_format($card->balances_count) }}</td>
+                    <td>{{ $card->token->confirmed_at->toDateString() }}</td>
                 </tr>
                 @endforeach
             </tbody>

@@ -8,7 +8,7 @@
                 <th scope="col">Collectors</th>
                 <th scope="col">Trades</th>
                 <th scope="col">Last Traded</th>
-                <th scope="col">Created On</th>
+                <th scope="col">Created</th>
             </tr>
         </thead>
         <tbody>
