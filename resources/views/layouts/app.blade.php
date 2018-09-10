@@ -141,13 +141,12 @@
             <a href="https://github.com/droplister/digirare.com"  class="mr-2" target="_blank">GitHub</a>
             <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" class="mr-2" target="_blank">Tutorial</a>
             <a href="https://t.me/digirare" target="_blank">Telegram</a>
-            <hr />
-            <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-1">Disclaimer</a>
-            <a href="{{ route('pages.privacy') }}" class="text-muted mr-1">Privacy</a>
-            <a href="{{ route('pages.terms') }}" class="text-muted mr-1">Terms</a>
-            <br />
-            <small>
-                &copy; 2018 <a href="https://familymediallc.com/" class="text-muted" target="_blank">Family Media LLC</a>
+            <small class="d-block">
+                &copy; 2018
+                <a href="https://familymediallc.com/" class="text-muted mr-4" target="_blank">Family Media LLC</a>
+                <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-2">Disclaimer</a>
+                <a href="{{ route('pages.privacy') }}" class="text-muted mr-2">Privacy</a>
+                <a href="{{ route('pages.terms') }}" class="text-muted">Terms</a>
             </small>
         </footer>
 
