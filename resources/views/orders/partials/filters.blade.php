@@ -23,7 +23,7 @@
     @endif
     @if($request->has('collector'))
         <a href="{{ route('orders.index', $request->except('collector')) }}" type="button" class="btn btn-danger btn-sm ml-3 py-0 px-1">
-            x {{ $request->collector }}
+            x {{ str_limit($request->collector, 8) }}
         </a>
     @endif
 @else
