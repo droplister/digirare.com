@@ -33,6 +33,6 @@ class CardCollectorsController extends Controller
         $last_match = $card->lastMatch();
 
         // Index View
-        return view('cards.collectors.index', compact('card', 'token', 'collections', 'likes', 'dislikes', 'balances', 'last_match'));
+        return view('cards.collectors.index', compact('card', 'token', 'collections', 'likes', 'dislikes', 'balances', 'last_match', 'request'));
     }
 }

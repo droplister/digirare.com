@@ -18,7 +18,7 @@
             <tbody>
                 @foreach($balances as $balance)
                 <tr>
-                    <th scope="row">{{ $loop->iteration }}.</th>
+                    <th scope="row">{{ $loop->iteration + (($request->input('page', 1) - 1) * 100) }}.</th>
                     <td><a href="{{ route('collectors.show', ['collector' => $balance->address]) }}">{{ $balance->address }}</a></td>
                     <td>{{ $token && ! $token->divisible ? number_format($balance->quantity_normalized) : number_format($balance->quantity_normalized, 8) }}</td>
                     <td>{{ $balance->confirmed_at->toDateString() }}</td>
