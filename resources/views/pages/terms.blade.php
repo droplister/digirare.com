@@ -11,12 +11,12 @@
                 </p>
                 <h1 class="display-4 mb-4">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-diamond"></i></small>
-                    Terms of Use
+                    Terms
                 </h1>
                 <div class="card mb-4">
                     <div class="card-header">
                         <span class="lead font-weight-bold">
-                            Important Information
+                            Terms of Use
                         </span>
                     </div>
                     <div class="card-body">
