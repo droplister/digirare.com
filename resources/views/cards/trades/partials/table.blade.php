@@ -51,7 +51,7 @@
                     </td>
                     <td>
                         <a href="{{ route('collectors.show', ['collector' => (explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address]) }}">
-                            {{ str_limit(explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address, 8) }}
+                            {{ str_limit((explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address, 8) }}
                         </a>
                     </td>
                     <td>{{ $match->confirmed_at->diffForHumans() }}</td>
