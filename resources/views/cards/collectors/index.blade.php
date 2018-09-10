@@ -21,5 +21,6 @@
                 @include('cards.collectors.partials.table')
             </div>
         </div>
+        {!! $balances->links() !!}
     </div>
 @endsection
