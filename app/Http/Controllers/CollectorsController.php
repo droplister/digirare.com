@@ -17,7 +17,7 @@ class CollectorsController extends Controller
     public function index(Request $request)
     {
         // Sorting
-        $sort = $request->input('sort', 'balances');
+        $sort = $request->input('sort', 'cards');
 
         // Collectors
         $collectors = Cache::remember('collectors_index_' . $sort, 1440, function () use ($sort) {
