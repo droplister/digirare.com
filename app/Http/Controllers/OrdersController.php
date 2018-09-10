@@ -166,6 +166,24 @@ class OrdersController extends Controller
                     ->get();
             }
         }
+        elseif($request->has('card'))
+        {
+            // Get Card Asset
+            $asset = Asset::where('asset_name', '=', $request->card)
+                ->orWhere('asset_longname', '=', $request->card)
+                ->first();
+
+            $orders = Order::whereIn('get_asset', [$asset->display_name])
+                ->whereIn('give_asset', $currencies)
+                ->where('status', '=', 'open')
+                ->where('expire_index', '>', $block->block_index)
+                ->orWhereIn('give_asset', [$asset->display_name])
+                ->whereIn('get_asset', $currencies)
+                ->where('status', '=', 'open')
+                ->where('expire_index', '>', $block->block_index)
+                ->orderBy('expire_index', 'asc')
+                ->get();
+        }
         elseif($request->has('currency'))
         {
             $orders = Order::whereIn('get_asset', $assets)
