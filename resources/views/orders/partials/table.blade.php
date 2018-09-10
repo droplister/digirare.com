@@ -14,7 +14,7 @@
                     <th scope="col">Price</th>
                     <th scope="col">Total</th>
                     <th scope="col">Source</th>
-                    <th scope="col">Expired In</th>
+                    <th scope="col">Expires</th>
                 </tr>
             </thead>
             <tbody>
@@ -55,6 +55,11 @@
                     <td>{{ $order->expire_index - $block->block_index }} {{ str_plural('block', $order->expire_index - $block->block_index) }}</td>
                 </tr>
                 @endforeach
+                @if($orders->count() === 0)
+                <tr>
+                    <td colspan="6" class="text-center"><em>No Open Orders</em></td>
+                </tr>
+                @endif
             </tbody>
         </table>
     </div>
