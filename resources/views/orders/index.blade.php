@@ -20,7 +20,7 @@
                     @endif
                     @if($request->has('collection'))
                         <a href="{{ route('orders.index', $request->except('collection')) }}" type="button" class="btn btn-danger btn-sm ml-3 py-0 px-1">
-                            x {{ ucwords(str_replace('-', ' ', $request->collection)) }}
+                            x {{ title_case(str_replace('-', ' ', $request->collection)) }}
                         </a>
                     @endif
                     @if($request->has('currency'))
