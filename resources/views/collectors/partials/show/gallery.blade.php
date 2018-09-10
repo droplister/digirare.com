@@ -12,9 +12,9 @@
                 <a href="{{ $balance->card->url }}">
                     <img src="{{ $balance->card->primary_image_url }}" alt="{{ $balance->card->name }}" width="100%" />
                 </a>
-                <h5 class="card-title mt-3 mb-1">
+                <h6 class="card-title mt-3 mb-1">
                     <strong>{{ $balance->card->name }}</strong>
-                </h5>
+                </h6>
                 <p class="card-text">
                     Balance: {{ number_format($balance->quantity_normalized) }}
                     <span class="float-right font-weight-bold">{{ $balance->card->token->owner === $balance->address ? 'OWNER' : '' }}</span>

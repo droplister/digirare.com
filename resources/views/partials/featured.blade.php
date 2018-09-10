@@ -15,10 +15,17 @@
                 <a href="{{ $featured->card->url }}">
                     <img src="{{ $featured->card->primary_image_url }}" alt="{{ $featured->card->name }}" width="100%" />
                 </a>
-                <h5 class="card-title mt-3 mb-1">
+                <h6 class="card-title mt-3 mb-1">
                     <strong>{{ $featured->card->name }}</strong>
-                </h5>
-                <p class="card-text">Supply: {{ number_format($featured->card->token->supply_normalized) }} <span class="float-right d-none d-md-inline">{{ $featured->card->primaryCollection()->first()->name }}</span></p>
+                </h6>
+                <p class="card-text">
+                    Supply: {{ number_format($featured->card->token->supply_normalized) }}
+                    <span class="float-right d-none d-md-inline">
+                        <a href="{{ $featured->card->primaryCollection()->first()->url }}">
+                            {{ $featured->card->primaryCollection()->first()->name }}
+                        </a>
+                    </span>
+                </p>
             </div>
             @endforeach
         </div>

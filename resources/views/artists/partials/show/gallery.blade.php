@@ -12,9 +12,9 @@
                 <a href="{{ $card->url }}">
                     <img src="{{ $card->pivot->image_url }}" alt="{{ $card->name }}" width="100%" />
                 </a>
-                <h5 class="card-title mt-3 mb-1">
+                <h6 class="card-title mt-3 mb-1">
                     <strong>{{ $card->name }}</strong>
-                </h5>
+                </h6>
                 <p class="card-text">Supply: {{ number_format($card->token ? $card->token->supply_normalized : 0) }} <span class="float-right d-none d-md-inline">Collectors: {{ $card->balances_count }}</span></p>
             </div>
             @endforeach
