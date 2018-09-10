@@ -32,15 +32,7 @@
                         </a>
                     </li>
                 </ul>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <span class="lead font-weight-bold">
-                            Table View
-                            <small class="ml-1 text-muted">{{ number_format($artists->count()) }} Found</small>
-                        </span>
-                    </div>
-                    @include('artists.partials.index.table')
-                </div>
+                @include('artists.partials.index.table')
             </div>
         </div>
     </div>

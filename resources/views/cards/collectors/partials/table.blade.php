@@ -1,7 +1,7 @@
 <div class="card">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Balances
+            Collectors
             <small class="ml-1 text-muted">{{ number_format($balances->count()) }} Found</small>
         </span>
     </div>

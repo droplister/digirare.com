@@ -10,15 +10,7 @@
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
                     XCP Cards
                 </h1>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <span class="lead font-weight-bold">
-                            List View
-                            <small class="ml-1 text-muted">{{ number_format($cards->total()) }} Found</small>
-                        </span>
-                    </div>
-                    @include('cards.partials.index.table')
-                </div>
+                @include('cards.partials.index.table')
             </div>
         </div>
     </div>
