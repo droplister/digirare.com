@@ -134,6 +134,21 @@
             @yield('content')
         </main>
 
+        <footer class="container text-center text-muted pb-5">
+            <hr />
+            <a href="{{ url('/') }}" class="mr-2">Home</a>
+            <a href="{{ route('pages.investors') }}" class="mr-2">Investors</a>
+            <a href="https://github.com/droplister/digirare.com"  class="mr-2" target="_blank">GitHub</a>
+            <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" class="mr-2" target="_blank">Tutorial</a>
+            <a href="https://t.me/digirare" target="_blank">Telegram</a>
+            <hr />
+            <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-1">Disclaimer</a>
+            <a href="{{ route('pages.privacy') }}" class="text-muted mr-1">Privacy</a>
+            <a href="{{ route('pages.terms') }}" class="text-muted mr-1">Terms</a>
+            <br />
+            &copy; 2018 <a href="https://familymediallc.com/" class="text-muted" target="_blank">Family Media LLC</a>
+        </footer>
+
     </div>
 
 <script async src="https://www.googletagmanager.com/gtag/js?id={{ config('digirare.google_ua') }}"></script>

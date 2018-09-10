@@ -22,4 +22,8 @@ Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
 Route::get('artists/{artist}/table', 'ArtistsController@showTable')->name('artists.show.table');
 Route::resource('collectors', 'CollectorsController', ['only' => ['index', 'show']]);
 Route::resource('collections', 'CollectionsController', ['only' => ['index', 'show']]);
+Route::get('/disclaimer', 'PagesController@disclaimer')->name('pages.disclaimer');
+Route::get('/investors', 'PagesController@investors')->name('pages.investors');
+Route::get('/privacy', 'PagesController@privacy')->name('pages.privacy');
+Route::get('/terms', 'PagesController@terms')->name('pages.terms');
 Auth::routes();
