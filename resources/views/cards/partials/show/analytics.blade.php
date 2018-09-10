@@ -17,7 +17,7 @@
         </p>
         @if($last_match)
         <p class="mb-0">
-            <a href="{{ route('markets.show', ['market' => str_replace('/', '_', $last_match->trading_pair_normalized)]) }}">
+            <a href="{{ route('orders.index', ['collection' => $card->primaryCollection()->first()->slug, 'currency' => explode('/', $last_match->trading_pair_normalized)[1]]) }}">
                 {{ explode('/', $last_match->trading_pair_normalized)[1] }}
             </a>
         </p>
