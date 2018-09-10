@@ -36,11 +36,14 @@ class CollectorsController extends Controller
      */
     public function show(Request $request, Collector $collector)
     {
-        // Get Balances
+        // View File
+        $view = $request->has('view') ? 'table' : 'gallery';
+
+        // Balances
         $balances = $collector->cardBalances()->with('card')->paginate(20);
 
         // Show View
-        return view('collectors.show', compact('collector', 'balances'));
+        return view('collectors.show', compact('collector', 'balances', 'view'));
     }
 
     /**

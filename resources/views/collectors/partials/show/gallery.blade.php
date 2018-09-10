@@ -1,7 +1,7 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Gallery View
+            Collection
             <small class="ml-1 text-muted">{{ number_format($balances->total()) }} Found</small>
         </span>
     </div>

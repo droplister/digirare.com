@@ -1,6 +1,6 @@
 <ul class="nav nav-tabs border-bottom-0">
     <li class="nav-item">
-        <a class="nav-link{{ $view === 'gallery' ? ' active' : '' }}" href="{{ route('artists.show', ['artist' => $artist->slug]) }}">
+        <a class="nav-link{{ $view === 'gallery' ? ' active' : '' }}" href="{{ $artist->url }}">
             Gallery View
         </a>
     </li>

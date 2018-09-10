@@ -7,7 +7,12 @@
         <div class="row mb-4">
             <div class="col">
                 @include('collectors.partials.show.header')
-                @include('collectors.partials.show.gallery')
+                @include('collectors.partials.show.filter')
+                @if($view === 'table')
+                    @include('collectors.partials.show.table')
+                @else
+                    @include('collectors.partials.show.gallery')
+                @endif
             </div>
         </div>
     </div>
