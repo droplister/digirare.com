@@ -37,7 +37,9 @@ class OrdersController extends Controller
         $currencies = Collection::get()->unique('currency')->pluck('currency')->toArray();
 
         // Get Matching Orders
-        $orders = $this->getOrders($request, $currencies);
+        $orders = Cache::remember('orders_index_' . str_slug(serialize($request->all())), 5, function () use ($request, $currencies) {
+            return $this->getOrders($request, $currencies);
+        });
 
         // Featured
         $features = Feature::highestBids()->with('card.token')->get();
