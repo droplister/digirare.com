@@ -29,7 +29,7 @@ class ArtistsController extends Controller
         $features = Feature::highestBids()->with('card.token')->get();
 
         // Index View
-        return view('artists.index', compact('artists', 'sort', 'featured'));
+        return view('artists.index', compact('artists', 'sort', 'features'));
     }
 
     /**
@@ -53,7 +53,7 @@ class ArtistsController extends Controller
         $features = Feature::highestBids()->with('card.token')->get();
 
         // Show View
-        return view('artists.show', compact('artist', 'cards', 'view', 'featured', 'request'));
+        return view('artists.show', compact('artist', 'cards', 'view', 'features', 'request'));
     }
 
     /**
