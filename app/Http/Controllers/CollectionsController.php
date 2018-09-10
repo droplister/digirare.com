@@ -47,7 +47,7 @@ class CollectionsController extends Controller
             ->paginate(20);
 
         // Show View
-        return view('collections.show', compact('collection', 'cards', 'view'));
+        return view('collections.show', compact('collection', 'cards', 'view', 'request'));
     }
 
     /**

@@ -28,7 +28,7 @@
                 @endforeach
                 @if($cards->count() === 0)
                     <tr>
-                        <td colspan="4" class="text-center"><em>No Cards</em></td>
+                        <td colspan="5" class="text-center"><em>No Cards</em></td>
                     </tr>
                 @endif
             </tbody>

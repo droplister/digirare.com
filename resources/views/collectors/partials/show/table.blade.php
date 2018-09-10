@@ -28,7 +28,7 @@
                 @endforeach
                 @if($balances->count() === 0)
                     <tr>
-                        <td colspan="4" class="text-center"><em>None Found</em></td>
+                        <td colspan="5" class="text-center"><em>None Found</em></td>
                     </tr>
                 @endif
             </tbody>
