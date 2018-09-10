@@ -28,6 +28,11 @@
                     <td>{{ $collector->firstCard->confirmed_at->toDateString() }}</td>
                 </tr>
                 @endforeach
+                @if($collectors->count() === 0)
+                    <tr>
+                        <td colspan="6" class="text-center"><em>None Found</em></td>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>

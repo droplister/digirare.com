@@ -30,6 +30,11 @@
                     <td>{{ $collection->launched_at->toDateString() }}</td>
                 </tr>
                 @endforeach
+                @if($collections->count() === 0)
+                    <tr>
+                        <td colspan="7" class="text-center"><em>None Found</em></td>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>

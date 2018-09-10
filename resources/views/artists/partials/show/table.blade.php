@@ -24,6 +24,11 @@
                     <td>{{ $card->token->confirmed_at->toDateString() }}</td>
                 </tr>
                 @endforeach
+                @if($cards->count() === 0)
+                    <tr>
+                        <td colspan="4" class="text-center"><em>No Cards</em></td>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>

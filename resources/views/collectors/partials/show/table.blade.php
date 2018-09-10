@@ -24,6 +24,11 @@
                     <td>{{ $balance->card->token->owner === $balance->address ? 'YES' : 'NO' }}</td>
                 </tr>
                 @endforeach
+                @if($balances->count() === 0)
+                    <tr>
+                        <td colspan="4" class="text-center"><em>None Found</em></td>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>
