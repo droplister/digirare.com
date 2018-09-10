@@ -16,6 +16,9 @@ class CardCollectorsController extends Controller
      */
     public function index(Request $request, Card $card)
     {
+        // Relations
+        $collections = $card->collections()->orderBy('primary', 'desc')->get();
+
         // Convenience
         $token = $card->token;
 
@@ -30,6 +33,6 @@ class CardCollectorsController extends Controller
         $last_match = $card->lastMatch();
 
         // Index View
-        return view('cards.collectors.index', compact('card', 'balances', 'dislikes', 'last_match', 'likes', 'token'));
+        return view('cards.collectors.index', compact('card', 'token', 'collections', 'likes', 'dislikes', 'balances', 'last_match'));
     }
 }
