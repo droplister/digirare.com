@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cache;
 use App\Traits\Linkable;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Balance;
@@ -60,7 +61,9 @@ class Collection extends Model
      */
     public function getCollectorsCountAttribute()
     {
-        return $this->balances->unique('address')->count();
+        return Cache::remember('collection_collectors_count_' . $this->slug, 1440, function() {
+            return $this->balances->unique('address')->count();
+        });
     }
 
     /**
