@@ -21,7 +21,7 @@
                     <th scope="row"><a href="{{ $balance->card->url }}">{{ $balance->card->name }}</a></th>
                     <td>{{ number_format($balance->quantity_normalized) }}</td>
                     <td>{{ number_format($balance->card->token->supply_normalized) }}</td>
-                    <td>{{ $balance->card->token->owner === $balance->address ? 'YES' : 'NO' }}/td>
+                    <td>{{ $balance->card->token->owner === $balance->address ? 'YES' : 'NO' }}</td>
                 </tr>
                 @endforeach
             </tbody>
