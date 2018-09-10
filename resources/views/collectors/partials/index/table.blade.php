@@ -1,8 +1,8 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Table View
-            <small class="ml-1 text-muted">{{ number_format($collectors->total()) }} Found</small>
+            Top 100
+            <small class="ml-1 text-muted">By {{ title_case($sort) }}</small>
         </span>
     </div>
     <div class="table-responsive">
@@ -11,7 +11,7 @@
                 <tr>
                     <th scope="col" style="width: 50px">#</th>
                     <th scope="col">Address</th>
-                    <th scope="col">Cards</th>
+                    <th scope="col">Unique Cards</th>
                     <th scope="col">First Card</th>
                     <th scope="col">First Seen</th>
                 </tr>

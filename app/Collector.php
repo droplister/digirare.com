@@ -5,6 +5,7 @@ namespace App;
 use App\Traits\Linkable;
 use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Address;
+use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Illuminate\Database\Eloquent\Model;
@@ -23,6 +24,16 @@ class Collector extends Model
         'xcp_core_credit_id', 
         'slug',
     ];
+
+    /**
+     * Trades Count
+     *
+     * @return string
+     */
+    public function getTradesCountAttribute()
+    {
+        return OrderMatch::where('tx0_address', '=', $this->xcp_core_address)->orWhere('tx1_address', '=', $this->xcp_core_address)->count();
+    }
 
     /**
      * Address
@@ -53,7 +64,6 @@ class Collector extends Model
     {
         return $this->belongsTo(Credit::class, 'xcp_core_credit_id', 'id');
     }
-
 
     /**
      * Get the route key for the model.

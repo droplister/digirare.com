@@ -14,7 +14,7 @@
                 @foreach($orders as $order)
                 <tr>
                     <td>
-                        {{ $order->trading_price_normalized }}
+                        {{ number_format($order->trading_price_normalized, 8) }}
                         <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
                             {{ explode('/', $order->trading_pair_normalized)[1] }}
                         </a>
