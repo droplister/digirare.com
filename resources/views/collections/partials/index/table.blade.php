@@ -25,7 +25,7 @@
                     <td><a href="{{ $collection->url }}">{{ $collection->name }}</a></td>
                     <td><a href="{{ route('orders.index', ['collection' => $collection->slug, 'currency' => $collection->currency]) }}">{{ $collection->currency }}</a></td>
                     <td>{{ number_format($collection->cards_count) }}</td>
-                    <td>{{ number_format($collection->balances->unique('address')->count()) }}</td>
+                    <td>{{ number_format($collection->collectors_count) }}</td>
                     <td>{{ number_format($collection->balances_count) }}</td>
                     <td>{{ $collection->launched_at->toDateString() }}</td>
                 </tr>

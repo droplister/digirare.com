@@ -10,6 +10,7 @@
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-image"></i></small>
                     Collections
                 </h1>
+                @include('collections.partials.index.filter')
                 @include('collections.partials.index.table')
             </div>
         </div>

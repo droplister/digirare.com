@@ -11,7 +11,7 @@
                 <tr>
                     <th scope="col" style="width: 50px">#</th>
                     <th scope="col">Address</th>
-                    <th scope="col">Quantity</th>
+                    <th scope="col">Balance</th>
                     <th scope="col">Last Change</th>
                 </tr>
             </thead>

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Cache;
 use App\Collection;
 use Illuminate\Http\Request;
 
@@ -15,9 +16,16 @@ class CollectionsController extends Controller
      */
     public function index(Request $request)
     {
-        $collections = Collection::with('balances')->withCount('balances', 'cards')->orderBy('balances_count', 'desc')->get();
+        // Sorting
+        $sort = $request->input('sort', 'balances');
 
-        return view('collections.index', compact('collections'));
+        // Collections
+        $collections = Cache::remember('collections_index_' . $sort, 1440, function () use ($sort) {
+            return $this->getCollections($sort);
+        });
+
+        // Index View
+        return view('collections.index', compact('collections', 'sort'));
     }
 
     /**
@@ -32,5 +40,37 @@ class CollectionsController extends Controller
         $cards = $collection->cards()->withCount('balances')->paginate(20);
 
         return view('collections.show', compact('collection', 'cards'));
+    }
+
+    /**
+     * Get Cards
+     * 
+     * @param  string  $sort
+     * @return \App\Card
+     */
+    private function getCollections($sort)
+    {
+        $collections = Collection::with('balances')->withCount('balances', 'cards');
+
+        switch($sort)
+        {
+            case 'balances':
+                $collections = $collections->orderBy('balances_count', 'desc')->get();
+                break;
+            case 'collectors':
+                $collections = $collections->get()->sortByDesc('collectors_count');
+                break;
+            case 'cards':
+                $collections = $collections->orderBy('cards_count', 'desc')->get();
+                break;
+            case 'newest':
+                $collections = $collections->latest('launched_at', 'desc')->get();
+                break;
+            default:
+                $collections = $collections->orderBy('balances_count', 'desc')->get();
+                break;
+        }
+
+        return $collections;
     }
 }

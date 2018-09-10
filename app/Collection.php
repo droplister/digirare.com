@@ -54,6 +54,16 @@ class Collection extends Model
     ];
 
     /**
+     * Collectors Count
+     *
+     * @return string
+     */
+    public function getCollectorsCountAttribute()
+    {
+        return $this->balances->unique('address')->count();
+    }
+
+    /**
      * Artists
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
