@@ -31,11 +31,15 @@
                     </td>
                     <td>
                         {{ $match->trading_price_normalized }}
-                        <a href="{{ route('orders.index', ['collection' => $card->primaryCollection()->first()->slug, 'currency' => explode('/', explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1]]) }}">{{ explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1] }}</a>
+                        <a href="{{ route('orders.index', ['collection' => $card->primaryCollection()->first()->slug, 'currency' => explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1]]) }}">
+                            {{ explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1] }}
+                        </a>
                     </td>
                     <td>
                         {{ $match->forward_asset === $card->name ? $match->backward_quantity_normalized : $match->forward_quantity_normalized }}
-                        <a href="{{ route('orders.index', ['collection' => $card->primaryCollection()->first()->slug, 'currency' => explode('/', explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1]]) }}">{{ explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1] }}</a>
+                        <a href="{{ route('orders.index', ['collection' => $card->primaryCollection()->first()->slug, 'currency' => explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1]]) }}">
+                            {{ explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1] }}
+                        </a>
                     </td>
                     <td><a href="{{ route('collectors.show', ['collector' => $match->tx1_address]) }}">{{ str_limit($match->tx1_address, 8) }}</a></td>
                     <td>{{ $match->confirmed_at->diffForHumans() }}</td>
