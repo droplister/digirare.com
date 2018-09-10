@@ -10,6 +10,8 @@
                 @include('artists.partials.show.filter')
                 @if($view === 'table')
                     @include('artists.partials.show.table')
+                @elseif($view === 'profile')
+                    @include('artists.partials.show.profile')
                 @else
                     @include('artists.partials.show.gallery')
                 @endif

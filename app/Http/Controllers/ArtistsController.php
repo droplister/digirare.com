@@ -42,7 +42,7 @@ class ArtistsController extends Controller
     public function show(Request $request, Artist $artist)
     {
         // View File
-        $view = $request->has('view') ? 'table' : 'gallery';
+        $view = $request->input('view', 'gallery');
 
         // Get Cards
         $cards = $artist->cards()->withCount('balances')

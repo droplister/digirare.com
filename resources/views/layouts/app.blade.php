@@ -144,8 +144,8 @@
             <small class="d-block">
                 &copy; 2018
                 <a href="https://familymediallc.com/" class="text-muted mr-2" target="_blank">Family Media LLC</a>
-                <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-2">Disclaimer</a>
-                <a href="{{ route('pages.privacy') }}" class="text-muted mr-2">Privacy</a>
+                <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-1">Disclaimer</a>
+                <a href="{{ route('pages.privacy') }}" class="text-muted mr-1">Privacy</a>
                 <a href="{{ route('pages.terms') }}" class="text-muted">Terms</a>
             </small>
         </footer>
