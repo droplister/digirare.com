@@ -13,7 +13,7 @@
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
             <i class="fa fa-money text-dark" aria-hidden="true"></i>
-            Currency
+            Market
         </p>
         @if($last_match)
         <p class="mb-0">
