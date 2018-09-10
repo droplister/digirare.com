@@ -37,7 +37,7 @@
                         {{ number_format($order->trading_price_normalized, 8) }}
                         @if(! $request->has('currency'))                    
                             @if($request->has('card'))
-                                <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null)]) }}">
+                                <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null), 'card' => $request->input('card', null)]) }}">
                                     {{ explode('/', $order->trading_pair_normalized)[1] }}
                                 </a>
                             @else
