@@ -41,7 +41,9 @@ class CollectorsController extends Controller
         $view = $request->has('view') ? 'table' : 'gallery';
 
         // Balances
-        $balances = $collector->cardBalances()->with('card')->paginate(20);
+        $balances = $collector->cardBalances()->with('card')
+            ->orderBy('quantity', 'desc')
+            ->paginate(20);
 
         // Show View
         return view('collectors.show', compact('collector', 'balances', 'view'));
