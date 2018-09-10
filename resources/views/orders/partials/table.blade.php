@@ -28,7 +28,7 @@
                                 {{ in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name }}
                             </a>
                         @else
-                            <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => $request->input('currency', null), 'collector' => $request->input('collector', null)]) }}">
+                            <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => $request->input('currency', null), 'collector' => $request->input('collector', null), 'collection' => $request->input('collection', null)]) }}">
                                 {{ in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name }}
                             </a>
                         @endif
@@ -37,11 +37,11 @@
                         {{ number_format($order->trading_price_normalized, 8) }}
                         @if(! $request->has('currency'))                    
                             @if($request->has('card'))
-                                <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null), 'card' => $request->input('card', null)]) }}">
+                                <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null), 'card' => $request->input('card', null), 'collection' => $request->input('collection', null)]) }}">
                                     {{ explode('/', $order->trading_pair_normalized)[1] }}
                                 </a>
                             @else
-                                <a href="{{ route('orders.index', ['currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null)]) }}">
+                                <a href="{{ route('orders.index', ['currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null), 'collection' => $request->input('collection', null)]) }}">
                                     {{ explode('/', $order->trading_pair_normalized)[1] }}
                                 </a>
                             @endif
@@ -53,11 +53,11 @@
                         {{ in_array($order->getAssetModel->display_name, $currencies) ? number_format($order->give_remaining_normalized * $order->trading_price_normalized, 8) : number_format($order->get_remaining_normalized * $order->trading_price_normalized, 8) }}
                         @if(! $request->has('currency'))                    
                             @if(! $request->has('card'))
-                                <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
+                                <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null)]) }}">
                                     {{ explode('/', $order->trading_pair_normalized)[1] }}
                                 </a>
                             @else
-                                <a href="{{ route('orders.index', ['currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
+                                <a href="{{ route('orders.index', ['currency' => explode('/', $order->trading_pair_normalized)[1], 'collection' => $request->input('collection', null), 'collector' => $request->input('collector', null)]) }}">
                                     {{ explode('/', $order->trading_pair_normalized)[1] }}
                                 </a>
                             @endif
@@ -71,7 +71,7 @@
                                 {{ str_limit($order->source, 8) }}
                             </a>
                         @else
-                            <a href="{{ route('orders.index', ['card' => $request->input('card', null), 'collector' => $order->source, 'currency' => $request->input('currency', null)]) }}">
+                            <a href="{{ route('orders.index', ['card' => $request->input('card', null), 'collector' => $order->source, 'collection' => $request->input('collection', null), 'currency' => $request->input('currency', null)]) }}">
                                 {{ str_limit($order->source, 8) }}
                             </a>
                         @endif
