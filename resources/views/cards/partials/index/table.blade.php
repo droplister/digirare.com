@@ -32,7 +32,7 @@
                     <td><a href="{{ route('cards.collectors.index', ['card' => $card->slug]) }}">{{ number_format($card->balances_count) }}</a></td>
                     <td><a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">{{ number_format($card->trades_count) }}</a></td>
                     <td>{{ $card->lastMatch() ? $card->lastMatch()->confirmed_at->toDateString() : 'N/A' }}</td>
-                    <td>{{ is_array($card->token) ? $card->token['confirmed_at'] : $card->token->confirmed_at->toDateString() }}</td>
+                    <td>{{ is_array($card->token) ? $card->token['confirmed_at'] : $card->token }}</td>
                 </tr>
                 @endforeach
             </tbody>
