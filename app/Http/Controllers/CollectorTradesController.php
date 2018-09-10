@@ -19,7 +19,7 @@ class CollectorTradesController extends Controller
     public function index(Request $request, Collector $collector)
     {
         // Buys & Sells
-        $order_matches = Cache::remember('collector_trdes_index_' . $collector->slug, 60, function () use ($token) {
+        $order_matches = Cache::remember('collector_trdes_index_' . $collector->slug, 60, function () use ($collector) {
             return OrderMatch::where('tx0_address', '=', $collector->xcp_core_address)
                 ->orWhere('tx1_address', '=', $collector->xcp_core_address)
                 ->orderBy('confirmed_at', 'desc')
