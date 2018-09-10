@@ -123,6 +123,16 @@ class Card extends Model
     }
 
     /**
+     * Features
+     * 
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function features()
+    {
+        return $this->hasMany(Feature::class);
+    }
+
+    /**
      * Order Matches (Backward)
      * 
      * @return \Illuminate\Database\Eloquent\Relations\HasMany

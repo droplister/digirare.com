@@ -46,7 +46,8 @@ class CollectionsController extends Controller
 
         // Get Cards
         $cards = $collection->cards()
-            ->withCount('balances')
+            ->withCount('balances', 'features')
+            ->orderBy('features_count', 'desc')
             ->orderBy('balances_count', 'desc')
             ->paginate(20);
 
