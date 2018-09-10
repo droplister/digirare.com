@@ -9,4 +9,9 @@
             Table View
         </a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" href="{{ route('orders.index', ['collector' => $collector->slug]) }}">
+            DEX Orders
+        </a>
+    </li>
 </ul>
