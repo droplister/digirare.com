@@ -24,22 +24,22 @@
                     <th scope="row">{{ $order_matches->count() - $loop->index }}.</th>
                     <td>
                     @if($card->token->divisible)
-                        {{ $match->forward_asset === $card->name ? $match->forward_quantity_normalized : $match->backward_quantity_normalized }}
+                        {{ number_format($match->forward_asset === $card->name ? $match->forward_quantity_normalized : $match->backward_quantity_normalized, 8) }}
                     @else
-                        {{ $match->forward_asset === $card->name ? number_format($match->forward_quantity_normalized) : number_format($match->backward_quantity_normalized) }}
+                        {{ number_format($match->forward_asset === $card->name ? $match->forward_quantity_normalized : $match->backward_quantity_normalized) }}
                     @endif
                         <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1]]) }}">
                             {{ $card->name }}
                         </a>
                     </td>
                     <td>
-                        {{ $match->trading_price_normalized }}
+                        {{ number_format($match->trading_price_normalized, 8) }}
                         <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1]]) }}">
                             {{ explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1] }}
                         </a>
                     </td>
                     <td>
-                        {{ $match->forward_asset === $card->name ? $match->backward_quantity_normalized : $match->forward_quantity_normalized }}
+                        {{ number_format($match->forward_asset === $card->name ? $match->backward_quantity_normalized : $match->forward_quantity_normalized, 8) }}
                         <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1]]) }}">
                             {{ explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1] }}
                         </a>
