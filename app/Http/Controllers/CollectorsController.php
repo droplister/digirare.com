@@ -63,7 +63,7 @@ class CollectorsController extends Controller
                 $collectors = $collectors->orderBy('card_balances_count', 'desc')->take(100)->get();
                 break;
             case 'trades':
-                $collectors = $collectors->get()->sortBy(function ($collector) {
+                $collectors = $collectors->get()->sortByDesc(function ($collector) {
                     return $collector->trades_count;
                 })->splice(0, 100);
                 break;
