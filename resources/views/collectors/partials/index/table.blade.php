@@ -12,6 +12,7 @@
                     <th scope="col" style="width: 50px">#</th>
                     <th scope="col">Address</th>
                     <th scope="col">Unique Cards</th>
+                    <th scope="col">Trades</th>
                     <th scope="col">First Card</th>
                     <th scope="col">First Seen</th>
                 </tr>
@@ -22,6 +23,7 @@
                     <th scope="row">{{ $loop->iteration }}.</th>
                     <td><a href="{{ $collector->url }}">{{ $collector->xcp_core_address }}</a></td>
                     <td>{{ number_format($collector->card_balances_count) }}</td>
+                    <td>{{ number_format($collector->trades_count) }}</td>
                     <td><a href="{{ route('cards.show', ['card' => $collector->firstCard->asset]) }}">{{ $collector->firstCard->asset }}</a></td>
                     <td>{{ $collector->firstCard->confirmed_at->toDateString() }}</td>
                 </tr>
