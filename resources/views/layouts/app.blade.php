@@ -143,7 +143,7 @@
             <a href="https://t.me/digirare" target="_blank">Telegram</a>
             <small class="d-block">
                 &copy; 2018
-                <a href="https://familymediallc.com/" class="text-muted mr-4" target="_blank">Family Media LLC</a>
+                <a href="https://familymediallc.com/" class="text-muted mr-3" target="_blank">Family Media LLC</a>
                 <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-2">Disclaimer</a>
                 <a href="{{ route('pages.privacy') }}" class="text-muted mr-2">Privacy</a>
                 <a href="{{ route('pages.terms') }}" class="text-muted">Terms</a>
