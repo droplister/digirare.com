@@ -15,7 +15,7 @@
                 <tr>
                     <td>
                         {{ $order->trading_price_normalized }}
-                        <a href="{{ route('markets.show', ['market' => str_replace('/', '_', $last_match->trading_pair_normalized)]) }}">
+                        <a href="{{ route('orders.index', ['collection' => $card->primaryCollection()->first()->slug, currency' => str_replace('/', '_', $last_match->trading_pair_normalized)]) }}">
                             {{ explode('/', $last_match->trading_pair_normalized)[1] }}
                         </a>
                     </td>
