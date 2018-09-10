@@ -67,7 +67,7 @@ class CardsController extends Controller
                     ->where('expire_index', '>', $block->block_index)
                     ->orderBy('expire_index', 'asc')
                     ->get()
-                    ->sortByDesc('trading_price_normalized');
+                    ->sortBy('trading_price_normalized');
 
         // Show View
         return view('cards.show', compact('card', 'token', 'artists', 'balances', 'collections', 'likes', 'dislikes', 'last_match', 'buy_orders', 'sell_orders'));
