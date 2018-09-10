@@ -122,7 +122,7 @@ class OrdersController extends Controller
                 ->orderBy('expire_index', 'asc')
                 ->get();
         }
-        if($request->has('currency') && $request->has('action'))
+        elseif($request->has('currency') && $request->has('action'))
         {
             // Buying/Selling
             if($request->action === 'buying')
