@@ -75,6 +75,6 @@ class CollectorsController extends Controller
                 break;
         }
 
-        return $collections;
+        return $collectors;
     }
 }
