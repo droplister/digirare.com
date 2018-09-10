@@ -12,7 +12,7 @@
     @if($artist->content)
         <li class="nav-item">
             <a class="nav-link{{ $view === 'profile' ? ' active' : '' }}" href="{{ route('artists.show', ['artist' => $artist->slug, 'view' => 'profile']) }}">
-                Artist Info
+                Artist Profile
             </a>
         </li>
     @endif
