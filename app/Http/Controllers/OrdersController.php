@@ -85,6 +85,30 @@ class OrdersController extends Controller
                     ->orderBy('expire_index', 'asc');
             }
         }
+        elseif($request->has('collector') && $request->has('action'))
+        {
+            // Buying/Selling
+            if($request->action === 'buying')
+            {
+                $orders = Order::with('getAssetModel', 'giveAssetModel')
+                    ->whereIn('get_asset', $assets)
+                    ->where('source', '=', $request->collector)
+                    ->where('give_asset', '=', $request->currency)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc');
+            }
+            else
+            {
+                $orders = Order::with('getAssetModel', 'giveAssetModel')
+                    ->whereIn('give_asset', $assets)
+                    ->where('source', '=', $request->collector)
+                    ->where('get_asset', '=', $request->currency)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc');
+            }
+        }
         elseif($request->has('currency') && $request->has('collector'))
         {
             $orders = Order::with('getAssetModel', 'giveAssetModel')
