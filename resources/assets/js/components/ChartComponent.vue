@@ -71,7 +71,7 @@ export default {
     $_chart_update() {
       var api = this.source
       var self = this
-      $.get(api, function(data) {
+      $.get(api, function (data) {
         self.chartOptions.series.push({
           name: self.label,
           data: data.data,

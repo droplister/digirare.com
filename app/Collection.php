@@ -61,7 +61,7 @@ class Collection extends Model
      */
     public function getCollectorsCountAttribute()
     {
-        return Cache::remember('collection_collectors_count_' . $this->slug, 1440, function() {
+        return Cache::remember('collection_collectors_count_' . $this->slug, 1440, function () {
             return $this->balances->unique('address')->count();
         });
     }

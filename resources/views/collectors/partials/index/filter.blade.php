@@ -1,7 +1,7 @@
 <ul class="nav nav-tabs border-bottom-0">
     <li class="nav-item">
         <a class="nav-link{{ $sort === 'cards' ? ' active' : '' }}" href="{{ route('collectors.index') }}">
-            Unique Cards
+            Cards
         </a>
     </li>
     <li class="nav-item">
@@ -10,8 +10,13 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link{{ $sort === 'burned' ? ' active' : '' }}" href="{{ route('collectors.index', ['sort' => 'burned']) }}">
-            Burned
+        <a class="nav-link{{ $sort === 'burned' ? ' active' : '' }}" href="{{ route('collectors.index', ['sort' => 'newest']) }}">
+            Newest
+        </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link{{ $sort === 'burned' ? ' active' : '' }}" href="{{ route('collectors.index', ['sort' => 'oldest']) }}">
+            Oldest
         </a>
     </li>
 </ul>

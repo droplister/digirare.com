@@ -67,10 +67,11 @@ class CollectorsController extends Controller
                     return $collector->trades_count;
                 })->splice(0, 100);
                 break;
-            case 'burned':
-                $collectors = $collectors->whereHas('address', function ($address) {
-                    return $address->where('burn', '=', 1);
-                })->orderBy('card_balances_count', 'desc')->take(100)->get();
+            case 'newest':
+                $collectors = $collectors->latest('created_at')->take(100)->get();
+                break;
+            case 'oldest':
+                $collectors = $collectors->oldest('created_at')->take(100)->get();
                 break;
             default:
                 $collectors = $collectors->orderBy('card_balances_count', 'desc')->take(100)->get();
