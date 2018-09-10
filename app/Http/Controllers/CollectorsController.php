@@ -68,7 +68,9 @@ class CollectorsController extends Controller
                 })->splice(0, 100);
                 break;
             case 'burned':
-                $collectors = $collectors->where('burn', '=', 1)->orderBy('card_balances_count', 'desc')->take(100)->get();
+                $collectors = $collectors->whereHas('address', function ($address) {
+                    return $address->where('burn', '=', 1);
+                })->orderBy('card_balances_count', 'desc')->take(100)->get();
                 break;
             default:
                 $collectors = $collectors->orderBy('card_balances_count', 'desc')->take(100)->get();
