@@ -1,8 +1,8 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Table View
-            <small class="ml-1 text-muted">{{ number_format($collections->count()) }} Found</small>
+            Sort By
+            <small class="ml-1 text-muted">{{ $sort === 'newest' ? 'Newest' : 'Most ' . ucfirst($sort) }}/small>
         </span>
     </div>
     <div class="table-responsive">
