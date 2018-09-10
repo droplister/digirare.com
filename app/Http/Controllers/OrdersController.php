@@ -60,7 +60,7 @@ class OrdersController extends Controller
             // Buying/Selling
             if($request->action === 'buying')
             {
-                $orders = Order::whereIn('get_asset', [$asset->asset_name, $asset->asset_longname])
+                $orders = Order::whereIn('get_asset', [$asset->display_name])
                     ->where('give_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index)
@@ -69,7 +69,7 @@ class OrdersController extends Controller
             }
             else
             {
-                $orders = Order::whereIn('give_asset', [$asset->asset_name, $asset->asset_longname])
+                $orders = Order::whereIn('give_asset', [$asset->display_name])
                     ->where('get_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index)
@@ -87,7 +87,7 @@ class OrdersController extends Controller
             // Buying/Selling
             if($request->action === 'buying')
             {
-                $orders = Order::whereIn('get_asset', [$asset->asset_name, $asset->asset_longname])
+                $orders = Order::whereIn('get_asset', [$asset->display_name])
                     ->whereIn('give_asset', $currencies)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index)
@@ -96,7 +96,7 @@ class OrdersController extends Controller
             }
             else
             {
-                $orders = Order::whereIn('give_asset', [$asset->asset_name, $asset->asset_longname])
+                $orders = Order::whereIn('give_asset', [$asset->display_name])
                     ->whereIn('get_asset', $currencies)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index)
@@ -111,11 +111,11 @@ class OrdersController extends Controller
                 ->orWhere('asset_longname', '=', $request->card)
                 ->first();
 
-            $orders = Order::whereIn('get_asset', [$asset->asset_name, $asset->asset_longname])
+            $orders = Order::whereIn('get_asset', [$asset->display_name])
                 ->where('give_asset', '=', $request->currency)
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index)
-                ->orWhereIn('give_asset', [$asset->asset_name, $asset->asset_longname])
+                ->orWhereIn('give_asset', [$asset->display_name])
                 ->where('get_asset', '=', $request->currency)
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index)
