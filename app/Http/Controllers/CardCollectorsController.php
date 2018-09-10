@@ -16,13 +16,20 @@ class CardCollectorsController extends Controller
      */
     public function index(Request $request, Card $card)
     {
+        // Convenience
         $token = $card->token;
-        $last_match = $card->lastMatch();
+
+        // Sentiment
         $likes = $card->likes()->count();
         $dislikes = $card->dislikes()->count();
-        $collections = $card->collections()->orderBy('primary', 'desc')->get();
-        $balances = $card->balances()->orderBy('quantity', 'desc')->get();
 
-        return view('cards.collectors.show', compact('card', 'balances', 'collections', 'dislikes', 'last_match', 'likes', 'token'));
+        // Collectors
+        $balances = $card->balances()->orderBy('quantity', 'desc')->paginate(100);
+
+        // Last trade
+        $last_match = $card->lastMatch();
+
+        // Index View
+        return view('cards.collectors.index', compact('card', 'balances', 'dislikes', 'last_match', 'likes', 'token'));
     }
 }

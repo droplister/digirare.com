@@ -2,7 +2,7 @@
     <div class="card-header">
         <span class="lead font-weight-bold">
             Collectors
-            <small class="ml-1 text-muted">{{ number_format($balances->count()) }} Found</small>
+            <small class="ml-1 text-muted">{{ number_format($balances->total()) }} Found</small>
         </span>
     </div>
     <div class="table-responsive">
@@ -20,7 +20,7 @@
                 <tr>
                     <th scope="row">{{ $loop->iteration }}.</th>
                     <td><a href="{{ route('collectors.show', ['collector' => $balance->address]) }}">{{ $balance->address }}</a></td>
-                    <td>{{ $token && ! $token->divisible ? number_format($balance->quantity_normalized) : $balance->quantity_normalized }}</td>
+                    <td>{{ $token && ! $token->divisible ? number_format($balance->quantity_normalized) : number_format($balance->quantity_normalized, 8) }}</td>
                     <td>{{ $balance->confirmed_at->toDateString() }}</td>
                 </tr>
                 @endforeach
@@ -28,3 +28,4 @@
         </table>
     </div>
 </div>
+{!! $balances->links() !!}
