@@ -13,7 +13,8 @@
                     <th scope="col">Quantity</th>
                     <th scope="col">Price</th>
                     <th scope="col">Total</th>
-                    <th scope="col">Source</th>
+                    <th scope="col">Buyer</th>
+                    <th scope="col">Seller</th>
                     <th scope="col">Traded</th>
                 </tr>
             </thead>
@@ -43,7 +44,16 @@
                             {{ explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1] }}
                         </a>
                     </td>
-                    <td><a href="{{ route('collectors.show', ['collector' => $match->tx1_address]) }}">{{ str_limit($match->tx1_address, 8) }}</a></td>
+                    <td>
+                        <a href="{{ route('collectors.show', ['collector' => (explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx0_address : $match->tx1_address]) }}">
+                            {{ str_limit((explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx0_address : $match->tx1_address, 8) }}
+                        </a>
+                    </td>
+                    <td>
+                        <a href="{{ route('collectors.show', ['collector' => $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address]) }}">
+                            {{ str_limit($match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address, 8) }}
+                        </a>
+                    </td>
                     <td>{{ $match->confirmed_at->diffForHumans() }}</td>
                 </tr>
                 @endforeach
