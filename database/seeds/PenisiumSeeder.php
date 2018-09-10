@@ -42,6 +42,9 @@ class PenisiumSeeder extends Seeder
             $chunk = explode('.', end($chunk));
             $name = strtoupper($chunk[0]);
 
+            // Edge Case
+            if($name === 'ANTONTAUN') $name = 'THEANTONTAUN';
+
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($name);
 

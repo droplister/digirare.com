@@ -73,7 +73,7 @@ class UpdateMafiaWars implements ShouldQueue
                 if(in_array($data['asset'], [$this->collection->currency])) continue;
             
                 // The Asset
-                $xcp_core_asset_name = $this->getAssetName($data['asset']);
+                $xcp_core_asset_name = $this->getAssetName(trim($data['asset']);
 
                 // Image URL
                 $image_url = $this->getImageUrl($data['image'], $this->override);
@@ -82,7 +82,7 @@ class UpdateMafiaWars implements ShouldQueue
                 $meta_data = $this->getMeta($data);
 
                 // Creation
-                $card = $this->firstOrCreateCard($xcp_core_asset_name, $data['asset'], $meta_data);
+                $card = $this->firstOrCreateCard($xcp_core_asset_name, trim($data['asset']), $meta_data);
 
                 // Relation
                 $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
