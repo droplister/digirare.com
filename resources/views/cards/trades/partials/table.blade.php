@@ -27,7 +27,9 @@
                     @else
                         {{ $match->forward_asset === $card->name ? number_format($match->forward_quantity_normalized) : number_format($match->backward_quantity_normalized) }}
                     @endif
-                        <a href="{{ $card->url }}">{{ $card->name }}</a>
+                        <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1]]) }}">
+                            {{ $card->name }}
+                        </a>
                     </td>
                     <td>
                         {{ $match->trading_price_normalized }}
