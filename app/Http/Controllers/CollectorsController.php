@@ -46,7 +46,7 @@ class CollectorsController extends Controller
             ->paginate(20);
 
         // Show View
-        return view('collectors.show', compact('collector', 'balances', 'view'));
+        return view('collectors.show', compact('collector', 'balances', 'view', 'request'));
     }
 
     /**

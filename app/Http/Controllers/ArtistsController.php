@@ -46,7 +46,7 @@ class ArtistsController extends Controller
             ->paginate(20);
 
         // Show View
-        return view('artists.show', compact('artist', 'cards', 'view'));
+        return view('artists.show', compact('artist', 'cards', 'view', 'request'));
     }
 
     /**
