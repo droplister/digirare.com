@@ -130,11 +130,11 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        <main class="pt-4">
             @yield('content')
         </main>
 
-        <footer class="container text-center text-muted pb-5">
+        <footer class="container text-center text-muted pb-4">
             <hr />
             <a href="{{ url('/') }}" class="mr-2">Home</a>
             <a href="{{ route('pages.investors') }}" class="mr-2">Investors</a>
