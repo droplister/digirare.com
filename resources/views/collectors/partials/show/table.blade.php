@@ -9,6 +9,7 @@
         <table class="table mb-0">
             <thead>
                 <tr>
+                    <th scope="col" style="width: 50px">#</th>
                     <th scope="col">Name</th>
                     <th scope="col">Balance</th>
                     <th scope="col">Supply</th>
@@ -18,7 +19,8 @@
             <tbody>
                 @foreach($balances as $balance)
                 <tr>
-                    <th scope="row"><a href="{{ $balance->card->url }}">{{ $balance->card->name }}</a></th>
+                    <th scope="row">{{ $loop->iteration + (($request->input('page', 1) - 1) * 100) }}.</th>
+                    <td><a href="{{ $balance->card->url }}">{{ $balance->card->name }}</a></td>
                     <td>{{ number_format($balance->quantity_normalized) }}</td>
                     <td>{{ number_format($balance->card->token->supply_normalized, $balance->card->token->divisible ? 8 : 0) }}</td>
                     <td>{{ $balance->card->token->owner === $balance->address ? 'YES' : 'NO' }}</td>
