@@ -23,10 +23,10 @@ class OrdersController extends Controller
         // Simple Validation
         $request->validate([
             'action' => 'sometimes|nullable|in:buying,selling',
-            'card' => 'sometimes|nullable|exists:cards,slug'
+            'card' => 'sometimes|nullable|exists:cards,slug',
             'collection' => 'sometimes|nullable|exists:collections,slug',
-            'collector' => 'sometimes|nullable|exists:addresses,address'
-            'currency' => 'sometimes|nullable|exists:collections,currency',
+            'collector' => 'sometimes|nullable|exists:addresses,address',
+            'currency' => 'sometimes|nullable|exists:collections,currency'
         ]);
 
         // All Card Asset Names
