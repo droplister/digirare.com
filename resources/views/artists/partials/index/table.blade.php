@@ -1,7 +1,7 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Table View
+            Portfolios
             <small class="ml-1 text-muted">{{ number_format($artists->count()) }} Found</small>
         </span>
     </div>

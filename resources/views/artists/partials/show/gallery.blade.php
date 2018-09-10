@@ -1,7 +1,7 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Gallery View
+            Portfolio
             <small class="ml-1 text-muted">{{ number_format($cards->total()) }} Found</small>
         </span>
     </div>

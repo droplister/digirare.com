@@ -97,12 +97,12 @@ class CardsController extends Controller
                 break;
             case 'oldest':
                 $cards = $cards->get()->sortBy(function($card) {
-                    return $card->token->confirmed_at;
+                    return $card->token['confirmed_at'];
                 })->splice(0, 99);
                 break;
             case 'newest':
                 $cards = $cards->get()->sortByDesc(function($card) {
-                    return $card->token->confirmed_at;
+                    return $card->token['confirmed_at'];
                 })->splice(0, 99);
                 break;
             default:
