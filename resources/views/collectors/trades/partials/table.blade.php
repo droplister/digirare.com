@@ -25,11 +25,7 @@
                         <tr>
                             <th scope="row">{{ $order_matches->count() - $loop->index }}.</th>
                             <td>
-                            @if($card->token->divisible)
                                 {{ number_format($match->forward_asset === explode('/', $match->trading_pair_normalized)[1] ? $match->forward_quantity_normalized : $match->backward_quantity_normalized, 8) }}
-                            @else
-                                {{ number_format($match->forward_asset === explode('/', $match->trading_pair_normalized)[1] ? $match->forward_quantity_normalized : $match->backward_quantity_normalized) }}
-                            @endif
                                 {{ explode('/', $match->trading_pair_normalized)[1] }}
                             </td>
                             <td>
