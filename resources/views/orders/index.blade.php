@@ -10,9 +10,35 @@
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-list"></i></small>
                     Big Board
                 </h1>
+                @if($request->has('card') || $request->has('collection') || $request->has('currency'))
+                <p class="text-muted">
+                    Filters: 
+                    @if($request->has('action'))
+                        <a href="{{ route('orders.index', $request->except('action')) }}" type="button" class="btn btn-danger btn-sm ml-3 py-0 px-1">
+                            x {{ ucfirst($request->has('action')) }}
+                        </a>
+                    @endif
+                    @if($request->has('collection'))
+                        <a href="{{ route('orders.index', $request->except('collection')) }}" type="button" class="btn btn-danger btn-sm ml-3 py-0 px-1">
+                            x {{ ucwords(str_replace('-', ' ', $request->has('collection'))) }}
+                        </a>
+                    @endif
+                    @if($request->has('currency'))
+                        <a href="{{ route('orders.index', $request->except('currency')) }}" type="button" class="btn btn-danger btn-sm ml-3 py-0 px-1">
+                            x {{ ucfirst($request->has('currency')) }}
+                        </a>
+                    @endif
+                    @if($request->has('card'))
+                        <a href="{{ route('orders.index', $request->except('card')) }}" type="button" class="btn btn-danger btn-sm ml-3 py-0 px-1">
+                            x {{ $request->has('card') }}
+                        </a>
+                    @endif
+
+                </p>
+                @endif
                 <ul class="nav nav-tabs border-bottom-0">
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Action</a>
+                        <a class="nav-link dropdown-toggle active" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Action</a>
                         <div class="dropdown-menu">
                             <a class="dropdown-item{{ $request->input('action', null) === null ? ' active' : '' }}" href="{{ route('orders.index', ['action' => null, 'collection' => $request->input('collection', null), 'currency' => $request->input('currency', null)]) }}">All</a>
                             <a class="dropdown-item{{ $request->input('action', null) === 'buying' ? ' active' : '' }}" href="{{ route('orders.index', ['action' => 'buying', 'collection' => $request->input('collection', null), 'currency' => $request->input('currency', null)]) }}">Buying</a>
@@ -38,15 +64,7 @@
                         </div>
                     </li>
                 </ul>
-                <div class="card mb-4">
-                    <div class="card-header">
-                        <span class="lead font-weight-bold">
-                            Table View
-                            <small class="ml-1 text-muted">{{ number_format($orders->count()) }} Found</small>
-                        </span>
-                    </div>
-                    @include('orders.partials.table')
-                </div>
+                @include('orders.partials.table')
             </div>
         </div>
     </div>
