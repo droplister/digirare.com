@@ -41,7 +41,7 @@
                 <div class="card mb-4">
                     <div class="card-header">
                         <span class="lead font-weight-bold">
-                            List View
+                            Table View
                             <small class="ml-1 text-muted">{{ number_format($orders->count()) }} Found</small>
                         </span>
                     </div>

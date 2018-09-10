@@ -34,3 +34,4 @@
         </tbody>
     </table>
 </div>
+{!! $orders->links() !!}
