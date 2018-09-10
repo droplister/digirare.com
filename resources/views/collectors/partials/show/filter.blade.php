@@ -9,9 +9,4 @@
             Table View
         </a>
     </li>
-    <li class="nav-item">
-        <a class="nav-link" href="{{ route('collectors.trades.index', ['collector' => $collector->slug]) }}">
-            Trades
-        </a>
-    </li>
 </ul>
