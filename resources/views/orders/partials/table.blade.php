@@ -71,7 +71,7 @@
                                 {{ str_limit($order->source, 8) }}
                             </a>
                         @else
-                            <a href="{{ route('orders.index', $request->merge(['collector' => $order->source])->all() }}">
+                            <a href="{{ route('orders.index', $request->merge(['collector' => $order->source])->all()) }}">
                                 {{ str_limit($order->source, 8) }}
                             </a>
                         @endif
