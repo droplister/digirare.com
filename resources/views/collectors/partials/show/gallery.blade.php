@@ -13,7 +13,9 @@
                     <img src="{{ $balance->card->primary_image_url }}" alt="{{ $balance->card->name }}" width="100%" />
                 </a>
                 <h6 class="card-title mt-3 mb-1">
-                    <strong>{{ $balance->card->name }}</strong>
+                    <a href="{{ $balance->card->url }}" class="font-weight-bold text-dark">
+                        {{ $balance->card->name }}
+                    </a>
                 </h6>
                 <p class="card-text">
                     Balance: {{ number_format($balance->quantity_normalized) }}
