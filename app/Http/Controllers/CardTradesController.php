@@ -27,7 +27,7 @@ class CardTradesController extends Controller
         $dislikes = $card->dislikes()->count();
 
         // Buys & Sells
-        $order_matches = Cache::remember('card_trdes_index_' . $card->slug, 60, function () use ($token) {
+        $order_matches = Cache::remember('card_trdes_index_' . $card->slug, 10, function () use ($token) {
             return $token ? $token->backwardOrderMatches->merge($token->forwardOrderMatches)->sortByDesc('confirmed_at') : collect([]);
         });
 
