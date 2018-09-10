@@ -93,17 +93,17 @@ class CardsController extends Controller
                 $cards = $cards->orderBy('balances_count', 'desc')->take(100)->get();
                 break;
             case 'trades':
-                $cards = $cards->get()->sortByDesc('trades_count')->splice(0, 99);
+                $cards = $cards->get()->sortByDesc('trades_count')->splice(0, 100);
                 break;
             case 'oldest':
                 $cards = $cards->get()->sortBy(function($card) {
                     return $card->token['confirmed_at'];
-                })->splice(0, 99);
+                })->splice(0, 100);
                 break;
             case 'newest':
                 $cards = $cards->get()->sortByDesc(function($card) {
                     return $card->token['confirmed_at'];
-                })->splice(0, 99);
+                })->splice(0, 100);
                 break;
             default:
                 $cards = $cards->orderBy('balances_count', 'desc')->take(100)->get();
