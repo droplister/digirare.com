@@ -6,7 +6,7 @@
         </p>
         @if($last_match)
         <p class="mb-0">
-            <a href="{{ route('orders.index' ['card' => $card->name, 'currency' => explode('/', $last_match->trading_pair_normalized)[1]]) }}">
+            <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => explode('/', $last_match->trading_pair_normalized)[1]]) }}">
                 {{ $last_match->trading_price_normalized }}
             </a>
         </p>
