@@ -10,12 +10,12 @@
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link{{ $sort === 'burned' ? ' active' : '' }}" href="{{ route('collectors.index', ['sort' => 'newest']) }}">
+        <a class="nav-link{{ $sort === 'newest' ? ' active' : '' }}" href="{{ route('collectors.index', ['sort' => 'newest']) }}">
             Newest
         </a>
     </li>
     <li class="nav-item">
-        <a class="nav-link{{ $sort === 'burned' ? ' active' : '' }}" href="{{ route('collectors.index', ['sort' => 'oldest']) }}">
+        <a class="nav-link{{ $sort === 'oldest' ? ' active' : '' }}" href="{{ route('collectors.index', ['sort' => 'oldest']) }}">
             Oldest
         </a>
     </li>
