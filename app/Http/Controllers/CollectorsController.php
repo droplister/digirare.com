@@ -64,7 +64,7 @@ class CollectorsController extends Controller
                 break;
             case 'trades':
                 $collectors = $collectors->get()->sortBy(function ($collector) {
-                    return $card->trades_count;
+                    return $collector->trades_count;
                 })->splice(0, 100);
                 break;
             case 'burned':
