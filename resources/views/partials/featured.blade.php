@@ -16,7 +16,9 @@
                     <img src="{{ $featured->card->primary_image_url }}" alt="{{ $featured->card->name }}" width="100%" />
                 </a>
                 <h6 class="card-title mt-3 mb-1">
-                    <strong>{{ $featured->card->name }}</strong>
+                    <a href="{{ $featured->card->url }}" class="font-weight-bold text-dark">
+                        {{ $featured->card->name }}
+                    </a>
                 </h6>
                 <p class="card-text">
                     Supply: {{ number_format($featured->card->token->supply_normalized) }}
