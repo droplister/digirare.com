@@ -50,7 +50,7 @@
                         </a>
                     </td>
                     <td>
-                        <a href="{{ route('collectors.show', ['collector' => $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address]) }}">
+                        <a href="{{ route('collectors.show', ['collector' => (explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address]) }}">
                             {{ str_limit($match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address, 8) }}
                         </a>
                     </td>
