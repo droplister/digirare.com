@@ -2,7 +2,7 @@
     <div class="card-header">
         <span class="lead font-weight-bold">
             Sort By
-            <small class="ml-1 text-muted">{{ $sort === 'newest' ? 'Newest' : 'Most ' . ucfirst($sort) }}/small>
+            <small class="ml-1 text-muted">{{ $sort === 'newest' ? 'Newest' : 'Most ' . ucfirst($sort) }}</small>
         </span>
     </div>
     <div class="table-responsive">
