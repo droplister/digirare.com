@@ -26,9 +26,9 @@
                             </div>
                             <div class="col-md-6 mb-4">
                                 <h3>Hello World</h3>
-                                <p>You wouldn't happen to be one of those investor-type people I keep hearing about all the time, would you? You know, those people with all that crypto money? Have you seen this? Have you heard of this? Anyways, if that's you, please <a href="mailto:familymediallc@gmail.com">get in touch</a>!</p>
+                                <p>You wouldn't happen to be one of those investor-type people I keep hearing about, would you? You know, those people with all that crypto money? Have you seen this? Have you heard of this? Anyways, if that's you, please <a href="mailto:familymediallc@gmail.com">get in touch</a>!</p>
                                 <h4>A bit about me... </h4>
-                                <p>My name is Dan. I live in NYC. People know me for my strong handshakes and next-level pitch decks. My core competency is pronouncing "GIF".</p>
+                                <p>My name is Dan. I live in NYC. I'm known for my strong handshakes and next-level pitch decks. My core competency is pronouncing "GIF".</p>
                                 <p><a href="https://t.me/droplister" class="btn btn-primary" target="_blank">Telegram Me</a></p>
                             </div>
                         </div>
