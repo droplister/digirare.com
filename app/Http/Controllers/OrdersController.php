@@ -23,7 +23,9 @@ class OrdersController extends Controller
         // Simple Validation
         $request->validate([
             'action' => 'sometimes|nullable|in:buying,selling',
+            'card' => 'sometimes|nullable|exists:cards,slug'
             'collection' => 'sometimes|nullable|exists:collections,slug',
+            'collector' => 'sometimes|nullable|exists:addresses,address'
             'currency' => 'sometimes|nullable|exists:collections,currency',
         ]);
 
@@ -49,75 +51,19 @@ class OrdersController extends Controller
             $assets = $collection->cards()->pluck('xcp_core_asset_name')->toArray();
         }
 
+        // Filter by Card
+        if($request->has('card'))
+        {
+            // Get Card Asset
+            $asset = Asset::where('asset_name', '=', $request->card)
+                ->orWhere('asset_longname', '=', $request->card)
+                ->first();
+
+            $assets = [$asset->asset_name];
+        }
+
         // Filters
-        if($request->has('card') && $request->has('currency') && $request->has('action'))
-        {
-            // Get Card Asset
-            $asset = Asset::where('asset_name', '=', $request->card)
-                ->orWhere('asset_longname', '=', $request->card)
-                ->first();
-
-            // Buying/Selling
-            if($request->action === 'buying')
-            {
-                $orders = Order::whereIn('get_asset', [$asset->asset_name])
-                    ->where('give_asset', '=', $request->currency)
-                    ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
-            }
-            else
-            {
-                $orders = Order::whereIn('give_asset', [$asset->asset_name])
-                    ->where('get_asset', '=', $request->currency)
-                    ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
-            }
-        }
-        elseif($request->has('card') && $request->has('action'))
-        {
-            // Get Card Asset
-            $asset = Asset::where('asset_name', '=', $request->card)
-                ->orWhere('asset_longname', '=', $request->card)
-                ->first();
-
-            // Buying/Selling
-            if($request->action === 'buying')
-            {
-                $orders = Order::whereIn('get_asset', [$asset->asset_name])
-                    ->whereIn('give_asset', $currencies)
-                    ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
-            }
-            else
-            {
-                $orders = Order::whereIn('give_asset', [$asset->asset_name])
-                    ->whereIn('get_asset', $currencies)
-                    ->where('status', '=', 'open')
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc');
-            }
-        }
-        elseif($request->has('card') && $request->has('currency'))
-        {
-            // Get Card Asset
-            $asset = Asset::where('asset_name', '=', $request->card)
-                ->orWhere('asset_longname', '=', $request->card)
-                ->first();
-
-            $orders = Order::whereIn('get_asset', [$asset->asset_name])
-                ->where('give_asset', '=', $request->currency)
-                ->where('status', '=', 'open')
-                ->where('expire_index', '>', $block->block_index)
-                ->orWhereIn('give_asset', [$asset->asset_name])
-                ->where('get_asset', '=', $request->currency)
-                ->where('status', '=', 'open')
-                ->where('expire_index', '>', $block->block_index)
-                ->orderBy('expire_index', 'asc');
-        }
-        elseif($request->has('currency') && $request->has('action'))
+        if($request->has('currency') && $request->has('action'))
         {
             // Buying/Selling
             if($request->action === 'buying')
@@ -157,23 +103,6 @@ class OrdersController extends Controller
                     ->orderBy('expire_index', 'asc');
             }
         }
-        elseif($request->has('card'))
-        {
-            // Get Card Asset
-            $asset = Asset::where('asset_name', '=', $request->card)
-                ->orWhere('asset_longname', '=', $request->card)
-                ->first();
-
-            $orders = Order::whereIn('get_asset', [$asset->asset_name])
-                ->whereIn('give_asset', $currencies)
-                ->where('status', '=', 'open')
-                ->where('expire_index', '>', $block->block_index)
-                ->orWhereIn('give_asset', [$asset->asset_name])
-                ->whereIn('get_asset', $currencies)
-                ->where('status', '=', 'open')
-                ->where('expire_index', '>', $block->block_index)
-                ->orderBy('expire_index', 'asc');
-        }
         elseif($request->has('currency'))
         {
             $orders = Order::whereIn('get_asset', $assets)
@@ -182,6 +111,18 @@ class OrdersController extends Controller
                 ->where('expire_index', '>', $block->block_index)
                 ->orWhereIn('give_asset', $assets)
                 ->where('get_asset', '=', $request->currency)
+                ->where('status', '=', 'open')
+                ->where('expire_index', '>', $block->block_index)
+                ->orderBy('expire_index', 'asc');
+        }
+        elseif($request->has('collector'))
+        {
+            $orders = Order::whereIn('get_asset', $assets)
+                ->where('source', '=', $request->collector)
+                ->where('status', '=', 'open')
+                ->where('expire_index', '>', $block->block_index)
+                ->orWhereIn('give_asset', $assets)
+                ->where('source', '=', $request->collector)
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index)
                 ->orderBy('expire_index', 'asc');

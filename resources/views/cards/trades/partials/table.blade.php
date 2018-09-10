@@ -45,12 +45,12 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('collectors.show', ['collector' => (explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx0_address : $match->tx1_address]) }}">
+                                <a href="{{ route('orders.index', ['collector' => (explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx0_address : $match->tx1_address]) }}">
                                     {{ str_limit((explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx0_address : $match->tx1_address, 8) }}
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('collectors.show', ['collector' => (explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address]) }}">
+                                <a href="{{ route('orders.index', ['collector' => (explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address]) }}">
                                     {{ str_limit((explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address, 8) }}
                                 </a>
                             </td>

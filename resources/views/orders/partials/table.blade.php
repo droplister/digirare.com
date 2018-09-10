@@ -71,7 +71,17 @@
                             {{ explode('/', $order->trading_pair_normalized)[1] }}
                         @endif
                     </td>
-                    <td><a href="{{ route('collectors.show', ['collector' => $order->source]) }}">{{ str_limit($order->source, 8) }}</a></td>
+                    <td>
+                        @if($request->has('collector'))
+                            <a href="{{ route('collectors.show', ['collector' => $order->source]) }}">
+                                {{ str_limit($order->source, 8) }}
+                            </a>
+                        @else
+                            <a href="{{ route('orders.index', ['collector' => $order->source]) }}">
+                                {{ str_limit($order->source, 8) }}
+                            </a>
+                        @endif
+                    </td>
                     <td>{{ $order->expire_index - $block->block_index }} {{ str_plural('block', $order->expire_index - $block->block_index) }}</td>
                 </tr>
                 @endforeach

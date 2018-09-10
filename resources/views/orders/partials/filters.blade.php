@@ -21,6 +21,11 @@
             x {{ title_case(str_replace('-', ' ', $request->collection)) }}
         </a>
     @endif
+    @if($request->has('collector'))
+        <a href="{{ route('orders.index', $request->except('collector')) }}" type="button" class="btn btn-danger btn-sm ml-3 py-0 px-1">
+            x {{ $request->collector) }}
+        </a>
+    @endif
 @else
     Filter <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" target="_blank" class="text-muted">Counterparty DEX</a> orders for collectibles.
 @endif
