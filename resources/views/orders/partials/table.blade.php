@@ -41,26 +41,34 @@
                     </td>
                     <td>
                         {{ number_format($order->trading_price_normalized, 8) }}
-                        @if($request->has('card') && ! $request->has('currency'))
-                            <a href="{{ route('orders.index', ['card' => in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset, 'currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
-                                {{ explode('/', $order->trading_pair_normalized)[1] }}
-                            </a>
+                        @if($request->has('currency'))                    
+                            @if($request->has('card'))
+                                <a href="{{ route('orders.index', ['card' => in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset, 'currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
+                                    {{ explode('/', $order->trading_pair_normalized)[1] }}
+                                </a>
+                            @else
+                                <a href="{{ route('orders.index', ['currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
+                                    {{ explode('/', $order->trading_pair_normalized)[1] }}
+                                </a>
+                            @endif
                         @else
-                            <a href="{{ route('orders.index', ['currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
-                                {{ explode('/', $order->trading_pair_normalized)[1] }}
-                            </a>
+                            {{ explode('/', $order->trading_pair_normalized)[1] }}
                         @endif
                     </td>
                     <td>
                         {{ in_array($order->get_asset, $currencies) ? number_format($order->give_remaining_normalized * $order->trading_price_normalized, 8) : number_format($order->get_remaining_normalized * $order->trading_price_normalized, 8) }}
-                        @if($request->has('card') && ! $request->has('currency'))
-                            <a href="{{ route('orders.index', ['card' => in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset, 'currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
-                                {{ explode('/', $order->trading_pair_normalized)[1] }}
-                            </a>
+                        @if($request->has('currency'))                    
+                            @if($request->has('card'))
+                                <a href="{{ route('orders.index', ['card' => in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset, 'currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
+                                    {{ explode('/', $order->trading_pair_normalized)[1] }}
+                                </a>
+                            @else
+                                <a href="{{ route('orders.index', ['currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
+                                    {{ explode('/', $order->trading_pair_normalized)[1] }}
+                                </a>
+                            @endif
                         @else
-                            <a href="{{ route('orders.index', ['currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
-                                {{ explode('/', $order->trading_pair_normalized)[1] }}
-                            </a>
+                            {{ explode('/', $order->trading_pair_normalized)[1] }}
                         @endif
                     </td>
                     <td><a href="{{ route('collectors.show', ['collector' => $order->source]) }}">{{ str_limit($order->source, 8) }}</a></td>
