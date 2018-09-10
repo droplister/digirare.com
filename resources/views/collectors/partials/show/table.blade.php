@@ -19,7 +19,7 @@
             <tbody>
                 @foreach($balances as $balance)
                 <tr>
-                    <th scope="row">{{ $loop->iteration + (($request->input('page', 1) - 1) * 100) }}.</th>
+                    <th scope="row">{{ $loop->iteration + (($request->input('page', 1) - 1) * 20) }}.</th>
                     <td><a href="{{ $balance->card->url }}">{{ $balance->card->name }}</a></td>
                     <td>{{ number_format($balance->quantity_normalized) }}</td>
                     <td>{{ number_format($balance->card->token->supply_normalized, $balance->card->token->divisible ? 8 : 0) }}</td>
