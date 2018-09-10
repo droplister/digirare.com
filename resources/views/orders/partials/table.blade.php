@@ -28,9 +28,15 @@
                             {{ in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset }}
                         </a>
                         @else
-                        <a href="{{ route('orders.index', ['card' => in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset]) }}">
-                            {{ in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset }}
-                        </a>
+                            @if($request->has('currency'))
+                                <a href="{{ route('orders.index', ['card' => in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset, 'currency' => explode('/', $order->trading_pair_normalized)[1]]) }}">
+                                    {{ in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset }}
+                                </a>
+                            @else
+                                <a href="{{ route('orders.index', ['card' => in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset]) }}">
+                                    {{ in_array($order->get_asset, $currencies) ? $order->give_asset : $order->get_asset }}
+                                </a>
+                            @endif
                         @endif
                     </td>
                     <td>
