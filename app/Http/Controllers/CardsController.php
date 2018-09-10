@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Card;
+use App\Feature;
 use Droplister\XcpCore\App\Block;
 use Droplister\XcpCore\App\Order;
 use Illuminate\Http\Request;
@@ -26,8 +27,11 @@ class CardsController extends Controller
             return $this->getCards($sort);
         });
 
+        // Featured
+        $features = Feature::highestBids()->with('card.token')->get();
+
         // Index View
-        return view('cards.index', compact('cards', 'sort'));
+        return view('cards.index', compact('cards', 'sort', 'features'));
     }
 
     /**
