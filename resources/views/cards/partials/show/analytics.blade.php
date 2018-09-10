@@ -41,7 +41,7 @@
             <i class="fa fa-handshake-o text-dark" aria-hidden="true"></i>
             Trades
         </p>
-        <p class="mb-0"><a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">{{ number_format($order_matches_count) }}</a></p>
+        <p class="mb-0"><a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">{{ number_format($card->trades_count) }}</a></p>
     </div>
 </div>
 <hr />

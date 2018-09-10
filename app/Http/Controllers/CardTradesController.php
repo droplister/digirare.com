@@ -18,26 +18,18 @@ class CardTradesController extends Controller
     public function index(Request $request, Card $card)
     {
         // Relations
-        $collections = $card->collections()->orderBy('primary', 'desc')->get();
-
-        // Convenience
         $token = $card->token;
+        $last_match = $card->lastMatch();
+        $collections = $card->collections()->orderBy('primary', 'desc')->get();
 
         // Sentiment
         $likes = $card->likes()->count();
         $dislikes = $card->dislikes()->count();
 
         // Buys & Sells
-        $order_matches = Cache::remember('card_trdes_index_' . $card->slug, 60, function () use ($card) {
-            // Token Info
-            $token = $card->token;
-
-            // Merge Data
+        $order_matches = Cache::remember('card_trdes_index_' . $card->slug, 60, function () use ($token) {
             return $token ? $token->backwardOrderMatches->merge($token->forwardOrderMatches)->sortByDesc('confirmed_at') : collect([]);
         });
-
-        // Latest Trade
-        $last_match = $card->lastMatch();
 
         // Index View
         return view('cards.trades.index', compact('card', 'token', 'collections', 'likes', 'dislikes', 'last_match', 'order_matches'));

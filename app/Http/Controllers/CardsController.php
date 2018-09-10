@@ -39,22 +39,21 @@ class CardsController extends Controller
      */
     public function show(Request $request, Card $card)
     {
+        // Relations
         $token = $card->token;
-
         $last_match = $card->lastMatch();
-
-        $likes = $card->likes()->count();
-
-        $dislikes = $card->dislikes()->count();
-
         $balances = $card->balances()->paginate(20);
-        
-        $artists = $card->artists()->orderBy('primary', 'desc')->get();
-        
+        $artists = $card->artists()->orderBy('primary', 'desc')->get();        
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
 
+        // Sentiment
+        $likes = $card->likes()->count();
+        $dislikes = $card->dislikes()->count();
+
+        // Last Block
         $block = Block::latest('block_index')->first();
         
+        // Buy Orders
         $buy_orders = Order::whereIn('get_asset', [$card->xcp_core_asset_name])
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index)
@@ -62,17 +61,16 @@ class CardsController extends Controller
                     ->get()
                     ->sortByDesc('trading_price_normalized');
 
+        // Sell Orders
         $sell_orders = Order::whereIn('give_asset', [$card->xcp_core_asset_name])
-                    ->where('get_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index)
                     ->orderBy('expire_index', 'asc')
                     ->get()
                     ->sortByDesc('trading_price_normalized');
-        
-        $order_matches_count = $token ? $token->backwardOrderMatches->merge($token->forwardOrderMatches)->count() : 0;
 
-        return view('cards.show', compact('card', 'artists', 'balances', 'buy_orders', 'collections', 'dislikes', 'last_match', 'likes', 'order_matches_count', 'sell_orders', 'token'));
+        // Show View
+        return view('cards.show', compact('card', 'token', 'artists', 'balances', 'collections', 'likes', 'dislikes', 'last_match', 'buy_orders', 'sell_orders'));
     }
 
 
