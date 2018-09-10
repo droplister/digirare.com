@@ -17,7 +17,7 @@
                 <td><a href="{{ $artist->url }}">{{ $artist->name }}</a></td>
                 <td>{{ $artist->cards_count }}</td>
                 <td>{{ $artist->collections_count }}</td>
-                <td>{{ number_format($artist->collectors_count }}</td>
+                <td>{{ number_format($artist->collectors_count) }}</td>
                 <td>{{ number_format($artist->balances_count) }}</td>
             </tr>
             @endforeach

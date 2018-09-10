@@ -10,13 +10,15 @@
             <thead>
                 <tr>
                     <th scope="col">Name</th>
-                    <th scope="col">Balances</th>
+                    <th scope="col">Supply</th>
+                    <th scope="col">Collectors</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($cards as $card)
                 <tr>
                     <th scope="row"><a href="{{ $card->url }}">{{ $card->name }}</a></th>
+                    <td>{{ number_format($card->token->supply_normalized) }}</td>
                     <td>{{ number_format($card->balances_count) }}</td>
                 </tr>
                 @endforeach
