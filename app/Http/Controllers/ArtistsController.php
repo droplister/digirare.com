@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Artist;
+use App\Feature;
 use Illuminate\Http\Request;
 
 class ArtistsController extends Controller
@@ -24,8 +25,11 @@ class ArtistsController extends Controller
             return $this->getArtists($sort);
         });
 
+        // Featured
+        $features = Feature::highestBids()->with('card.token')->get();
+
         // Index View
-        return view('artists.index', compact('artists', 'sort'));
+        return view('artists.index', compact('artists', 'sort', 'featured'));
     }
 
     /**
@@ -45,8 +49,11 @@ class ArtistsController extends Controller
             ->orderBy('balances_count', 'desc')
             ->paginate(20);
 
+        // Featured
+        $features = Feature::highestBids()->with('card.token')->get();
+
         // Show View
-        return view('artists.show', compact('artist', 'cards', 'view', 'request'));
+        return view('artists.show', compact('artist', 'cards', 'view', 'featured', 'request'));
     }
 
     /**

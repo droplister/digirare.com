@@ -15,5 +15,7 @@
                 @endif
             </div>
         </div>
+        @include('partials.featured')
     </div>
+    @include('modals.featured')
 @endsection

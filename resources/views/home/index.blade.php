@@ -10,7 +10,7 @@
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-diamond"></i></small>
                     DIGIRARE
                 </h1>
-                @include('home.partials.index.featured')
+                @include('partials.featured')
                 <h2 class="display-4 mb-4">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
                     XCP Cards
@@ -24,5 +24,5 @@
             </div>
         </div>
     </div>
-    @include('home.modals.featured')
+    @include('modals.featured')
 @endsection
