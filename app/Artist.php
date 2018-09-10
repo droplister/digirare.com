@@ -26,6 +26,26 @@ class Artist extends Model
     ];
 
     /**
+     * Collectors Count
+     *
+     * @return string
+     */
+    public function getCollectorsCountAttribute()
+    {
+        return $this->balances->unique('address')->count();
+    }
+
+    /**
+     * Collections Count
+     *
+     * @return string
+     */
+    public function getCollectionsCountAttribute()
+    {
+        return $this->collections()->get()->unique('name')->count();
+    }
+
+    /**
      * Balances
      * 
      * @return \Staudenmeir\EloquentHasManyDeep\HasRelationships

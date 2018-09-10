@@ -15,9 +15,14 @@ class ArtistsController extends Controller
      */
     public function index(Request $request)
     {
-        $artists = Artist::with('balances')->withCount('balances', 'cards')->orderBy('balances_count', 'desc')->get();
+        // Sorting
+        $sort = $request->input('sort', 'balances');
 
-        return view('artists.index', compact('artists'));
+        // Artists
+        $artists = $this->getArtists($sort);
+
+        // Index View
+        return view('artists.index', compact('artists', 'sort'));
     }
 
     /**
@@ -29,8 +34,47 @@ class ArtistsController extends Controller
      */
     public function show(Request $request, Artist $artist)
     {
-        $cards = $artist->cards()->withCount('balances')->paginate(20);
+        // View File
+        $view = $request->has('view') ? 'artists.show.table' : 'artists.show';
 
-        return view('artists.show', compact('artist', 'cards'));
+        // Get Cards
+        $cards = $artist->cards()->withCount('balances')
+            ->orderBy('balances_count', 'desc')
+            ->paginate(20);
+
+        // Show View
+        return view($view, compact('artist', 'cards', 'view'));
+    }
+
+    /**
+     * Get Artists
+     * 
+     * @param  string  $sort
+     * @return \App\Artist
+     */
+    private function getArtists($sort)
+    {
+        $artists = Artist::with('balances')->withCount('balances', 'cards');
+
+        switch($sort)
+        {
+            case 'balance':
+                $artists = $artists->orderBy('balances_count', 'desc')->get();
+                break;
+            case 'cards':
+                $artists = $artists->orderBy('cards_count', 'desc')->get();
+                break;
+            case 'collectors':
+                $artists = $artists->get()->sortByDesc('collectors_count');
+                break;
+            case 'collections':
+                $artists = $artists->get()->sortByDesc('collections_count');
+                break;
+            default:
+                $artists = $artists->orderBy('balances_count', 'desc')->get();
+                break;
+        }
+
+        return $artists;
     }
 }
