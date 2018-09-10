@@ -28,4 +28,4 @@
         </table>
     </div>
 </div>
-{!! $cards->links() !!}
+{!! $cards->appends(['view' => $view]])->links() !!}
