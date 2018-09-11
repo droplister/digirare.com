@@ -73,7 +73,7 @@ class UpdateMafiaWars implements ShouldQueue
                 if(in_array($data['asset'], [$this->collection->currency])) continue;
             
                 // The Asset
-                $xcp_core_asset_name = $this->getAssetName(trim($data['asset']);
+                $xcp_core_asset_name = $this->getAssetName(trim($data['asset']));
 
                 // Image URL
                 $image_url = $this->getImageUrl($data['image'], $this->override);
