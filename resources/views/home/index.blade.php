@@ -18,6 +18,16 @@
                 </div>
                 <h2 class="display-4 mb-4">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
+                    DEX Trades
+                </h2>
+                @include('home.partials.index.trades-chart')
+                <div class="text-center mb-5">
+                    <a href="{{ route('orders.index') }}" class="btn btn-primary btn-lg">
+                        <i aria-hidden="true" class="fa fa-list"></i> Open Orders
+                    </a>
+                </div>
+                <h2 class="display-4 mb-4">
+                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
                     XCP Cards
                 </h2>
                 @include('home.partials.index.cards-chart')
@@ -34,16 +44,6 @@
                 <div class="text-center mb-5">
                     <a href="{{ route('collectors.index') }}" class="btn btn-primary btn-lg">
                         <i aria-hidden="true" class="fa fa-trophy"></i> Top Collectors
-                    </a>
-                </div>
-                <h2 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
-                    DEX Trades
-                </h2>
-                @include('home.partials.index.trades-chart')
-                <div class="text-center mb-5">
-                    <a href="{{ route('orders.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-list"></i> Open Orders
                     </a>
                 </div>
             </div>
