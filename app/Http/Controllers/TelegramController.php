@@ -37,6 +37,9 @@ class TelegramController extends Controller
         // Get Message
         $message = $update->getMessage();
 
+        // Edge Case?
+        if($message === null) return 'Ok';
+
         // Track Data
         $this->logChatroom($message);
 
