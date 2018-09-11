@@ -107,7 +107,6 @@
             @endforeach
         </p>
     </div>
-    @if($artists->count() > 0)
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
             <i class="fa fa-paint-brush text-dark" aria-hidden="true"></i>
@@ -122,5 +121,4 @@
             @endif
         </p>
     </div>
-    @endif  
 </div>
