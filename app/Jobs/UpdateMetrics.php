@@ -7,6 +7,7 @@ use App\Metric;
 use App\Collector;
 use Carbon\Carbon;
 use Droplister\XcpCore\App\Block;
+use Droplister\XcpCore\App\OrderMatch;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -56,6 +57,7 @@ class UpdateMetrics implements ShouldQueue
                 // Site Metrics
                 $this->updateCards($interval, $dates);
                 $this->updateCollectors($interval, $dates);
+                $this->updateTrades($interval, $dates);
 
                 // Card Metrics
                 foreach($cards as $card)
@@ -154,6 +156,20 @@ class UpdateMetrics implements ShouldQueue
         $count = Collector::has('cardBalances')->count();
 
         $this->updateSimpleMetric('collectors', 'count', $count, $interval, $dates['start']);
+    }
+
+    /**
+     * Update Trades
+     *
+     * @param  string  $interval
+     * @param  array  $dates
+     * @return void
+     */
+    private function updateTrades($interval, $dates)
+    {
+        $count = OrderMatch::whereBetween('confirmed_at', [$dates['start'], $dates['end']])->count();
+
+        $this->updateSimpleMetric('trades', 'count', $count, $interval, $dates['start']);
     }
 
     /**
