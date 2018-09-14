@@ -81,6 +81,16 @@
                                     <i aria-hidden="true" class="fa fa-hand-grab-o"></i>
                                     {{ __('Collectors') }}
                                 </a>
+                                <div class="dropdown-divider"></div>
+                                @if(\App::getLocale() === 'en')
+                                    <a class="dropdown-item" href="{{ route('locale.show', ['locale' => 'ja']) }}">
+                                        日本語
+                                    </a>
+                                @else
+                                    <a class="dropdown-item" href="{{ route('locale.show', ['locale' => 'en']) }}">
+                                        English
+                                    </a>
+                                @endif
                             </div>
                         </li>
                     </ul>
