@@ -3,7 +3,7 @@
         <span class="lead font-weight-bold">
             {{ __('Top 100') }}
             <small class="ml-1 text-muted">
-                {{ $sort === 'oldest' || $sort === 'newest' ? __(ucfirst($sort)) : __('Most') . ' ' . ucfirst($sort) }}
+                {{ $sort === 'oldest' || $sort === 'newest' ? __(ucfirst($sort)) : __('Most') . ' ' . __(ucfirst($sort)) }}
             </small>
         </span>
     </div>
