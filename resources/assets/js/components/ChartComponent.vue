@@ -30,6 +30,16 @@ export default {
         xAxis: {
           type: 'datetime'
         },
+        yAxis: [{
+            title: {
+              text: this.label
+            },
+          },{
+            title: {
+              text: this.cumulative
+            },
+            opposite: true
+        }],
         yAxis: this.cumulative === 'true' ? [{
           title: {
             text: this.label
