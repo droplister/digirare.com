@@ -2,7 +2,7 @@
     <div class="card-header">
         <span class="lead font-weight-bold">
             {{ __('Top 100') }}
-            <small class="ml-1 text-muted">By {{ title_case($sort) }}</small>
+            <small class="ml-1 text-muted">{{ __(title_case($sort)) }}</small>
         </span>
     </div>
     <div class="table-responsive">
