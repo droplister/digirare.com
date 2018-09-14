@@ -30,8 +30,11 @@ class MonitorsController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Collector $collector)
+    public function show(Request $request, Collector $monitor)
     {
+        // Rename Variable
+        $collector = $monitor;
+
         // Simple Validation
         $request->validate([
             'collection' => 'sometimes|nullable|exists:collections,slug',
