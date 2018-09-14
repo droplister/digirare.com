@@ -106,6 +106,7 @@ class MonitorsController extends Controller
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('get_asset', $assets)
                     ->where('source', '=', $request->source)
+                    ->where('source', '!=', $collector->xcp_core_address)
                     ->where('give_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index);
@@ -115,6 +116,7 @@ class MonitorsController extends Controller
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('give_asset', $assets)
                     ->where('source', '=', $request->source)
+                    ->where('source', '!=', $collector->xcp_core_address)
                     ->where('get_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index);
@@ -129,6 +131,7 @@ class MonitorsController extends Controller
                     ->whereIn('get_asset', $assets)
                     ->where('give_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
+                    ->where('source', '!=', $collector->xcp_core_address)
                     ->where('expire_index', '>', $block->block_index);
             }
             else
@@ -137,6 +140,7 @@ class MonitorsController extends Controller
                     ->whereIn('give_asset', $assets)
                     ->where('get_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
+                    ->where('source', '!=', $collector->xcp_core_address)
                     ->where('expire_index', '>', $block->block_index);
             }
         }
@@ -148,6 +152,7 @@ class MonitorsController extends Controller
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('get_asset', $assets)
                     ->where('source', '=', $request->source)
+                    ->where('source', '!=', $collector->xcp_core_address)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index);
             }
@@ -156,6 +161,7 @@ class MonitorsController extends Controller
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('give_asset', $assets)
                     ->where('source', '=', $request->source)
+                    ->where('source', '!=', $collector->xcp_core_address)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index);
             }
@@ -166,11 +172,13 @@ class MonitorsController extends Controller
                 ->whereIn('get_asset', $assets)
                 ->where('give_asset', '=', $request->currency)
                 ->where('source', '=', $request->source)
+                ->where('source', '!=', $collector->xcp_core_address)
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index)
                 ->orWhereIn('give_asset', $assets)
                 ->where('get_asset', '=', $request->currency)
                 ->where('source', '=', $request->source)
+                ->where('source', '!=', $collector->xcp_core_address)
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index);
         }
@@ -183,6 +191,7 @@ class MonitorsController extends Controller
                     ->whereIn('get_asset', $assets)
                     ->whereIn('give_asset', $currencies)
                     ->where('status', '=', 'open')
+                    ->where('source', '!=', $collector->xcp_core_address)
                     ->where('expire_index', '>', $block->block_index);
             }
             else
@@ -191,6 +200,7 @@ class MonitorsController extends Controller
                     ->whereIn('give_asset', $assets)
                     ->whereIn('get_asset', $currencies)
                     ->where('status', '=', 'open')
+                    ->where('source', '!=', $collector->xcp_core_address)
                     ->where('expire_index', '>', $block->block_index);
             }
         }
@@ -200,10 +210,12 @@ class MonitorsController extends Controller
                 ->whereIn('get_asset', $assets)
                 ->where('give_asset', '=', $request->currency)
                 ->where('status', '=', 'open')
+                ->where('source', '!=', $collector->xcp_core_address)
                 ->where('expire_index', '>', $block->block_index)
                 ->orWhereIn('give_asset', $assets)
                 ->where('get_asset', '=', $request->currency)
                 ->where('status', '=', 'open')
+                ->where('source', '!=', $collector->xcp_core_address)
                 ->where('expire_index', '>', $block->block_index);
         }
         elseif($request->has('source'))
@@ -212,10 +224,12 @@ class MonitorsController extends Controller
                 ->whereIn('get_asset', $assets)
                 ->where('source', '=', $request->source)
                 ->where('status', '=', 'open')
+                ->where('source', '!=', $collector->xcp_core_address)
                 ->where('expire_index', '>', $block->block_index)
                 ->orWhereIn('give_asset', $assets)
                 ->where('source', '=', $request->source)
                 ->where('status', '=', 'open')
+                ->where('source', '!=', $collector->xcp_core_address)
                 ->where('expire_index', '>', $block->block_index);
         }
         else
@@ -224,10 +238,12 @@ class MonitorsController extends Controller
                 ->whereIn('get_asset', $assets)
                 ->whereIn('give_asset', $currencies)
                 ->where('status', '=', 'open')
+                ->where('source', '!=', $collector->xcp_core_address)
                 ->where('expire_index', '>', $block->block_index)
                 ->orWhereIn('give_asset', $assets)
                 ->whereIn('get_asset', $currencies)
                 ->where('status', '=', 'open')
+                ->where('source', '!=', $collector->xcp_core_address)
                 ->where('expire_index', '>', $block->block_index);
         }
 
