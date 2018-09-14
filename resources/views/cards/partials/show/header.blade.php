@@ -18,6 +18,6 @@
     {{ $card->name }}
 </h1>
 <p class="text-muted">
-    {{ __('Issued:') }} {{ $token ? $token->confirmed_at->toFormattedDateString() : __('Syncing') }} &nbsp;&nbsp;&nbsp;
-    {{ __('Last Traded:') }} {{ $last_match ? $last_match->confirmed_at->toFormattedDateString() : __('N/A') }}
+    {{ __('Issued:') }} {{ $token ? $token->confirmed_at->locale(\App::getLocale())->toFormattedDateString() : __('Syncing') }} &nbsp;&nbsp;&nbsp;
+    {{ __('Last Traded:') }} {{ $last_match ? $last_match->confirmed_at->locale(\App::getLocale())->toFormattedDateString() : __('N/A') }}
 </p>
