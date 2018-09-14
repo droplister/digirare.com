@@ -25,6 +25,7 @@
         "laravel/horizon": "^1.3",
         "megapixel23/belongs-to-one": "^2.0",
         "staudenmeir/eloquent-has-many-deep": "^1.1",
+        "stevegrunwell/lost-in-translation": "^1.0",
         "tightenco/parental": "0.4-alpha"
     },
     "require-dev": {
