@@ -138,8 +138,8 @@
             <hr />
             <a href="{{ url('/') }}" class="mr-2">{{ __('Home') }}</a>
             <a href="{{ route('pages.investors') }}" class="mr-2">{{ __('Investors') }}</a>
-            <a href="https://github.com/droplister/digirare.com"  class="mr-2" target="_blank">{{ __('GitHub') }}</a>
             <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" class="mr-2" target="_blank">{{ __('Tutorial') }}</a>
+            <a href="https://github.com/droplister/digirare.com"  class="mr-2" target="_blank">{{ __('GitHub') }}</a>
             <a href="https://t.me/digirare" target="_blank">{{ __('Telegram') }}</a>
             <small class="d-block">
                 &copy; 2018
