@@ -18,6 +18,7 @@ Route::resource('cards/{card}/likes', 'CardLikesController', ['only' => ['index'
 Route::resource('cards/{card}/trades', 'CardTradesController', ['only' => ['index'], 'names' => ['index' => 'cards.trades.index']]);
 Route::resource('cards/{card}/collectors', 'CardCollectorsController', ['only' => ['index'], 'names' => ['index' => 'cards.collectors.index']]);
 Route::resource('orders', 'OrdersController', ['only' => ['index']]);
+Route::resource('monitors', 'MonitorsController');
 Route::resource('artists', 'ArtistsController', ['only' => ['index', 'show']]);
 Route::get('artists/{artist}/table', 'ArtistsController@showTable')->name('artists.show.table');
 Route::resource('collectors', 'CollectorsController', ['only' => ['index', 'show']]);
