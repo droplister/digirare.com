@@ -14,6 +14,7 @@
     "block": "ブロック",
     "Burned": "燃えた",
     "Buy": "購入",
+    "Buyer": "買い手",
     "Buying": "購入",
     "Card": "トレーディングカード",
     "Cards": "トレーディングカード",
@@ -88,6 +89,7 @@
     "Reset Password": "パスワードを再設定する",
     "Send Password Reset Link": "パスワードリセットリンクを送る",
     "Sell": "売る",
+    "Seller": "売り手",
     "Selling": "売る",
     "Sign up": "サインアップ",
     "Sort By": "ソート順",
@@ -104,10 +106,12 @@
     "Total XCP Cards": "トレーディングカード",
     "Total": "全額",
     "Tutorial": "チュートリアル",
-    "Total Trades": "トータルトレード",
+    "Traded": "完了しました",
     "Trades": "売買",
+    "Trade History": "貿易の歴史",
+    "Total Trades": "トータルトレード",
     "Counterparty Trades": "Counterparty 売買",
     "DEX Trades": "DEX 売買",
     "Unique Cards": "カード",
-    "YES": ""
+    "YES": "はい"
 }
