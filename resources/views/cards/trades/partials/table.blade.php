@@ -3,8 +3,8 @@
         <div class="card">
             <div class="card-header">
                 <span class="lead font-weight-bold">
-                    Trade History
-                    <small class="ml-1 text-muted">{{ number_format($order_matches->count()) }} Found</small>
+                    {{ __('Trade History') }}
+                    <small class="ml-1 text-muted">{{ number_format($order_matches->count()) }} {{ __('Found') }}</small>
                 </span>
             </div>
             <div class="table-responsive">
@@ -12,12 +12,12 @@
                     <thead>
                         <tr>
                             <th scope="col" style="width: 50px">#</th>
-                            <th scope="col">Price</th>
-                            <th scope="col">Quantity</th>
-                            <th scope="col">Total</th>
-                            <th scope="col">Buyer</th>
-                            <th scope="col">Seller</th>
-                            <th scope="col">Traded</th>
+                            <th scope="col">{{ __('Price') }}</th>
+                            <th scope="col">{{ __('Quantity') }}</th>
+                            <th scope="col">{{ __('Total') }}</th>
+                            <th scope="col">{{ __('Buyer') }}</th>
+                            <th scope="col">{{ __('Seller') }}</th>
+                            <th scope="col">{{ __('Traded') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -55,7 +55,7 @@
                         @endforeach
                         @if($order_matches->count() === 0)
                             <tr>
-                                <td colspan="7" class="text-center"><em>None Found</em></td>
+                                <td colspan="7" class="text-center"><em>{{ __('None Found') }}</em></td>
                             </tr>
                         @endif
                     </tbody>
