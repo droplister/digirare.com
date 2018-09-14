@@ -26,32 +26,28 @@
                             <th scope="row">{{ $order_matches->count() - $loop->index }}.</th>
                             <td>
                                 {{ number_format($match->trading_price_normalized, 8) }}
-                                <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1]]) }}">
-                                    {{ explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1] }}
+                                <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => $match->trading_pair_quote_asset]) }}">
+                                    {{ $match->trading_pair_quote_asset }}
                                 </a>
                             </td>
                             <td>
-                            @if($card->token->divisible)
-                                {{ number_format($match->forward_asset === $card->name ? $match->forward_quantity_normalized : $match->backward_quantity_normalized, 8) }}
-                            @else
-                                {{ number_format($match->forward_asset === $card->name ? $match->forward_quantity_normalized : $match->backward_quantity_normalized) }}
-                            @endif
-                                {{ $card->name }}
+                                {{ number_format($match->trading_quantity_normalized, $card->token->divisible ? 8 : 0) }}
+                                {{ $match->trading_pair_base_asset }}
                             </td>
                             <td>
-                                {{ number_format($match->forward_asset === $card->name ? $match->backward_quantity_normalized : $match->forward_quantity_normalized, 8) }}
-                                <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1]]) }}">
-                                    {{ explode('/', $match->trading_pair_normalized)[1] === $card->name ? explode('/', $match->trading_pair_normalized)[0] : explode('/', $match->trading_pair_normalized)[1] }}
+                                {{ number_format($match->trading_total_normalized, 8) }}
+                                <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => $match->trading_pair_quote_asset]) }}">
+                                    {{ $match->trading_pair_quote_asset }}
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('orders.index', ['card' => $card->name, 'collector' => (explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx0_address : $match->tx1_address]) }}">
-                                    {{ str_limit((explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx0_address : $match->tx1_address, 8) }}
+                                <a href="{{ route('orders.index', ['card' => $card->name, 'collector' => $match->trading_buyer_normalized]) }}">
+                                    {{ str_limit($match->trading_buyer_normalized, 8) }}
                                 </a>
                             </td>
                             <td>
-                                <a href="{{ route('orders.index', ['card' => $card->name, 'collector' => (explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address]) }}">
-                                    {{ str_limit((explode('/', $match->trading_pair_normalized)[1] === $card->name) ? $match->tx1_address : $match->tx0_address, 8) }}
+                                <a href="{{ route('orders.index', ['card' => $card->name, 'collector' => $match->trading_seller_normalized]) }}">
+                                    {{ str_limit($match->trading_seller_normalized, 8) }}
                                 </a>
                             </td>
                             <td>{{ $match->confirmed_at->diffForHumans() }}</td>
