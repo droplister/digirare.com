@@ -1,7 +1,7 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Sort By
+            {{ __('Sort By') }}
             <small class="ml-1 text-muted">{{ $sort === 'newest' ? 'Newest' : 'Most ' . ucfirst($sort) }}</small>
         </span>
     </div>
@@ -10,12 +10,12 @@
             <thead>
                 <tr>
                     <th scope="col" style="width: 50px">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Currency</th>
-                    <th scope="col">Cards</th>
-                    <th scope="col">Collectors</th>
-                    <th scope="col">Balances</th>
-                    <th scope="col">Announced</th>
+                    <th scope="col">{{ __('Name') }}</th>
+                    <th scope="col">{{ __('Currency') }}</th>
+                    <th scope="col">{{ __('Cards') }}</th>
+                    <th scope="col">{{ __('Collectors') }}</th>
+                    <th scope="col">{{ __('Balances') }}</th>
+                    <th scope="col">{{ __('Announced') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -32,7 +32,7 @@
                 @endforeach
                 @if($collections->count() === 0)
                     <tr>
-                        <td colspan="7" class="text-center"><em>None Found</em></td>
+                        <td colspan="7" class="text-center"><em>{{ __('None Found') }}</em></td>
                     </tr>
                 @endif
             </tbody>

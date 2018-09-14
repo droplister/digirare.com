@@ -1,6 +1,6 @@
 <p class="text-muted">
 @if($request->has('card') || $request->has('collection') || $request->has('currency') || $request->has('collector'))
-    Filters: 
+    {{ __('Filters:') }}
     @if($request->has('action'))
         <a href="{{ route('orders.index', $request->except('action')) }}" type="button" class="btn btn-danger btn-sm ml-3 py-0 px-1">
             x {{ ucfirst($request->action) }}
@@ -27,6 +27,6 @@
         </a>
     @endif
 @else
-    Filter <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" target="_blank" class="text-muted">Counterparty DEX</a> orders for collectibles.
+    {{ __('Filter Counterparty DEX orders for collectibles.') }}
 @endif
 </p>

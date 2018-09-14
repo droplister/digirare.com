@@ -16,7 +16,7 @@
         </div>
         <h2 class="display-4 mb-4">
             <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
-            DEX Orders
+            {{ __('DEX Orders') }}
         </h2>
         <div class="row">
             <div class="col-md-6 mb-4">
@@ -28,13 +28,13 @@
         </div>
         <h2 class="display-4 mb-4">
             <small class="text-highlight"><i aria-hidden="true" class="fa fa-hand-grab-o mr-1"></i></small>
-            Collectors
+            {{ __('Collectors') }}
         </h2>
         <div class="card mb-4">
             <div class="card-header">
-                <span class="lead font-weight-bold">Unique Addresses</span>
+                <span class="lead font-weight-bold">{{ __('Bitcoin Addresses') }}/span>
             </div>
-            <chart title="Unique Addresses (BTC)" label="Unique Addresses"
+            <chart title="{{ __('Bitcoin Addresses') }} (BTC)" label="{{ __('Bitcoin Addresses') }}"
                 source="{{ route('metrics.count', ['card' => $card->name, 'category' => 'balances', 'interval' => 'day']) }}">
             </chart>
         </div>

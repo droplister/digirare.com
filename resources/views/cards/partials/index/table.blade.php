@@ -1,8 +1,10 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Top 100
-            <small class="ml-1 text-muted">{{ $sort === 'oldest' || $sort === 'newest' ? ucfirst($sort) : 'Most ' . ucfirst($sort) }}</small>
+            {{ __('Top 100') }}
+            <small class="ml-1 text-muted">
+                {{ $sort === 'oldest' || $sort === 'newest' ? __(ucfirst($sort)) : __('Most') . ' ' . ucfirst($sort) }}
+            </small>
         </span>
     </div>
     <div class="table-responsive">
@@ -10,12 +12,12 @@
             <thead>
                 <tr>
                     <th scope="col" style="width: 50px">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Collection</th>
-                    <th scope="col">Collectors</th>
-                    <th scope="col">Trades</th>
-                    <th scope="col">Last Traded</th>
-                    <th scope="col">Created</th>
+                    <th scope="col">{{ __('Name') }}</th>
+                    <th scope="col">{{ __('Collection') }}</th>
+                    <th scope="col">{{ __('Collectors') }}</th>
+                    <th scope="col">{{ __('Trades') }}</th>
+                    <th scope="col">{{ __('Last Traded') }}</th>
+                    <th scope="col">{{ __('Created') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -37,7 +39,7 @@
                 @endforeach
                 @if($cards->count() === 0)
                     <tr>
-                        <td colspan="7" class="text-center"><em>None Found</em></td>
+                        <td colspan="7" class="text-center"><em>{{ __('None Found') }}</em></td>
                     </tr>
                 @endif
             </tbody>

@@ -13,37 +13,37 @@
                 @include('partials.featured')
                 <div class="text-center mb-5">
                     <a href="{{ route('random.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-random"></i> Random Card
+                        <i aria-hidden="true" class="fa fa-random"></i> {{ __('Random Card') }}
                     </a>
                 </div>
                 <h2 class="display-4 mb-4">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
-                    DEX Trades
+                    {{ __('DEX Trades') }}
                 </h2>
                 @include('home.partials.index.trades-chart')
                 <div class="text-center mb-5">
                     <a href="{{ route('orders.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-list"></i> Open Orders
+                        <i aria-hidden="true" class="fa fa-list"></i> {{ __('Open Orders') }}
                     </a>
                 </div>
                 <h2 class="display-4 mb-4">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
-                    XCP Cards
+                    {{ __('XCP Cards') }}
                 </h2>
                 @include('home.partials.index.cards-chart')
                 <div class="text-center mb-5">
                     <a href="{{ route('collections.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-image"></i> Collections
+                        <i aria-hidden="true" class="fa fa-image"></i> {{ __('Collections') }}
                     </a>
                 </div>
                 <h2 class="display-4 mb-4">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-hand-grab-o"></i></small>
-                    Collectors
+                    {{ __('Collectors') }}
                 </h2>
                 @include('home.partials.index.collectors-chart')
                 <div class="text-center mb-5">
                     <a href="{{ route('collectors.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-trophy"></i> Top Collectors
+                        <i aria-hidden="true" class="fa fa-trophy"></i> {{ __('Top Collectors') }}
                     </a>
                 </div>
             </div>

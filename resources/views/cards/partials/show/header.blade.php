@@ -18,8 +18,6 @@
     {{ $card->name }}
 </h1>
 <p class="text-muted">
-    Issued: {{ $token ? $token->confirmed_at->toFormattedDateString() : 'Syncing' }} &nbsp;&nbsp;&nbsp;
-    @if($last_match)
-        Last Traded: {{ $last_match->confirmed_at->toFormattedDateString() }}
-    @endif
+    {{ __('Issued:') }} {{ $token ? $token->confirmed_at->toFormattedDateString() : __('Syncing') }} &nbsp;&nbsp;&nbsp;
+    {{ __('Last Traded:') }} {{ $last_match ? $last_match->confirmed_at->toFormattedDateString() : __('N/A') }}
 </p>

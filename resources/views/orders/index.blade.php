@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Big Board')
+@section('title', __('Big Board'))
 
 @section('content')
     <div class="container mt-3">
@@ -11,7 +11,7 @@
                 </p>
                 <h1 class="display-4 mb-0">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-list"></i></small>
-                    Big Board
+                    {{ __('Big Board') }}
                 </h1>
                 @include('orders.partials.filters')
                 @include('orders.partials.navtabs')

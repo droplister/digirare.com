@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'XCP Cards')
+@section('title', __('XCP Cards'))
 
 @section('content')
     <div class="container mt-3">

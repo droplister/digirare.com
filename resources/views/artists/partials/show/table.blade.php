@@ -1,8 +1,8 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Portfolio
-            <small class="ml-1 text-muted">{{ number_format($cards->total()) }} Found</small>
+            {{ __('Portfolio') }}
+            <small class="ml-1 text-muted">{{ number_format($cards->total()) }} {{ __('Found') }}</small>
         </span>
     </div>
     <div class="table-responsive">
@@ -10,10 +10,10 @@
             <thead>
                 <tr>
                     <th scope="col" style="width: 50px">#</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Supply</th>
-                    <th scope="col">Collectors</th>
-                    <th scope="col">Created</th>
+                    <th scope="col">{{ __('Name') }}</th>
+                    <th scope="col">{{ __('Supply') }}</th>
+                    <th scope="col">{{ __('Collectors') }}</th>
+                    <th scope="col">{{ __('Created') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -28,7 +28,7 @@
                 @endforeach
                 @if($cards->count() === 0)
                     <tr>
-                        <td colspan="5" class="text-center"><em>No Cards</em></td>
+                        <td colspan="5" class="text-center"><em>{{ __('No Cards') }}</em></td>
                     </tr>
                 @endif
             </tbody>

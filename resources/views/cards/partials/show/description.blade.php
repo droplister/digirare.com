@@ -5,7 +5,7 @@
         </span>
         <a href="#" class="btn btn-sm btn-primary float-right">
             <i class="fa fa-bell" aria-hidden="true"></i>
-            Monitor DEX
+            {{ __('Monitor DEX') }}
         </a>
     </div>
     <div class="card-body">

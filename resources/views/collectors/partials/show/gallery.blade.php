@@ -1,8 +1,8 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Collection
-            <small class="ml-1 text-muted">{{ number_format($balances->total()) }} Found</small>
+            {{ __('Collection') }}
+            <small class="ml-1 text-muted">{{ number_format($balances->total()) }} {{ __('Found') }}</small>
         </span>
     </div>
     <div class="card-body">
@@ -18,8 +18,8 @@
                     </a>
                 </h6>
                 <p class="card-text">
-                    Balance: {{ number_format($balance->quantity_normalized) }}
-                    <span class="float-right font-weight-bold">{{ $balance->card->token->owner === $balance->address ? 'OWNER' : '' }}</span>
+                    {{ __('Balance:') }} {{ number_format($balance->quantity_normalized) }}
+                    <span class="float-right font-weight-bold">{{ $balance->card->token->owner === $balance->address ? __('OWNER') : '' }}</span>
                 </p>
             </div>
         @endforeach

@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Login')
+@section('title', __('Login'))
 
 @section('content')
 <div class="container mt-3">
@@ -8,7 +8,7 @@
         <div class="col-md-8">
             <h1 class="display-4 mb-4">
                 <small class="text-highlight"><i aria-hidden="true" class="fa fa-sign-in"></i></small>
-                Login
+                {{ __('Login') }}
             </h1>
             <div class="card">
                 <div class="card-header">

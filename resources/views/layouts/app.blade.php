@@ -36,7 +36,7 @@
                     <li class="nav-item">
                         <a href="https://digirare.com/random" class="nav-link">
                             <i aria-hidden="true" class="fa fa-random text-highlight"></i>
-                            Random
+                            {{ __('Random') }}
                         </a>
                     </li>
                 </ul>
@@ -66,20 +66,20 @@
                         </li>
                         <li class="nav-item dropdown">
                             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              Dropdown
+                              {{ __('Dropdown') }}
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                                 <a class="dropdown-item" href="{{ route('artists.index') }}">
                                     <i aria-hidden="true" class="fa fa-paint-brush"></i>
-                                    Artists
+                                    {{ __('Artists') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('orders.index') }}">
                                     <i aria-hidden="true" class="fa fa-list"></i>
-                                    Big Board
+                                    {{ __('Big Board') }}
                                 </a>
                                 <a class="dropdown-item" href="{{ route('collectors.index') }}">
                                     <i aria-hidden="true" class="fa fa-hand-grab-o"></i>
-                                    Collectors
+                                    {{ __('Collectors') }}
                                 </a>
                             </div>
                         </li>
@@ -136,17 +136,17 @@
 
         <footer class="container text-center text-muted pb-4">
             <hr />
-            <a href="{{ url('/') }}" class="mr-2">Home</a>
-            <a href="{{ route('pages.investors') }}" class="mr-2">Investors</a>
-            <a href="https://github.com/droplister/digirare.com"  class="mr-2" target="_blank">GitHub</a>
-            <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" class="mr-2" target="_blank">Tutorial</a>
-            <a href="https://t.me/digirare" target="_blank">Telegram</a>
+            <a href="{{ url('/') }}" class="mr-2">{{ __('Home') }}</a>
+            <a href="{{ route('pages.investors') }}" class="mr-2">{{ __('Investors') }}</a>
+            <a href="https://github.com/droplister/digirare.com"  class="mr-2" target="_blank">{{ __('GitHub') }}</a>
+            <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" class="mr-2" target="_blank">{{ __('Tutorial') }}</a>
+            <a href="https://t.me/digirare" target="_blank">{{ __('Telegram') }}</a>
             <small class="d-block">
                 &copy; 2018
                 <a href="https://familymediallc.com/" class="text-muted mr-2" target="_blank">Family Media LLC</a>
-                <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-1">Disclaimer</a>
-                <a href="{{ route('pages.privacy') }}" class="text-muted mr-1">Privacy</a>
-                <a href="{{ route('pages.terms') }}" class="text-muted">Terms</a>
+                <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-1">{{ __('Disclaimer') }}</a>
+                <a href="{{ route('pages.privacy') }}" class="text-muted mr-1">{{ __('Privacy') }}</a>
+                <a href="{{ route('pages.terms') }}" class="text-muted">{{ __('Terms') }}</a>
             </small>
         </footer>
 

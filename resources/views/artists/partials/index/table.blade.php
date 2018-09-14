@@ -1,8 +1,8 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Portfolios
-            <small class="ml-1 text-muted">{{ number_format($artists->count()) }} Found</small>
+            {{ __('Portfolios') }}
+            <small class="ml-1 text-muted">{{ number_format($artists->count()) }} {{ __('Found') }}</small>
         </span>
     </div>
     <div class="table-responsive">
@@ -10,11 +10,11 @@
             <thead>
                 <tr>
                     <th scope="col" style="width: 50px">#</th>
-                    <th scope="col">Artist</th>
-                    <th scope="col">Cards</th>
-                    <th scope="col">Collections</th>
-                    <th scope="col">Collectors</th>
-                    <th scope="col">Balances</th>
+                    <th scope="col">{{ __('Artist') }}</th>
+                    <th scope="col">{{ __('Cards') }}</th>
+                    <th scope="col">{{ __('Collections') }}</th>
+                    <th scope="col">{{ __('Collectors') }}</th>
+                    <th scope="col">{{ __('Balances') }}</th>
                 </tr>
             </thead>
             <tbody>

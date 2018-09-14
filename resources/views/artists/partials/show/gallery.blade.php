@@ -1,8 +1,8 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Portfolio
-            <small class="ml-1 text-muted">{{ number_format($cards->total()) }} Found</small>
+            {{ __('Portfolio') }}
+            <small class="ml-1 text-muted">{{ number_format($cards->total()) }} {{ __('Found') }}</small>
         </span>
     </div>
     <div class="card-body">
@@ -17,7 +17,7 @@
                         {{ $card->name }}
                     </a>
                 </h6>
-                <p class="card-text">Supply: {{ number_format($card->token ? $card->token->supply_normalized : 0) }} <span class="float-right d-none d-md-inline">Collectors: {{ $card->balances_count }}</span></p>
+                <p class="card-text">{{ __('Supply:') }} {{ number_format($card->token ? $card->token->supply_normalized : 0) }} <span class="float-right d-none d-md-inline">{{ __('Collectors:') }} {{ $card->balances_count }}</span></p>
             </div>
             @endforeach
         </div>

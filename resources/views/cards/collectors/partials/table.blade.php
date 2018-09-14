@@ -3,8 +3,8 @@
         <div class="card">
             <div class="card-header">
                 <span class="lead font-weight-bold">
-                    Collectors
-                    <small class="ml-1 text-muted">{{ number_format($balances->total()) }} Found</small>
+                    {{ __('Collectors') }}
+                    <small class="ml-1 text-muted">{{ number_format($balances->total()) }} {{ __('Found') }}</small>
                 </span>
             </div>
             <div class="table-responsive">
@@ -12,9 +12,9 @@
                     <thead>
                         <tr>
                             <th scope="col" style="width: 50px">#</th>
-                            <th scope="col">Address</th>
-                            <th scope="col">Balance</th>
-                            <th scope="col">Last Change</th>
+                            <th scope="col">{{ __('Address') }}</th>
+                            <th scope="col">{{ __('Balance') }}</th>
+                            <th scope="col">{{ __('Last Change') }}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -28,7 +28,7 @@
                         @endforeach
                         @if($balances->count() === 0)
                             <tr>
-                                <td colspan="4" class="text-center"><em>None Found</em></td>
+                                <td colspan="4" class="text-center"><em>{{ __('None Found') }}</em></td>
                             </tr>
                         @endif
                     </tbody>

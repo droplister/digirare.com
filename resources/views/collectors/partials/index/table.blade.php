@@ -1,7 +1,7 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Top 100
+            {{ __('Top 100') }}
             <small class="ml-1 text-muted">By {{ title_case($sort) }}</small>
         </span>
     </div>
@@ -10,11 +10,11 @@
             <thead>
                 <tr>
                     <th scope="col" style="width: 50px">#</th>
-                    <th scope="col">Address</th>
-                    <th scope="col">Unique Cards</th>
-                    <th scope="col">Trades</th>
-                    <th scope="col">First Card</th>
-                    <th scope="col">First Seen</th>
+                    <th scope="col">{{ __('Address') }}</th>
+                    <th scope="col">{{ __('Unique Cards') }}</th>
+                    <th scope="col">{{ __('Trades') }}</th>
+                    <th scope="col">{{ __('First Card') }}</th>
+                    <th scope="col">{{ __('First Seen') }}</th>
                 </tr>
             </thead>
             <tbody>
@@ -30,7 +30,7 @@
                 @endforeach
                 @if($collectors->count() === 0)
                     <tr>
-                        <td colspan="6" class="text-center"><em>None Found</em></td>
+                        <td colspan="6" class="text-center"><em>{{ __('None Found') }}</em></td>
                     </tr>
                 @endif
             </tbody>

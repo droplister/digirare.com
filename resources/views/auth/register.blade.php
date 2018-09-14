@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'Register')
+@section('title', __('Register'))
 
 @section('content')
 <div class="container mt-3">
@@ -8,11 +8,11 @@
         <div class="col-md-8">
             <h1 class="display-4 mb-4">
                 <small class="text-highlight"><i aria-hidden="true" class="fa fa-sign-in"></i></small>
-                Sign up
+                {{ __('Sign up') }}
             </h1>
             <div class="card">
                 <div class="card-header">
-                    <span class="lead font-weight-bold">Create your FREE account:</span>
+                    <span class="lead font-weight-bold">{{ __('Create your FREE account:') }}</span>
                 </div>
 
                 <div class="card-body">
@@ -78,7 +78,7 @@
                             <div class="col-md-6 offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     <i aria-hidden="true" class="fa fa-save"></i>
-                                    Create Account
+                                    {{ __('Create Account') }}
                                 </button>
                             </div>
                         </div>

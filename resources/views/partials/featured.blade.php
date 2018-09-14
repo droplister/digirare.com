@@ -1,11 +1,11 @@
 <div class="card mb-4">
     <div class="card-header">
         <span class="lead font-weight-bold">
-            Featured Cards
+            {{ __('Featured Cards') }}
         </span>
         <a href="#" class="btn btn-sm btn-primary float-right" role="button" data-toggle="modal" data-target="#howToModal">
             <i class="fa fa-gavel" aria-hidden="true"></i>
-            Get Featured
+            {{ __('Get Featured') }}
         </a>
     </div>
     <div class="card-body">
@@ -21,7 +21,7 @@
                     </a>
                 </h6>
                 <p class="card-text">
-                    Supply: {{ number_format($featured->card->token->supply_normalized) }}
+                    {{ __('Supply:') }} {{ number_format($featured->card->token->supply_normalized) }}
                     <span class="float-right d-none d-md-inline">
                         <a href="{{ $featured->card->primaryCollection()->first()->url }}">
                             {{ $featured->card->primaryCollection()->first()->name }}

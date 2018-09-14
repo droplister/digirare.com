@@ -1,8 +1,8 @@
 <p class="text-muted mb-0">
-    <a href="{{ route('collectors.index') }}">Collectors</a>
+    <a href="{{ route('collectors.index') }}">{{ __('Collectors') }}</a>
 </p>
 <h1 class="display-4 mb-4">
     <small class="text-highlight"><i aria-hidden="true" class="fa fa-hand-grab-o"></i></small>
-    Collector
+    {{ __('Collector') }}
     <small class="lead d-none d-md-inline-block">{{ $collector->slug }}</small>
 </h1>
