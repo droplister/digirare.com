@@ -17,9 +17,9 @@
         </div>
     </li>
     <li class="nav-item dropdown d-none d-md-inline-block">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ __('Currencies</a>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ __('Currencies') }}</a>
         <div class="dropdown-menu">
-            <a class="dropdown-item{{ $request->input('currency', null) === null ? ' active' : '' }}" href="{{ route('orders.index', ['currency' => null, 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'card' => $request->input('card', null), 'collector' => $request->input('collector', null), 'sort' => $request->input('sort', null)]) }}">All') }}</a>
+            <a class="dropdown-item{{ $request->input('currency', null) === null ? ' active' : '' }}" href="{{ route('orders.index', ['currency' => null, 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'card' => $request->input('card', null), 'collector' => $request->input('collector', null), 'sort' => $request->input('sort', null)]) }}">{{ __('All') }}</a>
         @foreach($currencies as $currency)
             <a class="dropdown-item{{ $currency === $request->input('currency', null) ? ' active' : '' }}" href="{{ route('orders.index', ['currency' => $currency, 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'card' => $request->input('card', null), 'collector' => $request->input('collector', null), 'sort' => $request->input('sort', null)]) }}">{{ $currency }}</a>
         @endforeach
