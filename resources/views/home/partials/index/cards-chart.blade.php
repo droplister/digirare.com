@@ -2,7 +2,7 @@
     <div class="card-header">
         <span class="lead font-weight-bold">{{ __('Total XCP Cards') }}</span>
     </div>
-    <chart title="{{ __('Crypto Collectibles') }} (XCP)" label="{{ __('Cards Issued') }}" cumulative="true"
+    <chart title="{{ __('Crypto Collectibles') }} (XCP)" label="{{ __('Cards Issued') }}" cumulative="{{ __('Cumulative') }}"
         source="{{ route('metrics.count', ['category' => 'cards', 'interval' => 'month']) }}">
     </chart>
 </div>

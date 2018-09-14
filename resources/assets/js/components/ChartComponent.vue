@@ -30,23 +30,13 @@ export default {
         xAxis: {
           type: 'datetime'
         },
-        yAxis: [{
-            title: {
-              text: this.label
-            },
-          },{
-            title: {
-              text: 'Cumulative'
-            },
-            opposite: true
-        }],
         yAxis: this.cumulative === 'true' ? [{
           title: {
             text: this.label
           },
         },{
           title: {
-            text: 'Cumulative'
+            text: this.cumulative
           },
           opposite: true
         }] : {
@@ -78,9 +68,9 @@ export default {
           yAxis: 0,
           zIndex: 2,
         })
-        if (self.cumulative === 'true') {
+        if (self.cumulative !== '') {
           self.chartOptions.series.push({
-            name: 'Cumulative',
+            name: this.cumulative,
             yAxis: 1,
             zIndex: 1,
             data: self.$_chart_accumulate(data.data),
