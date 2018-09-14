@@ -74,14 +74,14 @@ class MonitorsController extends Controller
     private function getOrders($block, $collector, $currencies, $request)
     {
         // All Card Asset Names
-        $assets = $collector->cardBalances->pluck('asset');
+        $assets = $collector->cardBalances->pluck('asset')->toArray();
 
         // Filter by Collection
         if($request->has('collection'))
         {
             $collection = Collection::findBySlug($request->collection);
 
-            $collection_assets = $collection->cards()->pluck('xcp_core_asset_name');
+            $collection_assets = $collection->cards()->pluck('xcp_core_asset_name')->toArray();
 
             $assets = array_intersect($assets, $collection_assets);
         }

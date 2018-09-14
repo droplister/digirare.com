@@ -71,7 +71,7 @@
                                 {{ str_limit($order->source, 8) }}
                             </a>
                         @else
-                            <a href="{{ route('monitors.show', ['monitor' => $collector->slug, 'card' => $request->input('card', null), 'collector' => $order->source, 'collector' => $order->source, 'currency' => $request->input('currency', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
+                            <a href="{{ route('monitors.show', ['monitor' => $collector->slug, 'card' => $request->input('card', null), 'source' => $order->source, 'currency' => $request->input('currency', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
                                 {{ str_limit($order->source, 8) }}
                             </a>
                         @endif
