@@ -59,6 +59,8 @@ class CardsController extends Controller
         
         // Buy Orders
         $buy_orders = Order::whereIn('get_asset', [$card->xcp_core_asset_name])
+                    ->where('give_remaining', '>', 0)
+                    ->where('get_remaining', '>', 0)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index)
                     ->orderBy('expire_index', 'asc')
@@ -67,6 +69,8 @@ class CardsController extends Controller
 
         // Sell Orders
         $sell_orders = Order::whereIn('give_asset', [$card->xcp_core_asset_name])
+                    ->where('give_remaining', '>', 0)
+                    ->where('get_remaining', '>', 0)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index)
                     ->orderBy('expire_index', 'asc')

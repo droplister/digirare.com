@@ -7,7 +7,7 @@
             <thead>
                 <tr>
                     <th scope="col">{{ __('Price') }}</th>
-                    <th scope="col">{{ $card->name }}</th>
+                    <th scope="col">{{ __('Quantity') }}</th>
                 </tr>
             </thead>
             <tbody>

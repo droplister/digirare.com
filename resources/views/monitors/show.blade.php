@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('DEX Orders'))
+@section('title', __('Monitoring'))
 
 @section('content')
     <div class="container mt-3">
@@ -11,7 +11,7 @@
                 </p>
                 <h1 class="display-4 mb-0">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-list"></i></small>
-                    {{ __('DEX Orders') }}
+                    {{ __('Monitoring') }}
                 </h1>
                 @include('monitors.partials.filters')
                 @include('monitors.partials.navtabs')

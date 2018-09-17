@@ -27,6 +27,6 @@
         </a>
     @endif
 @else
-    {{ __('Counterparty DEX orders matching your card collection.') }}
+    {{ __('Counterparty DEX orders matching your collection.') }}
 @endif
 </p>
