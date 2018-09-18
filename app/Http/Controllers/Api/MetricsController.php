@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Cache;
 use App\Card;
 use App\Metric;
 use App\Http\Resources\CountResource;
