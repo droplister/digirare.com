@@ -24,25 +24,31 @@ class MetricsController extends Controller
             'card' => 'sometimes|exists:cards,slug',
         ]);
 
-        // New Query (default)
-        $metrics = Metric::query();
-
-        // New Query (card)
-        if($request->has('card'))
-        {
-            // Get Card
-            $card = Card::findBySlug($request->card);
-
-            // Reset Query
-            $metrics = $card->metrics();
-        }
+        // Cache Slug
+        $cache_slug = 'metrics_' . str_slug(serialize($request->all()));
 
         // Get Metrics
-        $metrics = $metrics->where('category', '=', $request->category)
-            ->where('interval', '=', $request->interval)
-            ->where('type', '=', 'count')
-            ->get();
+        return Cache::remember($cache_slug, 60, function () use ($request) {
+            // New Query
+            $metrics = Metric::query();
 
-        return CountResource::collection($metrics);
+            // New Query (card)
+            if($request->has('card'))
+            {
+                // Get Card
+                $card = Card::findBySlug($request->card);
+
+                // Reset Query
+                $metrics = $card->metrics();
+            }
+
+            // Get Metrics
+            $metrics = $metrics->where('category', '=', $request->category)
+                ->where('interval', '=', $request->interval)
+                ->where('type', '=', 'count')
+                ->get();
+
+            return CountResource::collection($metrics);
+        });
     }
 }
