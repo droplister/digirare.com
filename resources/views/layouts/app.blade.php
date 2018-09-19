@@ -145,7 +145,6 @@
         </main>
 
         <footer class="container text-center text-muted pb-4">
-            <hr />
             <a href="{{ url('/') }}" class="mr-2">{{ __('Home') }}</a>
             <a href="{{ route('pages.investors') }}" class="mr-2">{{ __('Investors') }}</a>
             <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" class="mr-2" target="_blank">{{ __('Tutorial') }}</a>
