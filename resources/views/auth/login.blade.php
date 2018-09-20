@@ -10,7 +10,7 @@
                 <small class="text-highlight"><i aria-hidden="true" class="fa fa-sign-in"></i></small>
                 {{ __('Login') }}
             </h1>
-            <div class="card">
+            <div class="card mb-4">
                 <div class="card-header">
                     <span class="lead font-weight-bold">{{ __('Login') }}</span>
                 </div>
