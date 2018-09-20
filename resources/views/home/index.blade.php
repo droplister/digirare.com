@@ -4,14 +4,14 @@
 
 @section('content')
     <div class="container mt-3">
-        <div class="row mb-4">
+        <div class="row">
             <div class="col">
                 <h1 class="display-4 mb-4">
                     <small class="text-highlight"><i aria-hidden="true" class="fa fa-diamond"></i></small>
                     DIGIRARE
                 </h1>
                 @include('partials.featured')
-                <div class="text-center mb-5">
+                <div class="text-center mb-4">
                     <a href="{{ route('random.index') }}" class="btn btn-primary btn-lg">
                         <i aria-hidden="true" class="fa fa-random"></i> {{ __('Random Card') }}
                     </a>
@@ -21,7 +21,7 @@
                     {{ __('DEX Trades') }}
                 </h2>
                 @include('home.partials.index.trades-chart')
-                <div class="text-center mb-5">
+                <div class="text-center mb-4">
                     <a href="{{ route('orders.index') }}" class="btn btn-primary btn-lg">
                         <i aria-hidden="true" class="fa fa-list"></i> {{ __('Open Orders') }}
                     </a>
@@ -31,7 +31,7 @@
                     {{ __('XCP Cards') }}
                 </h2>
                 @include('home.partials.index.cards-chart')
-                <div class="text-center mb-5">
+                <div class="text-center mb-4">
                     <a href="{{ route('collections.index') }}" class="btn btn-primary btn-lg">
                         <i aria-hidden="true" class="fa fa-image"></i> {{ __('Collections') }}
                     </a>
@@ -41,7 +41,7 @@
                     {{ __('Collectors') }}
                 </h2>
                 @include('home.partials.index.collectors-chart')
-                <div class="text-center mb-5">
+                <div class="text-center mb-4">
                     <a href="{{ route('collectors.index') }}" class="btn btn-primary btn-lg">
                         <i aria-hidden="true" class="fa fa-trophy"></i> {{ __('Top Collectors') }}
                     </a>
