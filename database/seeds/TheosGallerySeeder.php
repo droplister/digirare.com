@@ -88,6 +88,7 @@ class TheosGallerySeeder extends Seeder
             ],
             'SHALLWEPLAY' => [
                 'image_url' => 'http://theos.gallery/wp-content/uploads/2018/09/shallweplay-2.gif',
+                'meta' => null,
             ],
         ];
     }
