@@ -86,6 +86,9 @@ class TheosGallerySeeder extends Seeder
                 ],
                 'image_url' => 'http://theos.gallery/wp-content/uploads/2018/08/raresig.png',
             ],
+            'SHALLWEPLAY' => [
+                'image_url' => 'http://theos.gallery/wp-content/uploads/2018/09/shallweplay-2.gif',
+            ],
         ];
     }
 }
