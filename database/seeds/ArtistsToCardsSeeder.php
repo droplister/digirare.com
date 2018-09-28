@@ -56,6 +56,7 @@ class ArtistsToCardsSeeder extends Seeder
                     'CORNBEERS',
                     'CORNBOSS',
                     'CORNCOMBINE',
+                 // 'CORNCYRUS',
                     'CORNKUATO',
                     'CORNNAKAMOTO',
                     'CORNSTAR',
@@ -64,7 +65,7 @@ class ArtistsToCardsSeeder extends Seeder
                     'HORSETRADER',
                     'LORDCORN',
                     'RARECORN',
-                    'RETROFARMER',
+                 // 'RETROFARMER',
                     'VAPORCORN',
                 ],
                 'Roger Fliporian' => [
