@@ -56,7 +56,6 @@ class ArtistsToCardsSeeder extends Seeder
                     'CORNBEERS',
                     'CORNBOSS',
                     'CORNCOMBINE',
-                    'CORNCYRUS',
                     'CORNKUATO',
                     'CORNNAKAMOTO',
                     'CORNSTAR',
