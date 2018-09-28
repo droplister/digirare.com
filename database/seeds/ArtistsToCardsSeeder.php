@@ -63,7 +63,7 @@ class ArtistsToCardsSeeder extends Seeder
                     'CORNSPIRACY',
                     'FUMAGATORMAN',
                     'HORSETRADER',
-                    'LORDCORN',
+                 // 'LORDCORN',
                     'RARECORN',
                  // 'RETROFARMER',
                     'VAPORCORN',
