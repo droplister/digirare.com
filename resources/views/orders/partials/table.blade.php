@@ -88,4 +88,4 @@
         </table>
     </div>
 </div>
-{!! $orders->links() !!}
+{!! $orders->appends($request->except('page'))->links() !!}
