@@ -3,6 +3,11 @@
 return [
 
     /**
+     * Analytics
+     */
+    'analytics' => env('ANALYTICS', 'https://datastudio.google.com/open/1Vx6py8S0fjguXgi0wJ3yoLQxtyJPvke8'),
+
+    /**
      * Spells of Genesis
      */
     'sog_akey' => env('SOG_AKEY'),
