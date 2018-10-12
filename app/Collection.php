@@ -3,8 +3,11 @@
 namespace App;
 
 use Cache;
+use Carbon\Carbon;
 use App\Traits\Linkable;
 use Droplister\XcpCore\App\Asset;
+use Droplister\XcpCore\App\Debit;
+use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Balance;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
@@ -143,6 +146,68 @@ class Collection extends Model
     public function scopePrimary($query)
     {
         return $query->where('primary', '=', 1);
+    }
+
+    /**
+     * TXs Count
+     *
+     * @return string
+     */
+    public function txsCount($subDays=1)
+    {
+        $assets = Cache::rememberForever('cards_array_' . $this->id, function () {
+            $assets = $this->cards->pluck('xcp_core_asset_name')->toArray();
+            return array_merge($assets, [$this->currency]);
+        });
+
+        $debits = Debit::whereIn('asset', $assets)
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->selectRaw('event')
+            ->groupBy('event')
+            ->get()
+            ->toArray();
+
+        $credits = Credit::whereIn('asset', $assets)
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->selectRaw('event')
+            ->groupBy('event')
+            ->get()
+            ->toArray();
+
+        $changes = collect(array_merge($credits, $debits));
+
+        return $changes->unique('event')->count();
+    }
+
+    /**
+     * Users Count
+     *
+     * @return string
+     */
+    public function usersCount($subDays=1)
+    {
+        $assets = Cache::rememberForever('cards_array_' . $this->id, function () {
+            $assets = $this->cards->pluck('xcp_core_asset_name')->toArray();
+            return array_merge($assets, [$this->currency]);
+        });
+
+        $debits = Debit::whereIn('asset', $assets)
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->selectRaw('address')
+            ->groupBy('address')
+            ->get()
+            ->toArray();
+
+        $credits = Credit::whereIn('asset', $assets)
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->selectRaw('address')
+            ->groupBy('address')
+            ->get()
+            ->toArray();
+
+        $changes = collect(array_merge($credits, $debits));
+
+        return $changes->unique('address')->count();
     }
 
     /**
