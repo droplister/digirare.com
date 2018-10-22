@@ -99,6 +99,9 @@ class CollectionsTableSeeder extends Seeder
             'MafiaWars' => [
                 'currency' => 'MAFIACASH',
             ],
+            'NPCs' => [
+                'currency' => 'XCP',
+            ],
             'Penisium' => [
                 'currency' => 'PENISIUM',
             ],

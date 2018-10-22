@@ -9,6 +9,7 @@ use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Debit;
 use Droplister\XcpCore\App\Credit;
 use Droplister\XcpCore\App\Balance;
+use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Staudenmeir\EloquentHasManyDeep\HasRelationships;
@@ -157,7 +158,20 @@ class Collection extends Model
     {
         $assets = Cache::rememberForever('cards_array_' . $this->id, function () {
             $assets = $this->cards->pluck('xcp_core_asset_name')->toArray();
-            return array_merge($assets, [$this->currency]);
+
+            $collections = [
+                'age-of-rust',
+                'bitcorn-crops',
+                'footballcoin',
+                'mafiawars',
+                'penisium',
+                'rare-pepe',
+                'spells-of-genesis',
+            ];
+
+            $currency = $this->slug === 'bitcorn-crops' ? ['BITCORN', 'CROPS'] : [$this->currency];
+
+            return in_array($this->slug, $collections) ? array_merge($assets, $currency) : $assets;
         });
 
         $debits = Debit::whereIn('asset', $assets)
@@ -188,7 +202,20 @@ class Collection extends Model
     {
         $assets = Cache::rememberForever('cards_array_' . $this->id, function () {
             $assets = $this->cards->pluck('xcp_core_asset_name')->toArray();
-            return array_merge($assets, [$this->currency]);
+
+            $collections = [
+                'age-of-rust',
+                'bitcorn-crops',
+                'footballcoin',
+                'mafiawars',
+                'penisium',
+                'rare-pepe',
+                'spells-of-genesis',
+            ];
+
+            $currency = $this->slug === 'bitcorn-crops' ? ['BITCORN', 'CROPS'] : [$this->currency];
+
+            return in_array($this->slug, $collections) ? array_merge($assets, $currency) : $assets;
         });
 
         $debits = Debit::whereIn('asset', $assets)
@@ -208,6 +235,44 @@ class Collection extends Model
         $changes = collect(array_merge($credits, $debits));
 
         return $changes->unique('address')->count();
+    }
+
+    /**
+     * Volume Total
+     *
+     * @return string
+     */
+    public function volumeTotal($subDays=1)
+    {
+        $assets = Cache::rememberForever('cards_array_' . $this->id, function () {
+            $assets = $this->cards->pluck('xcp_core_asset_name')->toArray();
+
+            $collections = [
+                'age-of-rust',
+                'bitcorn-crops',
+                'footballcoin',
+                'mafiawars',
+                'penisium',
+                'rare-pepe',
+                'spells-of-genesis',
+            ];
+
+            $currency = $this->slug === 'bitcorn-crops' ? ['BITCORN', 'CROPS'] : [$this->currency];
+
+            return in_array($this->slug, $collections) ? array_merge($assets, $currency) : $assets;
+        });
+
+        $buys = OrderMatch::whereIn('backward_asset', $assets)
+            ->where('forward_asset', '=', 'XCP')
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->sum('forward_quantity');
+
+        $sells = OrderMatch::whereIn('forward_asset', $assets)
+            ->where('backward_asset', '=', 'XCP')
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->sum('backward_quantity');
+
+        return normalizeQuantity($buys + $sells, true);
     }
 
     /**

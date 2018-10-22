@@ -17,9 +17,36 @@ class PagesController extends Controller
     public function dappradar(Request $request)
     {
         // Collections
-        $collections = Collection::get();
+        $collections = Collection::get()->sortByDesc(function ($collection) use($request) {
+            $sort = $request->input('sort', 'users_24');
 
-        return view('pages.dappradar', compact('collection'));
+            if($sort === 'users_24')
+            {
+                return $collection->usersCount(1);
+            }
+            elseif($sort === 'users_7d')
+            {
+                return $collection->usersCount(7);
+            }
+            elseif($sort === 'tx_24')
+            {
+                return $collection->txsCount(1);
+            }
+            elseif($sort === 'tx_7d')
+            {
+                return $collection->txsCount(7);
+            }
+            elseif($sort === 'volume_24')
+            {
+                return $collection->volumeTotal(1);
+            }
+            elseif($sort === 'volume_7d')
+            {
+                return $collection->volumeTotal(7);
+            }
+        });
+
+        return view('pages.dappradar', compact('collections'));
     }
 
     /**

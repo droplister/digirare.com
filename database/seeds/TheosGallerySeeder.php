@@ -90,6 +90,12 @@ class TheosGallerySeeder extends Seeder
                 'image_url' => 'http://theos.gallery/wp-content/uploads/2018/09/shallweplay-2.gif',
                 'meta' => null,
             ],
+            'A17442469756355635000' => [
+                'meta' => [
+                    'readable' => 'NPCSTRONG',
+                ],
+                'image_url' => 'http://theos.gallery/wp-content/uploads/2018/10/npcstrong.png',
+            ]
         ];
     }
 }
