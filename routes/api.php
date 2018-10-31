@@ -14,3 +14,4 @@ use Illuminate\Http\Request;
 */
 
 Route::get('/metrics/count', 'Api\MetricsController@showCount')->name('metrics.count');
+Route::get('/wallet/{address}', 'Api\WalletController@show')->name('wallet.show');
