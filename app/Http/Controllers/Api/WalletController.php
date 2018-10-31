@@ -14,12 +14,13 @@ class WalletController extends Controller
      * Display a listing of the resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Collector  $collector
+     * @param  string  $collector
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Collector $collector)
+    public function show(Request $request, $collector)
     {
-        return Cache::remember('wallet_show_' . $collector->slug, 60, function () use ($collector) {
+        return Cache::remember('wallet_show_' . $collector, 60, function () use ($collector) {
+            $collector = Collector::findBySlug($collector);
             $balances = $collector->cardBalances()->with('card.token')->orderBy('asset', 'desc')->get();
             return WalletResource::collection($balances);
         });

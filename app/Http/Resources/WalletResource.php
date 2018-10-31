@@ -18,9 +18,10 @@ class WalletResource extends Resource
             'asset' => [
                 'name' => $this->card->token->asset_name,
                 'long_name' => $this->card->token->asset_longname,
-                'issuance' => $this->card->token->issuance_normalized,
                 'burned' => $this->card->token->burned_normalized,
                 'supply' => $this->card->token->supply_normalized,
+                'issuance' => $this->card->token->issuance_normalized,
+                'divisible' => (bool) $this->card->token->divisible,
             ],
             'balance' => [
                 'quantity' => $this->quantity_normalized,
@@ -28,8 +29,8 @@ class WalletResource extends Resource
             ],
             'card' => [
                 'name' => $this->card->name,
-                'image' => $this->card->primary_image_url,
-                'collection' => $this->primaryCollection()->first()->name,
+                'collection' => $this->card->primaryCollection()->first()->name,
+                'image' => asset($this->card->primary_image_url),
             ],
         ];
     }
