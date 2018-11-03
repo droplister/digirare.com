@@ -3,13 +3,19 @@
 @section('title', 'DIGIRARE')
 
 @section('content')
+    <section class="jumbotron text-center">
+        <div class="container">
+            <h1 class="jumbotron-heading">CryptoCollectibles</h1>
+            <p class="lead text-muted">On the Bitcoin Blockchain</p>
+            <p>
+                <a href="{{ route('cards.index') }}" class="btn btn-secondary my-2 mr-2">Browse Directory</a>
+                <a href="https://digirare.com/random" class="btn btn-primary my-2">I'm Feeling Lucky</a>
+            </p>
+        </div>
+    </section>
     <div class="container mt-3">
         <div class="row">
             <div class="col">
-                <h1 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-diamond"></i></small>
-                    DIGIRARE
-                </h1>
                 @include('partials.featured')
                 <div class="text-center mb-4">
                     <a href="{{ route('random.index') }}" class="btn btn-primary btn-lg">
