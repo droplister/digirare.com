@@ -70,12 +70,32 @@ class UpdateBitcorn implements ShouldQueue
             // Image URL
             $image_url = $this->getImageUrl($data['card'], $this->override);
 
+            // Get Meta
+            $meta_data = $this->getMeta($data);
+
             // Creation
-            $card = $this->firstOrCreateCard($xcp_core_asset_name, $data['name']);
+            $card = $this->firstOrCreateCard($xcp_core_asset_name, $data['name'], $meta_data);
 
             // Relation
             $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
         }
+    }
+
+    /**
+     * Get Meta
+     * 
+     * @param  array  $data
+     * @return array
+     */
+    private function getMeta($data)
+    {
+        $data = array_change_key_case($data, CASE_LOWER);
+
+        return array_only($data, [
+            'harvest',
+            'harvest_ranking',
+            'overall_ranking',
+        ]);
     }
 
     /**
