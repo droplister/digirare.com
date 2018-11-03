@@ -27,7 +27,7 @@ class WalletResource extends Resource
                 'quantity' => $this->quantity_normalized,
                 'percentage' => number_format(($this->quantity / $this->assetModel->issuance) * 100, 2),
             ],
-            'card' => ! $this->card ? [] : [
+            'card' => ! $this->card ? false : [
                 'name' => $this->card->name,
                 'collection' => $this->card->primaryCollection()->first()->name,
                 'image' => asset($this->card->primary_image_url),

@@ -21,6 +21,6 @@ class WalletAddress extends Address
      */
     public function walletBalances()
     {
-        return $this->hasMany(WalletBalance::class, 'address', 'xcp_core_address')->nonZero();
+        return $this->hasMany(WalletBalance::class, 'address', 'address')->nonZero();
     }
 }
