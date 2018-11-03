@@ -2,18 +2,21 @@
 
 @section('title', 'DIGIRARE')
 
-@section('content')
+@section('jumbotron')
     <section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">CryptoCollectibles</h1>
             <p class="lead text-muted">On the Bitcoin Blockchain</p>
             <p>
                 <a href="{{ route('cards.index') }}" class="btn btn-secondary my-2 mr-2">Browse Directory</a>
-                <a href="https://digirare.com/random" class="btn btn-primary my-2">I'm Feeling Lucky</a>
+                <a href="{{ route('random.index') }}" class="btn btn-primary my-2">I'm Feeling Lucky</a>
             </p>
         </div>
     </section>
-    <div class="container mt-3">
+@endsection
+
+@section('content')
+    <div class="container">
         <div class="row">
             <div class="col">
                 @include('partials.featured')

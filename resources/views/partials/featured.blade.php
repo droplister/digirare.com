@@ -4,7 +4,7 @@
             {{ __('Featured Cards') }}
         </span>
         <a href="#" class="btn btn-sm btn-primary float-right" role="button" data-toggle="modal" data-target="#howToModal">
-            <i class="fa fa-gavel" aria-hidden="true"></i>
+            <i class="fa fa-star" aria-hidden="true"></i>
             {{ __('Get Featured') }}
         </a>
     </div>
