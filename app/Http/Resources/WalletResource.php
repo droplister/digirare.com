@@ -16,21 +16,22 @@ class WalletResource extends Resource
     {
         return [
             'asset' => [
-                'name' => $this->card->token->asset_name,
-                'long_name' => $this->card->token->asset_longname,
-                'burned' => $this->card->token->burned_normalized,
-                'supply' => $this->card->token->supply_normalized,
-                'issuance' => $this->card->token->issuance_normalized,
-                'divisible' => (bool) $this->card->token->divisible,
+                'name' => $this->assetModel->asset_name,
+                'long_name' => $this->assetModel->asset_longname,
+                'burned' => $this->assetModel->burned_normalized,
+                'supply' => $this->assetModel->supply_normalized,
+                'issuance' => $this->assetModel->issuance_normalized,
+                'divisible' => (bool) $this->assetModel->divisible,
             ],
             'balance' => [
                 'quantity' => $this->quantity_normalized,
-                'percentage' => number_format(($this->quantity / $this->card->token->issuance) * 100, 2),
+                'percentage' => number_format(($this->quantity / $this->assetModel->issuance) * 100, 2),
             ],
-            'card' => [
+            'card' => ! $this->card ? [] : [
                 'name' => $this->card->name,
                 'collection' => $this->card->primaryCollection()->first()->name,
                 'image' => asset($this->card->primary_image_url),
+                'meta' => $this->card->meta,
             ],
         ];
     }
