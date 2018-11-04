@@ -13,7 +13,7 @@
                     </div>
                     <div class="col-md-3 mb-3">
                         <select class="custom-select d-block w-100" id="collection" name="collection">
-                            <option>Collection</option>
+                            <option value="">Collection</option>
                             @foreach($collections as $collection)
                             <option value="{{ $collection->slug }}"{{ $collection->slug === $request->input('collection') ? ' selected' : '' }}>
                                 {{ $collection->name }}
@@ -23,7 +23,7 @@
                     </div>
                     <div class="col-md-2 mb-3">
                         <select class="custom-select d-block w-100" id="format" name="format">
-                            <option>Format</option>
+                            <option value="">Format</option>
                             @foreach($formats as $format)
                             <option value="{{ $format }}"{{ $format === $request->input('format') ? ' selected' : '' }}>
                                 {{ $format }}

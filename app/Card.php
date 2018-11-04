@@ -242,7 +242,7 @@ class Card extends Model
 
         // By Keyword
         if ($request->has('keyword')) {
-            $cards = $cards->where('slug', 'like', $request->keyword . '%');
+            $cards = $cards->where('slug', 'like', '%' . $request->keyword . '%');
         }
 
         // By Format
