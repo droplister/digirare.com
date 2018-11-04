@@ -27,7 +27,7 @@
                         @endif
                         @if($request->has('format') && $request->filled('format'))
                         <a href="{{ route('cards.index', $request->except('format', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                            <i class="fa fa-times text-danger"></i> {{ title_case(str_replace('-', ' ', $request->format)) }}
+                            <i class="fa fa-times text-danger"></i> {{ strtoupper(str_replace('-', ' ', $request->format)) }}
                         </a>
                         @endif
                     </div>
