@@ -26,6 +26,11 @@ class CardsController extends Controller
             'collection' => 'sometimes|nullable|exists:collections,slug',
         ]);
 
+        // Exception
+        if($request->has('collection') && $request->has(category) && ! in_array($request->collection, ['bitcorn-crops', 'rare-pepe'])) {
+            return redirect(route('cards.index', $request->except('category')));
+        }
+
         // IMG Formats
         $formats = ['GIF', 'JPG', 'PNG'];
 
