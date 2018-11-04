@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', __('Counterparty DEX'))
+@section('title', __('Counterparty DEX - Buy & Sell CryptoCollectibles'))
 
 @section('jumbotron')
     <section class="jumbotron">
         <div class="container">
-            <h1 class="jumbotron-heading">Orders</h1>
+            <h1 class="jumbotron-heading">Market <small class="lead text-muted">Counterparty DEX</small></h1>
             <form method="GET" action="{{ route('orders.index') }}">
                 <div class="row">
                     <div class="col-md-10">
