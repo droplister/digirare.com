@@ -47,19 +47,19 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('cards.index') }}">
+                            <a class="nav-link" href="#">
                                 <i class="fa fa-gavel" aria-hidden="true"></i>
                                 {{ __('Marketplace') }}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('collections.index') }}">
+                            <a class="nav-link" href="#">
                                 <i class="fa fa-list" aria-hidden="true"></i>
                                 {{ __('Resources') }}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('random.index') }}">
+                            <a class="nav-link" href="#">
                                 <i class="fa fa-line-chart" aria-hidden="true"></i>
                                 {{ __('Stats & Data') }}
                             </a>
@@ -75,7 +75,7 @@
                     <ul class="navbar-nav ml-auto">
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ config('digirare.telegram_url') }}">
+                                <a class="nav-link" href="#">
                                     {{ __('How it Works') }}
                                 </a>
                             </li>
