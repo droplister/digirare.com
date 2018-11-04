@@ -13,18 +13,18 @@
                         <input type="text" class="form-control" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a keyword or card name..." required autofocus>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <select class="custom-select d-block w-100" id="collection">
-                            <option>Collections</option>
+                        <select class="custom-select d-block w-100" name="collection">
+                            <option>Collection</option>
                             @foreach($collections as $collection)
                             <option value="{{ $collection->slug }}">{{ $collection->name }}</option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-md-2 mb-3">
-                        <select class="custom-select d-block w-100" id="artists">
-                            <option>Artists</option>
-                            @foreach($artists as $artist)
-                            <option value="{{ $artist->slug }}">{{ $artist->name }}</option>
+                        <select class="custom-select d-block w-100" name="format">
+                            <option>Format</option>
+                            @foreach($formats as $format)
+                            <option value="{{ $format }}">{{ $format }}</option>
                             @endforeach
                         </select>
                     </div>

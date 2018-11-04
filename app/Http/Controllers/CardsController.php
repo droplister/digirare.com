@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Card;
+use App\Collection;
 use Droplister\XcpCore\App\Block;
 use Droplister\XcpCore\App\Order;
 use Illuminate\Http\Request;
@@ -20,13 +21,13 @@ class CardsController extends Controller
     {
         // Validation
         $request->validate([
-            'keyword' => 'sometimes|alpha_num',
-            'artist' => 'sometimes|exists:artists,slug',
+            'keyword' => 'sometimes',
+            'format' => 'sometimes|in:GIF,JPG,PNG',
             'collection' => 'sometimes|exists:collections,slug',
         ]);
 
-        // The Artists
-        $artists = Artist::orderBy('name', 'asc')->get();
+        // IMG Formats
+        $formats = ['GIF', 'JPG', 'PNG'];
 
         // Collections
         $collections = Collection::orderBy('name', 'asc')->get();
@@ -40,7 +41,7 @@ class CardsController extends Controller
         });
 
         // Index View
-        return view('cards.index', compact('artists', 'cards', 'collections', 'request'));
+        return view('cards.index', compact('formats', 'cards', 'collections', 'request'));
     }
 
     /**
