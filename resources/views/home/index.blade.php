@@ -132,11 +132,11 @@
                 </div>
             </div>
         </section>
-        <button class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#howToModal">
-            <i class="fa fa-star" aria-hidden="true"></i>
-            {{ __('Get Featured') }}
-        </button>
-        <h5 class="mb-5">
+        <h5 class="my-5">
+            <button class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#howToModal">
+                <i class="fa fa-star" aria-hidden="true"></i>
+                {{ __('Get Featured') }}
+            </button>
             {{ __('User Featured') }}
         </h5>
         <div class="row mb-5">
