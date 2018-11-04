@@ -9,7 +9,7 @@
             <form method="GET" action="{{ route('cards.index') }}">
                 <div class="row">
                     <div class="col-md-5 mb-3">
-                        <input type="text" class="form-control mb-2 text-uppercase" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a card name or keyword..." autofocus>
+                        <input type="text" class="form-control mb-2" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a card name or keyword..." autofocus>
                         @if($request->has('keyword') && $request->filled('keyword'))
                         <a href="{{ route('cards.index', $request->except('keyword', 'page')) }}" style="text-decoration: none;" class="mr-2">
                             <i class="fa fa-times text-danger"></i> Keyword
