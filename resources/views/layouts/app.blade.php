@@ -47,21 +47,21 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-gavel" aria-hidden="true"></i>
-                                {{ __('Marketplace') }}
+                            <a class="nav-link" href="{{ route('cards.index') }}">
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                {{ __('Browse') }}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
-                                <i class="fa fa-list" aria-hidden="true"></i>
-                                {{ __('Resources') }}
+                            <a class="nav-link" href="{{ route('orders.index') }}">
+                                <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                                {{ __('Trade') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="#">
                                 <i class="fa fa-line-chart" aria-hidden="true"></i>
-                                {{ __('Stats & Data') }}
+                                {{ __('Charts') }}
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-inline-block">

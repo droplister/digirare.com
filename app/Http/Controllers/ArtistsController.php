@@ -46,7 +46,8 @@ class ArtistsController extends Controller
             ->orderBy('balances_count', 'desc')
             ->paginate(100);
 
-        $first_issuance = $cards->get()->sortBy(function ($card) {
+        // First Card
+        $first_issuance = $artist->cards()->get()->sortBy(function ($card) {
             return $card->token['confirmed_at'];
         })->first()->token->confirmed_at->toFormattedDateString();
 

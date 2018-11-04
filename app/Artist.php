@@ -22,7 +22,9 @@ class Artist extends Model
         'user_id',
         'name',
         'slug',
+        'image_url',
         'content',
+        'meta',
     ];
 
     /**
