@@ -7,6 +7,9 @@
         <div class="container">
             <h1 class="jumbotron-heading">Browse</h1>
             <form method="GET" action="{{ route('cards.index') }}">
+                @if($request->has('artist') && $request->filled('artist'))
+                <input type="hidden" id="artist" name="artist" value="{{ $request->artist }}">
+                @endif
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <input type="text" class="form-control mb-2" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a card name or keyword..." autofocus>
