@@ -16,7 +16,7 @@
             {{ $artist->collectors_count }} <small class="d-block lead" style="font-size: 0.75rem;">Collectors</small>
         </h2>
         <h2 class="mb-3 d-inline-block mr-4">
-            {{ $artist->balances_count }} <small class="d-block lead" style="font-size: 0.75rem;">Balances</small>
+            {{ $artist->balances()->count() }} <small class="d-block lead" style="font-size: 0.75rem;">Balances</small>
         </h2>
         <p class="mb-5">
             <a href="{{ route('cards.index', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2">Search DEX</a>
