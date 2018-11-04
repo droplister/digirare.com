@@ -84,7 +84,7 @@
                 @endif
             </small>
         </h5>
-        <div class="row">
+        <div class="row mb-4">
             @foreach($cards as $card)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
                 <a href="{{ $card->url }}">
