@@ -27,7 +27,7 @@ class CardsController extends Controller
         ]);
 
         // Exception
-        if($request->has('collection') && $request->has(category) && ! in_array($request->collection, ['bitcorn-crops', 'rare-pepe'])) {
+        if($request->has('collection') && $request->has('category') && ! in_array($request->collection, ['bitcorn-crops', 'rare-pepe'])) {
             return redirect(route('cards.index', $request->except('category')));
         }
 
