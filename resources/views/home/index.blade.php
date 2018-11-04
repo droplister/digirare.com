@@ -4,7 +4,7 @@
 
 @section('jumbotron')
     <section class="jumbotron text-center">
-        <div class="container">
+        <div class="container my-5">
             <h1 class="jumbotron-heading">CryptoCollectibles</h1>
             <p class="lead text-muted">CryptoArt on the Bitcoin Blockchain</p>
             <p>
@@ -26,9 +26,9 @@
             {{ __('Get Featured') }}
         </a>
         <h5 class="mb-5">
-            {{ __('Featured') }}
+            {{ __('Featured CryptoArt') }}
         </h5>
-        <div class="row">
+        <div class="row mb-5">
             @foreach($features as $featured)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
                 <a href="{{ $featured->card->url }}">
@@ -49,6 +49,30 @@
                 </p>
             </div>
             @endforeach
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <p class="text-muted mb-0">
+                    <a href="{{ route('artists.index') }}">{{ __('Featured Artist') }}</a>
+                </p>
+                <h1 class="display-4 mb-4">
+                    {{ $artist->name }}
+                </h1>
+                <p>
+                    {{ $artist->content }}
+                </p>
+                <p class="mb-5">
+                    <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2">View Profile</a>
+                    @if(isset($artist->meta['website']))
+                    <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2 mr-2" target="_blank">Learn More</a>
+                    @endif
+                </p>
+            </div>
+            @if($artist->image_url)
+            <div class="col-md-6">
+                <img src="{{ $artist->image_url }}" width="100%">
+            </div>
+            @endif
         </div>
     </div>
     @include('modals.featured')

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Artist;
 use App\Feature;
 use Illuminate\Http\Request;
 
@@ -16,7 +17,8 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $features = Feature::highestBids()->with('card.token')->get();
+        $artist = Artist::findBySlug('scrilla-ventura');
 
-        return view('home.index', compact('features'));
+        return view('home.index', compact('features', 'artist'));
     }
 }
