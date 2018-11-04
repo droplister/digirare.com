@@ -24,100 +24,30 @@
         <h5 class="mb-5">
             {{ __('Editors\' Picks') }}
             <small class="d-none d-md-inline-block pull-right text-muted">
-                <a href="{{ route('cards.index') }}">Browse all CryptoCollectibles on XCP</a>.
+                Let's talk CryptoArt! Join our <a href="{{ config('digirare.telegram_url') }}" target="_blank">Telegram</a>.
             </small>
         </h5>
         <div class="row mb-5">
+            @foreach($cards as $card)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
-                <a href="/cards/HOMERPEPE">
-                    <img src="/storage/rare-pepe/homerpepe.jpg" alt="HOMERPEPE" width="100%" />
+                <a href="{{ $card->url }}">
+                    <img src="{{ $card->primary_image_url }}" alt="{{ $card->name }}" width="100%" />
                 </a>
                 <h6 class="card-title mt-3 mb-1">
-                    <a href="/cards/HOMERPEPE" class="font-weight-bold text-dark">
-                        HOMERPEPE
+                    <a href="{{ $card->url }}" class="font-weight-bold text-dark">
+                        {{ $card->name }}
                     </a>
                 </h6>
                 <p class="card-text">
-                    {{ __('Supply:') }} 1
+                    {{ __('Supply:') }} {{ number_format($card->token->supply_normalized) }}
                     <span class="float-right d-none d-md-inline">
-                        <a href="/collections/rare-pepe">
-                            Rare Pepe
+                        <a href="{{ $card->primaryCollection()->first()->url }}">
+                            {{ $card->primaryCollection()->first()->name }}
                         </a>
                     </span>
                 </p>
             </div>
-            <div class="col-6 col-sm-4 col-lg-3 mb-4">
-                <a href="/cards/CODEISLAW">
-                    <img src="/storage/oasis-mining/CODEISLAW.png" alt="CODEISLAW" width="100%" />
-                </a>
-                <h6 class="card-title mt-3 mb-1">
-                    <a href="/cards/CODEISLAW" class="font-weight-bold text-dark">
-                        CODEISLAW
-                    </a>
-                </h6>
-                <p class="card-text">
-                    {{ __('Supply:') }} 100
-                    <span class="float-right d-none d-md-inline">
-                        <a href="/collections/oasis-mining">
-                            Oasis Mining
-                        </a>
-                    </span>
-                </p>
-            </div>
-            <div class="col-6 col-sm-4 col-lg-3 mb-4">
-                <a href="/cards/FOREVERMOIST">
-                    <img src="/storage/bitcorn-crops/FOREVERMOIST.png" alt="FOREVERMOIST" width="100%" />
-                </a>
-                <h6 class="card-title mt-3 mb-1">
-                    <a href="/cards/FOREVERMOIST" class="font-weight-bold text-dark">
-                        FOREVERMOIST
-                    </a>
-                </h6>
-                <p class="card-text">
-                    {{ __('Supply:') }} 3
-                    <span class="float-right d-none d-md-inline">
-                        <a href="/collections/bitcorn-crops">
-                            Bitcorn Crops
-                        </a>
-                    </span>
-                </p>
-            </div>
-            <div class="col-6 col-sm-4 col-lg-3 mb-4">
-                <a href="/cards/PEPEPOLLOCK">
-                    <img src="/storage/rare-pepe/PEPEPOLLOCK.png" alt="PEPEPOLLOCK" width="100%" />
-                </a>
-                <h6 class="card-title mt-3 mb-1">
-                    <a href="/cards/PEPEPOLLOCK" class="font-weight-bold text-dark">
-                        PEPEPOLLOCK
-                    </a>
-                </h6>
-                <p class="card-text">
-                    {{ __('Supply:') }} 444
-                    <span class="float-right d-none d-md-inline">
-                        <a href="/collections/rare-pepe">
-                            Rare Pepe
-                        </a>
-                    </span>
-                </p>
-            </div>
-            <div class="col-6 col-sm-4 col-lg-3 mb-4">
-                <a href="/cards/MAOZEPEPE">
-                    <img src="/storage/rare-pepe/MAOZEPEPE.png" alt="MAOZEPEPE" width="100%" />
-                </a>
-                <h6 class="card-title mt-3 mb-1">
-                    <a href="/cards/MAOZEPEPE" class="font-weight-bold text-dark">
-                        MAOZEPEPE
-                    </a>
-                </h6>
-                <p class="card-text">
-                    {{ __('Supply:') }} 108
-                    <span class="float-right d-none d-md-inline">
-                        <a href="/collections/rare-pepe">
-                            Rare Pepe
-                        </a>
-                    </span>
-                </p>
-            </div>
+            @endforeach
         </div>
         <section class="jumbotron">
             <div class="container">
@@ -152,7 +82,7 @@
                 <i class="fa fa-star" aria-hidden="true"></i>
                 {{ __('Get Featured') }}
             </button>
-            {{ __('More Featured') }}
+            {{ __('User Featured') }}
         </h5>
         <div class="row mb-5">
             @foreach($features as $featured)
