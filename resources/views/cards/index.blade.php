@@ -9,7 +9,7 @@
             <form method="GET" action="{{ route('cards.index') }}">
                 <div class="row">
                     <div class="col-md-5 mb-3">
-                        <input type="text" class="form-control" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a keyword or card name..." autofocus>
+                        <input type="text" class="form-control" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a card name or keyword..." autofocus>
                     </div>
                     <div class="col-md-3 mb-3">
                         <select class="custom-select d-block w-100" id="collection" name="collection">
@@ -42,6 +42,10 @@
 
 @section('content')
     <div class="container">
+        <h5 class="mb-5">
+            {{ $cards->total() }} {{ str_plural('Result', $cards->total()) }} Found
+            <small class="d-none d-md-inline-block pull-right text-muted">All on Bitcoin. Who would have thought?</small>
+        </h5>
         <div class="row">
             @foreach($cards as $card)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
