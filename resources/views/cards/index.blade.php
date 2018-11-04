@@ -5,7 +5,34 @@
 @section('jumbotron')
     <section class="jumbotron text-center">
         <div class="container">
-
+            <h1 class="jumbotron-heading">Search</h1>
+            <form method="GET" action="{{ route('search.index') }}">
+                @csrf
+                <div class="row">
+                    <div class="col-md-5 mb-3">
+                        <input type="text" class="form-control" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a keyword or card name..." required autofocus>
+                    </div>
+                    <div class="col-md-3 mb-3">
+                        <select class="custom-select d-block w-100" id="collection">
+                            <option>Collections</option>
+                            @foreach($collections as $collection)
+                            <option value="{{ $collection->slug }}">{{ $collection->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <select class="custom-select d-block w-100" id="artists">
+                            <option>Artists</option>
+                            @foreach($artists as $artist)
+                            <option value="{{ $artist->slug }}">{{ $artist->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="col-md-2 mb-3">
+                        <button class="btn btn-primary btn-block" type="submit">Search</button>
+                    </div>
+                </div>
+            </form>
         </div>
     </section>
 @endsection

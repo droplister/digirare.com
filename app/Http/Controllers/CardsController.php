@@ -25,6 +25,12 @@ class CardsController extends Controller
             'collection' => 'sometimes|exists:collections,slug',
         ]);
 
+        // The Artists
+        $artists = Artist::orderBy('name', 'asc')->get();
+
+        // Collections
+        $collections = Collection::orderBy('name', 'asc')->get();
+
         // Cache Slug
         $cache_slug = 'search_' . str_slug(serialize($request->all()));
 
@@ -34,7 +40,7 @@ class CardsController extends Controller
         });
 
         // Index View
-        return view('cards.index', compact('cards', 'request'));
+        return view('cards.index', compact('artists', 'cards', 'collections', 'request'));
     }
 
     /**

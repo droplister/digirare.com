@@ -247,14 +247,14 @@ class Card extends Model
         // By Artist
         if ($request->has('artist')) {
             $cards = $cards->whereHas('artist', function ($artist) use ($request) {
-                return $artist->whereIn('slug', '=', $request->artist);
+                return $artist->where('slug', '=', $request->artist);
             });
         }
 
         // By Collection
         if ($request->has('collection')) {
             $cards = $cards->whereHas('collection', function ($collection) use ($request) {
-                return $collection->whereIn('slug', $request->collection);
+                return $collection->where('slug', '=', $request->collection);
             });
         }
 
