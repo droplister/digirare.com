@@ -22,7 +22,7 @@
                         @endif
                         @if($request->has('category') && $request->filled('category'))
                         <a href="{{ route('cards.index', $request->except('category', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                            <i class="fa fa-times text-danger"></i> {{ $title }}
+                            <i class="fa fa-times text-danger"></i> {{ key($title_categories) }}
                         </a>
                         @endif
                         @if($request->has('format') && $request->filled('format'))
@@ -40,12 +40,12 @@
                             </option>
                             @endforeach
                         </select>
-                        @if($request->has('category') && $request->filled('category'))
-                        <select class="custom-select d-block w-100" id="category" name="category">
+                        @if($title_categories)
+                        <select class="custom-select d-block w-100 mt-2" id="category" name="category">
                             @foreach($title_categories as $title => $categories)
                             <option value="">{{ $title }}</option>
                             @foreach($categories as $category)
-                            <option value="{{ $category }}"{{ $category === $request->input('category') ? ' selected' : '' }}>
+                            <option value="{{ $category }}"{{ $category === (int) $request->input('category') ? ' selected' : '' }}>
                                 {{ $title }} {{ $category }}
                             </option>
                             @endforeach
@@ -80,7 +80,7 @@
                 @if(rand(0, 1))
                     All on Bitcoin. Who would have thought?
                 @else
-                    Trade cards on the <a href="#">Counterparty DEX</a>.
+                    Buy and trade on the <a href="#">Counterparty DEX</a>.
                 @endif
             </small>
         </h5>

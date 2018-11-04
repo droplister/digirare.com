@@ -277,7 +277,7 @@ class Card extends Model
             // JSON Meta
             $meta = $request->collection === 'bitcorn-crops' ? 'meta->harvest' : 'meta->series';
             // Build Query
-            $cards = $cards->whereJsonContains($meta, $request->category);
+            $cards = $cards->whereJsonContains($meta, (int) $request->category);
         }
 
         // Sort Pages
