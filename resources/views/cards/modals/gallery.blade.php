@@ -1,7 +1,7 @@
 <div class="modal fade" id="imageModal" tabindex="-1" role="dialog" aria-labelledby="imageModalLabel" aria-hidden="true">
     <div class="modal-dialog{{ $collections[0]->slug === 'age-of-chains' ? ' modal-lg' : '' }}" role="document">
         <div class="modal-content">
-            <div class="modal-body">
+            <div class="modal-body p-0">
                 <div id="imageModalGalleryControls" class="carousel slide" data-ride="carousel">
                     <div class="carousel-inner">
                         @foreach($collections as $collection)

@@ -49,13 +49,13 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cards.index') }}">
                                 <i class="fa fa-search" aria-hidden="true"></i>
-                                {{ __('Browse') }}
+                                {{ __('Search') }}
                             </a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('orders.index') }}">
                                 <i class="fa fa-handshake-o" aria-hidden="true"></i>
-                                {{ __('Trade') }}
+                                {{ __('Trades') }}
                             </a>
                         </li>
                         <li class="nav-item">

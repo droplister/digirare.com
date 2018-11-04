@@ -80,7 +80,7 @@
                 @if(rand(0, 1))
                     All on Bitcoin. Who would have thought?
                 @else
-                    Buy and trade on the <a href="#">Counterparty DEX</a>.
+                    Buy and trade on the <a href="{{ route('orders.index') }}">Counterparty DEX</a>.
                 @endif
             </small>
         </h5>
