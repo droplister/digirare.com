@@ -54,6 +54,12 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('orders.index') }}">
+                                <i class="fa fa-filter" aria-hidden="true"></i>
+                                {{ __('Orders') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
                                 <i class="fa fa-handshake-o" aria-hidden="true"></i>
                                 {{ __('Trades') }}
                             </a>

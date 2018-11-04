@@ -5,7 +5,7 @@
 @section('jumbotron')
     <section class="jumbotron">
         <div class="container">
-            <h1 class="jumbotron-heading">Search</h1>
+            <h1 class="jumbotron-heading">Orders</h1>
             <form method="GET" action="{{ route('orders.index') }}">
                 <div class="row">
                     <div class="col-md-6 mb-3">

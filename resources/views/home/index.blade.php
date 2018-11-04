@@ -8,8 +8,12 @@
             <h1 class="jumbotron-heading">CryptoCollectibles</h1>
             <p class="lead text-muted">CryptoArt on the Bitcoin Blockchain</p>
             <p>
-                <a href="{{ route('orders.index') }}" class="btn btn-primary my-2">Counterparty DEX</a>
-                <a href="{{ route('cards.index') }}" class="btn btn-secondary my-2 mr-2">Browse Directory</a>
+                <a href="{{ route('orders.index') }}" class="btn btn-primary my-2 mr-2">
+                    <i class="fa fa-filter" aria-hidden="true"></i> Open Orders
+                </a>
+                <a href="{{ route('cards.index') }}" class="btn btn-secondary my-2">
+                    <i class="fa fa-search" aria-hidden="true"></i> Search Directory
+                </a>
             </p>
         </div>
     </section>
@@ -17,13 +21,13 @@
 
 @section('content')
     <div class="container">
-        <h5 class="mb-5">
-            {{ __('Now Featuring') }}
-        </h5>
         <a href="#" class="btn btn-sm btn-primary float-right" role="button" data-toggle="modal" data-target="#howToModal">
             <i class="fa fa-star" aria-hidden="true"></i>
             {{ __('Get Featured') }}
         </a>
+        <h5 class="mb-5">
+            {{ __('Featured') }}
+        </h5>
         <div class="row">
             @foreach($features as $featured)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
