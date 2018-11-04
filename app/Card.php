@@ -241,12 +241,12 @@ class Card extends Model
         $cards = Card::withCount('balances');
 
         // By Keyword
-        if ($request->has('keyword')) {
+        if ($request->has('keyword') && $request->keyword !== '') {
             $cards = $cards->where('slug', 'like', '%' . $request->keyword . '%');
         }
 
         // By Format
-        if ($request->has('format')) {
+        if ($request->has('format') && $request->format !== '') {
             $ids = DB::table('card_collection')
                 ->where('image_url', 'like', '%' . $request->format)
                 ->pluck('card_id')
@@ -256,14 +256,14 @@ class Card extends Model
         }
 
         // By Collection
-        if ($request->has('collection')) {
+        if ($request->has('collection') && $request->collection !== '') {
             $cards = $cards->whereHas('collections', function ($collection) use ($request) {
                 return $collection->where('slug', '=', $request->collection);
             });
         }
 
         // Sort Pages
-        return $cards->orderBy('balances_count', 'desc')->paginate(40);
+        return $cards->orderBy('balances_count', 'desc')->paginate(100);
     }
 
     /**

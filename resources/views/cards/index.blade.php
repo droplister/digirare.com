@@ -60,6 +60,6 @@
             </div>
             @endforeach
         </div>
-        {!! $cards->links() !!}
+        {!! $cards->appends($request->except('page'))->links() !!}
     </div>
 @endsection
