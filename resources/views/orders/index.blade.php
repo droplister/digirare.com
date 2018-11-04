@@ -61,9 +61,14 @@
                         <button class="btn btn-primary btn-block" type="submit">Filter</button>
                     </div>
                 </div>
-                @if($request->has('keyword') && $request->filled('keyword'))
-                <a href="{{ route('orders.index', $request->except('keyword', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                    <i class="fa fa-times text-danger"></i> Keyword
+                @if($request->has('collector') && $request->filled('collector'))
+                <a href="{{ route('orders.index', $request->except('collector', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> Source
+                </a>
+                @endif
+                @if($request->has('card') && $request->filled('card'))
+                <a href="{{ route('orders.index', $request->except('card', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> {{ $request->card }}
                 </a>
                 @endif
                 @if($request->has('collection') && $request->filled('collection'))
