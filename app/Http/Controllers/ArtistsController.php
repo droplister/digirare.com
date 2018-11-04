@@ -41,16 +41,17 @@ class ArtistsController extends Controller
      */
     public function show(Request $request, Artist $artist)
     {
-        // View File
-        $view = $request->input('view', 'gallery');
-
         // Get Cards
         $cards = $artist->cards()->withCount('balances')
             ->orderBy('balances_count', 'desc')
-            ->paginate(20);
+            ->paginate(100);
+
+        $first_issuance = $cards->get()->sortBy(function ($card) {
+            return $card->token['confirmed_at'];
+        })->first()->token->confirmed_at->toFormattedDateString();
 
         // Show View
-        return view('artists.show', compact('artist', 'cards', 'view', 'request'));
+        return view('artists.show', compact('artist', 'cards', 'first_issuance'));
     }
 
     /**
