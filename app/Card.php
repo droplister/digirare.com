@@ -264,6 +264,14 @@ class Card extends Model
             $cards = $cards->whereIn('id', $ids);
         }
 
+        // By Artist
+        if ($request->has('artist') && $request->filled('artist')) {
+            // Build Query
+            $cards = $cards->whereHas('artists', function ($artist) use ($request) {
+                return $artist->where('slug', '=', $request->artist);
+            });
+        }
+
         // By Collection
         if ($request->has('collection') && $request->filled('collection')) {
             // Build Query

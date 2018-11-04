@@ -1,7 +1,7 @@
 <h5 class="my-5">
-    {{ $cards->total() }} CryptoArt {{ str_plural('Creations', $cards->total()) }}
+    {{ $artist->name }}'s Work
     <small class="d-none d-md-inline-block pull-right text-muted">
-        {{ $artist->name }} issued their first asset on {{ $first_issuance }}.
+        Issued their first asset on {{ $first_issuance }}.
     </small>
 </h5>
 <div class="row mb-4">
