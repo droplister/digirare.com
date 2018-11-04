@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Big Board'))
+@section('title', __('Counterparty DEX'))
 
 @section('jumbotron')
     <section class="jumbotron">
@@ -72,19 +72,19 @@
                     <i class="fa fa-times text-danger"></i> Keyword
                 </a>
                 @endif
+                @if($request->has('collection') && $request->filled('collection'))
+                <a href="{{ route('cards.index', $request->except('collection', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> {{ title_case(str_replace('-', ' ', $request->collection)) }}
+                </a>
+                @endif
                 @if($request->has('currency') && $request->filled('currency'))
                 <a href="{{ route('cards.index', $request->except('currency', 'page')) }}" style="text-decoration: none;" class="mr-2">
                     <i class="fa fa-times text-danger"></i> {{ $request->currency }}
                 </a>
                 @endif
-                @if($request->has('direction') && $request->filled('direction'))
-                <a href="{{ route('cards.index', $request->except('direction', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                    <i class="fa fa-times text-danger"></i> {{ ucfirst($request->direction) }}
-                </a>
-                @endif
-                @if($request->has('collection') && $request->filled('collection'))
-                <a href="{{ route('cards.index', $request->except('collection', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                    <i class="fa fa-times text-danger"></i> {{ title_case(str_replace('-', ' ', $request->collection)) }}
+                @if($request->has('action') && $request->filled('action'))
+                <a href="{{ route('cards.index', $request->except('action', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> {{ ucfirst($request->action) }}
                 </a>
                 @endif
                 @if($request->has('format') && $request->filled('format'))

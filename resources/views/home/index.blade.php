@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', 'DIGIRARE')
+@section('title', 'DIGIRARE - CryptoCollectibles, CryptoArt, and CryptoGames')
 
 @section('jumbotron')
     <section class="jumbotron text-center">
@@ -17,45 +17,34 @@
 
 @section('content')
     <div class="container">
+        <h5 class="mb-5">
+            {{ __('Now Featuring') }}
+        </h5>
+        <a href="#" class="btn btn-sm btn-primary float-right" role="button" data-toggle="modal" data-target="#howToModal">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            {{ __('Get Featured') }}
+        </a>
         <div class="row">
-            <div class="col">
-                @include('partials.featured')
-                <div class="text-center mb-4">
-                    <a href="{{ route('random.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-random"></i> {{ __('Random Card') }}
+            @foreach($features as $featured)
+            <div class="col-6 col-sm-4 col-lg-3 mb-4">
+                <a href="{{ $featured->card->url }}">
+                    <img src="{{ $featured->card->primary_image_url }}" alt="{{ $featured->card->name }}" width="100%" />
+                </a>
+                <h6 class="card-title mt-3 mb-1">
+                    <a href="{{ $featured->card->url }}" class="font-weight-bold text-dark">
+                        {{ $featured->card->name }}
                     </a>
-                </div>
-                <h2 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
-                    {{ __('DEX Trades') }}
-                </h2>
-                @include('home.partials.index.trades-chart')
-                <div class="text-center mb-4">
-                    <a href="{{ route('orders.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-list"></i> {{ __('Open Orders') }}
-                    </a>
-                </div>
-                <h2 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
-                    {{ __('XCP Cards') }}
-                </h2>
-                @include('home.partials.index.cards-chart')
-                <div class="text-center mb-4">
-                    <a href="{{ route('collections.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-image"></i> {{ __('Collections') }}
-                    </a>
-                </div>
-                <h2 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-hand-grab-o"></i></small>
-                    {{ __('Collectors') }}
-                </h2>
-                @include('home.partials.index.collectors-chart')
-                <div class="text-center mb-4">
-                    <a href="{{ route('collectors.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-trophy"></i> {{ __('Top Collectors') }}
-                    </a>
-                </div>
+                </h6>
+                <p class="card-text">
+                    {{ __('Supply:') }} {{ number_format($featured->card->token->supply_normalized) }}
+                    <span class="float-right d-none d-md-inline">
+                        <a href="{{ $featured->card->primaryCollection()->first()->url }}">
+                            {{ $featured->card->primaryCollection()->first()->name }}
+                        </a>
+                    </span>
+                </p>
             </div>
+            @endforeach
         </div>
     </div>
     @include('modals.featured')

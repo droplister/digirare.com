@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Browse Cards'))
+@section('title', __('Browse Directory'))
 
 @section('jumbotron')
     <section class="jumbotron">
