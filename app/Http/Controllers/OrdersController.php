@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Card;
-use App\Feature;
 use App\Collection;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Block;
@@ -31,6 +30,9 @@ class OrdersController extends Controller
             'sort' => 'sometimes|nullable|in:ending,newest',
         ]);
 
+        // IMG Formats
+        $formats = ['GIF', 'JPG', 'PNG'];
+
         // Current Block Index
         $block = Block::latest('block_index')->first();
 
@@ -48,10 +50,7 @@ class OrdersController extends Controller
             return $this->getOrders($block, $currencies, $request);
         });
 
-        // Featured
-        $features = Feature::highestBids()->with('card.token')->get();
-
-        return view('orders.index', compact('block', 'collections', 'currencies', 'orders', 'features', 'request'));
+        return view('orders.index', compact('block', 'collections', 'currencies', 'orders', 'formats', 'request'));
     }
 
     /**
