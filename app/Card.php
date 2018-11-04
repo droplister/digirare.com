@@ -281,7 +281,7 @@ class Card extends Model
         }
 
         // Sort Pages
-        return $cards->orderBy('balances_count', 'desc')->paginate(100);
+        return $cards->latest()->paginate(100);
     }
 
     /**
