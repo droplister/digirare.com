@@ -9,10 +9,10 @@
             <p class="lead text-muted">CryptoArt on the Bitcoin Blockchain</p>
             <p>
                 <a href="{{ route('orders.index') }}" class="btn btn-primary my-2 mr-2">
-                    <i class="fa fa-filter" aria-hidden="true"></i> Open Orders
+                    <i class="fa fa-filter" aria-hidden="true"></i> Filter Orders
                 </a>
                 <a href="{{ route('cards.index') }}" class="btn btn-secondary my-2">
-                    <i class="fa fa-search" aria-hidden="true"></i> Search Directory
+                    <i class="fa fa-search" aria-hidden="true"></i> Browse Directory
                 </a>
             </p>
         </div>

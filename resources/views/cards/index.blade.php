@@ -1,11 +1,11 @@
 @extends('layouts.app')
 
-@section('title', __('Browse Directory'))
+@section('title', __('Browse CryptoCollectibles'))
 
 @section('jumbotron')
     <section class="jumbotron">
         <div class="container">
-            <h1 class="jumbotron-heading">Search</h1>
+            <h1 class="jumbotron-heading">Browse</h1>
             <form method="GET" action="{{ route('cards.index') }}">
                 <div class="row">
                     <div class="col-md-6 mb-3">
@@ -64,7 +64,7 @@
                         </select>
                     </div>
                     <div class="col-md-2 mb-3">
-                        <button class="btn btn-primary btn-block" type="submit">Search</button>
+                        <button class="btn btn-primary btn-block" type="submit">Filter</button>
                     </div>
                 </div>
             </form>

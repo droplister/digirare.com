@@ -37,7 +37,7 @@
                             </div>
                             <div class="col-md-4 mb-3">
                                 <select class="custom-select d-block w-100" id="action" name="action">
-                                    <option value="">Direction</option>
+                                    <option value="">Action</option>
                                     @foreach(['buying', 'selling'] as $action)
                                     <option value="{{ $action }}"{{ $action === $request->input('action') ? ' selected' : '' }}>
                                         {{ ucfirst($action) }}
@@ -58,7 +58,7 @@
                         </div>
                     </div>
                     <div class="col-md-2 mb-3">
-                        <button class="btn btn-primary btn-block" type="submit">Search</button>
+                        <button class="btn btn-primary btn-block" type="submit">Filter</button>
                     </div>
                 </div>
                 @if($request->has('keyword') && $request->filled('keyword'))
@@ -99,9 +99,9 @@
 @section('content')
     <div class="container">
         <h5 class="mb-5">
-            {{ $orders->total() }} Open {{ str_plural('Orders', $orders->total()) }}
+            {{ $orders->total() }} DEX {{ str_plural('Orders', $orders->total()) }}
             <small class="d-none d-md-inline-block pull-right text-muted">
-                The DEX is permissionless and P2P.
+                Learn more about the <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" target="_blank">Counterparty DEX</a>.
             </small>
         </h5>
         <div class="table-responsive">
