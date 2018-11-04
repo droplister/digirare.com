@@ -21,9 +21,9 @@ class CardsController extends Controller
     {
         // Validation
         $request->validate([
-            'keyword' => 'sometimes',
-            'format' => 'sometimes|in:GIF,JPG,PNG',
-            'collection' => 'sometimes|exists:collections,slug',
+            'keyword' => 'sometimes|nullable',
+            'format' => 'sometimes|nullable|in:GIF,JPG,PNG',
+            'collection' => 'sometimes|nullable|exists:collections,slug',
         ]);
 
         // IMG Formats

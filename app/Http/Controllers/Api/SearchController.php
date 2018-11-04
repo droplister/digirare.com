@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use Cache;
 use App\Card;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
