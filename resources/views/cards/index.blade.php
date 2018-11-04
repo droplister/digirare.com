@@ -10,6 +10,21 @@
                 <div class="row">
                     <div class="col-md-5 mb-3">
                         <input type="text" class="form-control" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a card name or keyword..." autofocus>
+                        @if($request->has('keyword') && $request->filled('keyword'))
+                        <a href="{{ route('cards.index', $request->except('keyword', 'page')) }}" style="text-decoration: none;" class="mr-1">
+                            <i class="fa fa-times text-danger"></i> Keyword
+                        </a>
+                        @endif
+                        @if($request->has('collection') && $request->filled('collection'))
+                        <a href="{{ route('cards.index', $request->except('collection', 'page')) }}" style="text-decoration: none;" class="mr-1">
+                            <i class="fa fa-times text-danger"></i> Collection
+                        </a>
+                        @endif
+                        @if($request->has('format') && $request->filled('format'))
+                        <a href="{{ route('cards.index', $request->except('format', 'page')) }}" style="text-decoration: none;" class="mr-1">
+                            <i class="fa fa-times text-danger"></i> Format
+                        </a>
+                        @endif
                     </div>
                     <div class="col-md-3 mb-3">
                         <select class="custom-select d-block w-100" id="collection" name="collection">
