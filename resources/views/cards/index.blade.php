@@ -6,25 +6,28 @@
     <section class="jumbotron">
         <div class="container">
             <h1 class="jumbotron-heading">Search</h1>
-            <form method="GET" action="{{ route('search.index') }}">
-                @csrf
+            <form method="GET" action="{{ route('cards.index') }}">
                 <div class="row">
                     <div class="col-md-5 mb-3">
-                        <input type="text" class="form-control" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a keyword or card name..." autofocus>
+                        <input type="text" class="form-control" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a keyword or card name..." autofocus>
                     </div>
                     <div class="col-md-3 mb-3">
-                        <select class="custom-select d-block w-100" name="collection">
+                        <select class="custom-select d-block w-100" id="collection" name="collection">
                             <option>Collection</option>
                             @foreach($collections as $collection)
-                            <option value="{{ $collection->slug }}">{{ $collection->name }}</option>
+                            <option value="{{ $collection->slug }}"{{ $collection->slug === $request->input('collection') ? ' selected' : '' }}>
+                                {{ $collection->name }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
                     <div class="col-md-2 mb-3">
-                        <select class="custom-select d-block w-100" name="format">
+                        <select class="custom-select d-block w-100" id="format" name="format">
                             <option>Format</option>
                             @foreach($formats as $format)
-                            <option value="{{ $format }}">{{ $format }}</option>
+                            <option value="{{ $format }}"{{ $format === $request->input('format') ? ' selected' : '' }}>
+                                {{ $format }}
+                            </option>
                             @endforeach
                         </select>
                     </div>
