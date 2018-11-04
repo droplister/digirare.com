@@ -35,7 +35,7 @@
                 <ul class="navbar-nav ml-auto mr-3 d-inline-block d-md-none">
                     <li class="nav-item">
                         <a href="{{ route('random.index') }}"" class="nav-link">
-                            <i aria-hidden="true" class="fa fa-random text-highlight"></i>
+                            <i aria-hidden="true" class="fa fa-random"></i>
                             {{ __('Random') }}
                         </a>
                     </li>
@@ -58,10 +58,16 @@
                                 {{ __('Resources') }}
                             </a>
                         </li>
-                        <li class="nav-item d-none d-lg-inline-block">
+                        <li class="nav-item">
                             <a class="nav-link" href="{{ route('random.index') }}">
                                 <i class="fa fa-line-chart" aria-hidden="true"></i>
                                 {{ __('Stats & Data') }}
+                            </a>
+                        </li>
+                        <li class="nav-item d-none d-lg-inline-block">
+                            <a href="{{ route('random.index') }}"" class="nav-link">
+                                <i aria-hidden="true" class="fa fa-random"></i>
+                                {{ __('Random') }}
                             </a>
                         </li>
                     </ul>
