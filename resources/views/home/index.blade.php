@@ -42,7 +42,7 @@
                 <p class="card-text">
                     {{ __('Supply:') }} {{ number_format($card->token->supply_normalized) }}
                     <span class="float-right d-none d-md-inline">
-                        <a href="{{ $card->primaryCollection()->first()->url }}">
+                        <a href="{{ route('cards.index', ['collection' => $card->primaryCollection()->first()->slug]) }}">
                             {{ $card->primaryCollection()->first()->name }}
                         </a>
                     </span>
@@ -100,7 +100,7 @@
                 <p class="card-text">
                     {{ __('Supply:') }} {{ number_format($card->token->supply_normalized) }}
                     <span class="float-right d-none d-md-inline">
-                        <a href="{{ $card->primaryCollection()->first()->url }}">
+                        <a href="{{ route('cards.index', ['collection' => $card->primaryCollection()->first()->slug]) }}">
                             {{ $card->primaryCollection()->first()->name }}
                         </a>
                     </span>
@@ -137,7 +137,7 @@
                 <i class="fa fa-star" aria-hidden="true"></i>
                 {{ __('Get Featured') }}
             </button>
-            {{ __('User Featured') }}
+            {{ __('User Featured Art') }}
         </h5>
         <div class="row mb-5">
             @foreach($features as $featured)
@@ -153,7 +153,7 @@
                 <p class="card-text">
                     {{ __('Supply:') }} {{ number_format($featured->card->token->supply_normalized) }}
                     <span class="float-right d-none d-md-inline">
-                        <a href="{{ $featured->card->primaryCollection()->first()->url }}">
+                        <a href="{{ route('cards.index', ['collection' => $featured->card->primaryCollection()->first()->slug]) }}">
                             {{ $featured->card->primaryCollection()->first()->name }}
                         </a>
                     </span>
