@@ -120,7 +120,7 @@
                         <p>
                             Similar to how a blockchain is just a chain of blocks, blockchain art is just art on a blockchain. The artists featured on our website all use Counterparty, a protocol for creating tokens on Bitcoin. Artists and crypto creatives have been using Counterparty to create immutable art and memes since 2015.
                         </p>
-                        <p class="mb-2">
+                        <p class="mb-4">
                             <a href="https://medium.com/kaleidoscope-xcp/the-early-evolution-of-art-on-the-blockchain-part-1-d52d1454e34b" class="btn btn-primary my-2 mr-2" target="_blank">Early History</a>
                             <a href="https://www.artnome.com/news/2018/1/14/what-is-cryptoart" class="btn btn-secondary my-2" target="_blank">Learn More</a>
                         </p>
