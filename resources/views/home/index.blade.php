@@ -60,6 +60,7 @@
                     @endif
                     <div class="col-md-6">
                         <br class="d-block d-md-none" />
+                        <br class="d-block d-md-none" />
                         <p class="text-muted mb-0">
                             <a href="{{ route('artists.index') }}">{{ __('Featured Artist') }}</a>
                         </p>
@@ -69,7 +70,7 @@
                         <p>
                             {{ $artist->content }}
                         </p>
-                        <p class="mb-2">
+                        <p class="mb-0">
                             <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2 mr-2">View Profile</a>
                             @if(isset($artist->meta['website']))
                             <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2" target="_blank">Learn More</a>
@@ -120,7 +121,7 @@
                         <p>
                             Similar to how a blockchain is just a chain of blocks, blockchain art is just art on a blockchain. The artists featured on our website all use Counterparty, a protocol for creating tokens on Bitcoin. Artists and crypto creatives have been using Counterparty to create immutable art and memes since 2015.
                         </p>
-                        <p class="mb-4">
+                        <p class="mb-5">
                             <a href="https://medium.com/kaleidoscope-xcp/the-early-evolution-of-art-on-the-blockchain-part-1-d52d1454e34b" class="btn btn-primary my-2 mr-2" target="_blank">Early History</a>
                             <a href="https://www.artnome.com/news/2018/1/14/what-is-cryptoart" class="btn btn-secondary my-2" target="_blank">Learn More</a>
                         </p>
@@ -131,5 +132,35 @@
                 </div>
             </div>
         </section>
+        <button class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#howToModal">
+            <i class="fa fa-star" aria-hidden="true"></i>
+            {{ __('Get Featured') }}
+        </button>
+        <h5 class="mb-5">
+            {{ __('User Featured') }}
+        </h5>
+        <div class="row mb-5">
+            @foreach($features as $featured)
+            <div class="col-6 col-sm-4 col-lg-3 mb-4">
+                <a href="{{ $featured->card->url }}">
+                    <img src="{{ $featured->card->primary_image_url }}" alt="{{ $featured->card->name }}" width="100%" />
+                </a>
+                <h6 class="card-title mt-3 mb-1">
+                    <a href="{{ $featured->card->url }}" class="font-weight-bold text-dark">
+                        {{ $featured->card->name }}
+                    </a>
+                </h6>
+                <p class="card-text">
+                    {{ __('Supply:') }} {{ number_format($featured->card->token->supply_normalized) }}
+                    <span class="float-right d-none d-md-inline">
+                        <a href="{{ $featured->card->primaryCollection()->first()->url }}">
+                            {{ $featured->card->primaryCollection()->first()->name }}
+                        </a>
+                    </span>
+                </p>
+            </div>
+            @endforeach
+        </div>
     </div>
+    @include('modals.featured')
 @endsection

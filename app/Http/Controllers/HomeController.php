@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Card;
 use App\Artist;
+use App\Feature;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -33,7 +34,8 @@ class HomeController extends Controller
             ->orderBy('balances_count', 'desc')
             ->take(8)
             ->get();
+        $features = Feature::highestBids()->with('card.token')->get();
 
-        return view('home.index', compact('editors_cards', 'artist', 'artists_cards'));
+        return view('home.index', compact('editors_cards', 'artist', 'artists_cards', 'features'));
     }
 }
