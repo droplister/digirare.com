@@ -59,7 +59,8 @@
                     </div>
                     @endif
                     <div class="col-md-6">
-                        <p class="text-muted mt-5 mb-0">
+                        <br class="d-block d-md-none" />
+                        <p class="text-muted mb-0">
                             <a href="{{ route('artists.index') }}">{{ __('Featured Artist') }}</a>
                         </p>
                         <h1 class="display-4 mb-4">
@@ -68,7 +69,7 @@
                         <p>
                             {{ $artist->content }}
                         </p>
-                        <p class="mb-5">
+                        <p class="mb-2">
                             <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2 mr-2">View Profile</a>
                             @if(isset($artist->meta['website']))
                             <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2" target="_blank">Learn More</a>
@@ -79,9 +80,9 @@
             </div>
         </section>
         <h5 class="my-5">
-            {{ $artist->name }}'s Art
+            {{ $artist->name }}'s Work
             <small class="d-none d-md-inline-block pull-right text-muted">
-                Explore more of the <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}">artist's work</a>.
+                Fine more on the <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}">artist's profile</a>.
             </small>
         </h5>
         <div class="row mb-5">
@@ -110,7 +111,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="text-muted mt-5 mb-0">
+                        <p class="text-muted mb-0">
                             <a href="#">{{ __('How it Works') }}</a>
                         </p>
                         <h1 class="display-4 mb-4">
@@ -119,7 +120,7 @@
                         <p>
                             Similar to how a blockchain is just a chain of blocks, blockchain art is just art on a blockchain. The artists featured on our website all use Counterparty, a protocol for creating tokens on Bitcoin. Artists and crypto creatives have been using Counterparty to create immutable art and memes since 2015.
                         </p>
-                        <p class="mb-5">
+                        <p class="mb-2">
                             <a href="https://medium.com/kaleidoscope-xcp/the-early-evolution-of-art-on-the-blockchain-part-1-d52d1454e34b" class="btn btn-primary my-2 mr-2" target="_blank">Early History</a>
                             <a href="https://www.artnome.com/news/2018/1/14/what-is-cryptoart" class="btn btn-secondary my-2" target="_blank">Learn More</a>
                         </p>
