@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use App\Traits\Linkable;
 use App\Events\CardWasCreated;
 use Droplister\XcpCore\App\Asset;
@@ -244,16 +245,19 @@ class Card extends Model
             $cards = $cards->where('slug', 'like', $request->keyword . '%');
         }
 
-        // By Artist
-        if ($request->has('artist')) {
-            $cards = $cards->whereHas('artist', function ($artist) use ($request) {
-                return $artist->where('slug', '=', $request->artist);
-            });
+        // By Format
+        if ($request->has('format')) {
+            $ids = DB::table('card_collection')
+                ->where('image_url', 'like', '%' . $request->format)
+                ->pluck('card_id')
+                ->toArray();
+
+            $cards = $cards->whereIn('id', $ids);
         }
 
         // By Collection
         if ($request->has('collection')) {
-            $cards = $cards->whereHas('collection', function ($collection) use ($request) {
+            $cards = $cards->whereHas('collections', function ($collection) use ($request) {
                 return $collection->where('slug', '=', $request->collection);
             });
         }

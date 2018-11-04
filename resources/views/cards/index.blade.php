@@ -3,14 +3,14 @@
 @section('title', __('Browse Cards'))
 
 @section('jumbotron')
-    <section class="jumbotron text-center">
+    <section class="jumbotron">
         <div class="container">
             <h1 class="jumbotron-heading">Search</h1>
             <form method="GET" action="{{ route('search.index') }}">
                 @csrf
                 <div class="row">
                     <div class="col-md-5 mb-3">
-                        <input type="text" class="form-control" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a keyword or card name..." required autofocus>
+                        <input type="text" class="form-control" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a keyword or card name..." autofocus>
                     </div>
                     <div class="col-md-3 mb-3">
                         <select class="custom-select d-block w-100" name="collection">
