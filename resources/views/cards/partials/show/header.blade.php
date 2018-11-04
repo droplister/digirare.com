@@ -1,6 +1,6 @@
 <p class="text-muted mb-0">
     @foreach($collections as $collection)
-        <a href="{{ $collection->url }}">{{ $collection->name }}</a>{{ $loop->last ? '' : ' / ' }}
+        <a href="{{ route('cards.index', ['collection' => $collection->slug]) }}">{{ $collection->name }}</a>{{ $loop->last ? '' : ' / ' }}
     @endforeach
     @if(Auth::check())
     <card-likes card="{{ $card->slug }}"

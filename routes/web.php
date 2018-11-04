@@ -22,7 +22,6 @@ Route::resource('/monitors', 'MonitorsController');
 Route::resource('/artists', 'ArtistsController', ['only' => ['index', 'show']]);
 Route::get('/artists/{artist}/table', 'ArtistsController@showTable')->name('artists.show.table');
 Route::resource('/collectors', 'CollectorsController', ['only' => ['index', 'show']]);
-Route::resource('/collections', 'CollectionsController', ['only' => ['index', 'show']]);
 Route::get('/locale/{locale}', 'LocaleController@show')->name('locale.show');
 Route::get('/dappradar', 'PagesController@dappradar')->name('pages.dappradar');
 Route::get('/disclaimer', 'PagesController@disclaimer')->name('pages.disclaimer');
