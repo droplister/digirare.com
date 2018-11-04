@@ -6,15 +6,15 @@
         <h1 class="display-4 mb-4">
             {{ $artist->name }}
         </h1>
-        <p class="{{ isset($artist->meta['website']) ? '' : 'mb-5' }}">
+        <p>
             {{ $artist->content }}
         </p>
-        @if(isset($artist->meta['website']))
         <p class="mb-5">
-            <a href="{{ $artist->meta['website'] }}" class="btn btn-primary my-2 mr-2">Learn More</a>
+            @if(isset($artist->meta['website']))
+            <a href="{{ $artist->meta['website'] }}" class="btn btn-primary my-2 mr-2" target="_blank">Learn More</a>
+            @endif
             <a href="#" class="btn btn-secondary my-2">Search DEX</a>
         </p>
-        @endif
     </div>
     @if($artist->image_url)
     <div class="col-md-6">

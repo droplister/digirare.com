@@ -28,6 +28,15 @@ class Artist extends Model
     ];
 
     /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'meta' => 'array',
+    ];
+
+    /**
      * Collectors Count
      *
      * @return string
