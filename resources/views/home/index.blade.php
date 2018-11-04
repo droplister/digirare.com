@@ -24,7 +24,7 @@
         <h5 class="mb-5">
             {{ __('Editors\' Picks') }}
             <small class="d-none d-md-inline-block pull-right text-muted">
-                <a href="{{ route('carads.index') }}">Browse all CryptoCollectibles on XCP</a>.
+                <a href="{{ route('cards.index') }}">Browse all CryptoCollectibles on XCP</a>.
             </small>
         </h5>
         <div class="row mb-5">
