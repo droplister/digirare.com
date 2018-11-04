@@ -7,6 +7,9 @@
         <div class="container">
             <h1 class="jumbotron-heading">Market <small class="lead text-muted">Counterparty DEX</small></h1>
             <form method="GET" action="{{ route('orders.index') }}">
+                @if($request->has('collector') && $request->filled('collector'))
+                <input type="hidden" id="collector" name="collector" value="{{ $request->collector }}">
+                @endif
                 <div class="row">
                     <div class="col-md-10">
                         <div class="row">
@@ -110,7 +113,7 @@
             </small>
         </h5>
         <div class="table-responsive">
-            <table class="table mb-0">
+            <table class="table mb-4">
                 <thead>
                     <tr>
                         <th scope="col">{{ __('Action') }}</th>
