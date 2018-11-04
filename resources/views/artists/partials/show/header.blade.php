@@ -19,9 +19,13 @@
             {{ $artist->balances()->count() }} <small class="d-block lead" style="font-size: 0.75rem;">Balances</small>
         </h2>
         <p class="mb-5">
-            <a href="{{ route('cards.index', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2">Search DEX</a>
+            <a href="{{ route('cards.index', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2">
+                Filter Assets
+            </a>
             @if(isset($artist->meta['website']))
-            <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2 mr-2" target="_blank">Learn More</a>
+            <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2 mr-2" target="_blank">
+                Learn More
+            </a>
             @endif
         </p>
     </div>

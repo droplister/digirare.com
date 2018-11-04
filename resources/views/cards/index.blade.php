@@ -15,6 +15,11 @@
                             <i class="fa fa-times text-danger"></i> Keyword
                         </a>
                         @endif
+                        @if($request->has('artist') && $request->filled('artist'))
+                        <a href="{{ route('cards.index', $request->except('artist', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                            <i class="fa fa-times text-danger"></i> {{ title_case(str_replace('-', ' ', $request->artist)) }}
+                        </a>
+                        @endif
                         @if($request->has('collection') && $request->filled('collection'))
                         <a href="{{ route('cards.index', $request->except('collection', 'page')) }}" style="text-decoration: none;" class="mr-2">
                             <i class="fa fa-times text-danger"></i> {{ title_case(str_replace('-', ' ', $request->collection)) }}
