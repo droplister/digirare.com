@@ -9,11 +9,11 @@
             <h1 class="jumbotron-heading">CryptoCollectibles</h1>
             <p class="lead text-muted">CryptoArt on the Bitcoin Blockchain.</p>
             <p>
-                <a href="{{ route('orders.index') }}" class="btn btn-primary my-2 mr-2">
-                    <i class="fa fa-gavel" aria-hidden="true"></i> Marketplace
-                </a>
-                <a href="{{ route('cards.index') }}" class="btn btn-secondary my-2">
+                <a href="{{ route('cards.index') }}" class="btn btn-primary my-2">
                     <i class="fa fa-search" aria-hidden="true"></i> Browse Directory
+                </a>
+                <a href="{{ route('orders.index') }}" class="btn btn-secondary my-2 mr-2">
+                    <i class="fa fa-gavel" aria-hidden="true"></i> Marketplace
                 </a>
             </p>
         </div>
@@ -71,9 +71,13 @@
                             {{ $artist->content }}
                         </p>
                         <p class="mb-0">
-                            <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2 mr-2">View Profile</a>
+                            <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2 mr-2">
+                                Full Profile
+                            </a>
                             @if(isset($artist->meta['website']))
-                            <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2" target="_blank">Learn More</a>
+                            <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2" target="_blank">
+                                Learn More
+                            </a>
                             @endif
                         </p>
                     </div>
@@ -127,8 +131,12 @@
                             Similar to how a blockchain is just a chain of blocks, blockchain art is just art on a blockchain. All the artists featured on our website use Counterparty, a protocol for creating tokens on Bitcoin. Artists and crypto creatives have been using Counterparty to create immutable art and memes since 2015.
                         </p>
                         <p class="mb-0">
-                            <a href="https://medium.com/kaleidoscope-xcp/the-early-evolution-of-art-on-the-blockchain-part-1-d52d1454e34b" class="btn btn-primary my-2 mr-2" target="_blank">Early History</a>
-                            <a href="https://www.artnome.com/news/2018/1/14/what-is-cryptoart" class="btn btn-secondary my-2" target="_blank">Learn More</a>
+                            <a href="https://medium.com/kaleidoscope-xcp/the-early-evolution-of-art-on-the-blockchain-part-1-d52d1454e34b" class="btn btn-primary my-2 mr-2" target="_blank">
+                                Early History
+                            </a>
+                            <a href="https://www.artnome.com/news/2018/1/14/what-is-cryptoart" class="btn btn-secondary my-2" target="_blank">
+                                Learn More
+                            </a>
                         </p>
                     </div>
                 </div>
