@@ -8,7 +8,7 @@
             <h1 class="jumbotron-heading">Search</h1>
             <form method="GET" action="{{ route('cards.index') }}">
                 <div class="row">
-                    <div class="col-md-5 mb-3">
+                    <div class="col-md-6 mb-3">
                         <input type="text" class="form-control mb-2" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a card name or keyword..." autofocus>
                         @if($request->has('keyword') && $request->filled('keyword'))
                         <a href="{{ route('cards.index', $request->except('keyword', 'page')) }}" style="text-decoration: none;" class="mr-2">
@@ -31,7 +31,7 @@
                         </a>
                         @endif
                     </div>
-                    <div class="col-md-3 mb-3">
+                    <div class="col-md-2 mb-3">
                         <select class="custom-select d-block w-100" id="collection" name="collection">
                             <option value="">Collection</option>
                             @foreach($collections as $collection)
