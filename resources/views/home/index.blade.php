@@ -1,12 +1,13 @@
 @extends('layouts.app')
 
-@section('title', 'DIGIRARE - CryptoCollectibles, CryptoArt, and CryptoGames')
+@section('title', 'Crypto Collectibles & Crypto Art on the Bitcoin Blockchain')
+@section('description', 'Explore the thousands of CryptoCollectibles issued and traded on the Bitcoin blockchain using Counterparty technology. Immutable, Permissionless and P2P, CryptoArt is changing the way artists create.')
 
 @section('jumbotron')
     <section class="jumbotron text-center">
         <div class="container my-5">
             <h1 class="jumbotron-heading">CryptoCollectibles</h1>
-            <p class="lead text-muted">CryptoArt on the Bitcoin Blockchain</p>
+            <p class="lead text-muted">CryptoArt on the Bitcoin Blockchain.</p>
             <p>
                 <a href="{{ route('orders.index') }}" class="btn btn-primary my-2 mr-2">
                     <i class="fa fa-gavel" aria-hidden="true"></i> Marketplace
@@ -63,9 +64,9 @@
                             {{ $artist->content }}
                         </p>
                         <p class="mb-5">
-                            <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2">View Profile</a>
+                            <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2 mr-2">View Profile</a>
                             @if(isset($artist->meta['website']))
-                            <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2 mr-2" target="_blank">Learn More</a>
+                            <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2" target="_blank">Learn More</a>
                             @endif
                         </p>
                     </div>
@@ -106,6 +107,32 @@
             </div>
             @endforeach
         </div>
+        <section class="jumbotron">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="text-muted mb-0">
+                            <a href="#">{{ __('How it Works') }}</a>
+                        </p>
+                        <h1 class="display-4 mb-4">
+                            Blockchain Art
+                        </h1>
+                        <p>
+                            Similar to how a blockchain is just a chain of blocks, blockchain art is just art on a blockchain. The artists featured on our website all use Counterparty, a protocol for creating tokens on Bitcoin. Artists and crypto creatives have been using Counterparty to create immutable art and memes since 2015.
+                        </p>
+                        <p class="mb-5">
+                            <a href="https://medium.com/kaleidoscope-xcp/the-early-evolution-of-art-on-the-blockchain-part-1-d52d1454e34b" class="btn btn-primary my-2 mr-2" target="_blank">Early History</a>
+                            <a href="https://www.artnome.com/news/2018/1/14/what-is-cryptoart" class="btn btn-secondary my-2" target="_blank">What is CryptoArt?</a>
+                        </p>
+                    </div>
+                    @if($artist->image_url)
+                    <div class="col-md-6">
+                        <img src="{{ $artist->image_url }}" width="100%">
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </section>
     </div>
     @include('modals.featured')
 @endsection
