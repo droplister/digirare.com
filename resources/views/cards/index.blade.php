@@ -22,7 +22,7 @@
                         @endif
                         @if($request->has('category') && $request->filled('category'))
                         <a href="{{ route('cards.index', $request->except('category', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                            <i class="fa fa-times text-danger"></i> {{ key($title_categories) }}
+                            <i class="fa fa-times text-danger"></i> {{ $title_categories ? key($title_categories) : 'Category' }}
                         </a>
                         @endif
                         @if($request->has('format') && $request->filled('format'))
