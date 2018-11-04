@@ -272,6 +272,14 @@ class Card extends Model
             });
         }
 
+        // By Category
+        if ($request->has('category') && $request->filled('category')) {
+            // JSON Meta
+            $meta = $request->collection === 'bitcorn-crops' ? 'meta->harvest' : 'meta->series';
+            // Build Query
+            $cards = $cards->whereJsonContains($meta, $request->category);
+        }
+
         // Sort Pages
         return $cards->orderBy('balances_count', 'desc')->paginate(100);
     }

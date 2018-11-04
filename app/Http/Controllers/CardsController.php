@@ -40,8 +40,18 @@ class CardsController extends Controller
             return Card::getFiltered($request);
         });
 
+        // Title Categories
+        $title_categories = null;
+        if($request->has('collection')) {
+            if($request->collection === 'bitcorn-crops') {
+                $title_categories = ['Harvest' => range(1, 16)];
+            } elseif($request->collection === 'rare-pepe') {
+                $title_categories = ['Series' => range(1, 36)];
+            }
+        }
+
         // Index View
-        return view('cards.index', compact('formats', 'cards', 'collections', 'request'));
+        return view('cards.index', compact('formats', 'cards', 'category', 'collections', 'title_categories', 'request'));
     }
 
     /**

@@ -34,7 +34,7 @@
                 </a>
                 <ul class="navbar-nav ml-auto mr-3 d-inline-block d-md-none">
                     <li class="nav-item">
-                        <a href="{{ route('random.index') }}"" class="nav-link">
+                        <a href="{{ route('random.index') }}" class="nav-link">
                             <i aria-hidden="true" class="fa fa-random"></i>
                             {{ __('Random') }}
                         </a>
@@ -65,7 +65,7 @@
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-inline-block">
-                            <a href="{{ route('random.index') }}"" class="nav-link">
+                            <a href="{{ route('random.index') }}" class="nav-link">
                                 <i aria-hidden="true" class="fa fa-random"></i>
                                 {{ __('Random') }}
                             </a>
