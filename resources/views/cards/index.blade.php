@@ -44,7 +44,7 @@
                         <select class="custom-select d-block w-100" id="category" name="category">
                             @foreach($title_categories as $title => $categories)
                             <option value="">{{ $title }}</option>
-                            @foreach($categoties as $category)
+                            @foreach($categories as $category)
                             <option value="{{ $category }}"{{ $category === $request->input('category') ? ' selected' : '' }}>
                                 {{ $title }} {{ $category }}
                             </option>
@@ -76,7 +76,13 @@
     <div class="container">
         <h5 class="mb-5">
             {{ $cards->total() }} {{ str_plural('Result', $cards->total()) }} Found
-            <small class="d-none d-md-inline-block pull-right text-muted">All on Bitcoin. Who would have thought?</small>
+            <small class="d-none d-md-inline-block pull-right text-muted">
+                @if(rand(0, 1))
+                    All on Bitcoin. Who would have thought?
+                @else
+                    Trade cards on the <a href="#">Counterparty DEX</a>.
+                @endif
+            </small>
         </h5>
         <div class="row">
             @foreach($cards as $card)

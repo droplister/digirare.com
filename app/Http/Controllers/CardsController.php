@@ -51,7 +51,7 @@ class CardsController extends Controller
         }
 
         // Index View
-        return view('cards.index', compact('formats', 'cards', 'category', 'collections', 'title_categories', 'request'));
+        return view('cards.index', compact('formats', 'cards', 'collections', 'title_categories', 'request'));
     }
 
     /**
