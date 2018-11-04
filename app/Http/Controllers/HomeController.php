@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use App\Card;
 use App\Artist;
-use App\Feature;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -28,10 +27,13 @@ class HomeController extends Controller
             'PEPESOUP',
         ];
 
-        $cards = Card::whereIn('slug', $slugs)->with('token')->inRandomOrder()->get();
+        $editors_cards = Card::whereIn('slug', $slugs)->with('token')->inRandomOrder()->get();
         $artist = Artist::findBySlug('scrilla-ventura');
-        $features = Feature::highestBids()->with('card.token')->get();
+        $artists_cards = $artist->cards()->withCount('balances')
+            ->orderBy('balances_count', 'desc')
+            ->take(8)
+            ->get();
 
-        return view('home.index', compact('cards', 'artist', 'features'));
+        return view('home.index', compact('editors_cards', 'artist', 'artists_cards'));
     }
 }

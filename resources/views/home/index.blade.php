@@ -29,7 +29,63 @@
             </small>
         </h5>
         <div class="row mb-5">
-            @foreach($cards as $card)
+            @foreach($editors_cards as $card)
+            <div class="col-6 col-sm-4 col-lg-3 mb-4">
+                <a href="{{ $card->url }}">
+                    <img src="{{ $card->primary_image_url }}" alt="{{ $card->name }}" width="100%" />
+                </a>
+                <h6 class="card-title mt-3 mb-1">
+                    <a href="{{ $card->url }}" class="font-weight-bold text-dark">
+                        {{ $card->name }}
+                    </a>
+                </h6>
+                <p class="card-text">
+                    {{ __('Supply:') }} {{ number_format($card->token->supply_normalized) }}
+                    <span class="float-right d-none d-md-inline">
+                        <a href="{{ $card->primaryCollection()->first()->url }}">
+                            {{ $card->primaryCollection()->first()->name }}
+                        </a>
+                    </span>
+                </p>
+            </div>
+            @endforeach
+        </div>
+        <section class="jumbotron">
+            <div class="container">
+                <div class="row">
+                    @if($artist->image_url)
+                    <div class="col-md-6">
+                        <img src="{{ $artist->image_url }}" width="100%">
+                    </div>
+                    @endif
+                    <div class="col-md-6">
+                        <p class="text-muted mt-5 mb-0">
+                            <a href="{{ route('artists.index') }}">{{ __('Featured Artist') }}</a>
+                        </p>
+                        <h1 class="display-4 mb-4">
+                            {{ $artist->name }}
+                        </h1>
+                        <p>
+                            {{ $artist->content }}
+                        </p>
+                        <p class="mb-5">
+                            <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2 mr-2">View Profile</a>
+                            @if(isset($artist->meta['website']))
+                            <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2" target="_blank">Learn More</a>
+                            @endif
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <h5 class="my-5">
+            {{ $artist->name }}'s Art
+            <small class="d-none d-md-inline-block pull-right text-muted">
+                Explore more of the <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}">artist's work</a>.
+            </small>
+        </h5>
+        <div class="row mb-5">
+            @foreach($artists_cards as $card)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
                 <a href="{{ $card->url }}">
                     <img src="{{ $card->primary_image_url }}" alt="{{ $card->name }}" width="100%" />
@@ -54,64 +110,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        <p class="text-muted mb-0">
-                            <a href="{{ route('artists.index') }}">{{ __('Featured Artist') }}</a>
-                        </p>
-                        <h1 class="display-4 mb-4">
-                            {{ $artist->name }}
-                        </h1>
-                        <p>
-                            {{ $artist->content }}
-                        </p>
-                        <p class="mb-5">
-                            <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2 mr-2">View Profile</a>
-                            @if(isset($artist->meta['website']))
-                            <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2" target="_blank">Learn More</a>
-                            @endif
-                        </p>
-                    </div>
-                    @if($artist->image_url)
-                    <div class="col-md-6">
-                        <img src="{{ $artist->image_url }}" width="100%">
-                    </div>
-                    @endif
-                </div>
-            </div>
-        </section>
-        <h5 class="my-5">
-            <button class="btn btn-sm btn-primary float-right" data-toggle="modal" data-target="#howToModal">
-                <i class="fa fa-star" aria-hidden="true"></i>
-                {{ __('Get Featured') }}
-            </button>
-            {{ __('User Featured') }}
-        </h5>
-        <div class="row mb-5">
-            @foreach($features as $featured)
-            <div class="col-6 col-sm-4 col-lg-3 mb-4">
-                <a href="{{ $featured->card->url }}">
-                    <img src="{{ $featured->card->primary_image_url }}" alt="{{ $featured->card->name }}" width="100%" />
-                </a>
-                <h6 class="card-title mt-3 mb-1">
-                    <a href="{{ $featured->card->url }}" class="font-weight-bold text-dark">
-                        {{ $featured->card->name }}
-                    </a>
-                </h6>
-                <p class="card-text">
-                    {{ __('Supply:') }} {{ number_format($featured->card->token->supply_normalized) }}
-                    <span class="float-right d-none d-md-inline">
-                        <a href="{{ $featured->card->primaryCollection()->first()->url }}">
-                            {{ $featured->card->primaryCollection()->first()->name }}
-                        </a>
-                    </span>
-                </p>
-            </div>
-            @endforeach
-        </div>
-        <section class="jumbotron">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6">
-                        <p class="text-muted mb-0">
+                        <p class="text-muted mt-5 mb-0">
                             <a href="#">{{ __('How it Works') }}</a>
                         </p>
                         <h1 class="display-4 mb-4">
@@ -122,17 +121,14 @@
                         </p>
                         <p class="mb-5">
                             <a href="https://medium.com/kaleidoscope-xcp/the-early-evolution-of-art-on-the-blockchain-part-1-d52d1454e34b" class="btn btn-primary my-2 mr-2" target="_blank">Early History</a>
-                            <a href="https://www.artnome.com/news/2018/1/14/what-is-cryptoart" class="btn btn-secondary my-2" target="_blank">What is CryptoArt?</a>
+                            <a href="https://www.artnome.com/news/2018/1/14/what-is-cryptoart" class="btn btn-secondary my-2" target="_blank">Learn More</a>
                         </p>
                     </div>
-                    @if($artist->image_url)
                     <div class="col-md-6">
-                        <img src="{{ $artist->image_url }}" width="100%">
+                        <iframe width="100%" height="315" src="https://www.youtube.com/embed/0MBEW2NxNJ4" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
                     </div>
-                    @endif
                 </div>
             </div>
         </section>
     </div>
-    @include('modals.featured')
 @endsection
