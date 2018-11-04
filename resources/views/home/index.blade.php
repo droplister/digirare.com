@@ -147,7 +147,7 @@
                 <i class="fa fa-star" aria-hidden="true"></i>
                 {{ __('Get Featured') }}
             </button>
-            {{ __('User Featured Art') }}
+            {{ __('More Featured Work') }}
         </h5>
         <div class="row mb-5">
             @foreach($features as $featured)
