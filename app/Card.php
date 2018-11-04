@@ -11,6 +11,7 @@ use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Megapixel23\Database\Eloquent\Relations\BelongsToOneTrait;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
@@ -225,6 +226,40 @@ class Card extends Model
         return $query->whereHas('collections', function ($collection) {
             return $collection->where('active', '=', 1);
         });
+    }
+
+    /**
+     * Get Filtered
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \App\Card
+     */
+    public static function getFiltered(Request $request)
+    {
+        // Build Query
+        $cards = Card::withCount('balances');
+
+        // By Keyword
+        if ($request->has('keyword')) {
+            $cards = $cards->where('slug', 'like', $request->keyword . '%');
+        }
+
+        // By Artist
+        if ($request->has('artist')) {
+            $cards = $cards->whereHas('artist', function ($artist) use ($request) {
+                return $artist->whereIn('slug', '=', $request->artist);
+            });
+        }
+
+        // By Collection
+        if ($request->has('collection')) {
+            $cards = $cards->whereHas('collection', function ($collection) use ($request) {
+                return $collection->whereIn('slug', $request->collection);
+            });
+        }
+
+        // Sort Pages
+        return $cards->orderBy('balances_count', 'desc')->paginate(40);
     }
 
     /**

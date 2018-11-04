@@ -6,7 +6,7 @@
     <section class="jumbotron text-center">
         <div class="container">
             <h1 class="jumbotron-heading">CryptoCollectibles</h1>
-            <p class="lead text-muted">On the Bitcoin Blockchain</p>
+            <p class="lead text-muted">CryptoArt on the Bitcoin Blockchain</p>
             <p>
                 <a href="{{ route('cards.index') }}" class="btn btn-secondary my-2 mr-2">Browse Directory</a>
                 <a href="{{ route('random.index') }}" class="btn btn-primary my-2">I'm Feeling Lucky</a>
