@@ -22,12 +22,12 @@ class CardsController extends Controller
         // Validation
         $request->validate([
             'keyword' => 'sometimes|nullable',
-            'format' => 'sometimes|nullable|in:GIF,JPEG,JPG,PNG',
+            'format' => 'sometimes|nullable|in:GIF,JPG,PNG',
             'collection' => 'sometimes|nullable|exists:collections,slug',
         ]);
 
         // IMG Formats
-        $formats = ['GIF', 'JPEG', 'JPG', 'PNG'];
+        $formats = ['GIF', 'JPG', 'PNG'];
 
         // Collections
         $collections = Collection::orderBy('name', 'asc')->get();

@@ -241,22 +241,32 @@ class Card extends Model
         $cards = Card::withCount('balances');
 
         // By Keyword
-        if ($request->has('keyword') && $request->keyword !== '') {
+        if ($request->has('keyword') && $request->filled('keyword')) {
+            // Build Query
             $cards = $cards->where('slug', 'like', '%' . $request->keyword . '%');
         }
 
         // By Format
-        if ($request->has('format') && $request->format !== '') {
+        if ($request->has('format') && $request->filled('format')) {
+            // Card IDs
             $ids = DB::table('card_collection')
-                ->where('image_url', 'like', '%' . $request->format)
-                ->pluck('card_id')
-                ->toArray();
+                ->where('image_url', 'like', '%' . $request->format);
+            
+            // JPG Case
+            if($request->format === 'JPG') {
+                $ids = $ids->orWhere('image_url', 'like', '%JPEG');
+            }
 
+            // To Array
+            $ids= $ids->pluck('card_id')->toArray();
+
+            // Build Query
             $cards = $cards->whereIn('id', $ids);
         }
 
         // By Collection
-        if ($request->has('collection') && $request->collection !== '') {
+        if ($request->has('collection') && $request->filled('collection')) {
+            // Build Query
             $cards = $cards->whereHas('collections', function ($collection) use ($request) {
                 return $collection->where('slug', '=', $request->collection);
             });
