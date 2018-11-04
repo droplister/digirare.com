@@ -9,7 +9,7 @@
             <form method="GET" action="{{ route('cards.index') }}">
                 <div class="row">
                     <div class="col-md-5 mb-3">
-                        <input type="text" class="form-control mb-2" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a card name or keyword..." autofocus>
+                        <input type="text" class="form-control mb-2 text-uppercase" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a card name or keyword..." autofocus>
                         @if($request->has('keyword') && $request->filled('keyword'))
                         <a href="{{ route('cards.index', $request->except('keyword', 'page')) }}" style="text-decoration: none;" class="mr-2">
                             <i class="fa fa-times text-danger"></i> Keyword
@@ -17,17 +17,17 @@
                         @endif
                         @if($request->has('collection') && $request->filled('collection'))
                         <a href="{{ route('cards.index', $request->except('collection', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                            <i class="fa fa-times text-danger"></i> Collection
+                            <i class="fa fa-times text-danger"></i> {{ title_case(str_replace('-', ' ', $request->collection)) }}
                         </a>
                         @endif
                         @if($request->has('category') && $request->filled('category'))
                         <a href="{{ route('cards.index', $request->except('category', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                            <i class="fa fa-times text-danger"></i> {{ $title_categories ? key($title_categories) : 'Category' }}
+                            <i class="fa fa-times text-danger"></i> {{ $title_categories ? key($title_categories) . ' ' . $request->category : 'Category' }}
                         </a>
                         @endif
                         @if($request->has('format') && $request->filled('format'))
                         <a href="{{ route('cards.index', $request->except('format', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                            <i class="fa fa-times text-danger"></i> Format
+                            <i class="fa fa-times text-danger"></i> {{ title_case(str_replace('-', ' ', $request->format)) }}
                         </a>
                         @endif
                     </div>
