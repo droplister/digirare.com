@@ -13,14 +13,14 @@
                 <div class="row">
                     <div class="col-md-6 mb-3">
                         <input type="text" class="form-control mb-2" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a card name or keyword..." autofocus>
-                        @if($request->has('keyword') && $request->filled('keyword'))
-                        <a href="{{ route('cards.index', $request->except('keyword', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                            <i class="fa fa-times text-danger"></i> Keyword
-                        </a>
-                        @endif
                         @if($request->has('artist') && $request->filled('artist'))
                         <a href="{{ route('cards.index', $request->except('artist', 'page')) }}" style="text-decoration: none;" class="mr-2">
                             <i class="fa fa-times text-danger"></i> {{ title_case(str_replace('-', ' ', $request->artist)) }}
+                        </a>
+                        @endif
+                        @if($request->has('keyword') && $request->filled('keyword'))
+                        <a href="{{ route('cards.index', $request->except('keyword', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                            <i class="fa fa-times text-danger"></i> Keyword
                         </a>
                         @endif
                         @if($request->has('collection') && $request->filled('collection'))
