@@ -54,8 +54,8 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('orders.index') }}">
-                                <i class="fa fa-filter" aria-hidden="true"></i>
-                                {{ __('Orders') }}
+                                <i class="fa fa-gavel" aria-hidden="true"></i>
+                                {{ __('Market') }}
                             </a>
                         </li>
                         <li class="nav-item">
