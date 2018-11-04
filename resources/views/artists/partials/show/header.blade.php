@@ -10,10 +10,10 @@
             {{ $artist->content }}
         </p>
         <p class="mb-5">
+            <a href="#" class="btn btn-primary my-2">Search DEX</a>
             @if(isset($artist->meta['website']))
-            <a href="{{ $artist->meta['website'] }}" class="btn btn-primary my-2 mr-2" target="_blank">Learn More</a>
+            <a href="{{ $artist->meta['website'] }}" class="btn btn-secondary my-2 mr-2" target="_blank">Learn More</a>
             @endif
-            <a href="#" class="btn btn-secondary my-2">Search DEX</a>
         </p>
     </div>
     @if($artist->image_url)
