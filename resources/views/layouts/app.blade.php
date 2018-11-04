@@ -49,7 +49,7 @@
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cards.index') }}">
                                 <i class="fa fa-search" aria-hidden="true"></i>
-                                {{ __('Search') }}
+                                {{ __('Browse') }}
                             </a>
                         </li>
                         <li class="nav-item">
