@@ -38,7 +38,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-4 mb-3 d-none d-md-inline-block">
                                 <select class="custom-select d-block w-100" id="action" name="action">
                                     <option value="">Action</option>
                                     @foreach(['buying', 'selling'] as $action)
@@ -48,7 +48,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                            <div class="col-md-4 mb-3">
+                            <div class="col-md-4 mb-3 d-none d-md-inline-block">
                                 <select class="custom-select d-block w-100" id="sort" name="sort">
                                     <option value="">Sort Order</option>
                                     @foreach(['ending', 'newest'] as $sort)

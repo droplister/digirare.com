@@ -87,6 +87,9 @@ class CollectionsTableSeeder extends Seeder
                 'bundleId' => 'com.spellsofgenesis',
             ],
             // Other APIs
+            'Artolin' => [
+                'currency' => 'OLINCOIN',
+            ],
             'Bitcorn Crops' => [
                 'currency' => 'BITCORN',
             ],
