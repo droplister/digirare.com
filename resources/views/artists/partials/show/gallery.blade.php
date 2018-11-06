@@ -16,9 +16,9 @@
             </a>
         </h6>
         <p class="card-text">
-            {{ $card->supply_normalized }} {{ __('prints') }} 
+            {{ __('Prints:') }} {{ $card->supply_normalized }}
             <span class="float-right d-none d-md-inline">
-                <i class="fa fa-user-o" aria-hidden="true"></i> {{ $card->balances_count }} {{ __('owners') }}
+                <i class="fa fa-user-o" aria-hidden="true"></i> {{ $card->balances_count }}
             </span>
         </p>
     </div>
