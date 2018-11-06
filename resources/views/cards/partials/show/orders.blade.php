@@ -22,7 +22,7 @@
             @endforeach
             @if($orders->count() === 0)
             <tr>
-                <td colspan="2" class="text-center"><em>{{ __('None Found') }}</em></td>
+                <td colspan="2" class="text-center"><em>{{ __('No Open Orders') }}</em></td>
             </tr>
             @endif
         </tbody>

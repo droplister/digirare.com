@@ -32,10 +32,15 @@
   color: #00FF21 !important;
 }
 
-#nightmode,
+#nightmode {
+  color: #fff;
+  background-color: #000;
+}
+
 #nightmode .navbar-laravel {
   color: #fff;
   background-color: #000;
+  box-shadow: 0 2px 4px rgba(255,255,255,0.04);
 }
 
 #nightmode .text-muted {
