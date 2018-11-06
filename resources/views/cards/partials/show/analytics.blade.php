@@ -52,7 +52,12 @@
         <p class="text-muted mb-0" title="{{ $token ? $token->issuance_normalized : __('Syncing') }}">
             {{ __('Issued') }}
         </p>
-        <p class="mb-0">{{ $token ? number_format($token->issuance_normalized) : __('Syncing') }} <i class="fa fa-{{ $token && $token->locked ? 'lock' : 'unlock-alt' }} text-muted" aria-hidden="true"></i></p>
+        <p class="mb-0">
+            {{ $token ? number_format($token->issuance_normalized) : __('Syncing') }}
+            @if($token && ! $token->locked)
+            <i class="fa fa-text-muted" aria-hidden="true"></i>
+            @endif
+        </p>
     </div>
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0" title="{{ $token ? $token->burned_normalized : __('Syncing') }}">
@@ -86,7 +91,7 @@
 </div>
 <hr />
 <div class="row">
-    <div class="col-6 col-sm-3">
+    <div class="col-8 col-sm-3">
         <p class="text-muted mb-0">
             {{ str_plural(__('Artist'), $artists->count()) }}
         </p>
@@ -99,7 +104,7 @@
             @endif
         </p>
     </div>
-    <div class="col-6 col-sm-3">
+    <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
             {{ __('Format') }}
         </p>
