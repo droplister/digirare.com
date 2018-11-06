@@ -70,11 +70,11 @@ class Artist extends Model
         if($total < 1000) {
             return number_format($total);
         }elseif($total < 1000000) {
-            return number_format($total / 1000, 1) . 'K';
+            return str_replace('.0', '', number_format($total / 1000, 1)) . 'K';
         }elseif($total < 1000000000) {
-            return number_format($total / 1000000, 1) . 'M';
+            return str_replace('.0', '', number_format($total / 1000000, 1)) . 'M';
         }else{
-            return number_format($total / 1000000000, 1) . 'B';
+            return str_replace('.0', '', number_format($total / 1000000000, 1)) . 'B';
         }
     }
 

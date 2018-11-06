@@ -83,11 +83,11 @@ class Card extends Model
         if($supply < 9999) {
             return number_format($supply);
         }elseif($supply < 1000000) {
-            return number_format($supply / 1000, 1) . 'K';
+            return str_replace('.0', '', number_format($supply / 1000, 1)) . 'K';
         }elseif($supply < 1000000000) {
-            return number_format($supply / 1000000, 1) . 'M';
+            return str_replace('.0', '', number_format($supply / 1000000, 1)) . 'M';
         }else{
-            return number_format($supply / 1000000000, 1) . 'B';
+            return str_replace('.0', '', number_format($supply / 1000000000, 1)) . 'B';
         }
     }
 
