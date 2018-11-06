@@ -10,12 +10,11 @@ class NightModeController extends Controller
      * Display the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  boolean $on_off
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, $on_off)
+    public function show(Request $request)
     {
-        session()->put('nightmode', $on_off);
+        session()->put('nightmode', $request->input('on_off', 'true'));
 
         return redirect()->back();
     }
