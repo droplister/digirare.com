@@ -1,9 +1,8 @@
-<h5 class="my-5">{{ __($type) }}</h5>
-<div class="table-responsive">
+<div class="table-responsive bg-white">
     <table class="table border-bottom mb-0">
         <thead>
             <tr>
-                <th scope="col">{{ __('Price') }}</th>
+                <th scope="col">{{ __('Price') }} <small class="text-muted">{{ __($type) }}</small></th>
                 <th scope="col">{{ __('Quantity') }}</th>
             </tr>
         </thead>
