@@ -47,6 +47,13 @@
 <hr />
 <div class="row">
     <div class="col-4 col-sm-3">
+        <p class="text-muted mb-0" title="{{ $token ? $token->supply_normalized : __('Syncing') }}">
+            <i class="fa fa-clone text-dark" aria-hidden="true"></i>
+            {{ __('Prints') }}
+        </p>
+        <p class="mb-0">{{ $token ? number_format($token->supply_normalized) : __('Syncing') }}</p>
+    </div>
+    <div class="col-4 col-sm-3">
         <p class="text-muted mb-0" title="{{ $token ? $token->issuance_normalized : __('Syncing') }}">
             <i class="fa fa-{{ $token && $token->locked ? 'lock' : 'unlock-alt' }} text-dark" aria-hidden="true"></i>
             {{ __('Issued') }}
@@ -59,13 +66,6 @@
             {{ __('Burned') }}
         </p>
         <p class="mb-0">{{ $token ? number_format($token->burned_normalized) : __('Syncing') }}</p>
-    </div>
-    <div class="col-4 col-sm-3">
-        <p class="text-muted mb-0" title="{{ $token ? $token->supply_normalized : __('Syncing') }}">
-            <i class="fa fa-calculator text-dark" aria-hidden="true"></i>
-            {{ __('Prints') }}
-        </p>
-        <p class="mb-0">{{ $token ? number_format($token->supply_normalized) : __('Syncing') }}</p>
     </div>
     <div class="col-sm-3 d-none d-sm-inline">
         <p class="text-muted mb-0">
@@ -96,7 +96,7 @@
 </div>
 <hr />
 <div class="row">
-    <div class="col-4 col-sm-3">
+    <div class="col-6 col-sm-3">
         <p class="text-muted mb-0">
             <i class="fa fa-paint-brush text-dark" aria-hidden="true"></i>
             {{ str_plural(__('Artist'), $artists->count()) }}
@@ -110,7 +110,7 @@
             @endif
         </p>
     </div>
-    <div class="col-4 col-sm-3">
+    <div class="col-6 col-sm-3">
         <p class="text-muted mb-0">
             <i class="fa fa-image text-dark" aria-hidden="true"></i>
             {{ __('Format') }}
