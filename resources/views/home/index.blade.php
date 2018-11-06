@@ -13,7 +13,7 @@
         @include('home.partials.featured-artist')
         @include('home.partials.how-it-works')
         @include('home.partials.more-featured')
-        @include('home.partilas.browse-button')
+        @include('home.partials.browse-button')
     </div>
     @include('modals.featured')
 @endsection
