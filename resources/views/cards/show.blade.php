@@ -24,11 +24,11 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-6">
-                        @include('cards.partials.show.orders', ['orders' => $buy_orders, 'type' => 'From Sellers'])
+                        @include('cards.partials.show.orders', ['orders' => $buy_orders, 'type' => 'Buy Side'])
                     </div>
                     <div class="col-md-6">
                         <br class="d-display d-md-none" />
-                        @include('cards.partials.show.orders', ['orders' => $sell_orders, 'type' => 'From Buyers'])
+                        @include('cards.partials.show.orders', ['orders' => $sell_orders, 'type' => 'Sell Side'])
                     </div>
                 </div>
             </div>

@@ -2,7 +2,7 @@
     <table class="table border-bottom mb-0">
         <thead>
             <tr>
-                <th scope="col">{{ __('Price') }} <small class="text-muted">{{ __($type) }}</small></th>
+                <th scope="col">{{ __($type) }}</th>
                 <th scope="col">{{ __('Quantity') }}</th>
             </tr>
         </thead>
