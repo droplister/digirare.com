@@ -16,6 +16,8 @@ class DatabaseSeeder extends Seeder
         $this->call(AssetsTableSeeder::class);
         $this->call(ArtistsTableSeeder::class);
         $this->call(CollectionsTableSeeder::class);
+        $this->call(NPCsSeeder::class);
+        $this->call(ArtolinSeeder::class);
         $this->call(PenisiumSeeder::class);
         $this->call(PepeVoteSeeder::class);
         $this->call(RareScrillaSeeder::class);
