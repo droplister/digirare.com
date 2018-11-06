@@ -14,7 +14,7 @@
                 @include('cards.partials.show.analytics')
             </div>
         </div>
-        <h5 class="my-5">
+        <h5 class="mt-4 mb-5">
             Available Trades
             <small class="d-none d-md-inline-block pull-right text-muted">
                 Learn about the <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" target="_blank">Counterparty DEX</a>.

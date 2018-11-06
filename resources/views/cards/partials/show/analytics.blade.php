@@ -63,6 +63,14 @@
         </p>
     </div>
     <div class="col-4 col-sm-3">
+        <p class="text-muted mb-0" title="{{ $token ? $token->burned_normalized : __('Syncing') }}">
+            {{ __('Burned') }}
+        </p>
+        <p class="mb-0">
+            {{ $token ? number_format($token->burned_normalized) : __('Syncing') }}
+        </p>
+    </div>
+    <div class="col-4 col-sm-3">
         <p class="text-muted mb-0" title="{{ $token ? $token->issuance_normalized : __('Syncing') }}">
             {{ __('Issued') }}
         </p>
@@ -73,14 +81,6 @@
             @endif
         </p>
     </div>
-    <div class="col-4 col-sm-3">
-        <p class="text-muted mb-0" title="{{ $token ? $token->burned_normalized : __('Syncing') }}">
-            {{ __('Burned') }}
-        </p>
-        <p class="mb-0">
-            {{ $token ? number_format($token->burned_normalized) : __('Syncing') }}
-        </p>
-    </div>
     <div class="col-sm-3 d-none d-sm-inline">
         <p class="text-muted mb-0">
             {{ __('Divisible') }}
@@ -88,31 +88,6 @@
         <p class="mb-0">
             {{ $token && $token->divisible ? __('Yes') : __('No') }}
         </p>
-    </div>
-</div>
-<div class="d-none d-lg-block">
-    <hr />
-    <div class="row">
-        <div class="col-6">
-            <p class="text-muted mb-0">
-                {{ __('Owner') }}
-            </p>
-            <p class="mb-0">
-                <a href="{{ route('collectors.show', ['collector' => $token ? $token->owner : null]) }}">
-                    {{ $token ? $token->owner : __('Syncing') }}
-                </a>
-            </p>
-        </div>
-        <div class="col-6">
-            <p class="text-muted mb-0">
-                {{ __('Issuer') }}
-            </p>
-            <p class="mb-0">
-                <a href="{{ route('collectors.show', ['collector' => $token ? $token->issuer : null]) }}">
-                    {{ $token ? $token->issuer : __('Syncing') }}
-                </a>
-            </p>
-        </div>
     </div>
 </div>
 <hr />
@@ -141,3 +116,4 @@
         </p>
     </div>
 </div>
+<hr />
