@@ -63,10 +63,10 @@ class CardsController extends Controller
      * Display the specified resource.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Card  $asset
+     * @param  \App\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Card $asset)
+    public function show(Request $request, Card $card)
     {
         // Relations
         $token = $card->token;
