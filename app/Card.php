@@ -77,7 +77,8 @@ class Card extends Model
      */
     public function getSupplyNormalizedAttribute()
     {
-        $supply = number_format($this->token ? $this->token->supply_normalized : 0);
+        // Edge Case
+        $supply = $this->token ? $this->token->supply_normalized : 0;
 
         if($supply < 1000) {
             return number_format($supply);
