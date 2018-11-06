@@ -10,7 +10,9 @@
             </a>
         </p>
         @else
-        <p class="mb-0">{{ __('N/A') }}</p>
+        <p class="mb-0">
+            {{ __('N/A') }}
+        </p>
         @endif
     </div>
     <div class="col-4 col-sm-3">
@@ -24,20 +26,30 @@
             </a>
         </p>
         @else
-        <p class="mb-0">{{ __('N/A') }}</p>
+        <p class="mb-0">
+            {{ __('N/A') }}
+        </p>
         @endif
     </div>
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0">
             {{ __('Owners') }}
         </p>
-        <p class="mb-0"><a href="{{ route('cards.collectors.index', ['card' => $card->slug]) }}">{{ number_format($balances->total()) }}</a></p>
+        <p class="mb-0">
+            <a href="{{ route('cards.collectors.index', ['card' => $card->slug]) }}">
+                {{ number_format($balances->total()) }}
+            </a>
+        </p>
     </div>
     <div class="col-sm-3 d-none d-sm-inline">
         <p class="text-muted mb-0">
             {{ __('Trades') }}
         </p>
-        <p class="mb-0"><a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">{{ number_format($card->trades_count) }}</a></p>
+        <p class="mb-0">
+            <a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">
+                {{ number_format($card->trades_count) }}
+            </a>
+        </p>
     </div>
 </div>
 <hr />
@@ -46,7 +58,9 @@
         <p class="text-muted mb-0" title="{{ $token ? $token->supply_normalized : __('Syncing') }}">
             {{ __('Supply') }}
         </p>
-        <p class="mb-0">{{ $token ? number_format($token->supply_normalized) : __('Syncing') }}</p>
+        <p class="mb-0">
+            {{ $token ? number_format($token->supply_normalized) : __('Syncing') }}
+        </p>
     </div>
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0" title="{{ $token ? $token->issuance_normalized : __('Syncing') }}">
@@ -63,13 +77,17 @@
         <p class="text-muted mb-0" title="{{ $token ? $token->burned_normalized : __('Syncing') }}">
             {{ __('Burned') }}
         </p>
-        <p class="mb-0">{{ $token ? number_format($token->burned_normalized) : __('Syncing') }}</p>
+        <p class="mb-0">
+            {{ $token ? number_format($token->burned_normalized) : __('Syncing') }}
+        </p>
     </div>
     <div class="col-sm-3 d-none d-sm-inline">
         <p class="text-muted mb-0">
             {{ __('Divisible') }}
         </p>
-        <p class="mb-0">{{ $token && $token->divisible ? __('YES') : __('NO') }}</p>
+        <p class="mb-0">
+            {{ $token && $token->divisible ? __('Yes') : __('No') }}
+        </p>
     </div>
 </div>
 <div class="d-none d-lg-block">
@@ -79,13 +97,21 @@
             <p class="text-muted mb-0">
                 {{ __('Owner') }}
             </p>
-            <p class="mb-0"><a href="{{ route('collectors.show', ['collector' => $token ? $token->owner : null]) }}">{{ $token ? $token->owner : __('Syncing') }}</a></p>
+            <p class="mb-0">
+                <a href="{{ route('collectors.show', ['collector' => $token ? $token->owner : null]) }}">
+                    {{ $token ? $token->owner : __('Syncing') }}
+                </a>
+            </p>
         </div>
         <div class="col-6">
             <p class="text-muted mb-0">
                 {{ __('Issuer') }}
             </p>
-            <p class="mb-0"><a href="{{ route('collectors.show', ['collector' => $token ? $token->issuer : null]) }}">{{ $token ? $token->issuer : __('Syncing') }}</a></p>
+            <p class="mb-0">
+                <a href="{{ route('collectors.show', ['collector' => $token ? $token->issuer : null]) }}">
+                    {{ $token ? $token->issuer : __('Syncing') }}
+                </a>
+            </p>
         </div>
     </div>
 </div>
