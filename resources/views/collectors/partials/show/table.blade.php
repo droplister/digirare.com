@@ -12,7 +12,7 @@
                     <th scope="col" style="width: 50px">#</th>
                     <th scope="col">{{ __('Name') }}</th>
                     <th scope="col">{{ __('Balance') }}</th>
-                    <th scope="col">{{ __('Supply') }}</th>
+                    <th scope="col">{{ __('Prints') }}</th>
                     <th scope="col">{{ __('Owner?') }}</th>
                 </tr>
             </thead>

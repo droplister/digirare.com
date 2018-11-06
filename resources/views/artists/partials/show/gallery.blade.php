@@ -16,7 +16,7 @@
             </a>
         </h6>
         <p class="card-text">
-            {{ __('Supply:') }} {{ number_format($card->token ? $card->token->supply_normalized : 0) }}
+            {{ __('Prints:') }} {{ number_format($card->token ? $card->token->supply_normalized : 0) }}
             <span class="float-right d-none d-md-inline">{{ __('Collectors:') }} {{ $card->balances_count }}</span>
         </p>
     </div>

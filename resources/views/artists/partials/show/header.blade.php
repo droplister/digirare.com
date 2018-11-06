@@ -10,13 +10,16 @@
             {{ $artist->content }}
         </p>
         <h2 class="mb-3 d-inline-block mr-4">
-            {{ $cards->total() }} <small class="d-block lead" style="font-size: 0.75rem;">Assets</small>
+            <small class="d-block lead" style="font-size: 0.75rem;">Assets</small>
+            {{ $cards->total() }}
         </h2>
         <h2 class="mb-3 d-inline-block mr-4">
-            {{ $artist->collectors_count }} <small class="d-block lead" style="font-size: 0.75rem;">Collectors</small>
+            <small class="d-block lead" style="font-size: 0.75rem;">Collectors</small>
+            {{ $artist->collectors_count }}
         </h2>
         <h2 class="mb-3 d-inline-block mr-4">
-            {{ $artist->balances()->count() }} <small class="d-block lead" style="font-size: 0.75rem;">Balances</small>
+            <small class="d-block lead" style="font-size: 0.75rem;">Total Prints</small>
+            {{ $artist->total_supply }}
         </h2>
         <p class="mb-5">
             <a href="{{ route('cards.index', ['artist' => $artist->slug]) }}" class="btn btn-primary my-2">

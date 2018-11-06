@@ -63,7 +63,7 @@
     <div class="col-4 col-sm-3">
         <p class="text-muted mb-0" title="{{ $token ? $token->supply_normalized : __('Syncing') }}">
             <i class="fa fa-calculator text-dark" aria-hidden="true"></i>
-            {{ __('Supply') }}
+            {{ __('Prints') }}
         </p>
         <p class="mb-0">{{ $token ? number_format($token->supply_normalized) : __('Syncing') }}</p>
     </div>

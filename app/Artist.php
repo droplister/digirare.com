@@ -57,6 +57,28 @@ class Artist extends Model
     }
 
     /**
+     * Collections Count
+     *
+     * @return string
+     */
+    public function getTotalSupplyAttribute()
+    {
+        $total = $this->cards()->with('token')->get()->sum(function ($card) {
+            return $card->token->supply_normalized;
+        });
+
+        if($total < 1000) {
+            return $total;
+        }elseif($total < 1000000) {
+            return number_format($total / 1000, 1) . 'K';
+        }elseif($total < 1000000000) {
+            return number_format($total / 1000000, 1) . 'M';
+        }else{
+            return number_format($total / 1000000000, 1) . 'B';
+        }
+    }
+
+    /**
      * Balances
      * 
      * @return \Staudenmeir\EloquentHasManyDeep\HasRelationships
