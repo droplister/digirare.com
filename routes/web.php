@@ -13,11 +13,12 @@
 
 Route::get('/', 'HomeController@index')->name('home.index');
 Route::resource('/random', 'RandomController', ['only' => ['index']]);
-Route::resource('/cards', 'CardsController', ['only' => ['index', 'show']]);
+Route::get('/browse', 'CardsController@index')->name('cards.index');
+Route::get('/assets/{asset}', 'CardsController@show')->name('cards.show');
 Route::resource('/cards/{card}/likes', 'CardLikesController', ['only' => ['index', 'store']]);
 Route::resource('/cards/{card}/trades', 'CardTradesController', ['only' => ['index'], 'names' => ['index' => 'cards.trades.index']]);
 Route::resource('/cards/{card}/collectors', 'CardCollectorsController', ['only' => ['index'], 'names' => ['index' => 'cards.collectors.index']]);
-Route::resource('/orders', 'OrdersController', ['only' => ['index']]);
+Route::get('/market', 'OrdersController@index')->name('orders.index');
 Route::resource('/monitors', 'MonitorsController');
 Route::resource('/artists', 'ArtistsController', ['only' => ['index', 'show']]);
 Route::get('/artists/{artist}/table', 'ArtistsController@showTable')->name('artists.show.table');
