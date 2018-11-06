@@ -68,7 +68,7 @@ class Artist extends Model
         });
 
         if($total < 1000) {
-            return $total;
+            return number_format($total);
         }elseif($total < 1000000) {
             return number_format($total / 1000, 1) . 'K';
         }elseif($total < 1000000000) {

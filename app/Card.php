@@ -71,6 +71,26 @@ class Card extends Model
     }
 
     /**
+     * Supply Normalized
+     *
+     * @return string
+     */
+    public function getSupplyNormalizedAttribute()
+    {
+        $supply = number_format($this->token ? $this->token->supply_normalized : 0);
+
+        if($supply < 1000) {
+            return number_format($supply);
+        }elseif($supply > 9999 && $supply < 1000000) {
+            return number_format($supply / 1000, 1) . 'K';
+        }elseif($supply < 1000000000) {
+            return number_format($supply / 1000000, 1) . 'M';
+        }else{
+            return number_format($supply / 1000000000, 1) . 'B';
+        }
+    }
+
+    /**
      * Artists
      * 
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
