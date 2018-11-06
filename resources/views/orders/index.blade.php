@@ -15,7 +15,7 @@
             </small>
         </h5>
         <div class="table-responsive mb-4">
-            <table class="table">
+            <table class="table border-bottom">
                 <thead>
                     <tr>
                         <th scope="col">{{ __('Action') }}</th>

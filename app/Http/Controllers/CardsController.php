@@ -81,8 +81,28 @@ class CardsController extends Controller
 
         // Last Block
         $block = Block::latest('block_index')->first();
-        
+
+        // Buy Orders
+        $buy_orders = Order::whereIn('get_asset', [$card->xcp_core_asset_name])
+                    ->where('give_remaining', '>', 0)
+                    ->where('get_remaining', '>', 0)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc')
+                    ->get()
+                    ->sortByDesc('trading_price_normalized');
+
+        // Sell Orders
+        $sell_orders = Order::whereIn('give_asset', [$card->xcp_core_asset_name])
+                    ->where('give_remaining', '>', 0)
+                    ->where('get_remaining', '>', 0)
+                    ->where('status', '=', 'open')
+                    ->where('expire_index', '>', $block->block_index)
+                    ->orderBy('expire_index', 'asc')
+                    ->get()
+                    ->sortBy('trading_price_normalized');
+
         // Show View
-        return view('cards.show', compact('card', 'token', 'artists', 'balances', 'collections', 'likes', 'dislikes', 'last_match'));
+        return view('cards.show', compact('card', 'token', 'artists', 'balances', 'collections', 'likes', 'dislikes', 'last_match', 'buy_orders', 'sell_orders'));
     }
 }
