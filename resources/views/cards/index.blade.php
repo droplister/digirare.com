@@ -106,7 +106,7 @@
                 <p class="card-text">
                     <i class="fa fa-clone" aria-hidden="true"></i> {{ $card->supply_normalized }} {{ __('prints') }} 
                     <span class="float-right d-none d-md-inline">
-                        <i class="fa fa-users-o" aria-hidden="true"></i> {{ $card->balances_count }} {{ __('collectors') }}
+                        <i class="fa fa-users-o" aria-hidden="true"></i> {{ $card->balances_count }} {{ __('owners') }}
                     </span>
                 </p>
             </div>

@@ -16,8 +16,10 @@
             </a>
         </h6>
         <p class="card-text">
-            {{ __('Prints:') }} {{ number_format($card->token ? $card->token->supply_normalized : 0) }}
-            <span class="float-right d-none d-md-inline">{{ __('Collectors:') }} {{ $card->balances_count }}</span>
+            <i class="fa fa-clone" aria-hidden="true"></i> {{ $card->supply_normalized }} {{ __('prints') }} 
+            <span class="float-right d-none d-md-inline">
+                <i class="fa fa-users-o" aria-hidden="true"></i> {{ $card->balances_count }} {{ __('owners') }}
+            </span>
         </p>
     </div>
     @endforeach
