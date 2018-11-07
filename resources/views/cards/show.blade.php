@@ -12,6 +12,11 @@
                 @include('cards.partials.show.header')
                 <hr />
                 @include('cards.partials.show.analytics')
+                <hr />
+                <p class="mt-3 mb-2">
+                    <a href="{{ route('orders.index', ['card' => $card->slug]) }}" class="btn btn-primary my-2 mr-2">Open Orders</a>
+                    <a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}" class="btn btn-secondary my-2">Trade History</a>
+                </p>
             </div>
         </div>
         <h5 class="mt-4 mb-5">
