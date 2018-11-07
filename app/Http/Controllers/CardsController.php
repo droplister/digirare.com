@@ -82,11 +82,15 @@ class CardsController extends Controller
         // Last Block
         $block = Block::latest('block_index')->first();
 
+        // All TCG "Currencies"
+        $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
+
         // Buy Orders
         $buy_orders = Order::whereIn('get_asset', [$card->xcp_core_asset_name])
                     ->where('give_remaining', '>', 0)
                     ->where('get_remaining', '>', 0)
                     ->where('status', '=', 'open')
+                    ->whereIn('give_asset', $currencies)
                     ->where('expire_index', '>', $block->block_index)
                     ->orderBy('expire_index', 'asc')
                     ->get()
@@ -97,6 +101,7 @@ class CardsController extends Controller
                     ->where('give_remaining', '>', 0)
                     ->where('get_remaining', '>', 0)
                     ->where('status', '=', 'open')
+                    ->whereIn('get_asset', $currencies)
                     ->where('expire_index', '>', $block->block_index)
                     ->orderBy('expire_index', 'asc')
                     ->get()
