@@ -67,8 +67,10 @@ class Artist extends Model
             return $card->token->supply_normalized;
         });
 
-        if($total < 1000000) {
+        if($total < 1000) {
             return number_format($total);
+        }elseif($total < 1000000) {
+            return str_replace('.0', '', number_format($total / 1000, 1)) . 'K';
         }elseif($total < 1000000000) {
             return str_replace('.0', '', number_format($total / 1000000, 1)) . 'M';
         }else{
