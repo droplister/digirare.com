@@ -1,53 +1,19 @@
 @extends('layouts.app')
 
-@section('title', 'DIGIRARE')
+@section('title', 'Crypto Collectibles & Crypto Art on the Bitcoin Blockchain')
+@section('description', 'Explore the thousands of CryptoCollectibles issued and traded on the Bitcoin blockchain using Counterparty technology. Immutable, Permissionless and P2P, CryptoArt is changing the way artists create.')
+
+@section('jumbotron')
+    @include('home.partials.above-the-fold')
+@endsection
 
 @section('content')
-    <div class="container mt-3">
-        <div class="row">
-            <div class="col">
-                <h1 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-diamond"></i></small>
-                    DIGIRARE
-                </h1>
-                @include('partials.featured')
-                <div class="text-center mb-4">
-                    <a href="{{ route('random.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-random"></i> {{ __('Random Card') }}
-                    </a>
-                </div>
-                <h2 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
-                    {{ __('DEX Trades') }}
-                </h2>
-                @include('home.partials.index.trades-chart')
-                <div class="text-center mb-4">
-                    <a href="{{ route('orders.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-list"></i> {{ __('Open Orders') }}
-                    </a>
-                </div>
-                <h2 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
-                    {{ __('XCP Cards') }}
-                </h2>
-                @include('home.partials.index.cards-chart')
-                <div class="text-center mb-4">
-                    <a href="{{ route('collections.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-image"></i> {{ __('Collections') }}
-                    </a>
-                </div>
-                <h2 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-hand-grab-o"></i></small>
-                    {{ __('Collectors') }}
-                </h2>
-                @include('home.partials.index.collectors-chart')
-                <div class="text-center mb-4">
-                    <a href="{{ route('collectors.index') }}" class="btn btn-primary btn-lg">
-                        <i aria-hidden="true" class="fa fa-trophy"></i> {{ __('Top Collectors') }}
-                    </a>
-                </div>
-            </div>
-        </div>
+    <div class="container">
+        @include('home.partials.editors-picks')
+        @include('home.partials.featured-artist')
+        @include('home.partials.how-it-works')
+        @include('home.partials.more-featured')
+        @include('home.partials.browse-button')
     </div>
     @include('modals.featured')
 @endsection

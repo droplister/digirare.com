@@ -64,28 +64,28 @@ class NPCsSeeder extends Seeder
             'NPCS.AnpcitaFemfreq' => [
                 'image_url' => '/storage/npcs/NPCS.AnpcitaFemfreq.png',
             ],
-            'NPCS.cdad27cb948d4e0   ' => [
+            'NPCS.cdad27cb948d4e0' => [
                 'image_url' => '/storage/npcs/NPCS.cdad27cb948d4e0.png',
             ],
             'NPCS.CNNPC1' => [
                 'image_url' => '/storage/npcs/NPCS.CNNPC1.png',
             ],
-            'NPCS.cwinemom58804 ' => [
+            'NPCS.cwinemom58804' => [
                 'image_url' => '/storage/npcs/NPCS.cwinemom58804.png',
             ],
-            'NPCS.female0028761 ' => [
+            'NPCS.female0028761' => [
                 'image_url' => '/storage/npcs/NPCS.female0028761.png',
             ],
-            'NPCS.film_student246   ' => [
+            'NPCS.film_student246' => [
                 'image_url' => '/storage/npcs/NPCS.film_student246.png',
             ],
-            'NPCS.GROYPERWAVE   ' => [
+            'NPCS.GROYPERWAVE' => [
                 'image_url' => '/storage/npcs/NPCS.GROYPERWAVE.png',
             ],
-            'NPCS.Infinite_JW4  ' => [
+            'NPCS.Infinite_JW4' => [
                 'image_url' => '/storage/npcs/NPCS.Infinite_JW4.png',
             ],
-            'NPCS.KrassensteinNpc   ' => [
+            'NPCS.KrassensteinNpc' => [
                 'image_url' => '/storage/npcs/NPCS.KrassensteinNpc.png',
             ],
             'NPCS.Love2Shill' => [
@@ -94,34 +94,34 @@ class NPCsSeeder extends Seeder
             'NPCS.msnpcbot67' => [
                 'image_url' => '/storage/npcs/NPCS.msnpcbot67.png',
             ],
-            'NPCS.MyBlueEyedChild   ' => [
+            'NPCS.MyBlueEyedChild' => [
                 'image_url' => '/storage/npcs/NPCS.MyBlueEyedChild.png',
             ],
-            'NPCS.N12670840 ' => [
+            'NPCS.N12670840' => [
                 'image_url' => '/storage/npcs/NPCS.N12670840.png',
             ],
             'NPCS.N80085' => [
                 'image_url' => '/storage/npcs/NPCS.N80085.png',
             ],
-            'NPCS.NangRichard   ' => [
+            'NPCS.NangRichard' => [
                 'image_url' => '/storage/npcs/NPCS.NangRichard.png',
             ],
-            'NPCS.Nattie_P_Cumins   ' => [
+            'NPCS.Nattie_P_Cumins' => [
                 'image_url' => '/storage/npcs/NPCS.Nattie_P_Cumins.png',
             ],
-            'NPCS.NPC_Brennan   ' => [
+            'NPCS.NPC_Brennan' => [
                 'image_url' => '/storage/npcs/NPCS.NPC_Brennan.png',
             ],
-            'NPCS.NPC00473777   ' => [
+            'NPCS.NPC00473777' => [
                 'image_url' => '/storage/npcs/NPCS.NPC00473777.png',
             ],
-            'NPCS.NPC021505081301   ' => [
+            'NPCS.NPC021505081301' => [
                 'image_url' => '/storage/npcs/NPCS.NPC021505081301.png',
             ],
             'NPCS.npc1001001' => [
                 'image_url' => '/storage/npcs/NPCS.npc1001001.png',
             ],
-            'NPCS.npc133713371337   ' => [
+            'NPCS.npc133713371337' => [
                 'image_url' => '/storage/npcs/NPCS.npc133713371337.png',
             ],
             'NPCS.npc1337197' => [
@@ -133,31 +133,31 @@ class NPCsSeeder extends Seeder
             'NPCS.npc1984now' => [
                 'image_url' => '/storage/npcs/NPCS.npc1984now.png',
             ],
-            'NPCS.npc2304828716 ' => [
+            'NPCS.npc2304828716' => [
                 'image_url' => '/storage/npcs/NPCS.npc2304828716.png',
             ],
-            'NPCS.npc23456789   ' => [
+            'NPCS.npc23456789' => [
                 'image_url' => '/storage/npcs/NPCS.npc23456789.png',
             ],
-            'NPCS.npc3302723396 ' => [
+            'NPCS.npc3302723396' => [
                 'image_url' => '/storage/npcs/NPCS.npc3302723396.png',
             ],
-            'NPCS.NPC42354325   ' => [
+            'NPCS.NPC42354325' => [
                 'image_url' => '/storage/npcs/NPCS.NPC42354325.png',
             ],
-            'NPCS.npc465292 ' => [
+            'NPCS.npc465292' => [
                 'image_url' => '/storage/npcs/NPCS.npc465292.png',
             ],
-            'NPCS.npc4815162342 ' => [
+            'NPCS.npc4815162342' => [
                 'image_url' => '/storage/npcs/NPCS.npc4815162342.png',
             ],
-            'NPCS.npc4836246j7  ' => [
+            'NPCS.npc4836246j7' => [
                 'image_url' => '/storage/npcs/NPCS.npc4836246j7.png',
             ],
             'NPCS.npc5318008' => [
                 'image_url' => '/storage/npcs/NPCS.npc5318008.png',
             ],
-            'NPCS.npc537223857  ' => [
+            'NPCS.npc537223857' => [
                 'image_url' => '/storage/npcs/NPCS.npc537223857.png',
             ],
             'NPCS.NPC6000000' => [
@@ -169,19 +169,19 @@ class NPCsSeeder extends Seeder
             'NPCS.NPC691' => [
                 'image_url' => '/storage/npcs/NPCS.NPC691.png',
             ],
-            'NPCS.NPC707825 ' => [
+            'NPCS.NPC707825' => [
                 'image_url' => '/storage/npcs/NPCS.NPC707825.png',
             ],
-            'NPCS.npc7285950281 ' => [
+            'NPCS.npc7285950281' => [
                 'image_url' => '/storage/npcs/NPCS.npc7285950281.png',
             ],
-            'NPCS.npc7592057301 ' => [
+            'NPCS.npc7592057301' => [
                 'image_url' => '/storage/npcs/NPCS.npc7592057301.png',
             ],
             'NPCS.NPC7770987' => [
                 'image_url' => '/storage/npcs/NPCS.NPC7770987.png',
             ],
-            'NPCS.npc80014662   ' => [
+            'NPCS.npc80014662' => [
                 'image_url' => '/storage/npcs/NPCS.npc80014662.png',
             ],
             'NPCS.npc8547556' => [
@@ -193,28 +193,28 @@ class NPCsSeeder extends Seeder
             'NPCS.npc8675301' => [
                 'image_url' => '/storage/npcs/NPCS.npc8675301.png',
             ],
-            'NPCS.NPC86753093   ' => [
+            'NPCS.NPC86753093' => [
                 'image_url' => '/storage/npcs/NPCS.NPC86753093.png',
             ],
             'NPCS.NPC9371953' => [
                 'image_url' => '/storage/npcs/NPCS.NPC9371953.png',
             ],
-            'NPCS.NPC94323381   ' => [
+            'NPCS.NPC94323381' => [
                 'image_url' => '/storage/npcs/NPCS.NPC94323381.png',
             ],
             'NPCS.npcboi' => [
                 'image_url' => '/storage/npcs/NPCS.npcboi.png',
             ],
-            'NPCS.NPCECELEB ' => [
+            'NPCS.NPCECELEB' => [
                 'image_url' => '/storage/npcs/NPCS.NPCECELEB.png',
             ],
-            'NPCS.NPCRIGHTS978681   ' => [
+            'NPCS.NPCRIGHTS978681' => [
                 'image_url' => '/storage/npcs/NPCS.NPCRIGHTS978681.png',
             ],
             'NPCS.NPCuck' => [
                 'image_url' => '/storage/npcs/NPCS.NPCuck.png',
             ],
-            'NPCS.pocasio2018   ' => [
+            'NPCS.pocasio2018' => [
                 'image_url' => '/storage/npcs/NPCS.pocasio2018.png',
             ],
             'NPCS.ponponpontifex' => [
@@ -223,13 +223,13 @@ class NPCsSeeder extends Seeder
             'NPCS.resist12359914' => [
                 'image_url' => '/storage/npcs/NPCS.resist12359914.png',
             ],
-            'NPCS.SeeEnpee  ' => [
+            'NPCS.SeeEnpee' => [
                 'image_url' => '/storage/npcs/NPCS.SeeEnpee.png',
             ],
             'NPCS.SpookyStirnman' => [
                 'image_url' => '/storage/npcs/NPCS.SpookyStirnman.png',
             ],
-            'NPCS.The_NPCSA ' => [
+            'NPCS.The_NPCSA' => [
                 'image_url' => '/storage/npcs/NPCS.The_NPCSA.png',
             ],
             'NPCS.thelameduck8me' => [

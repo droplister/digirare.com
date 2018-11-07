@@ -11,7 +11,5 @@
                 @include('artists.partials.index.table')
             </div>
         </div>
-        @include('partials.featured')
     </div>
-    @include('modals.featured')
 @endsection

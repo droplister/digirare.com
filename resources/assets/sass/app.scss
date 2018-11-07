@@ -16,6 +16,10 @@
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
 
+.jumbotron {
+  background-image: url("/images/black-thread-light.png");
+}
+
 .display-4 {
     font-size: 3rem;
 }
@@ -26,4 +30,39 @@
 
 .text-highlight {
   color: #00FF21 !important;
+}
+
+#nightmode {
+  color: #fff;
+  background-color: #000;
+}
+
+#nightmode .navbar-laravel {
+  color: #fff;
+  background-color: #000;
+  box-shadow: 0 2px 4px rgba(255,255,255,0.04);
+}
+
+#nightmode .text-muted {
+  color: #f8f9fa !important;
+}
+
+#nightmode .navbar-brand {
+  color: rgba(255,255,255,0.9);
+}
+
+#nightmode .nav-link {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+#nightmode a {
+  color: #00ff21 !important;
+}
+
+#nightmode .btn-primary {
+  background-color: #00ff21 !important;
+}
+
+#nightmode .jumbotron {
+  background-color: #212529;
 }

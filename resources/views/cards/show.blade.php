@@ -14,30 +14,25 @@
                 @include('cards.partials.show.analytics')
             </div>
         </div>
-        <h2 class="display-4 mb-4">
-            <small class="text-highlight"><i aria-hidden="true" class="fa fa-chain"></i></small>
-            {{ __('DEX Orders') }}
-        </h2>
-        <div class="row">
-            <div class="col-md-6 mb-4">
-                @include('cards.partials.show.orders', ['orders' => $buy_orders, 'type' => 'Buy'])
+        <h5 class="mt-4 mb-5">
+            Available Trades
+            <small class="d-none d-md-inline-block pull-right text-muted">
+                Learn about the <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" target="_blank">Counterparty DEX</a>.
+            </small>
+        </h5>
+        <section class="jumbotron">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-6">
+                        @include('cards.partials.show.orders', ['orders' => $buy_orders, 'type' => 'Buy Side'])
+                    </div>
+                    <div class="col-md-6">
+                        <br class="d-display d-md-none" />
+                        @include('cards.partials.show.orders', ['orders' => $sell_orders, 'type' => 'Sell Side'])
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 mb-4">
-                @include('cards.partials.show.orders', ['orders' => $sell_orders, 'type' => 'Sell'])
-            </div>
-        </div>
-        <h2 class="display-4 mb-4">
-            <small class="text-highlight"><i aria-hidden="true" class="fa fa-hand-grab-o mr-1"></i></small>
-            {{ __('Collectors') }}
-        </h2>
-        <div class="card mb-4">
-            <div class="card-header">
-                <span class="lead font-weight-bold">{{ __('Bitcoin Addresses') }}</span>
-            </div>
-            <chart title="{{ __('Unique Addresses') }}" label="{{ __('Unique Addresses') }}"
-                source="{{ route('metrics.count', ['card' => $card->name, 'category' => 'balances', 'interval' => 'day']) }}">
-            </chart>
-        </div>
+        </section>
     </div>
     @include('cards.modals.gallery')
 @endsection

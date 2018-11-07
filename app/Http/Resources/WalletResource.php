@@ -22,6 +22,7 @@ class WalletResource extends Resource
                 'supply' => $this->assetModel->supply_normalized,
                 'issuance' => $this->assetModel->issuance_normalized,
                 'divisible' => (bool) $this->assetModel->divisible,
+                'locked' => (bool) $this->assetModel->locked,
             ],
             'balance' => [
                 'quantity' => $this->quantity_normalized,

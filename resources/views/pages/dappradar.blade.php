@@ -26,7 +26,7 @@
                         @foreach($collections as $collection)
                             <tr>
                                 <th scope="row">{{ $loop->iteration }}.</th>
-                                <td><a href="{{ $collection->url }}">{{ $collection->name }}</a></td>
+                                <td><a href="{{ route('cards.index', ['collection' => $collection->slug]) }}">{{ $collection->name }}</a></td>
                                 <td>{{ number_format($collection->usersCount(1)) }}</td>
                                 <td>{{ number_format($collection->usersCount(7)) }}</td>
                                 <td>{{ $collection->volumeTotal(1) }}</td>

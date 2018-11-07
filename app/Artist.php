@@ -22,7 +22,18 @@ class Artist extends Model
         'user_id',
         'name',
         'slug',
+        'image_url',
         'content',
+        'meta',
+    ];
+
+    /**
+     * The attributes that should be cast to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        'meta' => 'array',
     ];
 
     /**
@@ -43,6 +54,26 @@ class Artist extends Model
     public function getCollectionsCountAttribute()
     {
         return $this->collections()->get()->unique('name')->count();
+    }
+
+    /**
+     * Collections Count
+     *
+     * @return string
+     */
+    public function getTotalSupplyAttribute()
+    {
+        $total = $this->cards()->with('token')->get()->sum(function ($card) {
+            return $card->token->supply_normalized;
+        });
+
+        if($total < 1000000) {
+            return number_format($total);
+        }elseif($total < 1000000000) {
+            return str_replace('.0', '', number_format($total / 1000000, 1)) . 'M';
+        }else{
+            return str_replace('.0', '', number_format($total / 1000000000, 1)) . 'B';
+        }
     }
 
     /**

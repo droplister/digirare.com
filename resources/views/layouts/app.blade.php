@@ -24,18 +24,18 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 </head>
-<body>
+<body id="{{ session()->get('nightmode') === 'true' ? 'nightmode' : '' }}">
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    <i class="fa fa-diamond" aria-hidden="true"></i>
+                    <i class="fa fa-diamond text-highlight" aria-hidden="true"></i>
                     {{ config('app.name', 'Laravel') }}
                 </a>
                 <ul class="navbar-nav ml-auto mr-3 d-inline-block d-md-none">
                     <li class="nav-item">
-                        <a href="https://digirare.com/random" class="nav-link">
-                            <i aria-hidden="true" class="fa fa-random text-highlight"></i>
+                        <a href="{{ route('random.index') }}" class="nav-link">
+                            <i aria-hidden="true" class="fa fa-random"></i>
                             {{ __('Random') }}
                         </a>
                     </li>
@@ -48,58 +48,41 @@
                     <ul class="navbar-nav mr-auto">
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cards.index') }}">
-                                <i class="fa fa-chain" aria-hidden="true"></i>
-                                {{ __('XCP Cards') }}
+                                <i class="fa fa-search" aria-hidden="true"></i>
+                                {{ __('Browse') }}
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('collections.index') }}">
-                                <i class="fa fa-image" aria-hidden="true"></i>
-                                {{ __('Collections') }}
+                            <a class="nav-link" href="{{ route('orders.index') }}">
+                                <i class="fa fa-gavel" aria-hidden="true"></i>
+                                {{ __('Market') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-handshake-o" aria-hidden="true"></i>
+                                {{ __('Trades') }}
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="#">
+                                <i class="fa fa-line-chart" aria-hidden="true"></i>
+                                {{ __('Charts') }}
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-inline-block">
-                            <a class="nav-link" href="{{ route('random.index') }}">
-                                <i class="fa fa-random" aria-hidden="true"></i>
-                                {{ __('Randomize') }}
+                            <a href="{{ route('random.index') }}" class="nav-link">
+                                <i aria-hidden="true" class="fa fa-random"></i>
+                                {{ __('Random') }}
                             </a>
-                        </li>
-                        <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                              {{ __('Dropdown') }}
-                            </a>
-                            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('artists.index') }}">
-                                    <i aria-hidden="true" class="fa fa-paint-brush"></i>
-                                    {{ __('Artists') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('orders.index') }}">
-                                    <i aria-hidden="true" class="fa fa-list"></i>
-                                    {{ __('Big Board') }}
-                                </a>
-                                <a class="dropdown-item" href="{{ route('collectors.index') }}">
-                                    <i aria-hidden="true" class="fa fa-hand-grab-o"></i>
-                                    {{ __('Collectors') }}
-                                </a>
-                                <div class="dropdown-divider"></div>
-                                @if(\App::getLocale() === 'en')
-                                    <a class="dropdown-item" href="{{ route('locale.show', ['locale' => 'ja']) }}">
-                                        日本語
-                                    </a>
-                                @else
-                                    <a class="dropdown-item" href="{{ route('locale.show', ['locale' => 'en']) }}">
-                                        English
-                                    </a>
-                                @endif
-                            </div>
                         </li>
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
                         @guest
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ config('digirare.telegram_url') }}">
-                                    {{ __('Support') }}
+                                <a class="nav-link" href="#">
+                                    {{ __('How it Works') }}
                                 </a>
                             </li>
                             <li class="nav-item">
@@ -140,7 +123,9 @@
             </div>
         </nav>
 
-        <main class="pt-4">
+        @yield('jumbotron')
+
+        <main class="py-4">
             @yield('content')
         </main>
 

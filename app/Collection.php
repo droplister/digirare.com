@@ -4,7 +4,6 @@ namespace App;
 
 use Cache;
 use Carbon\Carbon;
-use App\Traits\Linkable;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Debit;
 use Droplister\XcpCore\App\Credit;
@@ -17,7 +16,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Collection extends Model
 {
-    use HasRelationships, Linkable, Sluggable, SluggableScopeHelpers;
+    use HasRelationships, Sluggable, SluggableScopeHelpers;
 
     /**
      * The attributes that are mass assignable.

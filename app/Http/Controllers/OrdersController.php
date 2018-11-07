@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Card;
-use App\Feature;
 use App\Collection;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Block;
@@ -23,13 +22,15 @@ class OrdersController extends Controller
     {
         // Simple Validation
         $request->validate([
-            'action' => 'sometimes|nullable|in:buying,selling',
             'card' => 'sometimes|nullable|exists:cards,slug',
+            'action' => 'sometimes|nullable|in:buying,selling',
+            'sort' => 'sometimes|nullable|in:newest,ending,price',
             'collection' => 'sometimes|nullable|exists:collections,slug',
-            'collector' => 'sometimes|nullable|exists:addresses,address',
             'currency' => 'sometimes|nullable|exists:collections,currency',
-            'sort' => 'sometimes|nullable|in:ending,newest',
         ]);
+
+        // IMG Formats
+        $formats = ['GIF', 'JPG', 'PNG'];
 
         // Current Block Index
         $block = Block::latest('block_index')->first();
@@ -38,7 +39,7 @@ class OrdersController extends Controller
         $collections = Collection::orderBy('name', 'asc')->get();
 
         // All TCG "Currencies"
-        $currencies = Collection::get()->unique('currency')->pluck('currency')->toArray();
+        $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
 
         // Unique Cache Slug
         $slug = 'orders_index_' . $block->block_index . '_' . str_slug(serialize($request->all()));
@@ -48,10 +49,7 @@ class OrdersController extends Controller
             return $this->getOrders($block, $currencies, $request);
         });
 
-        // Featured
-        $features = Feature::highestBids()->with('card.token')->get();
-
-        return view('orders.index', compact('block', 'collections', 'currencies', 'orders', 'features', 'request'));
+        return view('orders.index', compact('block', 'collections', 'currencies', 'orders', 'formats', 'request'));
     }
 
     /**
@@ -70,7 +68,7 @@ class OrdersController extends Controller
         });
 
         // Filter by Collection
-        if($request->has('collection'))
+        if($request->has('collection') && $request->filled('collection'))
         {
             $collection = Collection::findBySlug($request->collection);
 
@@ -78,7 +76,7 @@ class OrdersController extends Controller
         }
 
         // Filter by Card
-        if($request->has('card'))
+        if($request->has('card') && $request->filled('card'))
         {
             // Get Card Asset
             $asset = Asset::where('asset_name', '=', $request->card)
@@ -89,7 +87,8 @@ class OrdersController extends Controller
         }
 
         // Filters
-        if($request->has('collector') && $request->has('currency') && $request->has('action'))
+        if($request->has('collector') && $request->has('currency') && $request->has('action') &&
+            $request->filled('collector') && $request->filled('currency') && $request->filled('action'))
         {
             // Buying/Selling
             if($request->action === 'buying')
@@ -111,7 +110,8 @@ class OrdersController extends Controller
                     ->where('expire_index', '>', $block->block_index);
             }
         }
-        elseif($request->has('currency') && $request->has('action'))
+        elseif($request->has('currency') && $request->has('action') &&
+            $request->filled('currency') && $request->filled('action'))
         {
             // Buying/Selling
             if($request->action === 'buying')
@@ -131,7 +131,8 @@ class OrdersController extends Controller
                     ->where('expire_index', '>', $block->block_index);
             }
         }
-        elseif($request->has('collector') && $request->has('action'))
+        elseif($request->has('collector') && $request->has('action') &&
+            $request->filled('collector') && $request->filled('action'))
         {
             // Buying/Selling
             if($request->action === 'buying')
@@ -151,7 +152,8 @@ class OrdersController extends Controller
                     ->where('expire_index', '>', $block->block_index);
             }
         }
-        elseif($request->has('currency') && $request->has('collector'))
+        elseif($request->has('currency') && $request->has('collector') &&
+        $request->filled('currency') && $request->filled('collector'))
         {
             $orders = Order::with('getAssetModel', 'giveAssetModel')
                 ->whereIn('get_asset', $assets)
@@ -165,7 +167,7 @@ class OrdersController extends Controller
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index);
         }
-        elseif($request->has('action'))
+        elseif($request->has('action') && $request->filled('action'))
         {
             // Buying/Selling
             if($request->action === 'buying')
@@ -185,7 +187,7 @@ class OrdersController extends Controller
                     ->where('expire_index', '>', $block->block_index);
             }
         }
-        elseif($request->has('currency'))
+        elseif($request->has('currency') && $request->filled('currency'))
         {
             $orders = Order::with('getAssetModel', 'giveAssetModel')
                 ->whereIn('get_asset', $assets)
@@ -197,7 +199,7 @@ class OrdersController extends Controller
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index);
         }
-        elseif($request->has('collector'))
+        elseif($request->has('collector') && $request->filled('collector'))
         {
             $orders = Order::with('getAssetModel', 'giveAssetModel')
                 ->whereIn('get_asset', $assets)
@@ -228,5 +230,4 @@ class OrdersController extends Controller
         // Paginate
         return $orders->paginate(100);
     }
-
 }

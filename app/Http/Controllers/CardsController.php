@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Card;
-use App\Feature;
+use App\Collection;
 use Droplister\XcpCore\App\Block;
 use Droplister\XcpCore\App\Order;
 use Illuminate\Http\Request;
@@ -19,19 +19,44 @@ class CardsController extends Controller
      */
     public function index(Request $request)
     {
-        // Sorting
-        $sort = $request->input('sort', 'collectors');
+        // Validation
+        $request->validate([
+            'keyword' => 'sometimes|nullable',
+            'format' => 'sometimes|nullable|in:GIF,JPG,PNG',
+            'collection' => 'sometimes|nullable|exists:collections,slug',
+        ]);
 
-        // Cards
-        $cards = Cache::remember('cards_index_' . $sort, 1440, function () use ($sort) {
-            return $this->getCards($sort);
+        // Exception
+        if($request->has('collection') && $request->has('category') && ! in_array($request->collection, ['bitcorn-crops', 'rare-pepe'])) {
+            return redirect(route('cards.index', $request->except('category')));
+        }
+
+        // IMG Formats
+        $formats = ['GIF', 'JPG', 'PNG'];
+
+        // Collections
+        $collections = Collection::orderBy('name', 'asc')->get();
+
+        // Cache Slug
+        $cache_slug = 'search_' . str_slug(serialize($request->all()));
+
+        // The Result
+        $cards = Cache::remember($cache_slug, 60, function () use ($request) {
+            return Card::getFiltered($request);
         });
 
-        // Featured
-        $features = Feature::highestBids()->with('card.token')->get();
+        // Title Categories
+        $title_categories = null;
+        if($request->has('collection')) {
+            if($request->collection === 'bitcorn-crops') {
+                $title_categories = ['Harvest' => range(1, 16)];
+            } elseif($request->collection === 'rare-pepe') {
+                $title_categories = ['Series' => range(1, 36)];
+            }
+        }
 
         // Index View
-        return view('cards.index', compact('cards', 'sort', 'features'));
+        return view('cards.index', compact('formats', 'cards', 'collections', 'title_categories', 'request'));
     }
 
     /**
@@ -56,7 +81,7 @@ class CardsController extends Controller
 
         // Last Block
         $block = Block::latest('block_index')->first();
-        
+
         // Buy Orders
         $buy_orders = Order::whereIn('get_asset', [$card->xcp_core_asset_name])
                     ->where('give_remaining', '>', 0)
@@ -79,43 +104,5 @@ class CardsController extends Controller
 
         // Show View
         return view('cards.show', compact('card', 'token', 'artists', 'balances', 'collections', 'likes', 'dislikes', 'last_match', 'buy_orders', 'sell_orders'));
-    }
-
-
-    /**
-     * Get Cards
-     * 
-     * @param  string  $sort
-     * @return \App\Card
-     */
-    private function getCards($sort)
-    {
-        $cards = Card::with('token', 'primaryCollection')
-            ->withCount('backwardOrderMatches', 'forwardOrderMatches', 'balances', 'collections');
-
-        switch($sort)
-        {
-            case 'collectors':
-                $cards = $cards->orderBy('balances_count', 'desc')->take(100)->get();
-                break;
-            case 'trades':
-                $cards = $cards->get()->sortByDesc('trades_count')->splice(0, 100);
-                break;
-            case 'oldest':
-                $cards = $cards->get()->sortBy(function ($card) {
-                    return $card->token['confirmed_at'];
-                })->splice(0, 100);
-                break;
-            case 'newest':
-                $cards = $cards->get()->sortByDesc(function ($card) {
-                    return $card->token['confirmed_at'];
-                })->splice(0, 100);
-                break;
-            default:
-                $cards = $cards->orderBy('balances_count', 'desc')->take(100)->get();
-                break;
-        }
-
-        return $cards;
     }
 }

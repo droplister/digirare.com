@@ -7,14 +7,7 @@
         <div class="row">
             <div class="col">
                 @include('artists.partials.show.header')
-                @include('artists.partials.show.filter')
-                @if($view === 'table')
-                    @include('artists.partials.show.table')
-                @elseif($view === 'profile')
-                    @include('artists.partials.show.content')
-                @else
-                    @include('artists.partials.show.gallery')
-                @endif
+                @include('artists.partials.show.gallery')
             </div>
         </div>
     </div>

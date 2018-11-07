@@ -2,6 +2,7 @@
 
 namespace App;
 
+use DB;
 use App\Traits\Linkable;
 use App\Events\CardWasCreated;
 use Droplister\XcpCore\App\Asset;
@@ -11,6 +12,7 @@ use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Megapixel23\Database\Eloquent\Relations\BelongsToOneTrait;
+use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
@@ -66,6 +68,25 @@ class Card extends Model
     public function getTradesCountAttribute()
     {
         return $this->backwardOrderMatches()->count() + $this->forwardOrderMatches()->count();
+    }
+
+    /**
+     * Supply Normalized
+     *
+     * @return string
+     */
+    public function getSupplyNormalizedAttribute()
+    {
+        // Edge Case
+        $supply = $this->token ? $this->token->supply_normalized : 0;
+
+        if($supply < 1000000) {
+            return number_format($supply);
+        }elseif($supply < 1000000000) {
+            return str_replace('.0', '', number_format($supply / 1000000, 1)) . 'M';
+        }else{
+            return str_replace('.0', '', number_format($supply / 1000000000, 1)) . 'B';
+        }
     }
 
     /**
@@ -225,6 +246,69 @@ class Card extends Model
         return $query->whereHas('collections', function ($collection) {
             return $collection->where('active', '=', 1);
         });
+    }
+
+    /**
+     * Get Filtered
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \App\Card
+     */
+    public static function getFiltered(Request $request)
+    {
+        // Build Query
+        $cards = Card::withCount('balances');
+
+        // By Keyword
+        if ($request->has('keyword') && $request->filled('keyword')) {
+            // Build Query
+            $cards = $cards->where('slug', 'like', '%' . $request->keyword . '%');
+        }
+
+        // By Format
+        if ($request->has('format') && $request->filled('format')) {
+            // Card IDs
+            $ids = DB::table('card_collection')
+                ->where('image_url', 'like', '%' . $request->format);
+            
+            // JPG Case
+            if($request->format === 'JPG') {
+                $ids = $ids->orWhere('image_url', 'like', '%JPEG');
+            }
+
+            // To Array
+            $ids= $ids->pluck('card_id')->toArray();
+
+            // Build Query
+            $cards = $cards->whereIn('id', $ids);
+        }
+
+        // By Artist
+        if ($request->has('artist') && $request->filled('artist')) {
+            // Build Query
+            $cards = $cards->whereHas('artists', function ($artist) use ($request) {
+                return $artist->where('slug', '=', $request->artist);
+            });
+        }
+
+        // By Collection
+        if ($request->has('collection') && $request->filled('collection')) {
+            // Build Query
+            $cards = $cards->whereHas('collections', function ($collection) use ($request) {
+                return $collection->where('slug', '=', $request->collection);
+            });
+        }
+
+        // By Category
+        if ($request->has('category') && $request->filled('category')) {
+            // JSON Meta
+            $meta = $request->collection === 'bitcorn-crops' ? 'meta->harvest' : 'meta->series';
+            // Build Query
+            $cards = $cards->whereJsonContains($meta, (int) $request->category);
+        }
+
+        // Sort Pages
+        return $cards->orderBy('balances_count', 'desc')->paginate(100);
     }
 
     /**
