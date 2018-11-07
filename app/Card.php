@@ -3,6 +3,7 @@
 namespace App;
 
 use DB;
+use App\Collection;
 use App\Traits\Linkable;
 use App\Events\CardWasCreated;
 use Droplister\XcpCore\App\Asset;
@@ -220,10 +221,13 @@ class Card extends Model
      */
     public function lastMatch()
     {
+        // All TCG "Currencies"
+        $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
+
         if($this->token)
         {
-            $b = $this->token->backwardOrderMatches()->latest('confirmed_at')->first();
-            $f = $this->token->forwardOrderMatches()->latest('confirmed_at')->first();
+            $b = $this->token->backwardOrderMatches()->whereIn('forward_asset', $currencies)->latest('confirmed_at')->first();
+            $f = $this->token->forwardOrderMatches()->whereIn('backward_asset', $currencies)->latest('confirmed_at')->first();
 
             if($b && $f)
             {
