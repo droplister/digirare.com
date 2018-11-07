@@ -15,19 +15,19 @@ class ArtistsToCardsSeeder extends Seeder
     {
         $collections = $this->getCollections();
 
-        foreach($collections as $name => $artists)
-        {
+        foreach($collections as $name => $artists) {
             $collection = Collection::whereName($name)->first();
 
-            foreach($artists as $name => $cards)
-            {
+            foreach($artists as $name => $cards) {
                 $artist = Artist::whereName($name)->first();
 
-                foreach($cards as $name)
-                {
+                foreach($cards as $name) {
                    $card = $collection->cards()->where('name', '=', $name)->first();
-                   $card->pivot->artist_id = $artist->id;
-                   $card->pivot->save();
+
+                   if($card) {
+                       $card->pivot->artist_id = $artist->id;
+                       $card->pivot->save();
+                   }
                 }
             }
         }
