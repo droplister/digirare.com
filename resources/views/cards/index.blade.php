@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Browse CryptoCollectibles'))
+@section('title', __('Browse Crypto Collectibles'))
 
 @section('jumbotron')
     <section class="jumbotron">
