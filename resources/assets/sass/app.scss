@@ -43,6 +43,10 @@
   box-shadow: 0 2px 4px rgba(255,255,255,0.04);
 }
 
+#nightmode .text-dark {
+  color: #ffffff !important;
+}
+
 #nightmode .text-muted {
   color: #f8f9fa !important;
 }
@@ -53,14 +57,6 @@
 
 #nightmode .nav-link {
   color: rgba(255, 255, 255, 0.5) !important;
-}
-
-#nightmode a {
-  color: #00ff21 !important;
-}
-
-#nightmode .btn-primary {
-  background-color: #00ff21 !important;
 }
 
 #nightmode .jumbotron {
