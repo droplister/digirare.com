@@ -79,12 +79,12 @@
                     </ul>
 
                     <ul class="navbar-nav ml-auto">
+                        <li class="nav-item">
+                            <a class="nav-link" href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" target="_blank">
+                                {{ __('How it Works') }}
+                            </a>
+                        </li>
                         @guest
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">
-                                    {{ __('How it Works') }}
-                                </a>
-                            </li>
                             <li class="nav-item">
                                 <a class="nav-link" href="{{ route('login') }}">
                                     {{ __('Login') }}
