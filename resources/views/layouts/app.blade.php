@@ -80,7 +80,7 @@
 
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" target="_blank">
+                            <a class="nav-link" href="https://www.youtube.com/watch?v=0MBEW2NxNJ4" target="_blank">
                                 {{ __('How it Works') }}
                             </a>
                         </li>
