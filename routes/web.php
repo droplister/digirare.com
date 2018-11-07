@@ -30,4 +30,7 @@ Route::get('/disclaimer', 'PagesController@disclaimer')->name('pages.disclaimer'
 Route::get('/investors', 'PagesController@investors')->name('pages.investors');
 Route::get('/privacy', 'PagesController@privacy')->name('pages.privacy');
 Route::get('/terms', 'PagesController@terms')->name('pages.terms');
+Route::get('/cards', 'RedirectController@cardsIndex');
+Route::get('/cards/{card}', 'RedirectController@cardsShow');
+Route::get('/orders', 'RedirectController@ordersIndex');
 Auth::routes();
