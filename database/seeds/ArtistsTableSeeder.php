@@ -113,6 +113,9 @@ class ArtistsTableSeeder extends Seeder
             'Pepe Hawking' => [
                 'content' => 'Pepe Hawking is a designer of Rare Pepe and Bitcorn cards from Venezuela.',
             ],
+            'Elvis Dead' => [
+                'content' => '',
+            ],
         ];
     }
 }
