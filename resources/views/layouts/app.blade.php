@@ -59,7 +59,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a class="nav-link" href="{{ route('matches.index') }}">
                                 <i class="fa fa-handshake-o" aria-hidden="true"></i>
                                 {{ __('Trades') }}
                             </a>
