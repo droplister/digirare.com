@@ -89,15 +89,13 @@ class OrderMatchesController extends Controller
             // Buying/Selling
             if($request->action === 'buying')
             {
-                $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                    ->whereIn('backward_asset', $assets)
+                $matches = OrderMatch::whereIn('backward_asset', $assets)
                     ->where('tx1_address', '=', $request->collector)
                     ->where('forward_asset', '=', $request->currency);
             }
             else
             {
-                $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                    ->whereIn('forward_asset', $assets)
+                $matches = OrderMatch::whereIn('forward_asset', $assets)
                     ->where('tx1_address', '=', $request->collector)
                     ->where('backward_asset', '=', $request->currency);
             }
@@ -108,14 +106,12 @@ class OrderMatchesController extends Controller
             // Buying/Selling
             if($request->action === 'buying')
             {
-                $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                    ->whereIn('backward_asset', $assets)
+                $matches = OrderMatch::whereIn('backward_asset', $assets)
                     ->where('forward_asset', '=', $request->currency);
             }
             else
             {
-                $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                    ->whereIn('forward_asset', $assets)
+                $matches = OrderMatch::whereIn('forward_asset', $assets)
                     ->where('backward_asset', '=', $request->currency);
             }
         }
@@ -125,22 +121,19 @@ class OrderMatchesController extends Controller
             // Buying/Selling
             if($request->action === 'buying')
             {
-                $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                    ->whereIn('backward_asset', $assets)
+                $matches = OrderMatch::whereIn('backward_asset', $assets)
                     ->where('tx1_address', '=', $request->collector);
             }
             else
             {
-                $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                    ->whereIn('forward_asset', $assets)
+                $matches = OrderMatch::whereIn('forward_asset', $assets)
                     ->where('tx1_address', '=', $request->collector);
             }
         }
         elseif($request->has('currency') && $request->has('collector') &&
         $request->filled('currency') && $request->filled('collector'))
         {
-            $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                ->whereIn('backward_asset', $assets)
+            $matches = OrderMatch::whereIn('backward_asset', $assets)
                 ->where('forward_asset', '=', $request->currency)
                 ->where('tx1_address', '=', $request->collector)
                 ->orWhereIn('forward_asset', $assets)
@@ -152,37 +145,32 @@ class OrderMatchesController extends Controller
             // Buying/Selling
             if($request->action === 'buying')
             {
-                $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                    ->whereIn('backward_asset', $assets)
+                $matches = OrderMatch::whereIn('backward_asset', $assets)
                     ->whereIn('forward_asset', $currencies);
             }
             else
             {
-                $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                    ->whereIn('forward_asset', $assets)
+                $matches = OrderMatch::whereIn('forward_asset', $assets)
                     ->whereIn('backward_asset', $currencies);
             }
         }
         elseif($request->has('currency') && $request->filled('currency'))
         {
-            $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                ->whereIn('backward_asset', $assets)
+            $matches = OrderMatch::whereIn('backward_asset', $assets)
                 ->where('forward_asset', '=', $request->currency)
                 ->orWhereIn('forward_asset', $assets)
                 ->where('backward_asset', '=', $request->currency);
         }
         elseif($request->has('collector') && $request->filled('collector'))
         {
-            $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                ->whereIn('backward_asset', $assets)
+            $matches = OrderMatch::whereIn('backward_asset', $assets)
                 ->where('tx1_address', '=', $request->collector)
                 ->orWhereIn('forward_asset', $assets)
                 ->where('tx1_address', '=', $request->collector);
         }
         else
         {
-            $matches = OrderMatch::with('backwardAssetModel', 'forwardAssetModel')
-                ->whereIn('backward_asset', $assets)
+            $matches = OrderMatch::whereIn('backward_asset', $assets)
                 ->whereIn('forward_asset', $currencies)
                 ->orWhereIn('forward_asset', $assets)
                 ->whereIn('backward_asset', $currencies);

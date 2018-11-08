@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
-@section('title', __('Completed Trades - Crypto Collectibles Price History'))
+@section('title', __('Completed Trades - Counterparty DEX'))
+
+@section('jumbotron')
+    @include('matches.partials.above-the-fold')
+@endsection
 
 @section('content')
     <div class="container">
@@ -26,27 +30,30 @@
                     @foreach($matches as $match)
                     <tr>
                         <td>
-                            {{ $match->trading_quantity_normalized }} {{ $match->trading_pair_base_asset }}
+                            {{ $match->trading_quantity_normalized }}
+                            <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset]) }}">
+                                {{ $match->trading_pair_base_asset }}
+                            </a>
                         </td>
                         <td>
                             {{ number_format($match->trading_price_normalized, 8) }}
-                            <a href="{{ route('orders.index', ['card' => $match->trading_pair_base_asset, 'currency' => $match->trading_pair_quote_asset]) }}">
+                            <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset, 'currency' => $match->trading_pair_quote_asset]) }}">
                                 {{ $match->trading_pair_quote_asset }}
                             </a>
                         </td>
                         <td>
                             {{ number_format($match->trading_total_normalized, 8) }}
-                            <a href="{{ route('orders.index', ['card' => $match->trading_pair_base_asset, 'currency' => $match->trading_pair_quote_asset]) }}">
+                            <a href="{{ route('matches.index', ['currency' => $match->trading_pair_quote_asset]) }}">
                                 {{ $match->trading_pair_quote_asset }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('orders.index', ['card' => $match->trading_pair_base_asset, 'collector' => $match->trading_buyer_normalized]) }}">
+                            <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset, 'collector' => $match->trading_buyer_normalized]) }}">
                                 {{ str_limit($match->trading_buyer_normalized, 8) }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('orders.index', ['card' => $match->trading_pair_base_asset, 'collector' => $match->trading_seller_normalized]) }}">
+                            <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset, 'collector' => $match->trading_seller_normalized]) }}">
                                 {{ str_limit($match->trading_seller_normalized, 8) }}
                             </a>
                         </td>

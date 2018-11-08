@@ -5,7 +5,7 @@
         </p>
         @if($last_match)
         <p class="mb-0">
-            <a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">
+            <a href="{{ route('matches.index', ['card' => $card->slug]) }}">
                 {{ number_format($last_match->trading_price_normalized, 8) }}
             </a>
         </p>
@@ -21,7 +21,7 @@
         </p>
         @if($last_match)
         <p class="mb-0">
-            <a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">
+            <a href="{{ route('matches.index', ['card' => $card->slug]) }}">
                 {{ $last_match->trading_pair_quote_asset }}
             </a>
         </p>
@@ -46,7 +46,7 @@
             {{ __('Trades') }}
         </p>
         <p class="mb-0">
-            <a href="{{ route('cards.trades.index', ['card' => $card->slug]) }}">
+            <a href="{{ route('matches.index', ['card' => $card->slug]) }}">
                 {{ number_format($card->trades_count) }}
             </a>
         </p>
