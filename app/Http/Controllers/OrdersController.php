@@ -29,9 +29,6 @@ class OrdersController extends Controller
             'currency' => 'sometimes|nullable|exists:collections,currency',
         ]);
 
-        // IMG Formats
-        $formats = ['GIF', 'JPG', 'PNG'];
-
         // Current Block Index
         $block = Block::latest('block_index')->first();
 
@@ -49,7 +46,7 @@ class OrdersController extends Controller
             return $this->getOrders($block, $currencies, $request);
         });
 
-        return view('orders.index', compact('block', 'collections', 'currencies', 'orders', 'formats', 'request'));
+        return view('orders.index', compact('block', 'collections', 'currencies', 'orders', 'request'));
     }
 
     /**
