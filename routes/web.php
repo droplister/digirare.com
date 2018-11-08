@@ -33,4 +33,5 @@ Route::get('/terms', 'PagesController@terms')->name('pages.terms');
 Route::get('/cards', 'RedirectController@cardsIndex');
 Route::get('/cards/{card}', 'RedirectController@cardsShow');
 Route::get('/orders', 'RedirectController@ordersIndex');
+Route::get('/collections/{collection}', 'RedirectController@collectionsShow');
 Auth::routes();
