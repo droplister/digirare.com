@@ -25,6 +25,7 @@ Route::get('/artists/{artist}/table', 'ArtistsController@showTable')->name('arti
 Route::resource('/collectors', 'CollectorsController', ['only' => ['index', 'show']]);
 Route::get('/locale/{locale}', 'LocaleController@show')->name('locale.show');
 Route::get('/nightmode', 'NightModeController@show')->name('nightmode.show');
+Route::get('/charts', 'PagesController@charts')->name('pages.charts');
 Route::get('/dappradar', 'PagesController@dappradar')->name('pages.dappradar');
 Route::get('/disclaimer', 'PagesController@disclaimer')->name('pages.disclaimer');
 Route::get('/investors', 'PagesController@investors')->name('pages.investors');
