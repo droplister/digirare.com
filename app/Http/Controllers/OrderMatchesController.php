@@ -29,6 +29,9 @@ class OrderMatchesController extends Controller
             'currency' => 'sometimes|nullable|exists:collections,currency',
         ]);
 
+        // Current Block Index
+        $block = Block::latest('block_index')->first();
+
         // All TCG Collections
         $collections = Collection::orderBy('name', 'asc')->get();
 
@@ -186,7 +189,7 @@ class OrderMatchesController extends Controller
         }
 
         // Sorting
-        $matches = $request->input('sort', 'latest') === 'latest' ? $matches->orderBy('confirmed_at', 'desc') : $matches->orderBy('expire_index', 'asc');
+        $matches = $request->input('sort', 'latest') === 'latest' ? $matches->orderBy('tx1_index', 'desc') : $matches->orderBy('tx1_index', 'asc');
 
         // Paginate
         return $matches->paginate(100);
