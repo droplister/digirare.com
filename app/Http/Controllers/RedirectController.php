@@ -36,7 +36,7 @@ class RedirectController extends Controller
      */
     public function collectionsShow(Request $request, $collection)
     {
-        return redirect(route('collections.show', ['collection' => $collection]));
+        return redirect(route('cards.show', ['collection' => $collection]));
     }
 
     /**
