@@ -14,8 +14,8 @@
             <table class="table border-bottom">
                 <thead>
                     <tr>
-                        <th scope="col">{{ __('Price') }}</th>
                         <th scope="col">{{ __('Quantity') }}</th>
+                        <th scope="col">{{ __('Price') }}</th>
                         <th scope="col">{{ __('Total') }}</th>
                         <th scope="col">{{ __('Buyer') }}</th>
                         <th scope="col">{{ __('Seller') }}</th>
@@ -26,28 +26,27 @@
                     @foreach($matches as $match)
                     <tr>
                         <td>
-                            {{ number_format($match->trading_price_normalized, 8) }}
-                            <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => $match->trading_pair_quote_asset]) }}">
-                                {{ $match->trading_pair_quote_asset }}
-                            </a>
+                            {{ $match->trading_quantity_normalized }} {{ $match->trading_pair_base_asset }}
                         </td>
                         <td>
-                            {{ number_format($match->trading_quantity_normalized, $card->token->divisible ? 8 : 0) }}
-                            {{ $match->trading_pair_base_asset }}
+                            {{ number_format($match->trading_price_normalized, 8) }}
+                            <a href="{{ route('orders.index', ['card' => $match->trading_pair_base_asset, 'currency' => $match->trading_pair_quote_asset]) }}">
+                                {{ $match->trading_pair_quote_asset }}
+                            </a>
                         </td>
                         <td>
                             {{ number_format($match->trading_total_normalized, 8) }}
-                            <a href="{{ route('orders.index', ['card' => $card->name, 'currency' => $match->trading_pair_quote_asset]) }}">
+                            <a href="{{ route('orders.index', ['card' => $match->trading_pair_base_asset, 'currency' => $match->trading_pair_quote_asset]) }}">
                                 {{ $match->trading_pair_quote_asset }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('orders.index', ['card' => $card->name, 'collector' => $match->trading_buyer_normalized]) }}">
+                            <a href="{{ route('orders.index', ['card' => $match->trading_pair_base_asset, 'collector' => $match->trading_buyer_normalized]) }}">
                                 {{ str_limit($match->trading_buyer_normalized, 8) }}
                             </a>
                         </td>
                         <td>
-                            <a href="{{ route('orders.index', ['card' => $card->name, 'collector' => $match->trading_seller_normalized]) }}">
+                            <a href="{{ route('orders.index', ['card' => $match->trading_pair_base_asset, 'collector' => $match->trading_seller_normalized]) }}">
                                 {{ str_limit($match->trading_seller_normalized, 8) }}
                             </a>
                         </td>
