@@ -25,7 +25,7 @@ class PagesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function dappradar(Request $request)
+    public function rankings(Request $request)
     {
         // Collections
         $collections = Collection::get()->sortByDesc(function ($collection) use ($request) {
@@ -46,7 +46,7 @@ class PagesController extends Controller
             }
         });
 
-        return view('pages.dappradar', compact('collections'));
+        return view('pages.rankings', compact('collections'));
     }
 
     /**

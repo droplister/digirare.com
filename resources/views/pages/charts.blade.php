@@ -12,15 +12,7 @@
 @endsection
 
 @section('content')
-    <chart title="{{ __('Crypto Collectibles') }} (XCP)" label="{{ __('Cards Issued') }}" cumulative="true" translation="{{ __('Cumulative') }}"
-        source="{{ route('metrics.count', ['category' => 'cards', 'interval' => 'month']) }}">
-    </chart>
-
-    <chart title="{{ __('Unique Addresses') }}" label="{{ __('Unique Addresses') }}"
-        source="{{ route('metrics.count', ['category' => 'collectors', 'interval' => 'month']) }}">
-    </chart>
-
-    <chart title="{{ __('Counterparty Trades') }} (DEX)" label="{{ __('Total Trades') }}" cumulative="true" translation="{{ __('Cumulative') }}"
-        source="{{ route('metrics.count', ['category' => 'trades', 'interval' => 'month']) }}">
-    </chart>
+    <div class="text-center my-5">
+        Coming Soon (Two Weeks<sup>&trade;</sup>)
+    </div>
 @endsection

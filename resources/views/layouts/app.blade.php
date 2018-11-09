@@ -72,9 +72,9 @@
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-inline-block">
-                            <a class="nav-link" href="{{ route('random.index') }}">
-                                <i class="fa fa-random" aria-hidden="true"></i>
-                                {{ __('Random') }}
+                            <a class="nav-link" href="{{ route('pages.rankings') }}">
+                                <i class="fa fa-list-ol" aria-hidden="true"></i>
+                                {{ __('Rankings') }}
                             </a>
                         </li>
                     </ul>
