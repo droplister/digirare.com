@@ -4,9 +4,11 @@
             Market <small class="lead text-muted">Counterparty DEX</small>
         </h1>
         <form method="GET" action="{{ route('orders.index') }}">
-            @if($request->has('collector') && $request->filled('collector'))
-                <input type="hidden" id="collector" name="collector" value="{{ $request->collector }}">
-            @endif
+            @foreach(['collector', 'currency', 'sort'] as $filter)
+                @if($request->has($filter) && $request->filled($filter))
+                    <input type="hidden" id="{{ $filter }}" name="{{ $filter }}" value="{{ $request->{$filter} }}">
+                @endif
+            @endforeach
             <div class="row">
                 <div class="col-md-6 mb-3">
                     <input type="text" class="form-control" id="card" name="card" value="{{ $request->input('card') }}" placeholder="Enter a card name..." autofocus>
