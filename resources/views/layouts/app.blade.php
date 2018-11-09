@@ -96,6 +96,11 @@
                                 </a>
                             </li>
                         @else
+                            <li class="nav-item">
+                                <a class="nav-link" href="{{ config('digirare.telegram_url') }}" target="_blank">
+                                    {{ __('Support') }}
+                                </a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     <i aria-hidden="true" class="fa fa-user"></i>
@@ -103,16 +108,17 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="{{ config('digirare.telegram_url') }}">
-                                        {{ __('Support') }}
+                                    <a class="dropdown-item" href="#">
+                                        {{ __('Account') }}
                                     </a>
-                                    
+                                    <a class="dropdown-item" href="#">
+                                        {{ __('Upgrade') }}
+                                    </a>                  
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                        {{ __('Log out') }}
+                                        {{ __('Sign out') }}
                                     </a>
-
                                     <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                                         @csrf
                                     </form>
