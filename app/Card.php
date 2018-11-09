@@ -14,7 +14,7 @@ use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Megapixel23\Database\Eloquent\Relations\BelongsToOneTrait;
-use Illuminate\Http\Request;
+use App\Http\Requests\FilterRequest;
 use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
@@ -279,28 +279,31 @@ class Card extends Model
     /**
      * Get Filtered
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\FilterRequest  $request
      * @return \App\Card
      */
-    public static function getFiltered(Request $request)
+    public static function getFiltered(FilterRequest $request)
     {
         // Build Query
         $cards = Card::withCount('balances');
 
+        // The Request
+        $request = array_filter($request->all());
+
         // By Keyword
-        if ($request->has('keyword') && $request->filled('keyword')) {
+        if (isset($request['keyword'])) {
             // Build Query
-            $cards = $cards->where('slug', 'like', '%' . $request->keyword . '%');
+            $cards = $cards->where('slug', 'like', '%' . $request['keyword'] . '%');
         }
 
         // By Format
-        if ($request->has('format') && $request->filled('format')) {
+        if (isset($request['format'])) {
             // Card IDs
             $ids = DB::table('card_collection')
-                ->where('image_url', 'like', '%' . $request->format);
+                ->where('image_url', 'like', '%' . $request['format']);
             
             // JPG Case
-            if ($request->format === 'JPG') {
+            if ($request['format'] === 'JPG') {
                 $ids = $ids->orWhere('image_url', 'like', '%JPEG');
             }
 
@@ -312,27 +315,27 @@ class Card extends Model
         }
 
         // By Artist
-        if ($request->has('artist') && $request->filled('artist')) {
+        if (isset($request['artist'])) {
             // Build Query
             $cards = $cards->whereHas('artists', function ($artist) use ($request) {
-                return $artist->where('slug', '=', $request->artist);
+                return $artist->where('slug', '=', $request['artist']);
             });
         }
 
         // By Collection
-        if ($request->has('collection') && $request->filled('collection')) {
+        if (isset($request['collection'])) {
             // Build Query
             $cards = $cards->whereHas('collections', function ($collection) use ($request) {
-                return $collection->where('slug', '=', $request->collection);
+                return $collection->where('slug', '=', $request['collection']);
             });
         }
 
         // By Category
-        if ($request->has('category') && $request->filled('category')) {
+        if (isset($request['collection']) && isset($request['category'])) {
             // JSON Meta
-            $meta = $request->collection === 'bitcorn-crops' ? 'meta->harvest' : 'meta->series';
+            $meta = $request['collection'] === 'bitcorn-crops' ? 'meta->harvest' : 'meta->series';
             // Build Query
-            $cards = $cards->whereJsonContains($meta, (int) $request->category);
+            $cards = $cards->whereJsonContains($meta, (int) $request['category']);
         }
 
         // Cache Slug
