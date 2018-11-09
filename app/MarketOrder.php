@@ -145,7 +145,7 @@ class MarketOrder extends Order
     public static function getFiltered($request, $paginate = true)
     {
         // Build Query
-        $orders = MarketOrder::openOrders();
+        $orders = MarketOrder::openOrders()->with('getAssetModel', 'giveAssetModel');
 
         // The Request
         $request = array_filter($request->all());

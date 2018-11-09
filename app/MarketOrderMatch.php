@@ -121,7 +121,7 @@ class MarketOrderMatch extends OrderMatch
     public static function getFiltered($request, $paginate = true)
     {
         // Build Query
-        $matches = MarketOrderMatch::query();
+        $matches = MarketOrderMatch::with('backwardAssetModel', 'forwardAssetModel');
 
         // The Request
         $request = array_filter($request->all());
