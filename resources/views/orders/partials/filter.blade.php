@@ -36,7 +36,7 @@
                 </div>
             </div>
             <div class="text-uppercase">
-                @foreach(['action', 'card', 'collection', 'currency', source', 'sort'] as $filter)
+                @foreach(['action', 'card', 'collection', 'currency', 'source', 'sort'] as $filter)
                     @if($request->has($filter) && $request->filled($filter))
                         <a href="{{ route('orders.index', $request->except($filter, 'page')) }}" style="text-decoration: none;" class="mr-2">
                             <i class="fa fa-times text-danger"></i> {{ ucfirst($filter) }}

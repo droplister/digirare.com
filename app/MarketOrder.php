@@ -131,7 +131,7 @@ class MarketOrder extends Order
         $block_index = Cache::get('block_index');
 
         // Apply It
-        return $query->where('expire_index', '>', $block_index)
+        return $query->where('expire_index', '>', (int) $block_index)
             ->where('status', '=', 'open');
     }
 
