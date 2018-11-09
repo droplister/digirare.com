@@ -41,7 +41,7 @@ class UpdateBookOfOrbs implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Collection $collection, $override=false)
+    public function __construct(Collection $collection, $override = false)
     {
         $this->collection = $collection;
         $this->override = $override;
@@ -65,10 +65,11 @@ class UpdateBookOfOrbs implements ShouldQueue
         $cards = $this->fetchCards($response);
 
         // Update or Create
-        foreach($cards as $name => $data)
-        {           
+        foreach ($cards as $name => $data) {
             // Simple Guard
-            if(in_array($name, ['GDCNOVADEMO', 'BITCRYSTALS', $this->collection->currency])) continue;
+            if (in_array($name, ['GDCNOVADEMO', 'BITCRYSTALS', $this->collection->currency])) {
+                continue;
+            }
 
             // Create Card
             $this->updateOrCreateCard($name, $data);
@@ -77,7 +78,7 @@ class UpdateBookOfOrbs implements ShouldQueue
 
     /**
      * Update Currency
-     * 
+     *
      * @param  array  $response
      * @return void
      */
@@ -94,7 +95,7 @@ class UpdateBookOfOrbs implements ShouldQueue
 
     /**
      * Fetch Cards
-     * 
+     *
      * @param  array  $response
      * @return void
      */
@@ -130,13 +131,15 @@ class UpdateBookOfOrbs implements ShouldQueue
 
     /**
      * Get Meta
-     * 
+     *
      * @param  array  $data
      * @return array
      */
     private function getMeta($data)
     {
-        if($this->collection->slug === 'crystalscraft') return null;
+        if ($this->collection->slug === 'crystalscraft') {
+            return null;
+        }
 
         $data = array_change_key_case($data, CASE_LOWER);
 
@@ -181,7 +184,7 @@ class UpdateBookOfOrbs implements ShouldQueue
 
     /**
      * Get API
-     * 
+     *
      * @return array
      */
     private function getAPI()
@@ -196,7 +199,9 @@ class UpdateBookOfOrbs implements ShouldQueue
         $this->curl->get('https://api.spellsofgenesis.com/orbscenter/?entity=orbs_center&action=getEnvironment&env='. $envCode .'&responseType=JSON&apiv=3&apik=' . $apik . '&mainAddress=empty&targetAddress=empty');
 
         // API Error
-        if ($this->curl->error) return [];
+        if ($this->curl->error) {
+            return [];
+        }
 
         // Response
         return json_decode($this->curl->response, true);

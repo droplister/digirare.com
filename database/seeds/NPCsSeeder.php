@@ -36,8 +36,7 @@ class NPCsSeeder extends Seeder
         $cards = $this->getCards();
 
         // Related Cards
-        foreach($cards as $name => $data)
-        {
+        foreach ($cards as $name => $data) {
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($name);
 
@@ -55,7 +54,7 @@ class NPCsSeeder extends Seeder
 
     /**
      * Get Cards
-     * 
+     *
      * @return array
      */
     private function getCards()

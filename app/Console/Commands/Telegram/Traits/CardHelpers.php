@@ -19,8 +19,7 @@ trait CardHelpers
         $card = Card::where('name', '=', $name)->first();
 
         // Not Found
-        if(! $card)
-        {
+        if (! $card) {
             $card = Card::active()->inRandomOrder()->first();
         }
 
@@ -49,7 +48,7 @@ trait CardHelpers
 
     /**
      * Reply With Text
-     * 
+     *
      * @param  string  $text
      * @return mixed
      */
@@ -67,25 +66,22 @@ trait CardHelpers
 
     /**
      * Reply With Image
-     * 
+     *
      * @param  \App\Card  $card
      * @return mixed
      */
-    private function replyWithImage($card, $only_doc=false)
+    private function replyWithImage($card, $only_doc = false)
     {
         // Image URL
         $image_url = url($card->primary_image_url);
 
         // Reply w/ Image
-        if($this->isAnimated($image_url) || $only_doc)
-        {
+        if ($this->isAnimated($image_url) || $only_doc) {
             $this->replyWithDocument([
                 'document' => $image_url,
                 'disable_notification' => true,
             ]);
-        }
-        else
-        {
+        } else {
             $this->replyWithPhoto([
                 'photo' => $image_url,
                 'disable_notification' => true,

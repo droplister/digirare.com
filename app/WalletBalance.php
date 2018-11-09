@@ -16,7 +16,7 @@ class WalletBalance extends Balance
 
     /**
      * Card
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function card()

@@ -57,7 +57,7 @@ class ArtistsController extends Controller
 
     /**
      * Get Artists
-     * 
+     *
      * @param  string  $sort
      * @return \App\Artist
      */
@@ -65,8 +65,7 @@ class ArtistsController extends Controller
     {
         $artists = Artist::with('balances')->withCount('balances', 'cards');
 
-        switch($sort)
-        {
+        switch ($sort) {
             case 'balance':
                 $artists = $artists->orderBy('balances_count', 'desc')->get();
                 break;

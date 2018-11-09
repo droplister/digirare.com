@@ -14,11 +14,10 @@ class ArtistsTableSeeder extends Seeder
     {
         $artists = $this->getArtists();
 
-        foreach($artists as $name => $data)
-        {
+        foreach ($artists as $name => $data) {
             Artist::firstOrCreate([
                 'name' => $name,
-            ],[
+            ], [
                 'content' => $data['content'],
             ]);
         }
@@ -26,7 +25,7 @@ class ArtistsTableSeeder extends Seeder
 
     /**
      * Get Artists
-     * 
+     *
      * @return array
      */
     private function getArtists()

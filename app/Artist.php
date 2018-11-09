@@ -67,20 +67,20 @@ class Artist extends Model
             return $card->token->supply_normalized;
         });
 
-        if($total < 1000) {
+        if ($total < 1000) {
             return number_format($total);
-        }elseif($total < 1000000) {
+        } elseif ($total < 1000000) {
             return str_replace('.0', '', number_format($total / 1000, 1)) . 'K';
-        }elseif($total < 1000000000) {
+        } elseif ($total < 1000000000) {
             return str_replace('.0', '', number_format($total / 1000000, 1)) . 'M';
-        }else{
+        } else {
             return str_replace('.0', '', number_format($total / 1000000000, 1)) . 'B';
         }
     }
 
     /**
      * Balances
-     * 
+     *
      * @return \Staudenmeir\EloquentHasManyDeep\HasRelationships
      */
     public function balances()
@@ -88,12 +88,12 @@ class Artist extends Model
         return $this->hasManyDeep(
             Balance::class,
             ['card_collection', Card::class],
-            [           
+            [
                'artist_id',
                'id',
                'asset',
             ],
-            [          
+            [
               'id',
               'card_id',
               'xcp_core_asset_name',
@@ -103,7 +103,7 @@ class Artist extends Model
 
     /**
      * Cards
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function cards()
@@ -114,7 +114,7 @@ class Artist extends Model
 
     /**
      * Collections
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function collections()
@@ -125,7 +125,7 @@ class Artist extends Model
 
     /**
      * User
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()

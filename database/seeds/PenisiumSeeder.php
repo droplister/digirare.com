@@ -36,14 +36,15 @@ class PenisiumSeeder extends Seeder
         $cards = $this->getCards();
 
         // Related Cards
-        foreach($cards as $image_url)
-        {
+        foreach ($cards as $image_url) {
             $chunk = explode('/', $image_url);
             $chunk = explode('.', end($chunk));
             $name = strtoupper($chunk[0]);
 
             // Edge Case
-            if($name === 'ANTONTAUN') $name = 'THEANTONTAUN';
+            if ($name === 'ANTONTAUN') {
+                $name = 'THEANTONTAUN';
+            }
 
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($name);
@@ -61,7 +62,7 @@ class PenisiumSeeder extends Seeder
 
     /**
      * Get Cards
-     * 
+     *
      * @return array
      */
     private function getCards()

@@ -83,18 +83,18 @@ class Card extends Model
         // Edge Case
         $supply = $this->token ? $this->token->supply_normalized : 0;
 
-        if($supply < 1000000) {
+        if ($supply < 1000000) {
             return number_format($supply);
-        }elseif($supply < 1000000000) {
+        } elseif ($supply < 1000000000) {
             return str_replace('.0', '', number_format($supply / 1000000, 1)) . 'M';
-        }else{
+        } else {
             return str_replace('.0', '', number_format($supply / 1000000000, 1)) . 'B';
         }
     }
 
     /**
      * Artists
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function artists()
@@ -105,7 +105,7 @@ class Card extends Model
 
     /**
      * Balances
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function balances()
@@ -115,7 +115,7 @@ class Card extends Model
 
     /**
      * Collections
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function collections()
@@ -126,7 +126,7 @@ class Card extends Model
 
     /**
      * Primay Collection
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToOne
      */
     public function primaryCollection()
@@ -138,7 +138,7 @@ class Card extends Model
 
     /**
      * Collectors
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
      */
     public function collectors()
@@ -148,7 +148,7 @@ class Card extends Model
 
     /**
      * Features
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function features()
@@ -158,7 +158,7 @@ class Card extends Model
 
     /**
      * Order Matches (Backward)
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function backwardOrderMatches()
@@ -168,7 +168,7 @@ class Card extends Model
 
     /**
      * Order Matches (Forward)
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function forwardOrderMatches()
@@ -188,7 +188,7 @@ class Card extends Model
 
     /**
      * Likes
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function likes()
@@ -198,7 +198,7 @@ class Card extends Model
 
     /**
      * Dislikes
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function dislikes()
@@ -208,7 +208,7 @@ class Card extends Model
 
     /**
      * Token
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function token()
@@ -218,7 +218,7 @@ class Card extends Model
 
     /**
      * Last Match
-     * 
+     *
      * @return \Droplister\XcpCore\App\OrderMatch
      */
     public function lastMatch()
@@ -226,17 +226,13 @@ class Card extends Model
         // All TCG "Currencies"
         $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
 
-        if($this->token)
-        {
+        if ($this->token) {
             $b = $this->token->backwardOrderMatches()->whereIn('forward_asset', $currencies)->latest('confirmed_at')->first();
             $f = $this->token->forwardOrderMatches()->whereIn('backward_asset', $currencies)->latest('confirmed_at')->first();
 
-            if($b && $f)
-            {
+            if ($b && $f) {
                 return $b->confirmed_at > $f->confirmed_at ? $b : $f;
-            }
-            elseif($b || $f)
-            {
+            } elseif ($b || $f) {
                 return $b ? $b : $f;
             }
         }
@@ -278,7 +274,7 @@ class Card extends Model
                 ->where('image_url', 'like', '%' . $request->format);
             
             // JPG Case
-            if($request->format === 'JPG') {
+            if ($request->format === 'JPG') {
                 $ids = $ids->orWhere('image_url', 'like', '%JPEG');
             }
 

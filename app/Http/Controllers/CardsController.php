@@ -27,7 +27,7 @@ class CardsController extends Controller
         ]);
 
         // Exception
-        if($request->has('collection') && $request->has('category') && ! in_array($request->collection, ['bitcorn-crops', 'rare-pepe'])) {
+        if ($request->has('collection') && $request->has('category') && ! in_array($request->collection, ['bitcorn-crops', 'rare-pepe'])) {
             return redirect(route('cards.index', $request->except('category')));
         }
 
@@ -47,10 +47,10 @@ class CardsController extends Controller
 
         // Title Categories
         $title_categories = null;
-        if($request->has('collection')) {
-            if($request->collection === 'bitcorn-crops') {
+        if ($request->has('collection')) {
+            if ($request->collection === 'bitcorn-crops') {
                 $title_categories = ['Harvest' => range(1, 16)];
-            } elseif($request->collection === 'rare-pepe') {
+            } elseif ($request->collection === 'rare-pepe') {
                 $title_categories = ['Series' => range(1, 36)];
             }
         }
@@ -72,7 +72,7 @@ class CardsController extends Controller
         $token = $card->token;
         $last_match = $card->lastMatch();
         $balances = $card->balances()->paginate(20);
-        $artists = $card->artists()->orderBy('primary', 'desc')->get();        
+        $artists = $card->artists()->orderBy('primary', 'desc')->get();
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
 
         // Sentiment

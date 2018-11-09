@@ -41,7 +41,7 @@ class UpdateBitcorn implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Collection $collection, $override=false)
+    public function __construct(Collection $collection, $override = false)
     {
         $this->collection = $collection;
         $this->override = $override;
@@ -59,10 +59,11 @@ class UpdateBitcorn implements ShouldQueue
         $cards = $this->getAPI();
 
         // Update or Create
-        foreach($cards as $data)
-        {
+        foreach ($cards as $data) {
             // Simple Guard
-            if(in_array($data['name'], [$this->collection->currency])) continue;
+            if (in_array($data['name'], [$this->collection->currency])) {
+                continue;
+            }
 
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($data['name']);
@@ -83,7 +84,7 @@ class UpdateBitcorn implements ShouldQueue
 
     /**
      * Get Meta
-     * 
+     *
      * @param  array  $data
      * @return array
      */
@@ -100,7 +101,7 @@ class UpdateBitcorn implements ShouldQueue
 
     /**
      * Get API
-     * 
+     *
      * @return array
      */
     private function getAPI()
@@ -109,7 +110,9 @@ class UpdateBitcorn implements ShouldQueue
         $this->curl->get('https://bitcorns.com/api/cards');
 
         // API Error
-        if ($this->curl->error) return [];
+        if ($this->curl->error) {
+            return [];
+        }
 
         // Response
         return json_decode($this->curl->response, true);

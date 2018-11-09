@@ -41,7 +41,7 @@ class UpdateMafiaWars implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Collection $collection, $override=false)
+    public function __construct(Collection $collection, $override = false)
     {
         $this->collection = $collection;
         $this->override = $override;
@@ -58,8 +58,7 @@ class UpdateMafiaWars implements ShouldQueue
         // Paginated Results
         $pages = $this->getPages();
 
-        for($page=1; $page <= $pages; $page++)
-        {
+        for ($page=1; $page <= $pages; $page++) {
             // Mafia Wars API
             $response = $this->getAPI($page);
 
@@ -67,10 +66,11 @@ class UpdateMafiaWars implements ShouldQueue
             $cards = $response['data'];
 
             // Update or Create
-            foreach($cards as $data)
-            {
+            foreach ($cards as $data) {
                 // Simple Guard
-                if(in_array($data['asset'], [$this->collection->currency])) continue;
+                if (in_array($data['asset'], [$this->collection->currency])) {
+                    continue;
+                }
             
                 // The Asset
                 $xcp_core_asset_name = $this->getAssetName(trim($data['asset']));
@@ -87,12 +87,12 @@ class UpdateMafiaWars implements ShouldQueue
                 // Relation
                 $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
             }
-        } 
+        }
     }
 
     /**
      * Get Meta
-     * 
+     *
      * @param  array  $data
      * @return array
      */
@@ -109,7 +109,7 @@ class UpdateMafiaWars implements ShouldQueue
 
     /**
      * Get Pages
-     * 
+     *
      * @return integer
      */
     private function getPages()
@@ -122,16 +122,18 @@ class UpdateMafiaWars implements ShouldQueue
 
     /**
      * Get API
-     * 
+     *
      * @return array
      */
-    private function getAPI($page=1)
+    private function getAPI($page = 1)
     {
         // Get API
         $this->curl->get('https://mafiawars.io/api/cards?page=' . $page . '&limit=100&sortby=newest&category=mafia-wars');
 
         // API Error
-        if ($this->curl->error) return [];
+        if ($this->curl->error) {
+            return [];
+        }
 
         // Response
         return json_decode($this->curl->response, true);

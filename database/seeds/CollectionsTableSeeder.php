@@ -14,11 +14,10 @@ class CollectionsTableSeeder extends Seeder
     {
         $collections = $this->getCollections();
 
-        foreach($collections as $name => $meta)
-        {
+        foreach ($collections as $name => $meta) {
             Collection::firstOrCreate([
                 'name' => $name,
-            ],[
+            ], [
                 'meta' => isset($meta['envCode']) ? $meta : null,
                 'currency' => isset($meta['currency']) ? $meta['currency'] : null
             ]);
@@ -27,7 +26,7 @@ class CollectionsTableSeeder extends Seeder
 
     /**
      * Get Collection
-     * 
+     *
      * @return array
      */
     private function getCollections()

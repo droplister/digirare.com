@@ -65,7 +65,7 @@ class UpdateCards extends Command
 
     /**
      * Bitcorn Crops
-     * 
+     *
      * @return void
      */
     private function updateBitcorn()
@@ -77,7 +77,7 @@ class UpdateCards extends Command
 
     /**
      * Rare Pepe
-     * 
+     *
      * @return void
      */
     private function updateRarePepe()
@@ -89,7 +89,7 @@ class UpdateCards extends Command
 
     /**
      * Mafia Wars
-     * 
+     *
      * @return void
      */
     private function updateMafiaWars()
@@ -101,22 +101,21 @@ class UpdateCards extends Command
 
     /**
      * Book of Orbs
-     * 
+     *
      * @return void
      */
     private function updateBookOfOrbs()
     {
         $collections = Collection::whereNotNull('meta->envCode')->get();
 
-        foreach($collections as $collection)
-        {
+        foreach ($collections as $collection) {
             UpdateBookOfOrbs::dispatchNow($collection, $this->option('o'));
         }
     }
 
     /**
      * FootballCoin
-     * 
+     *
      * @return void
      */
     private function updateFootballCoin()
@@ -128,7 +127,7 @@ class UpdateCards extends Command
 
     /**
      * Kaleidoscope
-     * 
+     *
      * @return void
      */
     private function updateKaleidoscope()

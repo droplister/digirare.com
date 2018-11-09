@@ -22,7 +22,7 @@ class CardBalance extends Balance
 
     /**
      * Collector
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function collector()
@@ -32,7 +32,7 @@ class CardBalance extends Balance
 
     /**
      * Card
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function card()

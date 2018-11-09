@@ -11,17 +11,17 @@ trait ImportsCards
 {
     /**
      * First or Create Card
-     * 
+     *
      * @param  string  $xcp_core_asset_name
      * @param  string  $name
      * @param  array  $meta
      * @return \App\Card
      */
-    private function firstOrCreateCard($xcp_core_asset_name, $name, $meta=null)
+    private function firstOrCreateCard($xcp_core_asset_name, $name, $meta = null)
     {
         return Card::firstOrCreate([
             'xcp_core_asset_name' => $xcp_core_asset_name,
-        ],[
+        ], [
             'name' => $name,
             'meta' => ! empty($meta) ? $meta : null,
         ]);
@@ -29,18 +29,17 @@ trait ImportsCards
 
     /**
      * Download URL
-     * 
+     *
      * @param  string  $url
      * @return string
      */
-    private function getImageUrl($url, $override=false)
+    private function getImageUrl($url, $override = false)
     {
         $name = substr($url, strrpos($url, '/') + 1);
         $file = $this->collection->slug . '/' . $name;
 
         // Only Download Once
-        if(! Storage::exists('public/' . $file) || $override)
-        {
+        if (! Storage::exists('public/' . $file) || $override) {
             $context = [
                 'ssl' => [
                     'verify_peer' => false,
@@ -57,15 +56,14 @@ trait ImportsCards
 
     /**
      * Get Asset Name
-     * 
+     *
      * @param  string  $name
      * @return string
      */
     private function getAssetName($name)
     {
         // Catch Subassets
-        if(strpos($name, '.') !== false)
-        {
+        if (strpos($name, '.') !== false) {
             $name = $this->getAssetNameOfSubasset($name);
         }
 
@@ -74,7 +72,7 @@ trait ImportsCards
 
     /**
      * Get Asset Name of Subasset
-     * 
+     *
      * @param  string  $name
      * @return mixed
      */
@@ -82,8 +80,7 @@ trait ImportsCards
     {
         $asset = $this->getAssetNameFromDatabase($name);
 
-        if(! $asset)
-        {
+        if (! $asset) {
             $asset = $this->getAssetNameFromApi($name);
         }
 
@@ -92,7 +89,7 @@ trait ImportsCards
 
     /**
      * Get Asset Name from Database
-     * 
+     *
      * @param  string  $name
      * @return mixed
      */
@@ -105,7 +102,7 @@ trait ImportsCards
 
     /**
      * Get Asset Name from API
-     * 
+     *
      * @param  string  $name
      * @return mixed
      */
