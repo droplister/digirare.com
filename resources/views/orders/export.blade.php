@@ -1,15 +1,13 @@
 <table class="table">
     <thead>
         <tr>
-            <th scope="col">{{ __('Action') }}</th>
-            <th scope="col">{{ __('Quantity') }}</th>
+            <th scope="col">{{ __('Expire #') }}</th>
+            <th scope="col">{{ __('Timestamp') }}</th>
+            <th scope="col">{{ __('Get Asset') }}</th>
             <th scope="col"></th>
-            <th scope="col">{{ __('Price') }}</th>
-            <th scope="col"></th>
-            <th scope="col">{{ __('Total') }}</th>
+            <th scope="col">{{ __('Give Asset') }}</th>
             <th scope="col"></th>
             <th scope="col">{{ __('Source') }}</th>
-            <th scope="col">{{ __('Blocks Left') }}</th>
             <th scope="col">{{ __('TX') }}</th>
         </tr>
     </thead>
@@ -17,31 +15,25 @@
         @foreach($orders as $order)
         <tr>
             <td>
-                {{ $order->trading_type }}
+                {{ $order->expire_index }}
             </td>
             <td>
-                {{ $order->trading_quantity_normalized }}
+                {{ $order->confirmed_at }}
             </td>
             <td>
-                {{ $order->trading_pair_base_asset }}
+                {{ $order->get_asset_remaining_normalized }}
             </td>
             <td>
-                {{ $order->trading_price_normalized }}
+                {{ $order->get_asset }}
             </td>
             <td>
-                {{ $order->trading_pair_quote_asset }}
+                {{ $order->give_asset_remaining_normalized }}
             </td>
             <td>
-                {{ $order->trading_total_normalized }}
-            </td>
-            <td>
-                {{ $order->trading_pair_quote_asset }}
+                {{ $order->give_asset }}
             </td>
             <td>
                 {{ $order->source }}
-            </td>
-            <td>
-                {{ $order->blocks_left }}
             </td>
             <td>
                 {{ $order->tx_hash }}
