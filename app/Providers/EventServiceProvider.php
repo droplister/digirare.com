@@ -13,15 +13,15 @@ class EventServiceProvider extends ServiceProvider
      * @var array
      */
     protected $listen = [
-        'App\Events\CardWasCreated' => [
-            'App\Listeners\CardListener',
+        \App\Events\CardWasCreated::class => [
+            \App\Listeners\CardListener::class,
         ],
         'Droplister\XcpCore\App\Events\BlockWasCreated' => [
-            'App\Listeners\MetricListener',
-            'App\Listeners\FeatureListener',
+            \App\Listeners\MetricListener::class,
+            \App\Listeners\FeatureListener::class,
         ],
         'Droplister\XcpCore\App\Events\CreditWasCreated' => [
-            'App\Listeners\CollectorListener',
+            \App\Listeners\CollectorListener::class,
         ],
     ];
 
