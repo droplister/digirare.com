@@ -6,7 +6,7 @@
             <th scope="col">{{ __('Price') }}</th>
             <th scope="col">{{ __('Total') }}</th>
             <th scope="col">{{ __('Source') }}</th>
-            <th scope="col">{{ __('Expires') }}</th>
+            <th scope="col"><a href="{{ route('orders.index', $request->all() + ['sort' => $request->input('sort', 'desc') === 'desc' ? 'desc' : 'asc']) }}" class="text-dark">{{ __('Expires') }}</a></th>
         </tr>
     </thead>
     <tbody>

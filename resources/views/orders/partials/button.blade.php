@@ -5,3 +5,6 @@
         {{ $orders->total() }} Rows
     </span>
 </a>
+<div class="text-muted">
+    NEW! May take time to load...
+</div>
