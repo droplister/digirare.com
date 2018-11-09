@@ -18,8 +18,8 @@
         <p class="card-text">
             {{ __('Prints:') }} {{ number_format($card->token->supply_normalized) }}
             <span class="float-right d-none d-md-inline">
-                <a href="{{ route('cards.index', ['collection' => $card->primaryCollection()->first()->slug]) }}">
-                    {{ $card->primaryCollection()->first()->name }}
+                <a href="{{ route('cards.index', ['collection' => $card->getPrimaryCollection()->slug]) }}">
+                    {{ $card->getPrimaryCollection()->name }}
                 </a>
             </span>
         </p>

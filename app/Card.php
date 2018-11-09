@@ -65,6 +65,18 @@ class Card extends Model
     }
 
     /**
+     * Primary Collection
+     *
+     * @return string
+     */
+    public function getGetPrimaryCollectionAttribute()
+    {
+        return Cache::rememberForever('c_pc_' . $this->id, function () {
+            return $this->primaryCollection()->first();
+        });
+    }
+
+    /**
      * Trades Count
      *
      * @return string
