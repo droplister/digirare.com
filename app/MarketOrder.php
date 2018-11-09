@@ -104,7 +104,7 @@ class MarketOrder extends Order
     /**
      * Filter by Currency
      */
-    public function scopeByCurrency($query, $currency, $give_get)
+    public function scopeByCurrency($query, $currency)
     {
         // Apply It
         return $query->where('give_asset', '=', $currency)
@@ -129,7 +129,7 @@ class MarketOrder extends Order
      * @param  array $currencies
      * @return \App\Order
      */
-    public function getFilteredOrders($request, $block, $currencies)
+    public static function getFilteredOrders($request, $block, $currencies)
     {
         // Build Query
         $orders = MarketOrder::openOrders($block);
@@ -145,12 +145,12 @@ class MarketOrder extends Order
 
         // Filter by Collection
         if (isset($request['collection'])) {
-            $orders = $orders->byCollection($request->collection);
+            $orders = $orders->byCollection($request['collection']);
         }
 
         // Filter by Card
         if (isset($request['card'])) {
-            $orders = $orders->byCard($request->card);
+            $orders = $orders->byCard($request['card']);
         }
 
         // Filter by Collector
@@ -161,6 +161,12 @@ class MarketOrder extends Order
         // Filter by Currency
         if(isset($request['currency'])) {
             $orders = $orders->byCurrency($request['currency']);
+        }
+
+        // Sort Ending/Newest
+        if(isset($request['sort'])) {
+            $direction = $request['sort'] === 'ending' ? 'asc' : 'desc';
+            $orders = $orders->orderBy('expire_index', 'asc');
         }
 
         // Paginate
