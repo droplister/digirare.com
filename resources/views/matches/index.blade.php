@@ -30,8 +30,8 @@
                 <tbody>
                     @foreach($matches as $match)
                     <tr>
-                        <td class="{{ $order->trading_type === 'Sell' ? 'text-danger' : 'text-success' }}">
-                            {{ $order->trading_type === 'Sell' ? __('Selling') : __('Buying') }}
+                        <td class="{{ $match->trading_type === 'Sell' ? 'text-danger' : 'text-success' }}">
+                            {{ $match->trading_type === 'Sell' ? __('Selling') : __('Buying') }}
                         </td>
                         <td>
                             {{ $match->trading_quantity_normalized }}
