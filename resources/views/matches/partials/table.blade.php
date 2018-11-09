@@ -18,31 +18,53 @@
             </td>
             <td>
                 {{ $match->trading_quantity_normalized }}
-                <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset]) }}">
-                    {{ $match->trading_pair_base_asset }}
-                </a>
+                @if($request->has('card') && $request->filled('card'))
+                    <a href="{{ route('cards.show', ['card' => $match->trading_pair_base_asset]) }}">
+                        {{ $match->trading_pair_base_asset }}
+                    </a>
+                @else
+                    <a href="{{ route('matches.index', $request->all() + ['card' => $match->trading_pair_base_asset]) }}">
+                        {{ $match->trading_pair_base_asset }}
+                    </a>
+                @endif
             </td>
             <td>
                 {{ number_format($match->trading_price_normalized, 8) }}
-                <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset, 'currency' => $match->trading_pair_quote_asset]) }}">
+                @if($request->has('currency') && $request->filled('currency'))
                     {{ $match->trading_pair_quote_asset }}
-                </a>
+                @else
+                    <a href="{{ route('matches.index', $request->all() + ['currency' => $match->trading_pair_quote_asset]) }}">
+                        {{ $match->trading_pair_quote_asset }}
+                    </a>
+                @endif
             </td>
             <td>
                 {{ number_format($match->trading_total_normalized, 8) }}
-                <a href="{{ route('matches.index', ['currency' => $match->trading_pair_quote_asset]) }}">
+                @if($request->has('currency') && $request->filled('currency'))
                     {{ $match->trading_pair_quote_asset }}
-                </a>
+                @else
+                    <a href="{{ route('matches.index', $request->all() + ['currency' => $match->trading_pair_quote_asset]) }}">
+                        {{ $match->trading_pair_quote_asset }}
+                    </a>
+                @endif
             </td>
             <td class="thin-col">
-                <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset, 'collector' => $match->trading_buyer_normalized]) }}">
+                @if($request->has('collector') && $request->filled('collector'))
                     {{ $match->trading_buyer_normalized }}
-                </a>
+                @else
+                    <a href="{{ route('matches.index', $request->all() + ['collector' => $match->trading_buyer_normalized]) }}">
+                        {{ $match->trading_buyer_normalized }}
+                    </a>
+                @endif
             </td>
             <td class="thin-col">
-                <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset, 'collector' => $match->trading_seller_normalized]) }}">
+                @if($request->has('collector') && $request->filled('collector'))
                     {{ $match->trading_seller_normalized }}
-                </a>
+                @else
+                    <a href="{{ route('matches.index', $request->all() + ['collector' => $match->trading_seller_normalized]) }}">
+                        {{ $match->trading_seller_normalized }}
+                    </a>
+                @endif
             </td>
             <td>
                 {{ $match->confirmed_at->diffForHumans() }}
