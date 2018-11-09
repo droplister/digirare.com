@@ -39,7 +39,7 @@
                                     {{ $order->trading_pair_base_asset }}
                                 </a>
                             @else
-                                <a href="{{ route('orders.index', $request->merge(['card' => $order->trading_pair_base_asset])->all()) }}">
+                                <a href="{{ route('orders.index', $request->all() + ['card' => $order->trading_pair_base_asset]) }}">
                                     {{ $order->trading_pair_base_asset }}
                                 </a>
                             @endif
@@ -49,7 +49,7 @@
                             @if($request->has('currency') && $request->filled('currency'))
                                 {{ $order->trading_pair_quote_asset }}
                             @else
-                                <a href="{{ route('orders.index', $request->merge(['currency' => $order->trading_pair_quote_asset])->all()) }}">
+                                <a href="{{ route('orders.index', $request->all() + ['currency' => $order->trading_pair_quote_asset]) }}">
                                     {{ $order->trading_pair_quote_asset }}
                                 </a>
                             @endif
@@ -59,7 +59,7 @@
                             @if($request->has('currency') && $request->filled('currency'))
                                 {{ $order->trading_pair_quote_asset }}
                             @else
-                                <a href="{{ route('orders.index', $request->merge(['currency' => $order->trading_pair_quote_asset])->all()) }}">
+                                <a href="{{ route('orders.index', $request->all() + ['currency' => $order->trading_pair_quote_asset]) }}">
                                     {{ $order->trading_pair_quote_asset }}
                                 </a>
                             @endif
@@ -70,7 +70,7 @@
                                     {{ str_limit($order->source, 8) }}
                                 </a>
                             @else
-                                <a href="{{ route('orders.index', $request->merge(['collector' => $order->source])->all()) }}">
+                                <a href="{{ route('orders.index', $request->all() + ['collector' => $order->source]) }}">
                                     {{ str_limit($order->source, 8) }}
                                 </a>
                             @endif
