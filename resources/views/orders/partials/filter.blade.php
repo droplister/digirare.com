@@ -9,7 +9,7 @@
             @endif
             <div class="row">
                 <div class="col-md-6 mb-3">
-                    <input type="text" class="form-control" id="card" name="card" value="{{ $request->input('card') }}" placeholder="Enter card name..." autofocus>
+                    <input type="text" class="form-control" id="card" name="card" value="{{ $request->input('card') }}" placeholder="Enter a card name..." autofocus>
                 </div>
                 <div class="col-md-2 mb-3">
                     <select class="custom-select d-block w-100" id="collection" name="collection">

@@ -28,7 +28,7 @@ class MarketOrder extends Order
      */
     public function getBlocksLeftAttribute()
     {
-        $block_index = Cache::get('block_index');
+        $block_index = (int) Cache::get('block_index');
 
         return $this->expire_index - $block_index;
     }
@@ -128,10 +128,10 @@ class MarketOrder extends Order
      */
     public function scopeOpenOrders($query)
     {
-        $block_index = Cache::get('block_index');
+        $block_index = (int) Cache::get('block_index');
 
         // Apply It
-        return $query->where('expire_index', '>', (int) $block_index)
+        return $query->where('expire_index', '>', $block_index)
             ->where('status', '=', 'open');
     }
 

@@ -12,7 +12,7 @@
                 @endif
                 <div class="row">
                     <div class="col-md-6 mb-3">
-                        <input type="text" class="form-control" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter an asset name or keyword..." autofocus>
+                        <input type="text" class="form-control" id="keyword" name="keyword" value="{{ $request->input('keyword') }}" placeholder="Enter a card name or keyword..." autofocus>
                     </div>
                     <div class="col-md-2 mb-3">
                         <select class="custom-select d-block w-100" id="collection" name="collection">
