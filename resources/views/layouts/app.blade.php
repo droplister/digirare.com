@@ -134,8 +134,9 @@
             <a href="{{ route('home.index') }}" class="mr-2">
                 {{ __('Home') }}
             </a>
-            <a href="{{ route('pages.investors') }}" class="mr-2">
-                {{ __('Investors') }}
+            <a href="{{ route('nightmode.show', ['on_off' => session()->get('nightmode') === 'true' ? 'false' : 'true']) }}" class="mr-2">
+                <i class="fa fa-lightbulb-o"></i>
+                {{ __('Toggle') }}
             </a>
             <a href="{{ config('digirare.tutorial_url') }}" class="mr-2" target="_blank">
                 {{ __('Tutorial') }}
