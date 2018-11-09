@@ -65,18 +65,6 @@ class Card extends Model
     }
 
     /**
-     * Primary Collection
-     *
-     * @return string
-     */
-    public function getGetPrimaryCollectionAttribute()
-    {
-        return Cache::rememberForever('c_pc_' . $this->id, function () {
-            return $this->primaryCollection()->first();
-        });
-    }
-
-    /**
      * Trades Count
      *
      * @return string
@@ -285,6 +273,18 @@ class Card extends Model
                 ->orderBy('expire_index', 'asc')
                 ->get()
                 ->{$sort_by}('trading_price_normalized');
+        });
+    }
+
+    /**
+     * Primary Collection
+     *
+     * @return string
+     */
+    public function getPrimaryCollection()
+    {
+        return Cache::rememberForever('c_pc_' . $this->id, function () {
+            return $this->primaryCollection()->first();
         });
     }
 
