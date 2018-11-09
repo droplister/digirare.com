@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Collection;
 use App\MarketOrder;
-use Maatwebsite\Excel\Excel;
 use App\Exports\OrdersExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\FilterRequest;
 
 class OrdersController extends Controller
@@ -36,6 +36,6 @@ class OrdersController extends Controller
      */
     public function show(FilterRequest $request)
     {
-        return (new OrdersExport($request))->download('orders.xlsx');
+        return Excel::download(new OrdersExport($request), 'orders.xlsx');
     }
 }
