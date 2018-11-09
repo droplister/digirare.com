@@ -79,33 +79,23 @@ class CardsController extends Controller
         $likes = $card->likes()->count();
         $dislikes = $card->dislikes()->count();
 
-        // Last Block
-        $block = Block::latest('block_index')->first();
-
-        // All TCG "Currencies"
-        $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
-
         // Buy Orders
-        $buy_orders = Order::whereIn('get_asset', [$card->xcp_core_asset_name])
-                    ->where('give_remaining', '>', 0)
-                    ->where('get_remaining', '>', 0)
-                    ->where('status', '=', 'open')
-                    ->whereIn('give_asset', $currencies)
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc')
-                    ->get()
-                    ->sortByDesc('trading_price_normalized');
+        $buy_orders = Cache::remember('cards_show_buy_orders_' . $card->slug, 60, function () use ($card) {
+            return Order::openOrders()->cards('get_asset')
+                ->byCard($card->xcp_core_asset_name)
+                ->orderBy('expire_index', 'asc')
+                ->get()
+                ->sortByDesc('trading_price_normalized');
+        });
 
         // Sell Orders
-        $sell_orders = Order::whereIn('give_asset', [$card->xcp_core_asset_name])
-                    ->where('give_remaining', '>', 0)
-                    ->where('get_remaining', '>', 0)
-                    ->where('status', '=', 'open')
-                    ->whereIn('get_asset', $currencies)
-                    ->where('expire_index', '>', $block->block_index)
-                    ->orderBy('expire_index', 'asc')
-                    ->get()
-                    ->sortBy('trading_price_normalized');
+        $sell_orders = Cache::remember('cards_show_sell_orders_' . $card->slug, 60, function () use ($card) {
+            return Order::openOrders()->cards('give_asset')
+            ->byCard($card->xcp_core_asset_name)
+            ->orderBy('expire_index', 'asc')
+            ->get()
+            ->sortBy('trading_price_normalized');
+        });
 
         // Show View
         return view('cards.show', compact('card', 'token', 'artists', 'balances', 'collections', 'likes', 'dislikes', 'last_match', 'buy_orders', 'sell_orders'));
