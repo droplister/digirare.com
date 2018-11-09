@@ -20,7 +20,7 @@
             {{ __('Prints:') }} {{ $featured->card->supply_normalized }}
             <span class="float-right d-none d-md-inline">
                 <a href="{{ route('cards.index', ['collection' => $featured->card->getPrimaryCollection()->slug]) }}">
-                    {{ $featured->card->getPrimaryCollection()->>name }}
+                    {{ $featured->card->getPrimaryCollection()->name }}
                 </a>
             </span>
         </p>
