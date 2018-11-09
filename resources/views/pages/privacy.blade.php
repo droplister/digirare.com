@@ -7,7 +7,6 @@
         <div class="row">
             <div class="col">
                 <h1 class="display-4 mb-4">
-                    <small class="text-highlight"><i aria-hidden="true" class="fa fa-diamond"></i></small>
                     Privacy
                 </h1>
                 <p>We at DIGIRARE.com know that you care how your information is used, and we appreciate your trust. This notice describes our privacy policy. By visiting us, you are accepting the privacy policy described below.</p>

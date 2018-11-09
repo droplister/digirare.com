@@ -16,7 +16,6 @@ Route::resource('/random', 'RandomController', ['only' => ['index']]);
 Route::get('/browse', 'CardsController@index')->name('cards.index');
 Route::get('/cards/{card}', 'CardsController@show')->name('cards.show');
 Route::resource('/cards/{card}/likes', 'CardLikesController', ['only' => ['index', 'store']]);
-Route::resource('/cards/{card}/collectors', 'CardCollectorsController', ['only' => ['index'], 'names' => ['index' => 'cards.collectors.index']]);
 Route::get('/market', 'OrdersController@index')->name('orders.index');
 Route::get('/market/export', 'OrdersController@show')->name('orders.show');
 Route::get('/trades', 'OrderMatchesController@index')->name('matches.index');

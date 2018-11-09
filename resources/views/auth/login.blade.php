@@ -7,7 +7,6 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <h1 class="display-4 mb-4">
-                <small class="text-highlight"><i aria-hidden="true" class="fa fa-sign-in"></i></small>
                 {{ __('Login') }}
             </h1>
             <form method="POST" action="{{ route('login') }}" aria-label="{{ __('Login') }}" class="my-5">

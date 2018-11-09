@@ -36,9 +36,7 @@
             {{ __('Owners') }}
         </p>
         <p class="mb-0">
-            <a href="{{ route('cards.collectors.index', ['card' => $card->slug]) }}">
-                {{ number_format($balances->total()) }}
-            </a>
+            {{ number_format($balances->total()) }}
         </p>
     </div>
     <div class="col-sm-3 d-none d-sm-inline">
@@ -46,9 +44,7 @@
             {{ __('Trades') }}
         </p>
         <p class="mb-0">
-            <a href="{{ route('matches.index', ['card' => $card->slug]) }}">
-                {{ number_format($card->trades_count) }}
-            </a>
+            {{ number_format($card->trades_count) }}
         </p>
     </div>
 </div>
