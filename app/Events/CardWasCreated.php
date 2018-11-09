@@ -24,7 +24,7 @@ class CardWasCreated
 
     /**
      * Create a new event instance.
-     * 
+     *
      * @param  \App\Card  $card
      * @return void
      */

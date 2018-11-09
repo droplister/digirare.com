@@ -64,16 +64,14 @@ class OrderMatchesController extends Controller
         });
 
         // Filter by Collection
-        if($request->has('collection') && $request->filled('collection'))
-        {
+        if ($request->has('collection') && $request->filled('collection')) {
             $collection = Collection::findBySlug($request->collection);
 
             $assets = $collection->cards()->pluck('xcp_core_asset_name')->toArray();
         }
 
         // Filter by Card
-        if($request->has('card') && $request->filled('card'))
-        {
+        if ($request->has('card') && $request->filled('card')) {
             // Get Card Asset
             $asset = Asset::where('asset_name', '=', $request->card)
                 ->orWhere('asset_longname', '=', $request->card)
@@ -83,93 +81,66 @@ class OrderMatchesController extends Controller
         }
 
         // Filters
-        if($request->has('collector') && $request->has('currency') && $request->has('action') &&
-            $request->filled('collector') && $request->filled('currency') && $request->filled('action'))
-        {
+        if ($request->has('collector') && $request->has('currency') && $request->has('action') &&
+            $request->filled('collector') && $request->filled('currency') && $request->filled('action')) {
             // Buying/Selling
-            if($request->action === 'buying')
-            {
+            if ($request->action === 'buying') {
                 $matches = OrderMatch::whereIn('backward_asset', $assets)
                     ->where('tx1_address', '=', $request->collector)
                     ->where('forward_asset', '=', $request->currency);
-            }
-            else
-            {
+            } else {
                 $matches = OrderMatch::whereIn('forward_asset', $assets)
                     ->where('tx1_address', '=', $request->collector)
                     ->where('backward_asset', '=', $request->currency);
             }
-        }
-        elseif($request->has('currency') && $request->has('action') &&
-            $request->filled('currency') && $request->filled('action'))
-        {
+        } elseif ($request->has('currency') && $request->has('action') &&
+            $request->filled('currency') && $request->filled('action')) {
             // Buying/Selling
-            if($request->action === 'buying')
-            {
+            if ($request->action === 'buying') {
                 $matches = OrderMatch::whereIn('backward_asset', $assets)
                     ->where('forward_asset', '=', $request->currency);
-            }
-            else
-            {
+            } else {
                 $matches = OrderMatch::whereIn('forward_asset', $assets)
                     ->where('backward_asset', '=', $request->currency);
             }
-        }
-        elseif($request->has('collector') && $request->has('action') &&
-            $request->filled('collector') && $request->filled('action'))
-        {
+        } elseif ($request->has('collector') && $request->has('action') &&
+            $request->filled('collector') && $request->filled('action')) {
             // Buying/Selling
-            if($request->action === 'buying')
-            {
+            if ($request->action === 'buying') {
                 $matches = OrderMatch::whereIn('backward_asset', $assets)
                     ->where('tx1_address', '=', $request->collector);
-            }
-            else
-            {
+            } else {
                 $matches = OrderMatch::whereIn('forward_asset', $assets)
                     ->where('tx1_address', '=', $request->collector);
             }
-        }
-        elseif($request->has('currency') && $request->has('collector') &&
-        $request->filled('currency') && $request->filled('collector'))
-        {
+        } elseif ($request->has('currency') && $request->has('collector') &&
+        $request->filled('currency') && $request->filled('collector')) {
             $matches = OrderMatch::whereIn('backward_asset', $assets)
                 ->where('forward_asset', '=', $request->currency)
                 ->where('tx1_address', '=', $request->collector)
                 ->orWhereIn('forward_asset', $assets)
                 ->where('backward_asset', '=', $request->currency)
                 ->where('tx1_address', '=', $request->collector);
-        }
-        elseif($request->has('action') && $request->filled('action'))
-        {
+        } elseif ($request->has('action') && $request->filled('action')) {
             // Buying/Selling
-            if($request->action === 'buying')
-            {
+            if ($request->action === 'buying') {
                 $matches = OrderMatch::whereIn('backward_asset', $assets)
                     ->whereIn('forward_asset', $currencies);
-            }
-            else
-            {
+            } else {
                 $matches = OrderMatch::whereIn('forward_asset', $assets)
                     ->whereIn('backward_asset', $currencies);
             }
-        }
-        elseif($request->has('currency') && $request->filled('currency'))
-        {
+        } elseif ($request->has('currency') && $request->filled('currency')) {
             $matches = OrderMatch::whereIn('backward_asset', $assets)
                 ->where('forward_asset', '=', $request->currency)
                 ->orWhereIn('forward_asset', $assets)
                 ->where('backward_asset', '=', $request->currency);
-        }
-        elseif($request->has('collector') && $request->filled('collector'))
-        {
+        } elseif ($request->has('collector') && $request->filled('collector')) {
             $matches = OrderMatch::whereIn('backward_asset', $assets)
                 ->where('tx1_address', '=', $request->collector)
                 ->orWhereIn('forward_asset', $assets)
                 ->where('tx1_address', '=', $request->collector);
-        }
-        else
-        {
+        } else {
             $matches = OrderMatch::whereIn('backward_asset', $assets)
                 ->whereIn('forward_asset', $currencies)
                 ->orWhereIn('forward_asset', $assets)

@@ -41,7 +41,7 @@ class UpdateKaleidoscope implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Collection $collection, $override=false)
+    public function __construct(Collection $collection, $override = false)
     {
         $this->collection = $collection;
         $this->override = $override;
@@ -59,11 +59,14 @@ class UpdateKaleidoscope implements ShouldQueue
         $cards = $this->getAPI();
 
         // Update or Create
-        foreach($cards as $data)
-        {
+        foreach ($cards as $data) {
             // Simple Guards
-            if(in_array($data['asset_name'], ['BTC', 'XCP', 'PEPECASH'])) continue;
-            if(! in_array($data['format'], ['jpg', 'png', 'gif'])) continue;
+            if (in_array($data['asset_name'], ['BTC', 'XCP', 'PEPECASH'])) {
+                continue;
+            }
+            if (! in_array($data['format'], ['jpg', 'png', 'gif'])) {
+                continue;
+            }
 
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($data['asset_name']);
@@ -84,7 +87,7 @@ class UpdateKaleidoscope implements ShouldQueue
 
     /**
      * Get Meta
-     * 
+     *
      * @param  array  $data
      * @return array
      */
@@ -102,7 +105,7 @@ class UpdateKaleidoscope implements ShouldQueue
 
     /**
      * Get API
-     * 
+     *
      * @return array
      */
     private function getAPI()
@@ -111,7 +114,9 @@ class UpdateKaleidoscope implements ShouldQueue
         $this->curl->get('http://kaleidoscopexcp.com/directory/kaleidoscope-directory.json');
 
         // API Error
-        if ($this->curl->error) return [];
+        if ($this->curl->error) {
+            return [];
+        }
 
         // Response
         return json_decode($this->curl->response, true);

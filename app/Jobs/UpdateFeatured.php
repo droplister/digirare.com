@@ -43,8 +43,7 @@ class UpdateFeatured implements ShouldQueue
         // API Data
         $sends = $this->getSends();
 
-        foreach($sends as $send)
-        {
+        foreach ($sends as $send) {
             // Card to Feature
             $name = hex2bin($send->memo);
 
@@ -54,17 +53,16 @@ class UpdateFeatured implements ShouldQueue
                 ->first();
 
             // Card Must Exist
-            if($card)
-            {
+            if ($card) {
                 Feature::firstOrCreate([
                     'xcp_core_tx_index' => $send->tx_index,
-                ],[
+                ], [
                     'card_id' => $card->id,
                     'address' => $send->source,
                     'bid' => $send->quantity,
                 ]);
             }
-        }    
+        }
     }
 
     /**

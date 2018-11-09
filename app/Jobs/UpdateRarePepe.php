@@ -41,7 +41,7 @@ class UpdateRarePepe implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Collection $collection, $override=false)
+    public function __construct(Collection $collection, $override = false)
     {
         $this->collection = $collection;
         $this->override = $override;
@@ -59,10 +59,11 @@ class UpdateRarePepe implements ShouldQueue
         $cards = $this->getAPI();
 
         // Update or Create
-        foreach($cards as $name => $data)
-        {
+        foreach ($cards as $name => $data) {
             // Simple Guard
-            if(in_array($name, [$this->collection->currency])) continue;
+            if (in_array($name, [$this->collection->currency])) {
+                continue;
+            }
 
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($name);
@@ -83,7 +84,7 @@ class UpdateRarePepe implements ShouldQueue
 
     /**
      * Get Meta
-     * 
+     *
      * @param  array  $data
      * @return array
      */
@@ -99,7 +100,7 @@ class UpdateRarePepe implements ShouldQueue
 
     /**
      * Get API
-     * 
+     *
      * @return array
      */
     private function getAPI()
@@ -108,7 +109,9 @@ class UpdateRarePepe implements ShouldQueue
         $this->curl->get('https://rarepepewallet.com/feed');
 
         // API Error
-        if ($this->curl->error) return [];
+        if ($this->curl->error) {
+            return [];
+        }
 
         // Response
         return json_decode($this->curl->response, true);

@@ -55,7 +55,7 @@ class CollectorsController extends Controller
 
     /**
      * Get Collectors
-     * 
+     *
      * @param  string  $sort
      * @return \App\Card
      */
@@ -63,8 +63,7 @@ class CollectorsController extends Controller
     {
         $collectors = Collector::has('cardBalances')->with('firstCard')->withCount('cardBalances');
 
-        switch($sort)
-        {
+        switch ($sort) {
             case 'cards':
                 $collectors = $collectors->orderBy('card_balances_count', 'desc')->take(100)->get();
                 break;

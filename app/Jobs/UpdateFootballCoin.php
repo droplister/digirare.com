@@ -41,7 +41,7 @@ class UpdateFootballCoin implements ShouldQueue
      *
      * @return void
      */
-    public function __construct(Collection $collection, $override=false)
+    public function __construct(Collection $collection, $override = false)
     {
         $this->collection = $collection;
         $this->override = $override;
@@ -61,13 +61,11 @@ class UpdateFootballCoin implements ShouldQueue
             'venues' => 'https://game.footballcoin.io/api/wallet/getVenuesAssetList',
         ];
 
-        foreach($apis as $param => $route)
-        {
+        foreach ($apis as $param => $route) {
             // Paginated Results
             $pages = $this->getPages($route);
 
-            for($page=1; $page <= $pages; $page++)
-            {
+            for ($page=1; $page <= $pages; $page++) {
                 // FootballCoin API
                 $response = $this->getApi($route, $page);
 
@@ -75,10 +73,11 @@ class UpdateFootballCoin implements ShouldQueue
                 $cards = $response['params'][$param];
 
                 // Update or Create
-                foreach($cards as $data)
-                {
+                foreach ($cards as $data) {
                     // Simple Guard
-                    if(in_array($data['cp_asset'], [$this->collection->currency])) continue;
+                    if (in_array($data['cp_asset'], [$this->collection->currency])) {
+                        continue;
+                    }
             
                     // The Asset
                     $xcp_core_asset_name = $this->getAssetName($data['cp_asset']);
@@ -101,7 +100,7 @@ class UpdateFootballCoin implements ShouldQueue
 
     /**
      * Get Meta
-     * 
+     *
      * @param  array  $data
      * @return array
      */
@@ -120,7 +119,7 @@ class UpdateFootballCoin implements ShouldQueue
 
     /**
      * Get Pages
-     * 
+     *
      * @return integer
      */
     private function getPages($route)
@@ -133,16 +132,18 @@ class UpdateFootballCoin implements ShouldQueue
 
     /**
      * Get API
-     * 
+     *
      * @return array
      */
-    private function getAPI($route, $page=1)
+    private function getAPI($route, $page = 1)
     {
         // Get API
         $this->curl->post($route . '/' . $page . '/100');
 
         // API Error
-        if ($this->curl->error) return [];
+        if ($this->curl->error) {
+            return [];
+        }
 
         // Response
         return json_decode($this->curl->response, true);

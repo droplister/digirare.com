@@ -39,8 +39,7 @@ class TheosGallerySeeder extends Seeder
         $artist = Artist::where('name', '=', 'Theo Goodman')->first();
 
         // Related Cards
-        foreach($cards as $name => $data)
-        {
+        foreach ($cards as $name => $data) {
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($name);
 
@@ -62,7 +61,7 @@ class TheosGallerySeeder extends Seeder
 
     /**
      * Get Cards
-     * 
+     *
      * @return array
      */
     private function getCards()

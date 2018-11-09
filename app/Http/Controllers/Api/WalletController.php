@@ -22,7 +22,7 @@ class WalletController extends Controller
         return Cache::remember('wallet_show_' . $address, 60, function () use ($address) {
             $address = WalletAddress::find($address);
 
-            if($address) {
+            if ($address) {
                 $balances = $address->walletBalances()->with('assetModel', 'card')
                     ->orderBy('asset', 'desc')
                     ->get();

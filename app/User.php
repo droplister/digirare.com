@@ -29,7 +29,7 @@ class User extends Authenticatable
 
     /**
      * Artist
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
     public function artist()
@@ -39,7 +39,7 @@ class User extends Authenticatable
 
     /**
      * Likes
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function likes()
@@ -49,7 +49,7 @@ class User extends Authenticatable
 
     /**
      * Dislikes
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function dislikes()
