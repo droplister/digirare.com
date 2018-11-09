@@ -1,4 +1,4 @@
-<a href="{{ Auth::check() ? route('orders.show', $request->all()) : route('register') }}" class="btn btn-primary">
+<a href="{{ Auth::check() ? route('orders.show', $request->all()) : route('register') }}" class="btn btn-primary" download>
     <i aria-hidden="true" class="fa fa-file-excel-o"></i>
     Export Open Orders
     <span class="badge ml-1">

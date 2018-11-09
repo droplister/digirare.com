@@ -34,14 +34,14 @@
                     {{ $match->trading_pair_quote_asset }}
                 </a>
             </td>
-            <td>
+            <td class="thin-col">
                 <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset, 'collector' => $match->trading_buyer_normalized]) }}">
-                    {{ str_limit($match->trading_buyer_normalized, 8) }}
+                    {{ $match->trading_buyer_normalized }}
                 </a>
             </td>
-            <td>
+            <td class="thin-col">
                 <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset, 'collector' => $match->trading_seller_normalized]) }}">
-                    {{ str_limit($match->trading_seller_normalized, 8) }}
+                    {{ $match->trading_seller_normalized }}
                 </a>
             </td>
             <td>
