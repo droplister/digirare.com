@@ -248,6 +248,25 @@ class Card extends Model
     }
 
     /**
+     * Order Book
+     *
+     * @return \Droplister\XcpCore\App\Order
+     */
+    public function orderBook($side)
+    {
+        return Cache::remember('card_orders_' . $side . '_' . $card->slug, 60, function () use ($side) {
+            $give_get = $side === 'buy' ? 'get_asset' : 'give_asset';
+            $sort_by = $side === 'buy' ? 'sortByDesc' : 'sortBy';
+
+            return Order::openOrders()->cards($give_get)
+                ->byCard($this->xcp_core_asset_name)
+                ->orderBy('expire_index', 'asc')
+                ->get()
+                ->{$sort_by}('trading_price_normalized');
+        });
+    }
+
+    /**
      * Active Collections
      */
     public function scopeActive($query)
@@ -316,8 +335,13 @@ class Card extends Model
             $cards = $cards->whereJsonContains($meta, (int) $request->category);
         }
 
-        // Sort Pages
-        return $cards->orderBy('balances_count', 'desc')->paginate(100);
+        // Cache Slug
+        $cache_slug = 'search_' . str_slug(serialize($request));
+
+        // Pagination
+        return Cache::remember($cache_slug, 60, function () use ($cards) {
+            return $cards->orderBy('balances_count', 'desc')->paginate(100);
+        });
     }
 
     /**

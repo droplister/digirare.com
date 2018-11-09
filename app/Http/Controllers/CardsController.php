@@ -7,25 +7,18 @@ use App\Card;
 use App\Collection;
 use Droplister\XcpCore\App\Block;
 use Droplister\XcpCore\App\Order;
-use Illuminate\Http\Request;
+use App\Http\Requests\FilterRequest;
 
 class CardsController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\FilterRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(FilterRequest $request)
     {
-        // Validation
-        $request->validate([
-            'keyword' => 'sometimes|nullable',
-            'format' => 'sometimes|nullable|in:GIF,JPG,PNG',
-            'collection' => 'sometimes|nullable|exists:collections,slug',
-        ]);
-
         // Exception
         if ($request->has('collection') && $request->has('category') && ! in_array($request->collection, ['bitcorn-crops', 'rare-pepe'])) {
             return redirect(route('cards.index', $request->except('category')));
@@ -34,16 +27,11 @@ class CardsController extends Controller
         // IMG Formats
         $formats = ['GIF', 'JPG', 'PNG'];
 
+        // The Result
+        $cards = Card::getFiltered($request);
+
         // Collections
         $collections = Collection::orderBy('name', 'asc')->get();
-
-        // Cache Slug
-        $cache_slug = 'search_' . str_slug(serialize($request->all()));
-
-        // The Result
-        $cards = Cache::remember($cache_slug, 60, function () use ($request) {
-            return Card::getFiltered($request);
-        });
 
         // Title Categories
         $title_categories = null;
@@ -56,48 +44,33 @@ class CardsController extends Controller
         }
 
         // Index View
-        return view('cards.index', compact('formats', 'cards', 'collections', 'title_categories', 'request'));
+        return view('cards.index', compact('request', 'cards', 'collections', 'title_categories', 'formats'));
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \Illuminate\Http\Request  $request
      * @param  \App\Card  $card
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request, Card $card)
+    public function show(Card $card)
     {
-        // Relations
-        $token = $card->token;
-        $last_match = $card->lastMatch();
+        // Balances
         $balances = $card->balances()->paginate(20);
+
+        // Artists
         $artists = $card->artists()->orderBy('primary', 'desc')->get();
+
+        // Collections
         $collections = $card->collections()->orderBy('primary', 'desc')->get();
 
-        // Sentiment
-        $likes = $card->likes()->count();
-        $dislikes = $card->dislikes()->count();
-
         // Buy Orders
-        $buy_orders = Cache::remember('cards_show_buy_orders_' . $card->slug, 60, function () use ($card) {
-            return Order::openOrders()->cards('get_asset')
-                ->byCard($card->xcp_core_asset_name)
-                ->orderBy('expire_index', 'asc')
-                ->get()
-                ->sortByDesc('trading_price_normalized');
-        });
+        $buy_orders = $card->orderBook('buy');
 
         // Sell Orders
-        $sell_orders = Cache::remember('cards_show_sell_orders_' . $card->slug, 60, function () use ($card) {
-            return Order::openOrders()->cards('give_asset')
-            ->byCard($card->xcp_core_asset_name)
-            ->orderBy('expire_index', 'asc')
-            ->get()
-            ->sortBy('trading_price_normalized');
-        });
+        $sell_orders = $card->orderBook('sell');
 
         // Show View
-        return view('cards.show', compact('card', 'token', 'artists', 'balances', 'collections', 'likes', 'dislikes', 'last_match', 'buy_orders', 'sell_orders'));
+        return view('cards.show', compact('card', 'artists', 'balances', 'collections', 'buy_orders', 'sell_orders'));
     }
 }

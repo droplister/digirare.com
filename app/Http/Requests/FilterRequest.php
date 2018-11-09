@@ -24,7 +24,9 @@ class FilterRequest extends FormRequest
     public function rules()
     {
         return [
+            'keyword' => ['sometimes', 'nullable'],
             'sort' => ['sometimes', 'nullable', 'in:asc,desc'],
+            'format' => ['sometimes', 'nullable', 'in:GIF,JPG,PNG'],
             'card' => ['sometimes', 'nullable', 'exists:cards,slug'],
             'action' => ['sometimes', 'nullable', 'in:buying,selling'],
             'collection' => ['sometimes', 'nullable', 'exists:collections,slug'],

@@ -3,10 +3,10 @@
         <p class="text-muted mb-0">
             {{ __('Last Price') }}
         </p>
-        @if($last_match)
+        @if($card->lastMatch())
         <p class="mb-0">
             <a href="{{ route('matches.index', ['card' => $card->slug]) }}">
-                {{ number_format($last_match->trading_price_normalized, 8) }}
+                {{ number_format($card->lastMatch()->trading_price_normalized, 8) }}
             </a>
         </p>
         @else
@@ -19,10 +19,10 @@
         <p class="text-muted mb-0">
             {{ __('Currency') }}
         </p>
-        @if($last_match)
+        @if($card->lastMatch())
         <p class="mb-0">
             <a href="{{ route('matches.index', ['card' => $card->slug]) }}">
-                {{ $last_match->trading_pair_quote_asset }}
+                {{ $card->lastMatch()->trading_pair_quote_asset }}
             </a>
         </p>
         @else
@@ -51,28 +51,28 @@
 <hr />
 <div class="row">
     <div class="col-4 col-sm-3">
-        <p class="text-muted mb-0" title="{{ $token ? $token->supply_normalized : __('Syncing') }}">
+        <p class="text-muted mb-0" title="{{ $card->token ? $card->token->supply_normalized : __('Syncing') }}">
             {{ __('Supply') }}
         </p>
         <p class="mb-0">
-            {{ $token ? number_format($token->supply_normalized) : __('Syncing') }}
+            {{ $card->token ? number_format($card->token->supply_normalized) : __('Syncing') }}
         </p>
     </div>
     <div class="col-4 col-sm-3">
-        <p class="text-muted mb-0" title="{{ $token ? $token->burned_normalized : __('Syncing') }}">
+        <p class="text-muted mb-0" title="{{ $card->token ? $card->token->burned_normalized : __('Syncing') }}">
             {{ __('Burned') }}
         </p>
         <p class="mb-0">
-            {{ $token ? number_format($token->burned_normalized) : __('Syncing') }}
+            {{ $card->token ? number_format($card->token->burned_normalized) : __('Syncing') }}
         </p>
     </div>
     <div class="col-4 col-sm-3">
-        <p class="text-muted mb-0" title="{{ $token ? $token->issuance_normalized : __('Syncing') }}">
+        <p class="text-muted mb-0" title="{{ $card->token ? $card->token->issuance_normalized : __('Syncing') }}">
             {{ __('Issued') }}
         </p>
         <p class="mb-0">
-            {{ $token ? number_format($token->issuance_normalized) : __('Syncing') }}
-            @if($token && ! $token->locked)
+            {{ $card->token ? number_format($card->token->issuance_normalized) : __('Syncing') }}
+            @if($card->token && ! $card->token->locked)
             <i class="fa fa-text-muted" aria-hidden="true"></i>
             @endif
         </p>
@@ -82,7 +82,7 @@
             {{ __('Divisible') }}
         </p>
         <p class="mb-0">
-            {{ $token && $token->divisible ? __('Yes') : __('No') }}
+            {{ $card->token && $card->token->divisible ? __('Yes') : __('No') }}
         </p>
     </div>
 </div>
