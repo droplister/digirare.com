@@ -27,23 +27,26 @@ class PagesController extends Controller
      */
     public function rankings(Request $request)
     {
-        // Collections
-        $collections = Collection::get()->sortByDesc(function ($collection) use ($request) {
-            $sort = $request->input('sort', 'users_24');
+        // Sort Order
+        $sort = $request->input('sort', 'users_24');
 
-            if ($sort === 'users_24') {
-                return $collection->usersCount(1);
-            } elseif ($sort === 'users_7d') {
-                return $collection->usersCount(7);
-            } elseif ($sort === 'tx_24') {
-                return $collection->txsCount(1);
-            } elseif ($sort === 'tx_7d') {
-                return $collection->txsCount(7);
-            } elseif ($sort === 'volume_24') {
-                return $collection->volumeTotal(1);
-            } elseif ($sort === 'volume_7d') {
-                return $collection->volumeTotal(7);
-            }
+        // Collections
+        $collections = Cache::remember('rankings_' . $sort, 60, function () use ($request, $sort){
+            return Collection::get()->sortByDesc(function ($collection) use ($request, $sort) {
+                if ($sort === 'users_24') {
+                    return $collection->usersCount(1);
+                } elseif ($sort === 'users_7d') {
+                    return $collection->usersCount(7);
+                } elseif ($sort === 'tx_24') {
+                    return $collection->txsCount(1);
+                } elseif ($sort === 'tx_7d') {
+                    return $collection->txsCount(7);
+                } elseif ($sort === 'volume_24') {
+                    return $collection->volumeTotal(1);
+                } elseif ($sort === 'volume_7d') {
+                    return $collection->volumeTotal(7);
+                }
+            });
         });
 
         return view('pages.rankings', compact('collections'));
