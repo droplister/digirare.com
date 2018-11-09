@@ -115,9 +115,10 @@ class MarketOrderMatch extends OrderMatch
      * Get Orders
      *
      * @param  \App\Http\Requests\FilterRequest  $request
-     * @return \App\Order
+     * @param  boolean  $paginate
+     * @return \App\MarketOrderMatch
      */
-    public static function getFiltered($request)
+    public static function getFiltered($request, $paginate = true)
     {
         // Build Query
         $matches = MarketOrderMatch::query();
@@ -158,12 +159,22 @@ class MarketOrderMatch extends OrderMatch
             $matches = $matches->orderBy('tx1_index', 'desc');
         }
 
-        // Cache Slug
-        $slug = 'market_order_matches_' . str_slug(serialize($request));
+        if ($paginate) {
+            // Cache Slug
+            $slug = 'market_order_matches_' . str_slug(serialize($request));
 
-        // Pagination
-        return Cache::remember($slug, 5, function () use ($matches) {
-            return $matches->paginate(100);
-        });
+            // Pagination
+            return Cache::remember($slug, 5, function () use ($matches) {
+                return $matches->paginate(100);
+            });
+        } else {
+            // Cache Slug
+            $slug = 'market_order_matches_get_' . str_slug(serialize($request));
+
+            // Pagination
+            return Cache::remember($slug, 60, function () use ($matches) {
+                return $matches->get();
+            });
+        }
     }
 }

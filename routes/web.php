@@ -19,6 +19,7 @@ Route::resource('/cards/{card}/likes', 'CardLikesController', ['only' => ['index
 Route::get('/market', 'OrdersController@index')->name('orders.index');
 Route::get('/market/export', 'OrdersController@show')->name('orders.show');
 Route::get('/trades', 'OrderMatchesController@index')->name('matches.index');
+Route::get('/trades/export', 'OrderMatchesController@show')->name('matches.show');
 Route::resource('/monitors', 'MonitorsController');
 Route::resource('/artists', 'ArtistsController', ['only' => ['index', 'show']]);
 Route::get('/artists/{artist}/table', 'ArtistsController@showTable')->name('artists.show.table');

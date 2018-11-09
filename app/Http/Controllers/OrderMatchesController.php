@@ -4,7 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Collection;
 use App\MarketOrderMatch;
-use Droplister\XcpCore\App\Block;
+use App\Exports\OrderMatchesExport;
+use Maatwebsite\Excel\Facades\Excel;
 use App\Http\Requests\FilterRequest;
 
 class OrderMatchesController extends Controller
@@ -17,20 +18,24 @@ class OrderMatchesController extends Controller
      */
     public function index(FilterRequest $request)
     {
-        // All TCG Collections
+        // Collections
         $collections = Collection::orderBy('name', 'asc')->get();
 
-        // All TCG "Currencies"
-        $currencies = Collection::get()
-            ->sortBy('currency')
-            ->unique('currency')
-            ->pluck('currency')
-            ->toArray();
+        // Get Matches
+        $matches = MarketOrderMatch::getFiltered($request);
 
-        // Market Order Match
-        $matches = MarketOrderMatch::getFiltered($request, $currencies);
+        // Index Index
+        return view('matches.index', compact('request', 'collections', 'matches'));
+    }
 
-        // Show Matches Index
-        return view('matches.index', compact('request', 'collections', 'currencies', 'matches'));
+    /**
+     * Export Spreadsheet
+     *
+     * @param  \App\Http\Requests\FilterRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function show(FilterRequest $request)
+    {
+        return Excel::download(new OrderMatchesExport($request), 'trades.xlsx');
     }
 }

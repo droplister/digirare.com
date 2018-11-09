@@ -140,7 +140,7 @@ class MarketOrder extends Order
      *
      * @param  \App\Http\Requests\FilterRequest  $request
      * @param  boolean  $paginate
-     * @return \App\Order
+     * @return \App\MarketOrder
      */
     public static function getFiltered($request, $paginate = true)
     {
@@ -196,7 +196,7 @@ class MarketOrder extends Order
             $slug = 'market_orders_get_' . str_slug(serialize($request));
 
             // All Results
-            return Cache::remember($slug, 5, function () use ($orders) {
+            return Cache::remember($slug, 60, function () use ($orders) {
                 return $orders->get();
             });
         }
