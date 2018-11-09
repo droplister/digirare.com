@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Collection;
 use App\MarketOrder;
+use Maatwebsite\Excel\Excel;
 use App\Exports\OrdersExport;
 use App\Http\Requests\FilterRequest;
 
