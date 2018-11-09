@@ -34,46 +34,34 @@
                         </td>
                         <td>
                             {{ number_format($order->trading_quantity_normalized, 8) }}
-                            @if($request->has('card'))
+                            @if($request->has('card') && $request->filled('card'))
                                 <a href="{{ route('cards.show', ['card' => $order->trading_pair_base_asset]) }}">
                                     {{ $order->trading_pair_base_asset }}
                                 </a>
                             @else
-                                <a href="{{ route('orders.index', ['card' => $order->trading_pair_base_asset, 'currency' => $request->input('currency', null), 'collector' => $request->input('collector', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
+                                <a href="{{ route('orders.index', $request->merge(['card' => $order->trading_pair_base_asset])->all()) }}">
                                     {{ $order->trading_pair_base_asset }}
                                 </a>
                             @endif
                         </td>
                         <td>
                             {{ number_format($order->trading_price_normalized, 8) }}
-                            @if(! $request->has('currency'))                    
-                                @if($request->has('card'))
-                                    <a href="{{ route('orders.index', ['card' => $order->trading_pair_quote_asset, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null), 'card' => $request->input('card', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
-                                        {{ $order->trading_pair_quote_asset }}
-                                    </a>
-                                @else
-                                    <a href="{{ route('orders.index', ['currency' => $order->trading_pair_quote_asset, 'collector' => $request->input('collector', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
-                                        {{ $order->trading_pair_quote_asset }}
-                                    </a>
-                                @endif
-                            @else
+                            @if($request->has('currency') && $request->filled('currency'))
                                 {{ $order->trading_pair_quote_asset }}
+                            @else
+                                <a href="{{ route('orders.index', $request->merge(['currency' => $order->trading_pair_quote_asset])->all()) }}">
+                                    {{ $order->trading_pair_quote_asset }}
+                                </a>
                             @endif
                         </td>
                         <td>
                             {{ number_format($order->trading_total_normalized, 8) }}
-                            @if(! $request->has('currency'))                    
-                                @if(! $request->has('card'))
-                                    <a href="{{ route('orders.index', ['card' => $order->trading_pair_quote_asset, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
-                                        {{ $order->trading_pair_quote_asset }}
-                                    </a>
-                                @else
-                                    <a href="{{ route('orders.index', ['currency' => explode('/', $order->trading_pair_normalized)[1], 'collection' => $request->input('collection', null), 'collector' => $request->input('collector', null), 'card' => $request->input('card', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
-                                        {{ $order->trading_pair_quote_asset }}
-                                    </a>
-                                @endif
-                            @else
+                            @if($request->has('currency') && $request->filled('currency'))
                                 {{ $order->trading_pair_quote_asset }}
+                            @else
+                                <a href="{{ route('orders.index', $request->merge(['currency' => $order->trading_pair_quote_asset])->all()) }}">
+                                    {{ $order->trading_pair_quote_asset }}
+                                </a>
                             @endif
                         </td>
                         <td>
@@ -82,7 +70,7 @@
                                     {{ str_limit($order->source, 8) }}
                                 </a>
                             @else
-                                <a href="{{ route('orders.index', ['card' => $request->input('card', null), 'collector' => $order->source, 'collector' => $order->source, 'currency' => $request->input('currency', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
+                                <a href="{{ route('orders.index', $request->merge(['collector' => $order->source])->all()) }}">
                                     {{ str_limit($order->source, 8) }}
                                 </a>
                             @endif

@@ -6,22 +6,28 @@
             <input type="hidden" id="collector" name="collector" value="{{ $request->collector }}">
             @endif
             <div class="row">
-                <div class="col-md-10">
-                    <div class="row">
-                        <div class="col-md-8 mb-3">
-                            <input type="text" class="form-control" id="card" name="card" value="{{ $request->input('card') }}" placeholder="Enter card name..." autofocus>
-                        </div>
-                        <div class="col-md-4 mb-3">
-                            <select class="custom-select d-block w-100" id="collection" name="collection">
-                                <option value="">Collection</option>
-                                @foreach($collections as $collection)
-                                <option value="{{ $collection->slug }}"{{ $collection->slug === $request->input('collection') ? ' selected' : '' }}>
-                                    {{ $collection->name }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
+                <div class="col-md-6 mb-3">
+                    <input type="text" class="form-control" id="card" name="card" value="{{ $request->input('card') }}" placeholder="Enter card name..." autofocus>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <select class="custom-select d-block w-100" id="collection" name="collection">
+                        <option value="">Collection</option>
+                        @foreach($collections as $collection)
+                        <option value="{{ $collection->slug }}"{{ $collection->slug === $request->input('collection') ? ' selected' : '' }}>
+                            {{ $collection->name }}
+                        </option>
+                        @endforeach
+                    </select>
+                </div>
+                <div class="col-md-2 mb-3">
+                    <select class="custom-select d-block w-100" id="action" name="action">
+                        <option value="">Action</option>
+                        @foreach(['buying', 'selling'] as $action)
+                        <option value="{{ $action }}"{{ $action === $request->input('action') ? ' selected' : '' }}>
+                            {{ ucfirst($action) }}
+                        </option>
+                        @endforeach
+                    </select>
                 </div>
                 <div class="col-md-2 mb-3">
                     <button class="btn btn-primary btn-block" type="submit">Filter</button>
