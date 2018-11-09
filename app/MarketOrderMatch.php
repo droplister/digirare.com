@@ -115,10 +115,9 @@ class MarketOrderMatch extends OrderMatch
      * Get Orders
      *
      * @param  \App\Http\Requests\FilterRequest  $request
-     * @param  array $currencies
      * @return \App\Order
      */
-    public static function getFiltered($request, $currencies)
+    public static function getFiltered($request)
     {
         // Build Query
         $matches = MarketOrderMatch::query();

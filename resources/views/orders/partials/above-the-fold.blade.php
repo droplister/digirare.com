@@ -22,38 +22,6 @@
                             </select>
                         </div>
                     </div>
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <select class="custom-select d-block w-100" id="currency" name="currency">
-                                <option value="">Market</option>
-                                @foreach($currencies as $currency)
-                                <option value="{{ $currency }}"{{ $currency === $request->input('currency') ? ' selected' : '' }}>
-                                    {{ $currency }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3 d-none d-md-inline-block">
-                            <select class="custom-select d-block w-100" id="action" name="action">
-                                <option value="">Action</option>
-                                @foreach(['buying', 'selling'] as $action)
-                                <option value="{{ $action }}"{{ $action === $request->input('action') ? ' selected' : '' }}>
-                                    {{ ucfirst($action) }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="col-md-4 mb-3 d-none d-md-inline-block">
-                            <select class="custom-select d-block w-100" id="sort" name="sort">
-                                <option value="">Sort Order</option>
-                                @foreach(['ending', 'newest'] as $sort)
-                                <option value="{{ $sort }}"{{ $sort === $request->input('sort') ? ' selected' : '' }}>
-                                    {{ ucfirst($sort) }}
-                                </option>
-                                @endforeach
-                            </select>
-                        </div>
-                    </div>
                 </div>
                 <div class="col-md-2 mb-3">
                     <button class="btn btn-primary btn-block" type="submit">Filter</button>

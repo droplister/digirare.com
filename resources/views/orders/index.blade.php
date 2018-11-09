@@ -88,7 +88,7 @@
                             @endif
                         </td>
                         <td>
-                            {{ $order->expire_index - $block->block_index }} {{ str_plural(__('block'), $order->expire_index - $block->block_index) }}
+                            {{ $order->blocks_left }} {{ str_plural('block', $order->blocks_left) }}
                         </td>
                     </tr>
                     @endforeach

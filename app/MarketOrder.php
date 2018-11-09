@@ -22,6 +22,18 @@ class MarketOrder extends Order
     }
 
     /**
+     * Blocks Left
+     *
+     * @return string
+     */
+    public function getBlocksLeftAttribute()
+    {
+        $block_index = Cache::get('block_index');
+
+        return $this->expire_index - $block_index;
+    }
+
+    /**
      * Collector
      *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
@@ -125,11 +137,9 @@ class MarketOrder extends Order
      * Get Orders
      *
      * @param  \App\Http\Requests\FilterRequest  $request
-     * @param  \App\Block  $block
-     * @param  array $currencies
      * @return \App\Order
      */
-    public static function getFiltered($request, $block, $currencies)
+    public static function getFiltered($request)
     {
         // Build Query
         $orders = MarketOrder::openOrders($block);

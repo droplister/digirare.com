@@ -28,6 +28,16 @@ return [
     'google_ua' => env('GOOGLE_UA'),
 
     /**
+     * Tutorial URL
+     */
+    'tutorial_url' => env('TUTORIAL_URL', 'https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5'),
+
+    /**
+     * Github URL
+     */
+    'github_url' => env('GITHUB_URL', 'https://github.com/droplister/digirare.com'),
+
+    /**
      * Telegram URL
      */
     'telegram_url' => env('TELEGRAM_URL', 'https://t.me/digirare'),
@@ -41,4 +51,20 @@ return [
      * Feature Address
      */
     'feature_address' => env('FEATURE_ADDRESS', '1Promo6RngL8NpZtYwnstctgJj5gue7DKg'),
+
+    /**
+     * Currencies
+     */
+    'currencies' => [
+        'BITCORN',
+        'BITCRYSTALS',
+        'MAFIACASH',
+        'OLINCOIN',
+        'PENISIUM',
+        'PEPECASH',
+        'RUSTBITS',
+        'WILLCOIN',
+        'XCP',
+        'XFCCOIN',
+    ],
 ];

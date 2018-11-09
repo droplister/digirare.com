@@ -106,6 +106,7 @@
                                     <a class="dropdown-item" href="{{ config('digirare.telegram_url') }}">
                                         {{ __('Support') }}
                                     </a>
+                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -129,19 +130,39 @@
             @yield('content')
         </main>
 
-        <footer class="container text-center text-muted pb-4">
-            <a href="{{ url('/') }}" class="mr-2">{{ __('Home') }}</a>
-            <a href="{{ route('pages.investors') }}" class="mr-2">{{ __('Investors') }}</a>
-            <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" class="mr-2" target="_blank">{{ __('Tutorial') }}</a>
-            <a href="https://github.com/droplister/digirare.com"  class="mr-2" target="_blank">{{ __('GitHub') }}</a>
-            <a href="https://t.me/digirare" target="_blank">{{ __('Telegram') }}</a>
+        <footer class="container text-center text-muted pb-5">
+            <a href="{{ route('home.index') }}" class="mr-2">
+                {{ __('Home') }}
+            </a>
+            <a href="{{ route('pages.investors') }}" class="mr-2">
+                {{ __('Investors') }}
+            </a>
+            <a href="{{ config('digirare.tutorial_url') }}" class="mr-2" target="_blank">
+                {{ __('Tutorial') }}
+            </a>
+            <a href="{{ config('digirare.github_url') }}" class="mr-2" target="_blank">
+                {{ __('GitHub') }}
+            </a>
+            <a href="{{ config('digirare.telegram_url') }}" target="_blank">
+                {{ __('Telegram') }}
+            </a>
             <small class="d-block" style="font-size: 11px">
                 &copy; 2018
-                <a href="https://familymediallc.com/" class="text-muted mr-1" target="_blank">Family Media</a>
-                <a href="{{ config('digirare.analytics') }}" class="text-muted mr-1" target="_blank">{{ __('Analytics') }}</a>
-                <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-1">{{ __('Disclaimer') }}</a>
-                <a href="{{ route('pages.privacy') }}" class="text-muted mr-1">{{ __('Privacy') }}</a>
-                <a href="{{ route('pages.terms') }}" class="text-muted">{{ __('Terms') }}</a>
+                <a href="https://familymediallc.com/" class="text-muted mr-1" target="_blank">
+                    Family Media
+                </a>
+                <a href="{{ config('digirare.analytics') }}" class="text-muted mr-1" target="_blank">
+                    {{ __('Analytics') }}
+                </a>
+                <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-1">
+                    {{ __('Disclaimer') }}
+                </a>
+                <a href="{{ route('pages.privacy') }}" class="text-muted mr-1">
+                    {{ __('Privacy') }}
+                </a>
+                <a href="{{ route('pages.terms') }}" class="text-muted">
+                    {{ __('Terms') }}
+                </a>
             </small>
         </footer>
 
