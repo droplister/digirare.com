@@ -3,6 +3,7 @@
 namespace App;
 
 use DB;
+use Cache;
 use App\Collection;
 use App\Traits\Linkable;
 use App\Events\CardWasCreated;
@@ -58,7 +59,9 @@ class Card extends Model
      */
     public function getPrimaryImageUrlAttribute()
     {
-        return $this->primaryCollection()->first()->pivot->image_url;
+        return Cache::rememberForever('c_piu_' . $this->id, function () {
+            return $this->primaryCollection()->first()->pivot->image_url;
+        });
     }
 
     /**
@@ -68,7 +71,9 @@ class Card extends Model
      */
     public function getTradesCountAttribute()
     {
-        return $this->backwardOrderMatches()->count() + $this->forwardOrderMatches()->count();
+        return Cache::remember('c_tc_' . $this->id, 1440, function () {
+            return $this->backwardOrderMatches()->count() + $this->forwardOrderMatches()->count();
+        });
     }
 
     /**
@@ -78,16 +83,18 @@ class Card extends Model
      */
     public function getSupplyNormalizedAttribute()
     {
-        // Edge Case
-        $supply = $this->token ? $this->token->supply_normalized : 0;
+        return Cache::remember('c_sn_' . $this->id, 1440, function () {
+            // Edge Case
+            $supply = $this->token ? $this->token->supply_normalized : 0;
 
-        if ($supply < 1000000) {
-            return number_format($supply);
-        } elseif ($supply < 1000000000) {
-            return str_replace('.0', '', number_format($supply / 1000000, 1)) . 'M';
-        } else {
-            return str_replace('.0', '', number_format($supply / 1000000000, 1)) . 'B';
-        }
+            if ($supply < 1000000) {
+                return number_format($supply);
+            } elseif ($supply < 1000000000) {
+                return str_replace('.0', '', number_format($supply / 1000000, 1)) . 'M';
+            } else {
+                return str_replace('.0', '', number_format($supply / 1000000000, 1)) . 'B';
+            }
+        });
     }
 
     /**
@@ -221,21 +228,23 @@ class Card extends Model
      */
     public function lastMatch()
     {
-        // All TCG "Currencies"
-        $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
+        return Cache::remember('c_lm_' . $this->id, 1440, function () {
+            // All TCG "Currencies"
+            $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
 
-        if ($this->token) {
-            $b = $this->token->backwardOrderMatches()->whereIn('forward_asset', $currencies)->latest('confirmed_at')->first();
-            $f = $this->token->forwardOrderMatches()->whereIn('backward_asset', $currencies)->latest('confirmed_at')->first();
+            if ($this->token) {
+                $b = $this->token->backwardOrderMatches()->whereIn('forward_asset', $currencies)->latest('confirmed_at')->first();
+                $f = $this->token->forwardOrderMatches()->whereIn('backward_asset', $currencies)->latest('confirmed_at')->first();
 
-            if ($b && $f) {
-                return $b->confirmed_at > $f->confirmed_at ? $b : $f;
-            } elseif ($b || $f) {
-                return $b ? $b : $f;
+                if ($b && $f) {
+                    return $b->confirmed_at > $f->confirmed_at ? $b : $f;
+                } elseif ($b || $f) {
+                    return $b ? $b : $f;
+                }
             }
-        }
 
-        return null;
+            return null;
+        });
     }
 
     /**

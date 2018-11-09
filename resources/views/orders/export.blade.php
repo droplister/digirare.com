@@ -10,6 +10,7 @@
             <th scope="col"></th>
             <th scope="col">{{ __('Source') }}</th>
             <th scope="col">{{ __('Blocks Left') }}</th>
+            <th scope="col">{{ __('TX') }}</th>
         </tr>
     </thead>
     <tbody>
@@ -41,6 +42,9 @@
             </td>
             <td>
                 {{ $order->blocks_left }}
+            </td>
+            <td>
+                {{ $order->tx_hash }}
             </td>
         </tr>
         @endforeach
