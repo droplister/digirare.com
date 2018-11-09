@@ -26,13 +26,13 @@
                 {{ $match->trading_pair_base_asset }}
             </td>
             <td>
-                {{ number_format($match->trading_price_normalized, 8) }}
+                {{ $match->trading_price_normalized }}
             </td>
             <td>
                 {{ $match->trading_pair_quote_asset }}
             </td>
             <td>
-                {{ number_format($match->trading_total_normalized, 8) }}
+                {{ $match->trading_total_normalized }}
             </td>
             <td>
                 {{ $match->trading_pair_quote_asset }}
