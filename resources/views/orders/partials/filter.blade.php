@@ -35,41 +35,43 @@
                     <button class="btn btn-primary btn-block" type="submit">Filter</button>
                 </div>
             </div>
-            @if($request->has('collector') && $request->filled('collector'))
-            <a href="{{ route('orders.index', $request->except('collector', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                <i class="fa fa-times text-danger"></i> Source
-            </a>
-            @endif
-            @if($request->has('card') && $request->filled('card'))
-            <a href="{{ route('orders.index', $request->except('card', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                <i class="fa fa-times text-danger"></i> {{ $request->card }}
-            </a>
-            @endif
-            @if($request->has('collection') && $request->filled('collection'))
-            <a href="{{ route('orders.index', $request->except('collection', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                <i class="fa fa-times text-danger"></i> {{ title_case(str_replace('-', ' ', $request->collection)) }}
-            </a>
-            @endif
-            @if($request->has('currency') && $request->filled('currency'))
-            <a href="{{ route('orders.index', $request->except('currency', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                <i class="fa fa-times text-danger"></i> {{ $request->currency }}
-            </a>
-            @endif
-            @if($request->has('action') && $request->filled('action'))
-            <a href="{{ route('orders.index', $request->except('action', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                <i class="fa fa-times text-danger"></i> {{ ucfirst($request->action) }}
-            </a>
-            @endif
-            @if($request->has('format') && $request->filled('format'))
-            <a href="{{ route('orders.index', $request->except('format', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                <i class="fa fa-times text-danger"></i> {{ strtoupper(str_replace('-', ' ', $request->format)) }}
-            </a>
-            @endif
-            @if($request->has('sort') && $request->filled('sort'))
-            <a href="{{ route('orders.index', $request->except('sort', 'page')) }}" style="text-decoration: none;" class="mr-2">
-                <i class="fa fa-times text-danger"></i> {{ ucfirst($request->sort) }}
-            </a>
-            @endif
+            <div class="text-uppercase">
+                @if($request->has('collector') && $request->filled('collector'))
+                <a href="{{ route('orders.index', $request->except('collector', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> Source
+                </a>
+                @endif
+                @if($request->has('card') && $request->filled('card'))
+                <a href="{{ route('orders.index', $request->except('card', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> {{ $request->card }}
+                </a>
+                @endif
+                @if($request->has('collection') && $request->filled('collection'))
+                <a href="{{ route('orders.index', $request->except('collection', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> {{ title_case(str_replace('-', ' ', $request->collection)) }}
+                </a>
+                @endif
+                @if($request->has('currency') && $request->filled('currency'))
+                <a href="{{ route('orders.index', $request->except('currency', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> {{ $request->currency }}
+                </a>
+                @endif
+                @if($request->has('action') && $request->filled('action'))
+                <a href="{{ route('orders.index', $request->except('action', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> {{ ucfirst($request->action) }}
+                </a>
+                @endif
+                @if($request->has('format') && $request->filled('format'))
+                <a href="{{ route('orders.index', $request->except('format', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> {{ strtoupper(str_replace('-', ' ', $request->format)) }}
+                </a>
+                @endif
+                @if($request->has('sort') && $request->filled('sort'))
+                <a href="{{ route('orders.index', $request->except('sort', 'page')) }}" style="text-decoration: none;" class="mr-2">
+                    <i class="fa fa-times text-danger"></i> {{ ucfirst($request->sort) }}
+                </a>
+                @endif
+            </div>
         </form>
     </div>
 </section>
