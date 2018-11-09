@@ -16,7 +16,7 @@ class WalletAddress extends Address
 
     /**
      * Wallet Balances
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function walletBalances()

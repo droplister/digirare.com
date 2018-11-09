@@ -22,12 +22,11 @@ class CardListener
         $credits = $event->card->token ? $event->card->token->credits()->get() : [];
 
         // Find Missing
-        foreach($credits as $credit)
-        {
+        foreach ($credits as $credit) {
             // Create Collector
             Collector::firstOrCreate([
                 'xcp_core_address' => $credit->address,
-            ],[
+            ], [
                 'xcp_core_credit_id' => $credit->id,
             ]);
         }

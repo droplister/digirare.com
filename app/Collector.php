@@ -21,7 +21,7 @@ class Collector extends Model
      */
     protected $fillable = [
         'xcp_core_address',
-        'xcp_core_credit_id', 
+        'xcp_core_credit_id',
         'slug',
     ];
 
@@ -37,7 +37,7 @@ class Collector extends Model
 
     /**
      * Address
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function address()
@@ -47,7 +47,7 @@ class Collector extends Model
 
     /**
      * Card Balances
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function cardBalances()
@@ -57,7 +57,7 @@ class Collector extends Model
 
     /**
      * First Card (Credit Event)
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function firstCard()

@@ -25,15 +25,18 @@ class CardLikesController extends Controller
      */
     public function index(Request $request, Card $card)
     {
-        if($request->user())
-        {
+        if ($request->user()) {
             // Liked
             $liked = $request->user()->likes()->where('card_id', $card->id)->exists();
-            if($liked) return 'liked';
+            if ($liked) {
+                return 'liked';
+            }
 
             // Disliked
             $disliked = $request->user()->dislikes()->where('card_id', $card->id)->exists();
-            if($disliked) return 'disliked';
+            if ($disliked) {
+                return 'disliked';
+            }
         }
 
         // Neither
@@ -54,7 +57,7 @@ class CardLikesController extends Controller
         return Like::updateOrCreate([
             'card_id' => $card->id,
             'user_id' => $request->user()->id,
-        ],[
+        ], [
             'type' => $request->type,
         ]);
     }

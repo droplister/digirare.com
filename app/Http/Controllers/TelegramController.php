@@ -38,7 +38,9 @@ class TelegramController extends Controller
         $message = $update->getMessage();
 
         // Edge Case?
-        if($message === null) return 'Ok';
+        if ($message === null) {
+            return 'Ok';
+        }
 
         // Track Data
         $this->logChatroom($message);
@@ -49,7 +51,7 @@ class TelegramController extends Controller
 
     /**
      * Log Chatroom
-     * 
+     *
      * @param  mixed $message
      * @return array
      */
@@ -67,7 +69,7 @@ class TelegramController extends Controller
 
     /**
      * Get Intent
-     * 
+     *
      * @param  mixed $message
      * @return array
      */
@@ -75,8 +77,7 @@ class TelegramController extends Controller
     {
         $command = substr($message->getText(), 0, 2);
 
-        switch ($command)
-        {
+        switch ($command) {
             case '/c':
                 return 'card_query';
             case '/f':
@@ -90,7 +91,7 @@ class TelegramController extends Controller
 
     /**
      * Not Handled
-     * 
+     *
      * @param  string $intent
      * @return array
      */

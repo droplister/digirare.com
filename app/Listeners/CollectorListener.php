@@ -20,12 +20,11 @@ class CollectorListener
     public function handle(CreditWasCreated $event)
     {
         // Cards Only
-        if($this->isCuratedCard($event))
-        {
+        if ($this->isCuratedCard($event)) {
             // Start Collector
             Collector::firstOrCreate([
                 'xcp_core_address' => $event->credit->address,
-            ],[
+            ], [
                 'xcp_core_credit_id' => $event->credit->id,
             ]);
         }

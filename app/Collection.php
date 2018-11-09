@@ -71,7 +71,7 @@ class Collection extends Model
 
     /**
      * Artists
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function artists()
@@ -82,7 +82,7 @@ class Collection extends Model
 
     /**
      * Cards
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function cards()
@@ -93,7 +93,7 @@ class Collection extends Model
 
     /**
      * Balances
-     * 
+     *
      * @return \Staudenmeir\EloquentHasManyDeep\HasRelationships
      */
     public function balances()
@@ -101,12 +101,12 @@ class Collection extends Model
         return $this->hasManyDeep(
             Balance::class,
             ['card_collection', Card::class],
-            [           
+            [
                'collection_id',
                'id',
                'asset',
             ],
-            [          
+            [
               'id',
               'card_id',
               'xcp_core_asset_name',
@@ -116,7 +116,7 @@ class Collection extends Model
 
     /**
      * Official Currency
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function officialCurrency()
@@ -153,7 +153,7 @@ class Collection extends Model
      *
      * @return string
      */
-    public function txsCount($subDays=1)
+    public function txsCount($subDays = 1)
     {
         $assets = Cache::rememberForever('cards_array_' . $this->id, function () {
             $assets = $this->cards->pluck('xcp_core_asset_name')->toArray();
@@ -197,7 +197,7 @@ class Collection extends Model
      *
      * @return string
      */
-    public function usersCount($subDays=1)
+    public function usersCount($subDays = 1)
     {
         $assets = Cache::rememberForever('cards_array_' . $this->id, function () {
             $assets = $this->cards->pluck('xcp_core_asset_name')->toArray();
@@ -241,7 +241,7 @@ class Collection extends Model
      *
      * @return string
      */
-    public function volumeTotal($subDays=1)
+    public function volumeTotal($subDays = 1)
     {
         $assets = Cache::rememberForever('cards_array_' . $this->id, function () {
             $assets = $this->cards->pluck('xcp_core_asset_name')->toArray();

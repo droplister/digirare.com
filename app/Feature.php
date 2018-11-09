@@ -30,7 +30,7 @@ class Feature extends Model
 
     /**
      * Featured Card
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function card()

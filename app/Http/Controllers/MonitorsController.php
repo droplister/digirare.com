@@ -80,8 +80,7 @@ class MonitorsController extends Controller
         $assets = $collector->cardBalances->pluck('asset')->toArray();
 
         // Filter by Collection
-        if($request->has('collection'))
-        {
+        if ($request->has('collection')) {
             $collection = Collection::findBySlug($request->collection);
 
             $collection_assets = $collection->cards()->pluck('xcp_core_asset_name')->toArray();
@@ -90,8 +89,7 @@ class MonitorsController extends Controller
         }
 
         // Filter by Card
-        if($request->has('card'))
-        {
+        if ($request->has('card')) {
             // Get Card Asset
             $asset = Asset::where('asset_name', '=', $request->card)
                 ->orWhere('asset_longname', '=', $request->card)
@@ -101,11 +99,9 @@ class MonitorsController extends Controller
         }
 
         // Filters
-        if($request->has('source') && $request->has('currency') && $request->has('action'))
-        {
+        if ($request->has('source') && $request->has('currency') && $request->has('action')) {
             // Buying/Selling
-            if($request->action === 'buying')
-            {
+            if ($request->action === 'buying') {
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('get_asset', $assets)
                     ->where('source', '=', $request->source)
@@ -113,9 +109,7 @@ class MonitorsController extends Controller
                     ->where('give_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index);
-            }
-            else
-            {
+            } else {
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('give_asset', $assets)
                     ->where('source', '=', $request->source)
@@ -124,21 +118,16 @@ class MonitorsController extends Controller
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index);
             }
-        }
-        elseif($request->has('currency') && $request->has('action'))
-        {
+        } elseif ($request->has('currency') && $request->has('action')) {
             // Buying/Selling
-            if($request->action === 'buying')
-            {
+            if ($request->action === 'buying') {
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('get_asset', $assets)
                     ->where('give_asset', '=', $request->currency)
                     ->where('status', '=', 'open')
                     ->where('source', '!=', $collector->xcp_core_address)
                     ->where('expire_index', '>', $block->block_index);
-            }
-            else
-            {
+            } else {
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('give_asset', $assets)
                     ->where('get_asset', '=', $request->currency)
@@ -146,21 +135,16 @@ class MonitorsController extends Controller
                     ->where('source', '!=', $collector->xcp_core_address)
                     ->where('expire_index', '>', $block->block_index);
             }
-        }
-        elseif($request->has('source') && $request->has('action'))
-        {
+        } elseif ($request->has('source') && $request->has('action')) {
             // Buying/Selling
-            if($request->action === 'buying')
-            {
+            if ($request->action === 'buying') {
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('get_asset', $assets)
                     ->where('source', '=', $request->source)
                     ->where('source', '!=', $collector->xcp_core_address)
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index);
-            }
-            else
-            {
+            } else {
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('give_asset', $assets)
                     ->where('source', '=', $request->source)
@@ -168,9 +152,7 @@ class MonitorsController extends Controller
                     ->where('status', '=', 'open')
                     ->where('expire_index', '>', $block->block_index);
             }
-        }
-        elseif($request->has('currency') && $request->has('source'))
-        {
+        } elseif ($request->has('currency') && $request->has('source')) {
             $orders = Order::with('getAssetModel', 'giveAssetModel')
                 ->whereIn('get_asset', $assets)
                 ->where('give_asset', '=', $request->currency)
@@ -184,21 +166,16 @@ class MonitorsController extends Controller
                 ->where('source', '!=', $collector->xcp_core_address)
                 ->where('status', '=', 'open')
                 ->where('expire_index', '>', $block->block_index);
-        }
-        elseif($request->has('action'))
-        {
+        } elseif ($request->has('action')) {
             // Buying/Selling
-            if($request->action === 'buying')
-            {
+            if ($request->action === 'buying') {
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('get_asset', $assets)
                     ->whereIn('give_asset', $currencies)
                     ->where('status', '=', 'open')
                     ->where('source', '!=', $collector->xcp_core_address)
                     ->where('expire_index', '>', $block->block_index);
-            }
-            else
-            {
+            } else {
                 $orders = Order::with('getAssetModel', 'giveAssetModel')
                     ->whereIn('give_asset', $assets)
                     ->whereIn('get_asset', $currencies)
@@ -206,9 +183,7 @@ class MonitorsController extends Controller
                     ->where('source', '!=', $collector->xcp_core_address)
                     ->where('expire_index', '>', $block->block_index);
             }
-        }
-        elseif($request->has('currency'))
-        {
+        } elseif ($request->has('currency')) {
             $orders = Order::with('getAssetModel', 'giveAssetModel')
                 ->whereIn('get_asset', $assets)
                 ->where('give_asset', '=', $request->currency)
@@ -220,9 +195,7 @@ class MonitorsController extends Controller
                 ->where('status', '=', 'open')
                 ->where('source', '!=', $collector->xcp_core_address)
                 ->where('expire_index', '>', $block->block_index);
-        }
-        elseif($request->has('source'))
-        {
+        } elseif ($request->has('source')) {
             $orders = Order::with('getAssetModel', 'giveAssetModel')
                 ->whereIn('get_asset', $assets)
                 ->where('source', '=', $request->source)
@@ -234,9 +207,7 @@ class MonitorsController extends Controller
                 ->where('status', '=', 'open')
                 ->where('source', '!=', $collector->xcp_core_address)
                 ->where('expire_index', '>', $block->block_index);
-        }
-        else
-        {
+        } else {
             $orders = Order::with('getAssetModel', 'giveAssetModel')
                 ->whereIn('get_asset', $assets)
                 ->whereIn('give_asset', $currencies)
@@ -256,5 +227,4 @@ class MonitorsController extends Controller
         // Paginate
         return $orders->paginate(100);
     }
-
 }

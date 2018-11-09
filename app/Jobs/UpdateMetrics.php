@@ -49,19 +49,16 @@ class UpdateMetrics implements ShouldQueue
         $intervals = $this->getIntervals();
 
         // End of Day Only
-        if($this->isEndOfDay())
-        {
+        if ($this->isEndOfDay()) {
             // Day, Month, Year
-            foreach($intervals as $interval => $dates)
-            {
+            foreach ($intervals as $interval => $dates) {
                 // Site Metrics
                 $this->updateCards($interval, $dates);
                 $this->updateCollectors($interval, $dates);
                 $this->updateTrades($interval, $dates);
 
                 // Card Metrics
-                foreach($cards as $card)
-                {
+                foreach ($cards as $card) {
 /*
                     $this->updateCredits($card, $interval, $dates);
                     $this->updateDebits($card, $interval, $dates);
@@ -70,8 +67,7 @@ class UpdateMetrics implements ShouldQueue
                     $this->updateSends($card, $interval, $dates);
 */
                     // Balances (edge-case)
-                    if($interval === 'day')
-                    {
+                    if ($interval === 'day') {
                         $this->updateBalances($card, $interval, $dates);
                     }
                 }
@@ -174,7 +170,7 @@ class UpdateMetrics implements ShouldQueue
 
     /**
      * Update Credits
-     * 
+     *
      * @param  \App\Card  $card
      * @param  string  $interval
      * @param  array  $dates
@@ -196,7 +192,7 @@ class UpdateMetrics implements ShouldQueue
 
     /**
      * Update Debits
-     * 
+     *
      * @param  \App\Card  $card
      * @param  string  $interval
      * @param  array  $dates
@@ -218,7 +214,7 @@ class UpdateMetrics implements ShouldQueue
 
     /**
      * Update Orders
-     * 
+     *
      * @param  \App\Card  $card
      * @param  string  $interval
      * @param  array  $dates
@@ -255,7 +251,7 @@ class UpdateMetrics implements ShouldQueue
 
     /**
      * Update Order Matches
-     * 
+     *
      * @param  \App\Card  $card
      * @param  string  $interval
      * @param  array  $dates
@@ -292,7 +288,7 @@ class UpdateMetrics implements ShouldQueue
 
     /**
      * Update Sends
-     * 
+     *
      * @param  \App\Card  $card
      * @param  string  $interval
      * @param  array  $dates
@@ -314,7 +310,7 @@ class UpdateMetrics implements ShouldQueue
 
     /**
      * Update Metric
-     * 
+     *
      * @param  \App\Card  $card
      * @param  string  $category
      * @param  string  $type
@@ -334,7 +330,7 @@ class UpdateMetrics implements ShouldQueue
             'interval' => $interval,
             'category' => $category,
             'type' => $type,
-        ],[
+        ], [
             'value' => $value,
             'timestamp' => $timestamp,
         ]);
@@ -342,7 +338,7 @@ class UpdateMetrics implements ShouldQueue
 
     /**
      * Update Simple Metric
-     * 
+     *
      * @param  string  $category
      * @param  string  $type
      * @param  integer  $value
@@ -363,7 +359,7 @@ class UpdateMetrics implements ShouldQueue
             'interval' => $interval,
             'category' => $category,
             'type' => $type,
-        ],[
+        ], [
             'value' => $value,
             'timestamp' => $timestamp,
         ]);
@@ -371,7 +367,7 @@ class UpdateMetrics implements ShouldQueue
 
     /**
      * Is End of Day
-     * 
+     *
      * @return boolean
      */
     private function isEndOfDay()

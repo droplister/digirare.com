@@ -19,7 +19,7 @@ class Like extends Model
 
     /**
      * Card
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function card()
@@ -29,7 +29,7 @@ class Like extends Model
 
     /**
      * User
-     * 
+     *
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function user()
