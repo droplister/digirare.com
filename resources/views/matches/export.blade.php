@@ -1,50 +1,42 @@
 <table class="table border-bottom">
     <thead>
         <tr>
-            <th scope="col">{{ __('Action') }}</th>
-            <th scope="col">{{ __('Quantity') }}</th>
+            <th scope="col">{{ __('Forward Asset') }}</th>
             <th scope="col"></th>
-            <th scope="col">{{ __('Price') }}</th>
+            <th scope="col">{{ __('Backward Asset') }}</th>
             <th scope="col"></th>
-            <th scope="col">{{ __('Total') }}</th>
-            <th scope="col"></th>
-            <th scope="col">{{ __('Buyer') }}</th>
-            <th scope="col">{{ __('Seller') }}</th>
+            <th scope="col">{{ __('Block #') }}</th>
             <th scope="col">{{ __('Confirmed') }}</th>
+            <th scope="col">{{ __('TX 1') }}</th>
+            <th scope="col">{{ __('TX 2') }}</th>
         </tr>
     </thead>
     <tbody>
         @foreach($matches as $match)
         <tr>
             <td>
-                {{ $match->trading_type }}
+                {{ $match->forward_quantity_normalized }}
             </td>
             <td>
-                {{ $match->trading_quantity_normalized }}
+                {{ $match->forward_asset }}
             </td>
             <td>
-                {{ $match->trading_pair_base_asset }}
+                {{ $match->backward_quantity_normalized }}
             </td>
             <td>
-                {{ $match->trading_price_normalized }}
+                {{ $match->backward_asset }}
             </td>
             <td>
-                {{ $match->trading_pair_quote_asset }}
-            </td>
-            <td>
-                {{ $match->trading_total_normalized }}
-            </td>
-            <td>
-                {{ $match->trading_pair_quote_asset }}
-            </td>
-            <td>
-                {{ $match->trading_buyer_normalized }}
-            </td>
-            <td>
-                {{ $match->trading_seller_normalized }}
+                {{ $match->block_index }}
             </td>
             <td>
                 {{ $match->confirmed_at }}
+            </td>
+            <td>
+                {{ $match->tx0_hash }}
+            </td>
+            <td>
+                {{ $match->tx1_hash }}
             </td>
         </tr>
         @endforeach

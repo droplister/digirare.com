@@ -20,7 +20,6 @@ class OrdersExport implements FromView
 
         return view('orders.export', [
             'orders' => $orders,
-            'request' => $this->request,
         ]);
     }
 }

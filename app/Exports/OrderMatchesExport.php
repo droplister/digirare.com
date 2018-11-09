@@ -20,7 +20,6 @@ class OrderMatchesExport implements FromView
 
         return view('matches.export', [
             'matches' => $matches,
-            'request' => $this->request,
         ]);
     }
 }
