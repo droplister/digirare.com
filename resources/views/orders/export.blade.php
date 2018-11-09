@@ -10,7 +10,6 @@
             <th scope="col"></th>
             <th scope="col">{{ __('Source') }}</th>
             <th scope="col">{{ __('Blocks Left') }}</th>
-            <th scope="col">{{ __('Blocks Left') }}</th>
         </tr>
     </thead>
     <tbody>
