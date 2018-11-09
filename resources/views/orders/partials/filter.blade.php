@@ -37,15 +37,18 @@
                     <button class="btn btn-primary btn-block" type="submit">Filter</button>
                 </div>
             </div>
-            <div class="text-uppercase">
-                @foreach(['action', 'card', 'collection', 'collector', 'currency', 'sort'] as $filter)
-                    @if($request->has($filter) && $request->filled($filter))
-                        <a href="{{ route('orders.index', $request->except($filter, 'page')) }}" style="text-decoration: none;" class="mr-2">
-                            <i class="fa fa-times text-danger"></i> {{ ucfirst($filter) }}
-                        </a>
-                    @endif
-                @endforeach
-            </div>
+            @foreach(['action', 'card', 'collection', 'collector', 'currency', 'sort'] as $filter)
+                @if($request->has($filter) && $request->filled($filter))
+                    <a href="{{ route('orders.index', $request->except($filter, 'page')) }}" style="text-decoration: none;" class="badge badge-light text-uppercase mr-2">
+                        <i class="fa fa-times text-danger"></i>
+                        @if(in_array($filter, ['action', 'card', 'collection', 'currency']))
+                            {{ $request->{$filter} }}
+                        @else
+                            {{ ucfirst($filter) }}
+                        @endif
+                    </a>
+                @endif
+            @endforeach
         </form>
     </div>
 </section>
