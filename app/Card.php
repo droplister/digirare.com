@@ -222,6 +222,16 @@ class Card extends Model
     }
 
     /**
+     * Active Collections
+     */
+    public function scopeActive($query)
+    {
+        return $query->whereHas('collections', function ($collection) {
+            return $collection->where('active', '=', 1);
+        });
+    }
+
+    /**
      * Last Match
      *
      * @return \Droplister\XcpCore\App\OrderMatch
@@ -254,7 +264,7 @@ class Card extends Model
      */
     public function orderBook($side)
     {
-        return Cache::remember('card_orders_' . $side . '_' . $card->slug, 60, function () use ($side) {
+        return Cache::remember('card_orders_' . $side . '_' . $this->slug, 60, function () use ($side) {
             $give_get = $side === 'buy' ? 'get_asset' : 'give_asset';
             $sort_by = $side === 'buy' ? 'sortByDesc' : 'sortBy';
 
@@ -263,16 +273,6 @@ class Card extends Model
                 ->orderBy('expire_index', 'asc')
                 ->get()
                 ->{$sort_by}('trading_price_normalized');
-        });
-    }
-
-    /**
-     * Active Collections
-     */
-    public function scopeActive($query)
-    {
-        return $query->whereHas('collections', function ($collection) {
-            return $collection->where('active', '=', 1);
         });
     }
 
