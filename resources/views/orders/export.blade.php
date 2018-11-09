@@ -21,13 +21,13 @@
                 {{ $order->confirmed_at }}
             </td>
             <td>
-                {{ $order->get_asset_remaining_normalized }}
+                {{ $order->get_remaining_normalized }}
             </td>
             <td>
                 {{ $order->get_asset }}
             </td>
             <td>
-                {{ $order->give_asset_remaining_normalized }}
+                {{ $order->give_remaining_normalized }}
             </td>
             <td>
                 {{ $order->give_asset }}
