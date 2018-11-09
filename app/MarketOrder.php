@@ -126,7 +126,7 @@ class MarketOrder extends Order
     /**
      * Open Orders
      */
-    public function scopeOpenOrders($query, $block)
+    public function scopeOpenOrders($query)
     {
         $block_index = Cache::get('block_index');
 

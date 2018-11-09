@@ -35,11 +35,11 @@
                         <td>
                             {{ number_format($order->trading_quantity_normalized, 8) }}
                             @if($request->has('card'))
-                                <a href="{{ route('cards.show', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name]) }}">
+                                <a href="{{ route('cards.show', ['card' => $order->trading_pair_base_asset]) }}">
                                     {{ $order->trading_pair_base_asset }}
                                 </a>
                             @else
-                                <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => $request->input('currency', null), 'collector' => $request->input('collector', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
+                                <a href="{{ route('orders.index', ['card' => $order->trading_pair_base_asset, 'currency' => $request->input('currency', null), 'collector' => $request->input('collector', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
                                     {{ $order->trading_pair_base_asset }}
                                 </a>
                             @endif
@@ -48,7 +48,7 @@
                             {{ number_format($order->trading_price_normalized, 8) }}
                             @if(! $request->has('currency'))                    
                                 @if($request->has('card'))
-                                    <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null), 'card' => $request->input('card', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
+                                    <a href="{{ route('orders.index', ['card' => $order->trading_pair_quote_asset, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null), 'card' => $request->input('card', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
                                         {{ $order->trading_pair_quote_asset }}
                                     </a>
                                 @else
@@ -64,7 +64,7 @@
                             {{ number_format($order->trading_total_normalized, 8) }}
                             @if(! $request->has('currency'))                    
                                 @if(! $request->has('card'))
-                                    <a href="{{ route('orders.index', ['card' => in_array($order->getAssetModel->display_name, $currencies) ? $order->giveAssetModel->display_name : $order->getAssetModel->display_name, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
+                                    <a href="{{ route('orders.index', ['card' => $order->trading_pair_quote_asset, 'currency' => explode('/', $order->trading_pair_normalized)[1], 'collector' => $request->input('collector', null), 'collection' => $request->input('collection', null), 'action' => $request->input('action', null), 'sort' => $request->input('sort', null)]) }}">
                                         {{ $order->trading_pair_quote_asset }}
                                     </a>
                                 @else
