@@ -118,7 +118,7 @@ class MarketOrderMatch extends OrderMatch
      * @param  array $currencies
      * @return \App\Order
      */
-    public static function getFilteredOrderMatches($request, $currencies)
+    public static function getFiltered($request, $currencies)
     {
         // Build Query
         $matches = MarketOrderMatch::query();
@@ -126,38 +126,45 @@ class MarketOrderMatch extends OrderMatch
         // The Request
         $request = array_filter($request->all());
 
-        // Filter by Action
-        if(isset($request['action'])) {
+        // By Action
+        if (isset($request['action'])) {
             $give_get = $request['action'] === 'selling' ? 'forward_asset' : 'backward_asset';
             $matches = $matches->cards($give_get);
         }
 
-        // Filter by Card
+        // By Card
         if (isset($request['card'])) {
             $matches = $matches->byCard($request['card']);
         }
 
-        // Filter by Collection
+        // By Collection
         if (isset($request['collection'])) {
             $matches = $matches->byCollection($request['collection']);
         }
 
-        // Filter by Collector
-        if(isset($request['collector'])) {
+        // By Collector
+        if (isset($request['collector'])) {
             $matches = $matches->byCollector($request['collector']);
         }
 
-        // Filter by Currency
-        if(isset($request['currency'])) {
+        // By Currency
+        if (isset($request['currency'])) {
             $matches = $matches->byCurrency($request['currency']);
         }
 
-        // Sort Ending/Newest
-        if(isset($request['sort'])) {
+        // New vs. Old
+        if (isset($request['sort'])) {
             $matches = $matches->orderBy('tx1_index', $request['sort']);
+        } else {
+            $matches = $matches->orderBy('tx1_index', 'desc');
         }
 
-        // Paginate
-        return $matches->paginate(100);
+        // Cache Slug
+        $slug = 'market_order_matches_' . str_slug(serialize($request));
+
+        // Pagination
+        return Cache::remember($slug, 5, function () use ($matches) {
+            return $matches->paginate(100);
+        });
     }
 }

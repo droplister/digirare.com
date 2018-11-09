@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Cache;
 use App\Collection;
 use App\MarketOrderMatch;
-use App\Http\Requests\FilterRequest;
 use Droplister\XcpCore\App\Block;
-use Illuminate\Http\Request;
+use App\Http\Requests\FilterRequest;
 
 class OrderMatchesController extends Controller
 {
@@ -23,16 +21,16 @@ class OrderMatchesController extends Controller
         $collections = Collection::orderBy('name', 'asc')->get();
 
         // All TCG "Currencies"
-        $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
+        $currencies = Collection::get()
+            ->sortBy('currency')
+            ->unique('currency')
+            ->pluck('currency')
+            ->toArray();
 
-        // Unique Cache Slug
-        $slug = 'order_matches_index_' . str_slug(serialize($request->all()));
+        // Market Order Match
+        $matches = MarketOrderMatch::getFiltered($request, $currencies);
 
-        // Get Matching Orders
-        $matches = Cache::remember($slug, 5, function () use ($request, $currencies) {
-            return MarketOrderMatch::getFilteredOrderMatches($request, $currencies);
-        });
-
-        return view('matches.index', compact('collections', 'currencies', 'matches', 'request'));
+        // Show Matches Index
+        return view('matches.index', compact('request', 'collections', 'currencies', 'matches'));
     }
 }

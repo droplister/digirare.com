@@ -129,7 +129,7 @@ class MarketOrder extends Order
      * @param  array $currencies
      * @return \App\Order
      */
-    public static function getFilteredOrders($request, $block, $currencies)
+    public static function getFiltered($request, $block, $currencies)
     {
         // Build Query
         $orders = MarketOrder::openOrders($block);
@@ -137,39 +137,45 @@ class MarketOrder extends Order
         // The Request
         $request = array_filter($request->all());
 
-        // Filter by Action
-        if(isset($request['action'])) {
+        // By Action
+        if (isset($request['action'])) {
             $give_get = $request['action'] === 'selling' ? 'give_asset' : 'get_asset';
             $orders = $orders->cards($give_get);
         }
 
-        // Filter by Card
+        // By Card
         if (isset($request['card'])) {
             $orders = $orders->byCard($request['card']);
         }
 
-        // Filter by Collection
+        // By Collection
         if (isset($request['collection'])) {
             $orders = $orders->byCollection($request['collection']);
         }
 
-        // Filter by Collector
-        if(isset($request['collector'])) {
+        // By Collector
+        if (isset($request['collector'])) {
             $orders = $orders->byCollector($request['collector']);
         }
 
-        // Filter by Currency
-        if(isset($request['currency'])) {
+        // By Currency
+        if (isset($request['currency'])) {
             $orders = $orders->byCurrency($request['currency']);
         }
 
-        // Sort Ending/Newest
-        if(isset($request['sort'])) {
-            $direction = $request['sort'] === 'ending' ? 'asc' : 'desc';
-            $orders = $orders->orderBy('expire_index', 'asc');
+        // New vs. Old
+        if (isset($request['sort'])) {
+            $orders = $orders->orderBy('expire_index', $request['sort']);
+        } else {
+            $orders = $orders->orderBy('expire_index', 'desc');
         }
 
-        // Paginate
-        return $orders->paginate(100);
+        // Cache Slug
+        $slug = 'market_orders_' . str_slug(serialize($request));
+
+        // Pagination
+        $orders = Cache::remember($slug, 5, function () use ($orders) {
+            return $orders->paginate(100);
+        });
     }
 }
