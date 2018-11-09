@@ -2,7 +2,7 @@
 
 @section('title', __('Project Rankings'))
 
-@include('jumbotron')
+@section('jumbotron')
     <section class="jumbotron text-center">
         <div class="container my-5">
             <h1 class="jumbotron-heading">Project Rankings</h1>
