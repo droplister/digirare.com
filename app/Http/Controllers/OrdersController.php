@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Cache;
 use App\Collection;
 use App\MarketOrder;
+use App\Http\Requests\FilterRequest;
 use Droplister\XcpCore\App\Block;
 use Illuminate\Http\Request;
 
@@ -13,20 +14,11 @@ class OrdersController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\FilterRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index(FilterRequest $request)
     {
-        // Simple Validation
-        $request->validate([
-            'card' => 'sometimes|nullable|exists:cards,slug',
-            'action' => 'sometimes|nullable|in:buying,selling',
-            'sort' => 'sometimes|nullable|in:newest,ending,price',
-            'collection' => 'sometimes|nullable|exists:collections,slug',
-            'currency' => 'sometimes|nullable|exists:collections,currency',
-        ]);
-
         // Current Block Index
         $block = Block::latest('block_index')->first();
 

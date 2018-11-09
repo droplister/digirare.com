@@ -42,22 +42,6 @@ class MarketOrder extends Order
     }
 
     /**
-     * Filter by Card
-     */
-    public function scopeByCard($query, $card)
-    {
-        // Get Model
-        $card = Card::findBySlug($card);
-
-        // Assets []
-        $assets = [$card->xcp_core_asset_name];
-
-        // Apply It
-        return $query->whereIn('get_asset', $assets)
-            ->orWhereIn('give_asset', $assets);
-    }
-
-    /**
      * Cards Only
      */
     public function scopeCards($query, $give_get = null)
@@ -74,6 +58,22 @@ class MarketOrder extends Order
             return $query->whereIn('get_asset', $assets)
                 ->orWhereIn('give_asset', $assets);
         }
+    }
+
+    /**
+     * Filter by Card
+     */
+    public function scopeByCard($query, $card)
+    {
+        // Get Model
+        $card = Card::findBySlug($card);
+
+        // Assets []
+        $assets = [$card->xcp_core_asset_name];
+
+        // Apply It
+        return $query->whereIn('get_asset', $assets)
+            ->orWhereIn('give_asset', $assets);
     }
 
     /**
@@ -124,7 +124,7 @@ class MarketOrder extends Order
     /**
      * Get Orders
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\FilterRequest  $request
      * @param  \App\Block  $block
      * @param  array $currencies
      * @return \App\Order
@@ -143,14 +143,14 @@ class MarketOrder extends Order
             $orders = $orders->cards($give_get);
         }
 
-        // Filter by Collection
-        if (isset($request['collection'])) {
-            $orders = $orders->byCollection($request['collection']);
-        }
-
         // Filter by Card
         if (isset($request['card'])) {
             $orders = $orders->byCard($request['card']);
+        }
+
+        // Filter by Collection
+        if (isset($request['collection'])) {
+            $orders = $orders->byCollection($request['collection']);
         }
 
         // Filter by Collector
