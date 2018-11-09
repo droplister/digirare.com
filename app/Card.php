@@ -269,7 +269,7 @@ class Card extends Model
             $sort_by = $side === 'buy' ? 'sortByDesc' : 'sortBy';
 
             return MarketOrder::openOrders()->cards($give_get)
-                ->byCard($this->xcp_core_asset_name)
+                ->byCard($this->slug)
                 ->orderBy('expire_index', 'asc')
                 ->get()
                 ->{$sort_by}('trading_price_normalized');
