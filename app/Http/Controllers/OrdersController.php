@@ -4,12 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Collection;
 use App\MarketOrder;
+use App\Exports\OrdersExport;
 use App\Http\Requests\FilterRequest;
 
 class OrdersController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Open Market Orders
      *
      * @param  \App\Http\Requests\FilterRequest  $request
      * @return \Illuminate\Http\Response
@@ -22,6 +23,18 @@ class OrdersController extends Controller
         // Get Orders
         $orders = MarketOrder::getFiltered($request);
 
+        // Index View
         return view('orders.index', compact('request', 'collections', 'orders'));
+    }
+
+    /**
+     * Export Spreadsheet
+     *
+     * @param  \App\Http\Requests\FilterRequest  $request
+     * @return \Illuminate\Http\Response
+     */
+    public function show(FilterRequest $request)
+    {
+        return (new OrdersExport($request))->download('orders.xlsx');
     }
 }
