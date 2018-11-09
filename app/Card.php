@@ -68,9 +68,7 @@ class Card extends Model
      */
     public function getTradesCountAttribute()
     {
-        $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
-
-        return $this->backwardOrderMatches()->whereIn('forward_asset', $currencies)->count() + $this->forwardOrderMatches()->whereIn('backward_asset', $currencies)->count();
+        return $this->backwardOrderMatches()->count() + $this->forwardOrderMatches()->count();
     }
 
     /**
