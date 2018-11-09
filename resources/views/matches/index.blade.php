@@ -14,10 +14,11 @@
                 Learn about the <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" target="_blank">Counterparty DEX</a>.
             </small>
         </h5>
-        <div class="table-responsive mb-4">
+        <div class="table-responsive mb-5">
             <table class="table border-bottom">
                 <thead>
                     <tr>
+                        <th scope="col">{{ __('Action') }}</th>
                         <th scope="col">{{ __('Quantity') }}</th>
                         <th scope="col">{{ __('Price') }}</th>
                         <th scope="col">{{ __('Total') }}</th>
@@ -29,6 +30,9 @@
                 <tbody>
                     @foreach($matches as $match)
                     <tr>
+                        <td class="{{ $order->trading_type === 'Sell' ? 'text-danger' : 'text-success' }}">
+                            {{ $order->trading_type === 'Sell' ? __('Selling') : __('Buying') }}
+                        </td>
                         <td>
                             {{ $match->trading_quantity_normalized }}
                             <a href="{{ route('matches.index', ['card' => $match->trading_pair_base_asset]) }}">
@@ -57,12 +61,29 @@
                                 {{ str_limit($match->trading_seller_normalized, 8) }}
                             </a>
                         </td>
-                        <td>{{ $match->confirmed_at->diffForHumans() }}</td>
+                        <td>
+                            {{ $match->confirmed_at->diffForHumans() }}
+                        </td>
                     </tr>
                     @endforeach
+                    @if($matches->count() === 0)
+                    <tr>
+                        <td colspan="7" class="text-center">
+                            <em>{{ __('None Trades Found') }}</em>
+                        </td>
+                    </tr>
+                    @endif
                 </tbody>
             </table>
         </div>
-        {!! $matches->appends($request->except('page'))->links() !!}
+        <div class="text-center mb-5">
+            <a href="{{ route('register') }}" class="btn btn-primary">
+                <i aria-hidden="true" class="fa fa-file-excel-o"></i>
+                Export Trade History
+                <span class="badge ml-1">
+                    {{ $matches->total() }} Rows
+                </span>
+            </a>
+        </div>
     </div>
 @endsection

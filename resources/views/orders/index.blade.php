@@ -14,7 +14,7 @@
                 Learn about the <a href="https://medium.com/@droplister/counterparty-dex-tutorial-b38dcab102e5" target="_blank">Counterparty DEX</a>.
             </small>
         </h5>
-        <div class="table-responsive mb-4">
+        <div class="table-responsive mb-5">
             <table class="table border-bottom">
                 <thead>
                     <tr>
@@ -29,7 +29,9 @@
                 <tbody>
                     @foreach($orders as $order)
                     <tr>
-                        <td class="{{ $order->trading_type === 'Sell' ? 'text-danger' : 'text-success' }}">{{ $order->trading_type === 'Sell' ? __('Selling') : __('Buying') }}</td>
+                        <td class="{{ $order->trading_type === 'Sell' ? 'text-danger' : 'text-success' }}">
+                            {{ $order->trading_type === 'Sell' ? __('Selling') : __('Buying') }}
+                        </td>
                         <td>
                             {{ number_format($order->trading_quantity_normalized, 8) }}
                             @if($request->has('card'))
@@ -85,17 +87,29 @@
                                 </a>
                             @endif
                         </td>
-                        <td>{{ $order->expire_index - $block->block_index }} {{ str_plural(__('block'), $order->expire_index - $block->block_index) }}</td>
+                        <td>
+                            {{ $order->expire_index - $block->block_index }} {{ str_plural(__('block'), $order->expire_index - $block->block_index) }}
+                        </td>
                     </tr>
                     @endforeach
                     @if($orders->count() === 0)
                     <tr>
-                        <td colspan="6" class="text-center"><em>{{ __('None Found') }}</em></td>
+                        <td colspan="7" class="text-center">
+                            <em>{{ __('None Open Orders') }}</em>
+                        </td>
                     </tr>
                     @endif
                 </tbody>
             </table>
         </div>
-        {!! $orders->appends($request->except('page'))->links() !!}
+        <div class="text-center mb-5">
+            <a href="{{ route('register') }}" class="btn btn-primary">
+                <i aria-hidden="true" class="fa fa-file-excel-o"></i>
+                Export Trade History
+                <span class="badge ml-1">
+                    {{ $orders->total() }} Rows
+                </span>
+            </a>
+        </div>
     </div>
 @endsection
