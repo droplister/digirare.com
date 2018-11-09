@@ -128,8 +128,10 @@ class MarketOrder extends Order
      */
     public function scopeOpenOrders($query, $block)
     {
+        $block_index = Cache::get('block_index');
+
         // Apply It
-        return $query->where('expire_index', '>', $block->block_index)
+        return $query->where('expire_index', '>', $block_index)
             ->where('status', '=', 'open');
     }
 
@@ -142,7 +144,7 @@ class MarketOrder extends Order
     public static function getFiltered($request)
     {
         // Build Query
-        $orders = MarketOrder::openOrders($block);
+        $orders = MarketOrder::openOrders();
 
         // The Request
         $request = array_filter($request->all());
