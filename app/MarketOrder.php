@@ -174,7 +174,7 @@ class MarketOrder extends Order
         $slug = 'market_orders_' . str_slug(serialize($request));
 
         // Pagination
-        $orders = Cache::remember($slug, 5, function () use ($orders) {
+        return Cache::remember($slug, 5, function () use ($orders) {
             return $orders->paginate(100);
         });
     }
