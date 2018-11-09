@@ -17,10 +17,10 @@
             </a>
         </h6>
         <p class="card-text">
-            {{ __('Prints:') }} {{ number_format($featured->card->token->supply_normalized) }}
+            {{ __('Prints:') }} {{ $featured->card->supply_normalized }}
             <span class="float-right d-none d-md-inline">
-                <a href="{{ route('cards.index', ['collection' => $featured->card->primaryCollection()->first()->slug]) }}">
-                    {{ $featured->card->primaryCollection()->first()->name }}
+                <a href="{{ route('cards.index', ['collection' => $featured->card->getPrimaryCollection()->slug]) }}">
+                    {{ $featured->card->getPrimaryCollection()->>name }}
                 </a>
             </span>
         </p>
