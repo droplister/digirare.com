@@ -3,17 +3,18 @@
 namespace App;
 
 use DB;
+use Cache;
 use App\Collection;
+use App\MarketOrder;
 use App\Traits\Linkable;
 use App\Events\CardWasCreated;
 use Droplister\XcpCore\App\Asset;
-use Droplister\XcpCore\App\Order;
 use Droplister\XcpCore\App\Balance;
 use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
 use Megapixel23\Database\Eloquent\Relations\BelongsToOneTrait;
-use Illuminate\Http\Request;
+use App\Http\Requests\FilterRequest;
 use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
@@ -58,7 +59,9 @@ class Card extends Model
      */
     public function getPrimaryImageUrlAttribute()
     {
-        return $this->primaryCollection()->first()->pivot->image_url;
+        return Cache::rememberForever('c_piu_' . $this->id, function () {
+            return $this->primaryCollection()->first()->pivot->image_url;
+        });
     }
 
     /**
@@ -68,9 +71,9 @@ class Card extends Model
      */
     public function getTradesCountAttribute()
     {
-        $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
-
-        return $this->backwardOrderMatches()->whereIn('forward_asset', $currencies)->count() + $this->forwardOrderMatches()->whereIn('backward_asset', $currencies)->count();
+        return Cache::remember('c_tc_' . $this->id, 1440, function () {
+            return $this->backwardOrderMatches()->count() + $this->forwardOrderMatches()->count();
+        });
     }
 
     /**
@@ -80,16 +83,18 @@ class Card extends Model
      */
     public function getSupplyNormalizedAttribute()
     {
-        // Edge Case
-        $supply = $this->token ? $this->token->supply_normalized : 0;
+        return Cache::remember('c_sn_' . $this->id, 1440, function () {
+            // Edge Case
+            $supply = $this->token ? $this->token->supply_normalized : 0;
 
-        if ($supply < 1000000) {
-            return number_format($supply);
-        } elseif ($supply < 1000000000) {
-            return str_replace('.0', '', number_format($supply / 1000000, 1)) . 'M';
-        } else {
-            return str_replace('.0', '', number_format($supply / 1000000000, 1)) . 'B';
-        }
+            if ($supply < 1000000) {
+                return number_format($supply);
+            } elseif ($supply < 1000000000) {
+                return str_replace('.0', '', number_format($supply / 1000000, 1)) . 'M';
+            } else {
+                return str_replace('.0', '', number_format($supply / 1000000000, 1)) . 'B';
+            }
+        });
     }
 
     /**
@@ -217,30 +222,6 @@ class Card extends Model
     }
 
     /**
-     * Last Match
-     *
-     * @return \Droplister\XcpCore\App\OrderMatch
-     */
-    public function lastMatch()
-    {
-        // All TCG "Currencies"
-        $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
-
-        if ($this->token) {
-            $b = $this->token->backwardOrderMatches()->whereIn('forward_asset', $currencies)->latest('confirmed_at')->first();
-            $f = $this->token->forwardOrderMatches()->whereIn('backward_asset', $currencies)->latest('confirmed_at')->first();
-
-            if ($b && $f) {
-                return $b->confirmed_at > $f->confirmed_at ? $b : $f;
-            } elseif ($b || $f) {
-                return $b ? $b : $f;
-            }
-        }
-
-        return null;
-    }
-
-    /**
      * Active Collections
      */
     public function scopeActive($query)
@@ -251,30 +232,90 @@ class Card extends Model
     }
 
     /**
+     * Last Match
+     *
+     * @return \Droplister\XcpCore\App\OrderMatch
+     */
+    public function lastMatch()
+    {
+        return Cache::remember('c_lm_' . $this->id, 1440, function () {
+            // All TCG "Currencies"
+            $currencies = Collection::get()->sortBy('currency')->unique('currency')->pluck('currency')->toArray();
+
+            if ($this->token) {
+                $b = $this->token->backwardOrderMatches()->whereIn('forward_asset', $currencies)->latest('confirmed_at')->first();
+                $f = $this->token->forwardOrderMatches()->whereIn('backward_asset', $currencies)->latest('confirmed_at')->first();
+
+                if ($b && $f) {
+                    return $b->confirmed_at > $f->confirmed_at ? $b : $f;
+                } elseif ($b || $f) {
+                    return $b ? $b : $f;
+                }
+            }
+
+            return null;
+        });
+    }
+
+    /**
+     * Order Book
+     *
+     * @return \App\MarketOrder
+     */
+    public function orderBook($side)
+    {
+        return Cache::remember('card_orders_' . $side . '_' . $this->slug, 60, function () use ($side) {
+            $give_get = $side === 'buy' ? 'get_asset' : 'give_asset';
+            $sort_by = $side === 'buy' ? 'sortByDesc' : 'sortBy';
+
+            return MarketOrder::openOrders()->cards($give_get)
+                ->byCard($this->xcp_core_asset_name)
+                ->orderBy('expire_index', 'asc')
+                ->get()
+                ->{$sort_by}('trading_price_normalized');
+        });
+    }
+
+    /**
+     * Primary Collection
+     *
+     * @return string
+     */
+    public function getPrimaryCollection()
+    {
+        return Cache::rememberForever('c_pc_' . $this->id, function () {
+            return $this->primaryCollection()->first();
+        });
+    }
+
+    /**
      * Get Filtered
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Http\Requests\FilterRequest  $request
      * @return \App\Card
      */
-    public static function getFiltered(Request $request)
+    public static function getFiltered(FilterRequest $request)
     {
         // Build Query
         $cards = Card::withCount('balances');
 
+        // The Request
+        $request = array_filter($request->all());
+
         // By Keyword
-        if ($request->has('keyword') && $request->filled('keyword')) {
+        if (isset($request['keyword'])) {
             // Build Query
-            $cards = $cards->where('slug', 'like', '%' . $request->keyword . '%');
+            $cards = $cards->where('slug', 'like', '%' . $request['keyword'] . '%');
         }
 
         // By Format
-        if ($request->has('format') && $request->filled('format')) {
+        if (isset($request['format'])) {
             // Card IDs
             $ids = DB::table('card_collection')
-                ->where('image_url', 'like', '%' . $request->format);
+                ->where('image_url', 'like', '%' . $request['format']);
             
             // JPG Case
-            if ($request->format === 'JPG') {
+            if ($request['format'] === 'JPG') {
                 $ids = $ids->orWhere('image_url', 'like', '%JPEG');
             }
 
@@ -286,31 +327,36 @@ class Card extends Model
         }
 
         // By Artist
-        if ($request->has('artist') && $request->filled('artist')) {
+        if (isset($request['artist'])) {
             // Build Query
             $cards = $cards->whereHas('artists', function ($artist) use ($request) {
-                return $artist->where('slug', '=', $request->artist);
+                return $artist->where('slug', '=', $request['artist']);
             });
         }
 
         // By Collection
-        if ($request->has('collection') && $request->filled('collection')) {
+        if (isset($request['collection'])) {
             // Build Query
             $cards = $cards->whereHas('collections', function ($collection) use ($request) {
-                return $collection->where('slug', '=', $request->collection);
+                return $collection->where('slug', '=', $request['collection']);
             });
         }
 
         // By Category
-        if ($request->has('category') && $request->filled('category')) {
+        if (isset($request['collection']) && isset($request['category'])) {
             // JSON Meta
-            $meta = $request->collection === 'bitcorn-crops' ? 'meta->harvest' : 'meta->series';
+            $meta = $request['collection'] === 'bitcorn-crops' ? 'meta->harvest' : 'meta->series';
             // Build Query
-            $cards = $cards->whereJsonContains($meta, (int) $request->category);
+            $cards = $cards->whereJsonContains($meta, (int) $request['category']);
         }
 
-        // Sort Pages
-        return $cards->orderBy('balances_count', 'desc')->paginate(100);
+        // Cache Slug
+        $cache_slug = 'search_' . str_slug(serialize($request));
+
+        // Pagination
+        return Cache::remember($cache_slug, 60, function () use ($cards) {
+            return $cards->orderBy('balances_count', 'desc')->paginate(100);
+        });
     }
 
     /**

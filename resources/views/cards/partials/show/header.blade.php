@@ -4,13 +4,13 @@
     @endforeach
     @if(Auth::check())
     <card-likes card="{{ $card->slug }}"
-        likes="{{ $likes }}"
-        dislikes="{{ $dislikes }}">
+        likes="{{ $card->likes()->count() }}"
+        dislikes="{{ $card->dislikes()->count() }}">
     </card-likes>
     @else
     <span class="pull-right">
-        <a href="{{ route('login') }}"><i class="fa fa-thumbs-o-up text-success"></i></a> {{ $likes }} &nbsp;
-        <a href="{{ route('login') }}"><i class="fa fa-thumbs-o-down text-danger"></i></a> {{ $dislikes }}
+        <a href="{{ route('login') }}"><i class="fa fa-thumbs-o-up text-success"></i></a> {{ $card->likes()->count() }} &nbsp;
+        <a href="{{ route('login') }}"><i class="fa fa-thumbs-o-down text-danger"></i></a> {{ $card->dislikes()->count() }}
     </span>
     @endif
 </p>
@@ -18,6 +18,6 @@
     {{ $card->name }}
 </h1>
 <p class="text-muted">
-    {{ __('Issued:') }} {{ $token ? $token->confirmed_at->toFormattedDateString() : __('Syncing') }} &nbsp;&nbsp;&nbsp;
-    {{ __('Last Traded:') }} {{ $last_match ? $last_match->confirmed_at->toFormattedDateString() : __('N/A') }}
+    {{ __('Issued:') }} {{ $card->token ? $card->token->confirmed_at->toFormattedDateString() : __('Syncing') }} &nbsp;&nbsp;&nbsp;
+    {{ __('Last Traded:') }} {{ $card->lastMatch() ? $card->lastMatch()->confirmed_at->toFormattedDateString() : __('N/A') }}
 </p>

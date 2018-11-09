@@ -1,7 +1,7 @@
 <section class="jumbotron text-center">
     <div class="container my-5">
-        <h1 class="jumbotron-heading">CryptoCollectibles</h1>
-        <p class="lead text-muted">CryptoArt on the Bitcoin Blockchain.</p>
+        <h1 class="jumbotron-heading">Crypto Collectibles</h1>
+        <p class="lead text-muted">Crypto Art on the Bitcoin Blockchain.</p>
         <p>
             <a href="{{ route('cards.index') }}" class="btn btn-primary my-2">
                 <i class="fa fa-search" aria-hidden="true"></i> Browse Directory
