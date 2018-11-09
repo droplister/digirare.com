@@ -1,5 +1,5 @@
 @guest
-    <a href="{{ route('register') }}" class="btn btn-primary" onClick="ga('send', 'event', 'export', 'register', 'orders', {{ $orders->total() }})">
+    <a href="{{ route('register') }}" class="btn btn-primary">
         <i aria-hidden="true" class="fa fa-file-excel-o"></i>
         Export Open Orders
         <span class="badge ml-1">
@@ -10,7 +10,7 @@
         (Requires Free Registration)
     </div>
 @else
-    <a href="{{ route('orders.show', $request->all()) }}" class="btn btn-primary" onClick="ga('send', 'event', 'export', 'download', 'orders', {{ $orders->total() }})" download>
+    <a href="{{ route('orders.show', $request->all()) }}" class="btn btn-primary" download>
         <i aria-hidden="true" class="fa fa-file-excel-o"></i>
         Export Open Orders
         <span class="badge ml-1">
