@@ -52,7 +52,7 @@
             </a>
         </h6>
         <p class="card-text">
-            {{ __('Prints:') }} {{ number_format($card->token->supply_normalized) }}
+            {{ __('Prints:') }} {{ $card->supply_normalized }}
             <span class="float-right d-none d-md-inline">
                 <a href="{{ route('cards.index', ['collection' => $card->getPrimaryCollection()->slug]) }}">
                     {{ $card->getPrimaryCollection()->name }}
