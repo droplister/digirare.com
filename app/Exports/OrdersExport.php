@@ -18,7 +18,7 @@ class OrdersExport implements FromView
     {
         $orders = MarketOrder::getFiltered($this->request, false);
 
-        return view('orders.partials.table', [
+        return view('orders.export', [
             'orders' => $orders,
             'request' => $this->request,
         ]);

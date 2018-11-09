@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title', __('Counterparty DEX - Buy & Sell Crypto Collectibles'))
+@section('title', __('Buy & Sell Crypto Collectibles'))
 
 @section('jumbotron')
     @include('orders.partials.filter')

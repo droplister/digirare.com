@@ -66,7 +66,7 @@
         @if($orders->count() === 0)
             <tr>
                 <td colspan="7" class="text-center">
-                    <em>{{ __('None Open Orders') }}</em>
+                    <em>{{ __('No Open Orders') }}</em>
                 </td>
             </tr>
         @endif
