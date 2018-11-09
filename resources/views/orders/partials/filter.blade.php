@@ -1,6 +1,8 @@
 <section class="jumbotron">
     <div class="container">
-        <h1 class="jumbotron-heading">Market <small class="lead text-muted">Counterparty DEX</small></h1>
+        <h1 class="jumbotron-heading">
+            Market <small class="lead text-muted">Counterparty DEX</small>
+        </h1>
         <form method="GET" action="{{ route('orders.index') }}">
             @if($request->has('collector') && $request->filled('collector'))
             <input type="hidden" id="collector" name="collector" value="{{ $request->collector }}">

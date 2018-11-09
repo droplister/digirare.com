@@ -17,7 +17,6 @@
             </td>
             <td>
                 {{ number_format($order->trading_quantity_normalized, 8) }}
-
                 @if($request->has('card') && $request->filled('card'))
                     <a href="{{ route('cards.show', ['card' => $order->trading_pair_base_asset]) }}">
                         {{ $order->trading_pair_base_asset }}
@@ -30,7 +29,6 @@
             </td>
             <td>
                 {{ number_format($order->trading_price_normalized, 8) }}
-
                 @if($request->has('currency') && $request->filled('currency'))
                     {{ $order->trading_pair_quote_asset }}
                 @else
@@ -41,7 +39,6 @@
             </td>
             <td>
                 {{ number_format($order->trading_total_normalized, 8) }}
-
                 @if($request->has('currency') && $request->filled('currency'))
                     {{ $order->trading_pair_quote_asset }}
                 @else
@@ -50,20 +47,19 @@
                     </a>
                 @endif
             </td>
-            <td>
+            <td class="thin-col">
                 @if($request->has('collector'))
                     <a href="{{ route('collectors.show', ['collector' => $order->source]) }}">
-                        {{ str_limit($order->source, 8) }}
+                        {{ $order->source }}
                     </a>
                 @else
                     <a href="{{ route('orders.index', $request->all() + ['collector' => $order->source]) }}">
-                        {{ str_limit($order->source, 8) }}
+                        {{ $order->source }}
                     </a>
                 @endif
             </td>
             <td>
-                {{ $order->blocks_left }}
-                {{ str_plural('block', $order->blocks_left) }}
+                {{ $order->blocks_left }} {{ str_plural('block', $order->blocks_left) }}
             </td>
         </tr>
         @endforeach

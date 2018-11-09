@@ -32,6 +32,12 @@
   color: #00FF21 !important;
 }
 
+.thin-col {
+  max-width: 100px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
 #nightmode {
   color: #fff;
   background-color: #000;
@@ -41,6 +47,18 @@
   color: #fff;
   background-color: #000;
   box-shadow: 0 2px 4px rgba(255,255,255,0.04);
+}
+
+#nightmode .navbar-brand {
+  color: rgba(255,255,255,0.9);
+}
+
+#nightmode .nav-link {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+#nightmode .jumbotron {
+  background-color: #212529;
 }
 
 #nightmode .bg-white {
@@ -55,14 +73,6 @@
   color: #f8f9fa !important;
 }
 
-#nightmode .navbar-brand {
-  color: rgba(255,255,255,0.9);
-}
-
-#nightmode .nav-link {
-  color: rgba(255, 255, 255, 0.5) !important;
-}
-
-#nightmode .jumbotron {
-  background-color: #212529;
+#nightmode hr {
+  color: #f8f9fa !important;
 }
