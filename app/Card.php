@@ -5,10 +5,10 @@ namespace App;
 use DB;
 use Cache;
 use App\Collection;
+use App\MarketOrder;
 use App\Traits\Linkable;
 use App\Events\CardWasCreated;
 use Droplister\XcpCore\App\Asset;
-use Droplister\XcpCore\App\Order;
 use Droplister\XcpCore\App\Balance;
 use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -250,7 +250,7 @@ class Card extends Model
     /**
      * Order Book
      *
-     * @return \Droplister\XcpCore\App\Order
+     * @return \App\MarketOrder
      */
     public function orderBook($side)
     {
@@ -258,7 +258,7 @@ class Card extends Model
             $give_get = $side === 'buy' ? 'get_asset' : 'give_asset';
             $sort_by = $side === 'buy' ? 'sortByDesc' : 'sortBy';
 
-            return Order::openOrders()->cards($give_get)
+            return MarketOrder::openOrders()->cards($give_get)
                 ->byCard($this->xcp_core_asset_name)
                 ->orderBy('expire_index', 'asc')
                 ->get()
