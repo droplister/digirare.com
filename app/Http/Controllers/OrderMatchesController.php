@@ -58,11 +58,6 @@ class OrderMatchesController extends Controller
      */
     private function getOrderMatches($currencies, $request)
     {
-        // All Card Asset Names
-        $assets = Cache::rememberForever('cards_array', function () {
-            return Card::pluck('xcp_core_asset_name')->toArray();
-        });
-
         // Filter by Collection
         if ($request->has('collection') && $request->filled('collection')) {
             $collection = Collection::findBySlug($request->collection);
@@ -81,20 +76,10 @@ class OrderMatchesController extends Controller
         }
 
         // Filters
-        if ($request->has('collector') && $request->has('currency') && $request->has('action') &&
-            $request->filled('collector') && $request->filled('currency') && $request->filled('action')) {
-            // Buying/Selling
-            if ($request->action === 'buying') {
-                $matches = OrderMatch::whereIn('backward_asset', $assets)
-                    ->where('tx1_address', '=', $request->collector)
-                    ->where('forward_asset', '=', $request->currency);
-            } else {
-                $matches = OrderMatch::whereIn('forward_asset', $assets)
-                    ->where('tx1_address', '=', $request->collector)
-                    ->where('backward_asset', '=', $request->currency);
-            }
-        } elseif ($request->has('currency') && $request->has('action') &&
-            $request->filled('currency') && $request->filled('action')) {
+        if ($request->has('collector') && $request->has('currency') && $request->has('action') && $request->filled('collector') && $request->filled('currency') && $request->filled('action')) {
+            $matches = OrderMatch::getActionCollectorCurrency($request);
+
+        } elseif ($request->has('currency') && $request->has('action') && $request->filled('currency') && $request->filled('action')) {
             // Buying/Selling
             if ($request->action === 'buying') {
                 $matches = OrderMatch::whereIn('backward_asset', $assets)
@@ -103,8 +88,7 @@ class OrderMatchesController extends Controller
                 $matches = OrderMatch::whereIn('forward_asset', $assets)
                     ->where('backward_asset', '=', $request->currency);
             }
-        } elseif ($request->has('collector') && $request->has('action') &&
-            $request->filled('collector') && $request->filled('action')) {
+        } elseif ($request->has('collector') && $request->has('action') && $request->filled('collector') && $request->filled('action')) {
             // Buying/Selling
             if ($request->action === 'buying') {
                 $matches = OrderMatch::whereIn('backward_asset', $assets)
@@ -113,8 +97,7 @@ class OrderMatchesController extends Controller
                 $matches = OrderMatch::whereIn('forward_asset', $assets)
                     ->where('tx1_address', '=', $request->collector);
             }
-        } elseif ($request->has('currency') && $request->has('collector') &&
-        $request->filled('currency') && $request->filled('collector')) {
+        } elseif ($request->has('currency') && $request->has('collector') && $request->filled('currency') && $request->filled('collector')) {
             $matches = OrderMatch::whereIn('backward_asset', $assets)
                 ->where('forward_asset', '=', $request->currency)
                 ->where('tx1_address', '=', $request->collector)
@@ -147,10 +130,14 @@ class OrderMatchesController extends Controller
                 ->whereIn('backward_asset', $currencies);
         }
 
-        // Sorting
-        $matches = $request->input('sort', 'latest') === 'latest' ? $matches->orderBy('tx1_index', 'desc') : $matches->orderBy('tx1_index', 'asc');
+        // Sort Latest/Oldest
+        if ($request->has('sort') && $request->filled('sort') && $request->sort === 'latest') {
+            $matches = $matches->orderBy('tx1_index', 'desc');
+        } else {
+            $matches = $matches->orderBy('tx1_index', 'asc');
+        }
 
-        // Paginate
+        // Paginated Results
         return $matches->paginate(100);
     }
 }
