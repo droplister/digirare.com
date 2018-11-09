@@ -7,7 +7,7 @@
             <th scope="col">{{ __('Total') }}</th>
             <th scope="col">{{ __('Buyer') }}</th>
             <th scope="col">{{ __('Seller') }}</th>
-            <th scope="col"><a href="{{ route('matches.index', $request->all() + ['sort' => $request->input('sort', 'desc') === 'desc' ? 'asc' : 'desc']) }}" class="text-dark">{{ __('Confirmed') }}</a></th>
+            <th scope="col"><a href="{{ route('matches.index', $request->except('sort') + ['sort' => $request->input('sort', 'desc') === 'desc' ? 'asc' : 'desc']) }}" class="text-dark">{{ __('Confirmed') }}</a></th>
         </tr>
     </thead>
     <tbody>
