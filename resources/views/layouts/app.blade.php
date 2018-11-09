@@ -24,18 +24,8 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    <!-- Google -->
-    <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer','GTM-NRWC5VH');</script>
 </head>
 <body id="{{ session()->get('nightmode') === 'true' ? 'nightmode' : '' }}">
-    <!-- Google -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NRWC5VH"
-    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-    <!-- Google -->
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
