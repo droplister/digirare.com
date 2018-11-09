@@ -4,7 +4,7 @@
             Trades <small class="lead text-muted">Counterparty DEX</small>
         </h1>
         <form method="GET" action="{{ route('matches.index') }}">
-            @foreach(['card', 'collector', 'currency', 'format', sort'] as $filter)
+            @foreach(['card', 'collector', 'currency', 'format', 'sort'] as $filter)
                 @if($request->has($filter) && $request->filled($filter))
                     <input type="hidden" id="{{ $filter }}" name="{{ $filter }}" value="{{ $request->{$filter} }}">
                 @endif
