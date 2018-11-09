@@ -139,9 +139,10 @@ class MarketOrder extends Order
      * Get Orders
      *
      * @param  \App\Http\Requests\FilterRequest  $request
+     * @param  boolean  $paginate
      * @return \App\Order
      */
-    public static function getFiltered($request)
+    public static function getFiltered($request, $paginate = true)
     {
         // Build Query
         $orders = MarketOrder::openOrders();
@@ -182,12 +183,22 @@ class MarketOrder extends Order
             $orders = $orders->orderBy('expire_index', 'desc');
         }
 
-        // Cache Slug
-        $slug = 'market_orders_' . str_slug(serialize($request));
+        if ($paginate) {
+            // Cache Slug
+            $slug = 'market_orders_' . str_slug(serialize($request));
 
-        // Pagination
-        return Cache::remember($slug, 5, function () use ($orders) {
-            return $orders->paginate(100);
-        });
+            // Pagination
+            return Cache::remember($slug, 5, function () use ($orders) {
+                return $orders->paginate(100);
+            });
+        } else {
+            // Cache Slug
+            $slug = 'market_orders_get_' . str_slug(serialize($request));
+
+            // All Results
+            return Cache::remember($slug, 5, function () use ($orders) {
+                return $orders->get();
+            });
+        }
     }
 }
