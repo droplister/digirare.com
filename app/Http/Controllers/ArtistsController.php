@@ -4,7 +4,6 @@ namespace App\Http\Controllers;
 
 use Cache;
 use App\Artist;
-use App\Feature;
 use Illuminate\Http\Request;
 
 class ArtistsController extends Controller
@@ -21,15 +20,10 @@ class ArtistsController extends Controller
         $sort = $request->input('sort', 'balances');
 
         // Artists
-        $artists = Cache::remember('artists_index_' . $sort, 1440, function () use ($sort) {
-            return $this->getArtists($sort);
-        });
-
-        // Featured
-        $features = Feature::highestBids()->with('card.token')->get();
+        $artists = Artist::getArtists($sort);
 
         // Index View
-        return view('artists.index', compact('artists', 'sort', 'features'));
+        return view('artists.index', compact('artists', 'sort'));
     }
 
     /**
@@ -47,42 +41,13 @@ class ArtistsController extends Controller
             ->paginate(100);
 
         // First Card
-        $first_issuance = $artist->cards()->get()->sortBy(function ($card) {
-            return $card->token['confirmed_at'];
-        })->first()->token->confirmed_at->toFormattedDateString();
+        $first_issuance = Cache::rememberForever('first_card_' . $artist->id, function () use ($artist) {
+            return $artist->cards()->get()->sortBy(function ($card) {
+                return $card->token['confirmed_at'];
+            })->first()->token->confirmed_at->toFormattedDateString();
+        });
 
         // Show View
         return view('artists.show', compact('artist', 'cards', 'first_issuance'));
-    }
-
-    /**
-     * Get Artists
-     *
-     * @param  string  $sort
-     * @return \App\Artist
-     */
-    private function getArtists($sort)
-    {
-        $artists = Artist::with('balances')->withCount('balances', 'cards');
-
-        switch ($sort) {
-            case 'balance':
-                $artists = $artists->orderBy('balances_count', 'desc')->get();
-                break;
-            case 'cards':
-                $artists = $artists->orderBy('cards_count', 'desc')->get();
-                break;
-            case 'collectors':
-                $artists = $artists->get()->sortByDesc('collectors_count');
-                break;
-            case 'collections':
-                $artists = $artists->get()->sortByDesc('collections_count');
-                break;
-            default:
-                $artists = $artists->orderBy('balances_count', 'desc')->get();
-                break;
-        }
-
-        return $artists;
     }
 }

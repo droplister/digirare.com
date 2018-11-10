@@ -297,7 +297,7 @@ class Card extends Model
     public static function getFiltered(FilterRequest $request)
     {
         // Build Query
-        $cards = Card::withCount('balances');
+        $cards = static::withCount('balances');
 
         // The Request
         $request = array_filter($request->all());

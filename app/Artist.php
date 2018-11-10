@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cache;
 use App\Traits\Linkable;
 use Droplister\XcpCore\App\Balance;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -131,6 +132,36 @@ class Artist extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    /**
+     * Get Artists
+     *
+     * @param  string  $sort
+     * @return \App\Artist
+     */
+    public static function getArtists($sort)
+    {
+        return Cache::remember('artists_index_' . $sort, 1440, function () use ($sort) {
+            $artists = static::with('balances')->withCount('cards');
+
+            switch ($sort) {
+                case 'cards':
+                    $artists = $artists->orderBy('cards_count', 'desc')->get();
+                    break;
+                case 'collectors':
+                    $artists = $artists->get()->sortByDesc('collectors_count');
+                    break;
+                case 'prints':
+                    $artists = $artists->get()->sortByDesc('total_supply');
+                    break;
+                default:
+                    $artists = $artists->orderBy('cards_count', 'desc')->get();
+                    break;
+            }
+
+            return $artists;
+        });
     }
 
     /**

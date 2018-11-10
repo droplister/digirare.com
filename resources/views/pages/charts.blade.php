@@ -13,6 +13,6 @@
 
 @section('content')
     <div class="text-center my-5">
-        Coming Soon (Two Weeks<sup>&trade;</sup>)
+        Coming Soon - Two Weeks<sup>&trade;</sup>
     </div>
 @endsection
