@@ -31,14 +31,15 @@
                             </a>
                         </th>
                         <th scope="col">
+                            {{ __('Collections') }}
+                        </th>
+                        <th scope="col">
                             <a href="{{ route('artists.index', ['sort' => 'collectors']) }}" class="text-dark">
                                 {{ __('Collectors') }}
                             </a>
                         </th>
                         <th scope="col">
-                            <a href="{{ route('artists.index', ['sort' => 'prints']) }}" class="text-dark">
-                                {{ __('Prints') }}
-                            </a>
+                            {{ __('Prints') }}
                         </th>
                     </tr>
                 </thead>
@@ -55,6 +56,9 @@
                         </td>
                         <td>
                             {{ $artist->cards_count }}
+                        </td>
+                        <td>
+                            {{ $artist->collections_count }}
                         </td>
                         <td>
                             {{ number_format($artist->collectors_count) }}
