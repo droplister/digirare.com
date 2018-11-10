@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Cache;
 use App\Traits\Linkable;
 use Droplister\XcpCore\App\Balance;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -141,7 +142,7 @@ class Artist extends Model
      */
     public static function getArtists($sort)
     {
-        Cache::remember('artists_index_' . $sort, 1440, function () use ($sort) {
+        return Cache::remember('artists_index_' . $sort, 1440, function () use ($sort) {
             $artists = static::with('balances')->withCount('cards');
 
             switch ($sort) {

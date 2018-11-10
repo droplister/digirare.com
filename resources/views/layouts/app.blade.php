@@ -66,9 +66,9 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{ route('pages.charts') }}">
-                                <i class="fa fa-line-chart" aria-hidden="true"></i>
-                                {{ __('Charts') }}
+                            <a class="nav-link" href="{{ route('artists.index') }}">
+                                <i class="fa fa-users" aria-hidden="true"></i>
+                                {{ __('Artists') }}
                             </a>
                         </li>
                         <li class="nav-item d-none d-lg-inline-block">
