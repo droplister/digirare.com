@@ -75,18 +75,26 @@
                                 {{ number_format($collection->usersCount(7)) }}
                             </td>
                             <td>
-                                {{ $collection->volumeTotal(1) }} XCP
+                                <a href="{{ route('matches.index', ['collection' => $collection->slug, 'currency' => 'XCP']) }}" class="text-dark">
+                                    {{ $collection->volumeTotal(1) }} XCP
+                                </a>
                                 @if($collection->currency !== 'XCP')
-                                    <small class="d-block text-muted">
-                                        {{ $collection->volumeTotal(1, $collection->currency) }} {{ $collection->currency }}
+                                    <small class="d-block">
+                                        <a href="{{ route('matches.index', ['collection' => $collection->slug, 'currency' => $collection->currency]) }}" class="text-muted">
+                                            {{ $collection->volumeTotal(1, $collection->currency) }} {{ $collection->currency }}
+                                        </a>
                                     </small>
                                 @endif
                             </td>
                             <td>
-                                {{ $collection->volumeTotal(7) }} XCP
+                                <a href="{{ route('matches.index', ['collection' => $collection->slug, 'currency' => 'XCP']) }}" class="text-dark">
+                                    {{ $collection->volumeTotal(7) }} XCP
+                                </a>
                                 @if($collection->currency !== 'XCP')
-                                    <small class="d-block text-muted">
-                                        {{ $collection->volumeTotal(7, $collection->currency) }} {{ $collection->currency }}
+                                    <small class="d-block">
+                                        <a href="{{ route('matches.index', ['collection' => $collection->slug, 'currency' => $collection->currency]) }}" class="text-muted">
+                                            {{ $collection->volumeTotal(7, $collection->currency) }} {{ $collection->currency }}
+                                        </a>
                                     </small>
                                 @endif
                             </td>
