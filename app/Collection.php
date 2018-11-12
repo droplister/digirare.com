@@ -241,7 +241,7 @@ class Collection extends Model
      *
      * @return string
      */
-    public function volumeTotal($subDays = 1)
+    public function volumeTotal($subDays = 1, $asset = 'XCP')
     {
         $assets = Cache::rememberForever('cards_array_' . $this->id, function () {
             $assets = $this->cards->pluck('xcp_core_asset_name')->toArray();
@@ -250,6 +250,7 @@ class Collection extends Model
                 'age-of-rust',
                 'bitcorn-crops',
                 'footballcoin',
+                'force-of-will',
                 'mafiawars',
                 'penisium',
                 'rare-pepe',
@@ -261,17 +262,19 @@ class Collection extends Model
             return in_array($this->slug, $collections) ? array_merge($assets, $currency) : $assets;
         });
 
+        $asset = Asset::where('asset_name', '=', $asset)->first();
+
         $buys = OrderMatch::whereIn('backward_asset', $assets)
-            ->where('forward_asset', '=', 'XCP')
+            ->where('forward_asset', '=', $asset->asset_name)
             ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
             ->sum('forward_quantity');
 
         $sells = OrderMatch::whereIn('forward_asset', $assets)
-            ->where('backward_asset', '=', 'XCP')
+            ->where('backward_asset', '=', $asset->asset_name)
             ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
             ->sum('backward_quantity');
 
-        return normalizeQuantity($buys + $sells, true);
+        return normalizeQuantity($buys + $sells, $asset->divisible);
     }
 
     /**
