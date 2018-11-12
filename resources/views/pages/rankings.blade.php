@@ -76,9 +76,19 @@
                             </td>
                             <td>
                                 {{ $collection->volumeTotal(1) }} XCP
+                                @if($collection->currency !== 'XCP')
+                                    <small class="d-block text-muted">
+                                        {{ $collection->volumeTotal(1, $collection->currency) }} {{ $collection->currency }}
+                                    </small>
+                                @endif
                             </td>
                             <td>
                                 {{ $collection->volumeTotal(7) }} XCP
+                                @if($collection->currency !== 'XCP')
+                                    <small class="d-block text-muted">
+                                        {{ $collection->volumeTotal(7, $collection->currency) }} {{ $collection->currency }}
+                                    </small>
+                                @endif
                             </td>
                             <td>
                                 {{ number_format($collection->txsCount(1)) }}
