@@ -58,9 +58,6 @@ class UpdateBookOfOrbs implements ShouldQueue
         // Book of Orbs API
         $response = $this->getAPI();
 
-        // Update Currency
-        $this->updateCurrency($response);
-
         // Get Card Array
         $cards = $this->fetchCards($response);
 
@@ -74,23 +71,6 @@ class UpdateBookOfOrbs implements ShouldQueue
             // Create Card
             $this->updateOrCreateCard($name, $data);
         }
-    }
-
-    /**
-     * Update Currency
-     *
-     * @param  array  $response
-     * @return void
-     */
-    private function updateCurrency($response)
-    {
-        // Currency String
-        $currency = $this->getCurrency($response, $this->collection->meta['bundleId']);
-
-        // Update Currency
-        $this->collection->update([
-            'currency' => $currency,
-        ]);
     }
 
     /**

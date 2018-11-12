@@ -246,16 +246,7 @@ class Collection extends Model
         $assets = Cache::rememberForever('cards_array_' . $this->id, function () {
             $assets = $this->cards->pluck('xcp_core_asset_name')->toArray();
 
-            $collections = [
-                'age-of-rust',
-                'bitcorn-crops',
-                'footballcoin',
-                'force-of-will',
-                'mafiawars',
-                'penisium',
-                'rare-pepe',
-                'spells-of-genesis',
-            ];
+            $collections = Collection::where('currency', '!=', 'XCP')->pluck('slug')->toArray();
 
             $currency = $this->slug === 'bitcorn-crops' ? ['BITCORN', 'CROPS'] : [$this->currency];
 
