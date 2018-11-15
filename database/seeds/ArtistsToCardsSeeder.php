@@ -45,6 +45,16 @@ class ArtistsToCardsSeeder extends Seeder
                 'Indelible Trade' => [
                     'THESCARECROW',
                 ],
+                'mightbemike' => [
+                    'BATTLECORN',
+                    'CHULAKORNS',
+                    'CORNBADGER',
+                    'CORNBUDDHA',
+                    'CORNKITTIES',
+                    'CORNTUKTUK',
+                    'HAYABUSATWO',
+                    'OJISANPEPE',
+                ],
                 'Pepe Hawking' => [
                     'CORNMCAFEE',
                     'CORNPARTY',
