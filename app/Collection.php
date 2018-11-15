@@ -204,8 +204,10 @@ class Collection extends Model
 
             $collections = [
                 'age-of-rust',
+                'artolin',
                 'bitcorn-crops',
                 'footballcoin',
+                'force-of-will',
                 'kaleidoscope',
                 'mafiawars',
                 'penisium',
