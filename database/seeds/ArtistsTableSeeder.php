@@ -118,6 +118,9 @@ class ArtistsTableSeeder extends Seeder
             'mightbemike' => [
                 'content' => 'Creator of BitcornBattle.com and artist/contributor to Bitcorn Crops and Pepe Vote.'
             ],
+            'TRUCK' => [
+                'content' => 'A memeologist and expert in word play. Member of the first ever Bitcorn Foundation board.'
+            ],
         ];
     }
 }
