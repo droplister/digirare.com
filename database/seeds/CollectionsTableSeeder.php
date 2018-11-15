@@ -96,7 +96,7 @@ class CollectionsTableSeeder extends Seeder
                 'currency' => 'XFCCOIN',
             ],
             'Kaleidoscope' => [
-                'currency' => 'XCP',
+                'currency' => 'BITROCK',
             ],
             'MafiaWars' => [
                 'currency' => 'MAFIACASH',

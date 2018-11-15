@@ -206,6 +206,7 @@ class Collection extends Model
                 'age-of-rust',
                 'bitcorn-crops',
                 'footballcoin',
+                'kaleidoscope',
                 'mafiawars',
                 'penisium',
                 'rare-pepe',
