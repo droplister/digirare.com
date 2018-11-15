@@ -99,6 +99,7 @@ class ArtistsToCardsSeeder extends Seeder
                 ],
                 'TRUCK' => [
                     'BILLYMAIZE',
+                    'CORNWALLIS',
                     'CORNYEEZUS',
                     'FARMSPIDER',
                     'HYGROMETER',
@@ -108,6 +109,7 @@ class ArtistsToCardsSeeder extends Seeder
             'Kaleidoscope' => [
                 'TRUCK' => [
                     'BILLYBUCKS',
+                    'ICEBEAST',
                 ],
             ],
             'MafiaWars' => [
