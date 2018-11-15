@@ -16,7 +16,7 @@
 @section('content')
     <div class="container">
         <h5 class="mb-5">
-            {{ $artists->total() }} {{ str_plural('Artist', $artists->total()) }} Featured
+            {{ $artists->count() }} {{ str_plural('Artist', $artists->count()) }} Featured
             <small class="d-none d-md-inline-block pull-right text-muted">
                 @if(rand(0, 1))
                     Counterparty is ideal for CryptoArt.
@@ -45,6 +45,5 @@
             </div>
             @endforeach
         </div>
-        {!! $artists->appends($request->except('page'))->links() !!}
     </div>
 @endsection
