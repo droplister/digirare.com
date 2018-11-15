@@ -15,61 +15,36 @@
 
 @section('content')
     <div class="container">
-        <div class="table-responsive mb-5">
-            <table class="table border-bottom">
-                <thead>
-                    <tr>
-                        <th scope="col" style="width: 50px">
-                            #
-                        </th>
-                        <th scope="col">
-                            {{ __('Artist') }}
-                        </th>
-                        <th scope="col">
-                            <a href="{{ route('artists.index', ['sort' => 'cards']) }}" class="text-dark">
-                                {{ __('Cards') }}
-                            </a>
-                        </th>
-                        <th scope="col">
-                            {{ __('Collections') }}
-                        </th>
-                        <th scope="col">
-                            <a href="{{ route('artists.index', ['sort' => 'collectors']) }}" class="text-dark">
-                                {{ __('Collectors') }}
-                            </a>
-                        </th>
-                        <th scope="col">
-                            {{ __('Prints') }}
-                        </th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @foreach($artists as $artist)
-                    <tr>
-                        <th scope="row">
-                            {{ $loop->iteration }}.
-                        </th>
-                        <td>
-                            <a href="{{ $artist->url }}">
-                                {{ $artist->name }}
-                            </a>
-                        </td>
-                        <td>
-                            {{ $artist->cards_count }}
-                        </td>
-                        <td>
-                            {{ $artist->collections_count }}
-                        </td>
-                        <td>
-                            {{ number_format($artist->collectors_count) }}
-                        </td>
-                        <td>
-                            {{ $artist->total_supply }}
-                        </td>
-                    </tr>
-                    @endforeach
-                </tbody>
-            </table>
+        <h5 class="mb-5">
+            {{ $artists->total() }} {{ str_plural('Artist', $artists->total()) }} Featured
+            <small class="d-none d-md-inline-block pull-right text-muted">
+                @if(rand(0, 1))
+                    Counterparty is ideal for CryptoArt.
+                @else
+                    Creating CryptoArt as early as 2015.
+                @endif
+            </small>
+        </h5>
+        <div class="row mb-4">
+            @foreach($artists as $artist)
+            <div class="col-6 col-sm-4 col-lg-3 mb-4">
+                <a href="{{ $artist->url }}">
+                    <img src="{{ $artist->image_url }}" alt="{{ $artist->name }}" width="100%" />
+                </a>
+                <h6 class="card-title mt-3 mb-1">
+                    <a href="{{ $artist->url }}" class="font-weight-bold text-dark">
+                        {{ $artist->name }}
+                    </a>
+                </h6>
+                <p class="card-text">
+                    {{ __('Prints:') }} {{ $artist->total_supply }}
+                    <span class="float-right d-none d-md-inline">
+                        <i class="fa fa-user-o" aria-hidden="true"></i> {{ $artist->collectors_count }}
+                    </span>
+                </p>
+            </div>
+            @endforeach
         </div>
+        {!! $artists->appends($request->except('page'))->links() !!}
     </div>
 @endsection

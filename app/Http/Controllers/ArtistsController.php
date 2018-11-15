@@ -17,7 +17,7 @@ class ArtistsController extends Controller
     public function index(Request $request)
     {
         // Sorting
-        $sort = $request->input('sort', 'balances');
+        $sort = $request->input('sort', 'collectors');
 
         // Artists
         $artists = Artist::getArtists($sort);
