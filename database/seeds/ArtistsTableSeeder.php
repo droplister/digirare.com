@@ -115,6 +115,9 @@ class ArtistsTableSeeder extends Seeder
             'Elvis Dead' => [
                 'content' => 'Prolific',
             ],
+            'mightbemike' => [
+                'content' => 'Creator of BitcornBattle.com and artist/contributor to Bitcorn Crops and Pepe Vote.'
+            ],
         ];
     }
 }
