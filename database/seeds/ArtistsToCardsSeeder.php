@@ -53,7 +53,6 @@ class ArtistsToCardsSeeder extends Seeder
                     'CORNKITTIES',
                     'CORNTUKTUK',
                     'HAYABUSATWO',
-                    'OJISANPEPE',
                 ],
                 'Pepe Hawking' => [
                     'CORNMCAFEE',
@@ -98,6 +97,18 @@ class ArtistsToCardsSeeder extends Seeder
                     'LADRONCORNS',
                     'ROOSTERCORN',
                 ],
+                'TRUCK' => [
+                    'BILLYMAIZE',
+                    'CORNYEEZUS',
+                    'FARMSPIDER',
+                    'HYGROMETER',
+                    'WIZARDOFCOBZ',
+                ],
+            ],
+            'Kaleidoscope' => [
+                'TRUCK' => [
+                    'BILLYBUCKS',
+                ],
             ],
             'MafiaWars' => [
                 'mrHANSEL' => [
@@ -141,6 +152,9 @@ class ArtistsToCardsSeeder extends Seeder
                 'Elvis Dead' => [
                     'DANGERPEPE',
                     'COURAGEFROG',
+                ],
+                'mightbemike' => [
+                    'OJISANPEPE',
                 ],
             ],
             'Penisium' => [
