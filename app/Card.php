@@ -342,6 +342,14 @@ class Card extends Model
             });
         }
 
+        // By Collector
+        if (isset($request['collector'])) {
+            // Build Query
+            $cards = $cards->whereHas('collectors', function ($collector) use ($request) {
+                return $collector->where('slug', '=', $request['collector']);
+            });
+        }
+
         // By Category
         if (isset($request['collection']) && isset($request['category'])) {
             // JSON Meta

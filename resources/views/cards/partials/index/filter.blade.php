@@ -48,12 +48,14 @@
                 </div>
             </div>
         </form>
-        @foreach(['artist', 'category', 'collection', 'keyword', 'format'] as $filter)
+        @foreach(['artist', 'category', 'collection', 'collector', 'keyword', 'format'] as $filter)
             @if($request->has($filter) && $request->filled($filter))
                 <a href="{{ route('cards.index', $request->except($filter, 'page')) }}" style="text-decoration: none;" class="badge badge-light text-uppercase mr-2">
                     <i class="fa fa-times text-danger"></i>
                     @if(in_array($filter, ['artist', 'category', 'collection', 'format']))
                         {{ $request->{$filter} }}
+                    @elseif($filter === 'collector')
+                        {{ str_limit($request->{$filter}, 8) }}
                     @else
                         Keyword
                     @endif

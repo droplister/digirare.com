@@ -258,6 +258,7 @@ class ArtistsToCardsSeeder extends Seeder
                     'KILLARYPEPE',
                     'PBOCPEPE',
                     'PEPEJONES',
+                    'PEPEHODLER',
                     'PEPESTYLE',
                     'PEPETRADERS',
                     'WPPEPE',
