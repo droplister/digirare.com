@@ -4,15 +4,10 @@
 
 @section('content')
     <div class="container mt-3">
-        <div class="row mb-4">
+        <div class="row">
             <div class="col">
                 @include('collectors.partials.show.header')
-                @include('collectors.partials.show.filter')
-                @if($view === 'table')
-                    @include('collectors.partials.show.table')
-                @else
-                    @include('collectors.partials.show.gallery')
-                @endif
+                @include('collectors.partials.show.gallery')
             </div>
         </div>
     </div>

@@ -143,7 +143,10 @@ class Artist extends Model
     public static function getArtists($sort)
     {
         return Cache::remember('artists_index_' . $sort, 1440, function () use ($sort) {
-            $artists = static::whereNotNull('image_url')->with('balances')->withCount('cards');
+            $artists = static::whereNotNull('image_url')
+                ->has('cards')
+                ->with('balances')
+                ->withCount('cards');
 
             switch ($sort) {
                 case 'cards':

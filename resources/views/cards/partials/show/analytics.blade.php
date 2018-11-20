@@ -97,7 +97,7 @@
                 <a href="{{ $artist->url }}">{{ $artist->name }}</a>{{ $loop->last ? '' : ' / ' }}
             @endforeach
             @if($artists->count() === 0)
-                <a href="#">&plus; {{ __('CLAIM') }}</a>
+                <a href="{{ route('claims.show', ['card' => $card->slug]) }}">&plus; {{ __('CLAIM') }}</a>
             @endif
         </p>
     </div>

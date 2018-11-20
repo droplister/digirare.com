@@ -37,7 +37,7 @@
                     </a>
                 </h6>
                 <p class="card-text">
-                    {{ __('Cards:') }} {{ $artist->cards_count }}
+                    {{ __('Pieces:') }} {{ $artist->cards_count }}
                     <span class="float-right d-none d-md-inline">
                         <i class="fa fa-user-o" aria-hidden="true"></i> {{ $artist->collectors_count }}
                     </span>

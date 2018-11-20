@@ -34,6 +34,17 @@ class RedirectController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function collectionsIndex(Request $request)
+    {
+        return redirect(route('cards.index'));
+    }
+
+    /**
+     * Display a listing of the resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function collectionsShow(Request $request, $collection)
     {
         return redirect(route('cards.index', ['collection' => $collection]));
