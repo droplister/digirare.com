@@ -25,10 +25,6 @@ class CardClaimsController extends Controller
      */
     public function show(Request $request, Card $card)
     {
-        if (! $request->user()->artist) {
-            return 'redirect to creation';
-        }
-
         // Collections
         $collections = $card->collections()
             ->whereNull('artist_id')

@@ -4,7 +4,7 @@
     <input type="hidden" id="collection_id" name="collection_id" value="{{ $collection->id }}">
 
     <div class="form-group">
-        <input id="content" type="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="content" value="{{ old('content') }}" required>
+        <textarea id="content" type="content" class="form-control{{ $errors->has('content') ? ' is-invalid' : '' }}" name="content" rows="4" required>{{ old('content') }}</textarea>
 
         @if ($errors->has('content'))
             <span class="invalid-feedback" role="alert">
