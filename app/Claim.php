@@ -77,6 +77,7 @@ class Claim extends Model
 
         // Touch Timestamp
         $this->accepted_at = Carbon::now();
+        $this->save();
     }
 
     /**
@@ -88,5 +89,6 @@ class Claim extends Model
     {
         // Touch Timestamp
         $this->rejected_at = Carbon::now();
+        $this->save();
     }
 }
