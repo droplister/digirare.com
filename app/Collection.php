@@ -222,6 +222,7 @@ class Collection extends Model
 
         $debits = Debit::whereIn('asset', $assets)
             ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->where('quantity', '>', 0)
             ->selectRaw('address')
             ->groupBy('address')
             ->get()
@@ -229,6 +230,7 @@ class Collection extends Model
 
         $credits = Credit::whereIn('asset', $assets)
             ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->where('quantity', '>', 0)
             ->selectRaw('address')
             ->groupBy('address')
             ->get()
