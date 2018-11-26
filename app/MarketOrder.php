@@ -182,7 +182,7 @@ class MarketOrder extends Order
         if (isset($request['sort'])) {
             $orders = $orders->orderBy('expire_index', $request['sort']);
         } else {
-            $orders = $orders->orderBy('expire_index', 'desc');
+            $orders = $orders->orderBy('block_index', 'desc');
         }
 
         if ($paginate) {
