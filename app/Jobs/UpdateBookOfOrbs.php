@@ -99,6 +99,11 @@ class UpdateBookOfOrbs implements ShouldQueue
         // Image URL
         $image_url = $this->getImageUrl($data['image'], $this->override);
 
+        // Exception
+        if($image_url === false) {
+            return;
+        }
+
         // Get Meta
         $meta_data = $this->getMeta($data);
 

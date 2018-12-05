@@ -3,6 +3,7 @@
 namespace App\Traits;
 
 use Storage;
+use Exception;
 use App\Card;
 use JsonRPC\Client;
 use Droplister\XcpCore\App\Asset;
@@ -47,11 +48,19 @@ trait ImportsCards
                 ],
             ];
 
-            $contents = file_get_contents($url, false, stream_context_create($context));
-            $image_path = Storage::put('public/' . $file, $contents);
-        }
+            try {
+                $contents = file_get_contents($url, false, stream_context_create($context));
+                $image_path = Storage::put('public/' . $file, $contents);
 
-        return '/storage/' . $file;
+                return '/storage/' . $file;
+            } catch (Exception $e) {
+                return false;
+            }
+        }
+        else
+        {
+            return '/storage/' . $file;
+        }
     }
 
     /**
