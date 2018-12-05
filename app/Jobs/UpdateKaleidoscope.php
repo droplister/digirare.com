@@ -61,7 +61,7 @@ class UpdateKaleidoscope implements ShouldQueue
         // Update or Create
         foreach ($cards as $data) {
             // Simple Guards
-            if (in_array($data['asset_name'], ['BTC', 'XCP', 'PEPECASH'])) {
+            if (in_array($data['asset_name'], ['BITCORN', 'BTC', 'XCP', 'PEPECASH'])) {
                 continue;
             }
 
