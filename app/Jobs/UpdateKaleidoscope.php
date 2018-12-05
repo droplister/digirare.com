@@ -64,15 +64,12 @@ class UpdateKaleidoscope implements ShouldQueue
             if (in_array($data['asset_name'], ['BTC', 'XCP', 'PEPECASH'])) {
                 continue;
             }
-            if (! in_array($data['format'], ['jpg', 'png', 'gif'])) {
-                continue;
-            }
 
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($data['asset_name']);
 
             // Image URL
-            $image_url = $this->getImageUrl('http://kaleidoscopexcp.com/' . $data['url'], $this->override);
+            $image_url = $this->getImageUrl('http://kaleidoscopexcp.com/' . $data['image'], $this->override);
 
             // Get Meta
             $meta_data = $this->getMeta($data);
