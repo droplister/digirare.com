@@ -363,7 +363,7 @@ class Card extends Model
 
         // Pagination
         return Cache::remember($cache_slug, 60, function () use ($cards) {
-            return $cards->orderBy('balances_count', 'desc')->paginate(100);
+            return $cards->orderBy('created_at', 'desc')->paginate(100);
         });
     }
 
