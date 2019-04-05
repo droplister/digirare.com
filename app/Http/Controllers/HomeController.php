@@ -26,10 +26,18 @@ class HomeController extends Controller
             'PEPEPOLLOCK',
             'PEPEROCKWELL',
             'PEPESOUP',
+            // 'THEARUKAMO',
+            // 'YODAPEPE',
+            // 'PEPEGIANT',
+            // 'XALMAGESTUM',
+            // 'MENABO.SorJuana',
+            // 'FINEARTPEPE',
+            // 'MALVERDE',
+            // 'ICEBEAST',
         ];
 
         $editors_cards = Card::whereIn('slug', $slugs)->with('token')->inRandomOrder()->get();
-        $artist = Artist::findBySlug('scrilla-ventura');
+        $artist = Artist::findBySlug('mrhansel');
         $artists_cards = $artist->cards()->withCount('balances')
             ->orderBy('balances_count', 'desc')
             ->take(8)
