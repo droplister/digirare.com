@@ -9,6 +9,11 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+import LazyLoad from "vanilla-lazyload";
+
+const lazyLoadOptions = {/* your options here */};
+const pageLazyLoad = new LazyLoad(lazyLoadOptions);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

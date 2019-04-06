@@ -29,7 +29,7 @@
             @foreach($artists as $artist)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
                 <a href="{{ $artist->url }}">
-                    <img src="{{ $artist->image_url }}" alt="{{ $artist->name }}" width="100%" />
+                    <img data-src="{{ $artist->image_url }}" alt="{{ $artist->name }}" width="100%" />
                 </a>
                 <h6 class="card-title mt-3 mb-1">
                     <a href="{{ $artist->url }}" class="font-weight-bold text-dark">
