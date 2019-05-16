@@ -2,7 +2,7 @@
     <div class="carousel-inner">
         @foreach($collections as $collection)
         <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
-            <img class="d-block w-100" data-src="{{ url($collection->pivot->image_url) }}" alt="{{ $collection->name }} - {{ $card->name }}" width="100%" role="button" data-toggle="modal" data-target="#imageModal" />
+            <img class="d-block w-100" src="{{ url($collection->pivot->image_url) }}" alt="{{ $collection->name }} - {{ $card->name }}" width="100%" role="button" data-toggle="modal" data-target="#imageModal" />
         </div>
         @endforeach
     </div>

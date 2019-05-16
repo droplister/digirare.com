@@ -6,7 +6,7 @@
                     <div class="carousel-inner">
                         @foreach($collections as $collection)
                         <div class="carousel-item{{ $loop->first ? ' active' : '' }}">
-                            <img class="d-block w-100" data-src="{{ $collection->pivot->image_url }}" alt="{{ $collection->name }} - {{ $card->name }}" width="100%" />
+                            <img class="d-block w-100" src="{{ $collection->pivot->image_url }}" alt="{{ $collection->name }} - {{ $card->name }}" width="100%" />
                         </div>
                         @endforeach
                     </div>

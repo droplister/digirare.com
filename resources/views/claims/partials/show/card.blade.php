@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-3 mb-4">
-        <img class="d-block w-100" data-src="{{ url($collection->pivot->image_url) }}" width="100%" />
+        <img class="d-block w-100" src="{{ url($collection->pivot->image_url) }}" width="100%" />
     </div>
     <div class="col-md-9 mb-4">
         <p class="text-muted mb-0">
