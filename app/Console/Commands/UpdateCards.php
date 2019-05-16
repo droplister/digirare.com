@@ -9,6 +9,7 @@ use App\Jobs\UpdateMafiaWars;
 use App\Jobs\UpdateBookOfOrbs;
 use App\Jobs\UpdateFootballCoin;
 use App\Jobs\UpdateKaleidoscope;
+use App\Jobs\UpdateJohnnyDollar;
 use Illuminate\Console\Command;
 
 class UpdateCards extends Command
@@ -61,6 +62,9 @@ class UpdateCards extends Command
 
         // Kaleidoscope
         $this->updateKaleidoscope();
+
+        // Johnny Dollar
+        $this->updateJohnnyDollar();
     }
 
     /**
@@ -135,5 +139,17 @@ class UpdateCards extends Command
         $kaleidoscope = Collection::findBySlug('kaleidoscope');
 
         UpdateKaleidoscope::dispatchNow($kaleidoscope, $this->option('o'));
+    }
+
+    /**
+     * Johnny Dollar
+     *
+     * @return void
+     */
+    private function updateJohnnyDollar()
+    {
+        $johnnydollar = Collection::findBySlug('johnny-dollar');
+
+        UpdateJohnnyDollar::dispatchNow($johnnydollar, $this->option('o'));
     }
 }

@@ -4,7 +4,7 @@
             @if($artist->image_url)
             <div class="col-md-6">
                 <a href="{{ route('artists.show', ['artist' => $artist->slug]) }}">
-                    <img src="{{ $artist->image_url }}" width="100%" />
+                    <img data-src="{{ $artist->image_url }}" width="100%" />
                 </a>
             </div>
             @endif
@@ -44,7 +44,7 @@
     @foreach($artists_cards as $card)
     <div class="col-6 col-sm-4 col-lg-3 mb-4">
         <a href="{{ $card->url }}">
-            <img src="{{ $card->primary_image_url }}" alt="{{ $card->name }}" width="100%" />
+            <img data-src="{{ $card->primary_image_url }}" alt="{{ $card->name }}" width="100%" />
         </a>
         <h6 class="card-title mt-3 mb-1">
             <a href="{{ $card->url }}" class="font-weight-bold text-dark">

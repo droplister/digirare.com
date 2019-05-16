@@ -95,6 +95,9 @@ class CollectionsTableSeeder extends Seeder
             'FootballCoin' => [
                 'currency' => 'XFCCOIN',
             ],
+            'Johnny Dollar' => [
+                'currency' => 'XCP',
+            ],
             'Kaleidoscope' => [
                 'currency' => 'BITROCK',
             ],
