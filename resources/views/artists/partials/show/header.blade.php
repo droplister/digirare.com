@@ -34,7 +34,7 @@
     </div>
     @if($artist->image_url)
     <div class="col-md-6">
-        <img data-src="{{ $artist->image_url }}" width="100%">
+        <img src="{{ $artist->image_url }}" width="100%">
     </div>
     @endif
 </div>

@@ -10,7 +10,7 @@
             @foreach($balances as $balance)
             <div class="col-6 col-sm-4 col-lg-3 mb-4">
                 <a href="{{ $balance->card->url }}">
-                    <img data-src="{{ $balance->card->primary_image_url }}" alt="{{ $balance->card->name }}" width="100%" />
+                    <img src="{{ $balance->card->primary_image_url }}" alt="{{ $balance->card->name }}" width="100%" />
                 </a>
                 <h6 class="card-title mt-3 mb-1">
                     <a href="{{ $balance->card->url }}" class="font-weight-bold text-dark">
