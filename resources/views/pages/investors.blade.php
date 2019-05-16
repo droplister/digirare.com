@@ -6,7 +6,7 @@
     <div class="container mt-3">
         <div class="row">
             <div class="col-md-8 offset-md-2 mb-4">
-                <img src="{{ asset('/images/invest.jpg') }}" class="img-thumbnail" />
+                <img data-src="{{ asset('/images/invest.jpg') }}" class="img-thumbnail" />
             </div>
         </div>
      </div>
