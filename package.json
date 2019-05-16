@@ -23,6 +23,7 @@
         "font-awesome": "^4.7.0",
         "highcharts": "^6.1.1",
         "highcharts-vue": "^1.1.0",
+        "imagemin": "^6.1.0",
         "vanilla-lazyload": "^11.0.6"
     }
 }
