@@ -3,6 +3,7 @@
 namespace App\Jobs;
 
 use Curl\Curl;
+use App\Artist;
 use App\Collection;
 use App\Traits\ImportsCards;
 use Illuminate\Bus\Queueable;
@@ -58,11 +59,12 @@ class UpdateJohnnyDollar implements ShouldQueue
         // Johnny Dollar API
         $cards = $this->getAPI();
 
-        // Artist Profile
-        $artist = Artist::where('name', '=', 'Johnny Dollar')->first();
-
         // Update or Create
-        foreach ($cards as $data) {
+        foreach ($cards['data'] as $data) {
+            if($data['asset'] === 'JOHNNYDOLLAR.YeafOfTheNFT') {
+                $data['asset'] = 'JOHNNYDOLLAR.YearOfTheNFT';
+            }
+
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($data['asset']);
 
@@ -78,7 +80,6 @@ class UpdateJohnnyDollar implements ShouldQueue
             // Relation
             $card->collections()->syncWithoutDetaching([
                 $this->collection->id => [
-                    'artist_id' => $artist->id,
                     'image_url' => $image_url
                 ]
             ]);
@@ -121,6 +122,6 @@ class UpdateJohnnyDollar implements ShouldQueue
         }
 
         // Response
-        return json_decode($this->curl->response['data'], true);
+        return json_decode($this->curl->response, true);
     }
 }
