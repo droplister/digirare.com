@@ -11,11 +11,13 @@
     </thead>
     <tbody>
         @foreach($orders as $order)
-        <tr data-match-action="{{ $order->trading_type === 'Sell' ? 'BUY' : 'SELL' }}"
+        <tr class="order-data"
+            data-match-action="{{ $order->trading_type === 'Sell' ? 'BUY' : 'SELL' }}"
             data-match-quantity="{{ number_format($order->trading_quantity_normalized, 8) }}" 
             data-match-quantity-asset="{{ $order->trading_pair_base_asset }}" 
             data-match-price="{{ number_format($order->trading_price_normalized, 8) }}" 
-            data-match-price-asset="{{ $order->trading_pair_quote_asset }}">
+            data-match-price-asset="{{ $order->trading_pair_quote_asset }}"
+            data-match-blocks-left="{{ $order->blocks_left }}">
             <td class="{{ $order->trading_type === 'Sell' ? 'text-danger' : 'text-success' }}">
                 {{ $order->trading_type === 'Sell' ? __('Selling') : __('Buying') }}
             </td>
