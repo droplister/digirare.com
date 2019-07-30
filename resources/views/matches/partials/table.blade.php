@@ -12,7 +12,12 @@
     </thead>
     <tbody>
         @foreach($matches as $match)
-        <tr>
+        <tr class="match-data"
+            data-match-action="{{ strtoupper($match->trading_type) }}"
+            data-match-quantity="{{ number_format($match->trading_quantity_normalized, 8) }}" 
+            data-match-quantity-asset="{{ $match->trading_pair_base_asset }}" 
+            data-match-price="{{ number_format($match->trading_price_normalized, 8) }}" 
+            data-match-price-asset="{{ $match->trading_pair_quote_asset }}">
             <td class="{{ $match->trading_type === 'Sell' ? 'text-danger' : 'text-success' }}">
                 {{ $match->trading_type === 'Sell' ? __('Selling') : __('Buying') }}
             </td>
