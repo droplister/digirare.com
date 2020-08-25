@@ -21,7 +21,7 @@
     },
     "dependencies": {
         "font-awesome": "^4.7.0",
-        "highcharts": "^6.1.1",
+        "highcharts": "^8.2.0",
         "highcharts-vue": "^1.1.0"
     }
 }
