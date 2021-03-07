@@ -6,6 +6,7 @@ use Curl\Curl;
 use App\Asset;
 use App\Collection;
 use App\Traits\ImportsCards;
+use Droplister\XcpCore\App\Asset;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
