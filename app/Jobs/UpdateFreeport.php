@@ -24,13 +24,6 @@ class UpdateFreeport implements ShouldQueue
     protected $curl;
 
     /**
-     * Collection
-     *
-     * @var \App\Collection
-     */
-    protected $asset;
-
-    /**
      * XCP Asset
      *
      * @var \Droplister\XcpCore\App\Asset
