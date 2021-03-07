@@ -3,7 +3,6 @@
 namespace App\Jobs;
 
 use Curl\Curl;
-use App\Asset;
 use App\Collection;
 use App\Traits\ImportsCards;
 use Droplister\XcpCore\App\Asset;
