@@ -122,6 +122,9 @@ class CollectionsTableSeeder extends Seeder
             'Theos Gallery' => [
                 'currency' => 'PEPECASH',
             ],
+            'Freeport' => [
+                'currency' => 'XCP',
+            ],
         ];
     }
 }
