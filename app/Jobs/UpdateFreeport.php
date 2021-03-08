@@ -69,6 +69,10 @@ class UpdateFreeport implements ShouldQueue
         // Creation
         $card = $this->firstOrCreateCard($this->asset->asset_name, $image_title);
 
+        // Safe Slug
+        $card->slug = $this->asset->asset_name;
+        $card->save();
+
         // Relation
         $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
     }
