@@ -17,7 +17,7 @@
         "bhavyanshu/chatbase-php": "^1.0",
         "curl/curl": "^1.9",
         "cviebrock/eloquent-sluggable": "^4.5",
-        "droplister/xcp-core": "dev-master",
+        "droplister/xcp-core": "dev-feature/add-dispeners",
         "fideloper/proxy": "^4.0",
         "irazasyed/telegram-bot-sdk": "^2.0",
         "laravel/framework": "5.6.*",
