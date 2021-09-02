@@ -63,61 +63,61 @@ class PepeVoteSeeder extends Seeder
                 'meta' => [
                     'generation' => '0',
                 ],
-                'image_url' => 'https://pepevote.com/static/submitted/IVOTED.jpg',
+                'image_url' => '/storage/pepe-vote/IVOTED.jpg',
             ],
             'PEPEDREDD' => [
                 'meta' => [
                     'generation' => '0',
                 ],
-                'image_url' => 'https://pepevote.com/static/submitted/pepe%20dredd.jpg',
+                'image_url' => '/storage/pepe-vote/pepe%20dredd.jpg',
             ],
             'MAGMAPEPE' => [
                 'meta' => [
                     'generation' => '1',
                 ],
-                'image_url' => 'https://pepevote.com/static/submitted/Animation.gif',
+                'image_url' => '/storage/pepe-vote/Animation.gif',
             ],
             'JAWSPEPE' => [
                 'meta' => [
                     'generation' => '1',
                 ],
-                'image_url' => 'https://pepevote.com/static/submitted/jawspepe_compressed.png',
+                'image_url' => '/storage/pepe-vote/jawspepe_compressed.png',
             ],
             'OJISANPEPE' => [
                 'meta' => [
                     'generation' => '2',
                 ],
-                'image_url' => 'https://pepevote.com/static/submitted/OJISAN.png',
+                'image_url' => '/storage/pepe-vote/OJISAN.png',
             ],
             'COURAGEFROG' => [
                 'meta' => [
                     'generation' => '2',
                 ],
-                'image_url' => 'https://pepevote.com/static/submitted/COURAGEFR.gif',
+                'image_url' => '/storage/pepe-vote/COURAGEFR.gif',
             ],
             'DANGERPEPE' => [
                 'meta' => [
                     'generation' => '3',
                 ],
-                'image_url' => 'https://pepevote.com/static/submitted/hellfire2pepe.gif',
+                'image_url' => '/storage/pepe-vote/hellfire2pepe.gif',
             ],
             'QANON' => [
                 'meta' => [
                     'generation' => '3',
                 ],
-                'image_url' => 'https://pepevote.com/static/submitted/QANON_REVISED.gif',
+                'image_url' => '/storage/pepe-vote/QANON_REVISED.gif',
             ],
             'YARUOPEPE' => [
                 'meta' => [
                     'generation' => '4',
                 ],
-                'image_url' => 'https://pepevote.com/static/submitted/yaruo.gif',
+                'image_url' => '/storage/pepe-vote/yaruo.gif',
             ],
             'WHORL' => [
                 'meta' => [
                     'generation' => '4',
                 ],
-                'image_url' => 'https://pepevote.com/static/submitted/whorl.jpg',
+                'image_url' => '/storage/pepe-vote/whorl.jpg',
             ],
         ];
     }

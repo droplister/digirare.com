@@ -17,6 +17,9 @@ class MetricListener
      */
     public function handle(BlockWasCreated $event)
     {
-        UpdateMetrics::dispatch($event->block);
+        // Useful Switch
+        if (config('xcp-core.indexing')) {
+            UpdateMetrics::dispatch($event->block);
+        }
     }
 }
