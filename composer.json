@@ -16,7 +16,7 @@
         "binarytorch/larecipe": "^1.0",
         "bhavyanshu/chatbase-php": "^1.0",
         "curl/curl": "^1.9",
-        "cviebrock/eloquent-sluggable": "^4.5",
+        "cviebrock/eloquent-sluggable": "^6.0",
         "droplister/xcp-core": "dev-feature/add-dispeners",
         "fideloper/proxy": "^4.0",
         "irazasyed/telegram-bot-sdk": "^2.0",
