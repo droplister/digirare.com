@@ -24,13 +24,13 @@ Route::post('/cards/{card}/claim', 'CardClaimsController@store')->name('claims.s
 // Orders
 // Route::get('/market', 'OrdersController@index')->name('orders.index');
 // Route::get('/market/export', 'OrdersController@show')->name('orders.show');
-Route::view('/market', 'welcome');
-Route::view('/market/export', 'welcome');
+Route::view('/market', 'welcome')->name('orders.index');
+Route::view('/market/export', 'welcome')->name('orders.show');
 // Order Matches
 // Route::get('/trades', 'OrderMatchesController@index')->name('matches.index');
 // Route::get('/trades/export', 'OrderMatchesController@show')->name('matches.show');
-Route::view('/trades', 'welcome');
-Route::view('/trades/export', 'welcome');
+Route::view('/trades', 'welcome')->name('matches.index');
+Route::view('/trades/export', 'welcome')->name('matches.show');
 // Artists
 Route::resource('/artists', 'ArtistsController', ['only' => ['index', 'show']]);
 // Collectors
@@ -39,8 +39,8 @@ Route::view('/collectors', 'welcome');
 // Pages
 // Route::get('/charts', 'PagesController@charts')->name('pages.charts');
 // Route::get('/rankings', 'PagesController@rankings')->name('pages.rankings');
-Route::view('/charts', 'welcome');
-Route::view('/rankings', 'welcome');
+Route::view('/charts', 'welcome')->name('pages.charts');
+Route::view('/rankings', 'welcome')->name('pages.rankings');
 Route::get('/disclaimer', 'PagesController@disclaimer')->name('pages.disclaimer');
 Route::get('/investors', 'PagesController@investors')->name('pages.investors');
 Route::get('/privacy', 'PagesController@privacy')->name('pages.privacy');

@@ -54,7 +54,7 @@
         <div class="flex-center position-ref full-height">
             <div class="content">
                 <div class="title">
-                    <i class="fa fa-diamond"></i> DIGIRARE
+                    <i class="fa fa-diamond text-highlight"></i> DIGIRARE
                 </div>
             </div>
         </div>
