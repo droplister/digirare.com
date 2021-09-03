@@ -147,35 +147,16 @@
         </main>
 
         <footer class="container text-center text-muted pb-5">
-            <a href="{{ route('home.index') }}" class="mr-2">
-                {{ __('Home') }}
-            </a>
-            <a href="https://21e14.com/" class="mr-2" target="_blank">
-                {{ __('About Us') }}
-            </a>
-            <a href="{{ config('digirare.tutorial_url') }}" class="mr-2" target="_blank">
-                {{ __('Tutorial') }}
-            </a>
-            <a href="{{ config('digirare.github_url') }}" class="mr-2" target="_blank">
-                {{ __('GitHub') }}
-            </a>
-            <a href="{{ config('digirare.telegram_url') }}" target="_blank">
-                {{ __('Telegram') }}
-            </a>
+            <a href="{{ route('home.index') }}" class="mr-2">{{ __('Home') }}</a>
+            <a href="https://21e14.com/" class="mr-2" target="_blank">{{ __('About Us') }}</a>
+            <a href="{{ config('digirare.tutorial_url') }}" class="mr-2" target="_blank">{{ __('Tutorial') }}</a>
+            <a href="{{ config('digirare.github_url') }}" class="mr-2" target="_blank">{{ __('GitHub') }}</a>
+            <a href="https://plausible.io/digirare.com" target="_blank">{{ __('Analytics') }}</a>
             <small class="d-block" style="font-size: 11px">
                 &copy; 21e14.com
-                <a href="https://plausible.io/digirare.com" class="text-muted mr-1" target="_blank">
-                    {{ __('Analytics') }}
-                </a>
-                <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-1">
-                    {{ __('Disclaimer') }}
-                </a>
-                <a href="{{ route('pages.privacy') }}" class="text-muted mr-1">
-                    {{ __('Privacy') }}
-                </a>
-                <a href="{{ route('pages.terms') }}" class="text-muted">
-                    {{ __('Terms') }}
-                </a>
+                <a href="{{ route('pages.disclaimer') }}" class="text-muted mx-1">{{ __('Disclaimer') }}</a>
+                <a href="{{ route('pages.privacy') }}" class="text-muted mr-1">{{ __('Privacy') }}</a>
+                <a href="{{ route('pages.terms') }}" class="text-muted">{{ __('Terms') }}</a>
             </small>
         </footer>
 
