@@ -12,7 +12,7 @@
     ],
     "require": {
         "php": "^7.2",
-        "andreasindal/laravel-markdown": "3.0",
+        "andreasindal/laravel-markdown": "3.1.1",
         "binarytorch/larecipe": "^1.0",
         "bhavyanshu/chatbase-php": "^1.0",
         "curl/curl": "^1.9",
