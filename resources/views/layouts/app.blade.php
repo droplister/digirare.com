@@ -134,6 +134,12 @@
             </div>
         </nav>
 
+        <div class="alert alert-primary mb-0 border-0 rounded-0" role="alert">
+            <div class="container">
+                <i aria-hidden="true" class="fa fa-info-circle"></i> Counterparty NFTs are now available on <a href="https://opensea.io/collection/emblem-vault?ref=0xda467a5b795aafd564dbb48012007b7ebb8397d4" target="_blank">OpenSea.io</a> thanks to <a href="https://circuitsofvalue.com/?ref=digirare" target="_blank">Emblem Vaults</a>.
+            </div>
+        </div>
+
         @yield('jumbotron')
 
         <main class="py-4">
