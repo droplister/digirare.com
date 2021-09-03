@@ -8,18 +8,18 @@ use App\Collection;
 use App\MarketOrder;
 use App\Traits\Linkable;
 use App\Events\CardWasCreated;
+use Ankurk91\Eloquent\BelongsToOne;
 use Droplister\XcpCore\App\Asset;
 use Droplister\XcpCore\App\Balance;
 use Droplister\XcpCore\App\OrderMatch;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Cviebrock\EloquentSluggable\SluggableScopeHelpers;
-use Megapixel23\Database\Eloquent\Relations\BelongsToOneTrait;
 use App\Http\Requests\FilterRequest;
 use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    use BelongsToOneTrait, Linkable, Sluggable, SluggableScopeHelpers;
+    use Linkable, Sluggable, SluggableScopeHelpers;
 
     /**
      * The event map for the model.

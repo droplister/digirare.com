@@ -13,6 +13,7 @@
     "require": {
         "php": "^7.2.5",
         "andreasindal/laravel-markdown": "3.1.1",
+        "ankurk91/laravel-eloquent-relationships": "1.1.5",
         "bhavyanshu/chatbase-php": "^1.0",
         "curl/curl": "^1.9",
         "cviebrock/eloquent-sluggable": "^6.0",
@@ -24,7 +25,6 @@
         "laravel/tinker": "^2.5",
         "laravel/horizon": "^3.0", 
         "maatwebsite/excel": "^3.1",
-        "megapixel23/belongs-to-one": "^2.0",
         "morrislaptop/laravel-queue-clear": "~1.0",
         "staudenmeir/eloquent-has-many-deep": "^1.1",
         "tightenco/parental": "0.11.0"
