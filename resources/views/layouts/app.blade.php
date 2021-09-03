@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 <head>
+    <script defer data-domain="digirare.com" src="https://plausible.io/js/plausible.js"></script>
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -176,15 +178,6 @@
         </footer>
 
     </div>
-
-<script async src="https://www.googletagmanager.com/gtag/js?id={{ config('digirare.google_ua') }}"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', '{{ config('digirare.google_ua') }}');
-</script>
 
 </body>
 </html>
