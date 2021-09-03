@@ -144,9 +144,8 @@
             <a href="{{ route('home.index') }}" class="mr-2">
                 {{ __('Home') }}
             </a>
-            <a href="{{ route('nightmode.show', ['on_off' => session()->get('nightmode') === 'true' ? 'false' : 'true']) }}" class="mr-2">
-                <i class="fa fa-lightbulb-o"></i>
-                {{ __('Toggle') }}
+            <a href="https://21e14.com/" class="mr-2" target="_blank">
+                {{ __('About Us') }}
             </a>
             <a href="{{ config('digirare.tutorial_url') }}" class="mr-2" target="_blank">
                 {{ __('Tutorial') }}
@@ -158,11 +157,8 @@
                 {{ __('Telegram') }}
             </a>
             <small class="d-block" style="font-size: 11px">
-                &copy; 2018
-                <a href="https://familymediallc.com/" class="text-muted mr-1" target="_blank">
-                    Family Media
-                </a>
-                <a href="{{ config('digirare.analytics') }}" class="text-muted mr-1" target="_blank">
+                &copy; 21e14.com
+                <a href="https://plausible.io/digirare.com" class="text-muted mr-1" target="_blank">
                     {{ __('Analytics') }}
                 </a>
                 <a href="{{ route('pages.disclaimer') }}" class="text-muted mr-1">
