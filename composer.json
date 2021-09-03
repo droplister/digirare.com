@@ -27,7 +27,7 @@
         "megapixel23/belongs-to-one": "^2.0",
         "morrislaptop/laravel-queue-clear": "~1.0",
         "staudenmeir/eloquent-has-many-deep": "^1.1",
-        "tightenco/parental": "0.4-alpha"
+        "tightenco/parental": "0.11.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.2",
