@@ -53,7 +53,7 @@
     <body>
         <div class="flex-center position-ref full-height">
             <div class="content">
-                <div class="title">
+                <div class="title" style="font-size: 1.125rem;font-weight: 400;">
                     <i class="fa fa-diamond text-highlight"></i> DIGIRARE
                 </div>
             </div>
