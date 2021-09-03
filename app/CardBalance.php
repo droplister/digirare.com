@@ -5,11 +5,11 @@ namespace App;
 use Cache;
 use App\Card;
 use Droplister\XcpCore\App\Balance;
-use Tightenco\Parental\HasParentModel;
+use Parental\HasParent;
 
 class CardBalance extends Balance
 {
-    use HasParentModel;
+    use HasParent;
 
     public static function boot()
     {

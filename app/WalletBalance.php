@@ -3,11 +3,11 @@
 namespace App;
 
 use Droplister\XcpCore\App\Balance;
-use Tightenco\Parental\HasParentModel;
+use Parental\HasParent;
 
 class WalletBalance extends Balance
 {
-    use HasParentModel;
+    use HasParent;
 
     public static function boot()
     {

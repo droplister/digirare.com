@@ -6,11 +6,11 @@ use Cache;
 use App\Card;
 use App\Collection;
 use Droplister\XcpCore\App\Order;
-use Tightenco\Parental\HasParentModel;
+use Parental\HasParent;
 
 class MarketOrder extends Order
 {
-    use HasParentModel;
+    use HasParent;
 
     public static function boot()
     {

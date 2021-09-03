@@ -3,11 +3,11 @@
 namespace App;
 
 use Droplister\XcpCore\App\Address;
-use Tightenco\Parental\HasParentModel;
+use Parental\HasParent;
 
 class WalletAddress extends Address
 {
-    use HasParentModel;
+    use HasParent;
 
     public static function boot()
     {
