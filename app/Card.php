@@ -19,7 +19,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Card extends Model
 {
-    use Linkable, Sluggable, SluggableScopeHelpers;
+    use BelongsToOne, Linkable, Sluggable, SluggableScopeHelpers;
 
     /**
      * The event map for the model.
@@ -132,7 +132,7 @@ class Card extends Model
     /**
      * Primay Collection
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToOne
+     * @return \Ankurk91\Eloquent\Relations\BelongsToOne
      */
     public function primaryCollection()
     {
