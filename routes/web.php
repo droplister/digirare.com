@@ -34,7 +34,8 @@ Route::view('/trades/export', 'welcome');
 // Artists
 Route::resource('/artists', 'ArtistsController', ['only' => ['index', 'show']]);
 // Collectors
-Route::resource('/collectors', 'CollectorsController', ['only' => ['index', 'show']]);
+// Route::resource('/collectors', 'CollectorsController', ['only' => ['index', 'show']]);
+Route::view('/collectors', 'welcome');
 // Pages
 // Route::get('/charts', 'PagesController@charts')->name('pages.charts');
 // Route::get('/rankings', 'PagesController@rankings')->name('pages.rankings');
