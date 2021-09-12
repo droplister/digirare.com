@@ -49,22 +49,22 @@ class UpdateCards extends Command
         $this->updateBitcorn();
 
         // Rare Pepe
-        $this->updateRarePepe();
+        // $this->updateRarePepe();
 
         // Mafia Wars
         $this->updateMafiaWars();
 
         // Book of Orbs
-        $this->updateBookOfOrbs();
+        // $this->updateBookOfOrbs();
 
         // FootballCoin
-        $this->updateFootballCoin();
+        // $this->updateFootballCoin();
 
         // Kaleidoscope
         $this->updateKaleidoscope();
 
         // Johnny Dollar
-        $this->updateJohnnyDollar();
+        // $this->updateJohnnyDollar();
     }
 
     /**
