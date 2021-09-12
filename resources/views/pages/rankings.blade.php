@@ -26,33 +26,18 @@
                             {{ __('Name') }}
                         </th>
                         <th scope="col">
-                            <a href="{{ route('pages.rankings', ['sort' => 'users_24']) }}" class="text-dark">
-                                {{ __('Users 24h') }}
+                            <a href="{{ route('pages.rankings', ['sort' => 'users_90d']) }}" class="text-dark">
+                                {{ __('Users 90d') }}
                             </a>
                         </th>
                         <th scope="col">
-                            <a href="{{ route('pages.rankings', ['sort' => 'users_7d']) }}" class="text-dark">
-                                {{ __('Users 7d') }}
+                            <a href="{{ route('pages.rankings', ['sort' => 'volume_90d']) }}" class="text-dark">
+                                {{ __('Volume 90d') }}
                             </a>
                         </th>
                         <th scope="col">
-                            <a href="{{ route('pages.rankings', ['sort' => 'volume_24']) }}" class="text-dark">
-                                {{ __('Volume 24h') }}
-                            </a>
-                        </th>
-                        <th scope="col">
-                            <a href="{{ route('pages.rankings', ['sort' => 'volume_7d']) }}" class="text-dark">
-                                {{ __('Volume 7d') }}
-                            </a>
-                        </th>
-                        <th scope="col">
-                            <a href="{{ route('pages.rankings', ['sort' => 'tx_24']) }}" class="text-dark">
-                                {{ __('TX 24h') }}
-                            </a>
-                        </th>
-                        <th scope="col">
-                            <a href="{{ route('pages.rankings', ['sort' => 'tx_7d']) }}" class="text-dark">
-                                {{ __('TX 7d') }}
+                            <a href="{{ route('pages.rankings', ['sort' => 'tx_90d']) }}" class="text-dark">
+                                {{ __('TX 90d') }}
                             </a>
                         </th>
                     </tr>
@@ -69,40 +54,22 @@
                                 </a>
                             </td>
                             <td>
-                                {{ number_format($collection->usersCount(1)) }}
-                            </td>
-                            <td>
-                                {{ number_format($collection->usersCount(7)) }}
+                                {{ number_format($collection->usersCount(90)) }}
                             </td>
                             <td>
                                 <a href="{{ route('matches.index', ['collection' => $collection->slug, 'currency' => 'XCP']) }}" class="text-dark">
-                                    {{ $collection->volumeTotal(1) }} XCP
+                                    {{ $collection->volumeTotal(90) }} XCP
                                 </a>
                                 @if($collection->currency !== 'XCP')
                                     <small class="d-block">
                                         <a href="{{ route('matches.index', ['collection' => $collection->slug, 'currency' => $collection->currency]) }}" class="text-muted">
-                                            {{ $collection->volumeTotal(1, $collection->currency) }} {{ $collection->currency }}
+                                            {{ $collection->volumeTotal(90, $collection->currency) }} {{ $collection->currency }}
                                         </a>
                                     </small>
                                 @endif
                             </td>
                             <td>
-                                <a href="{{ route('matches.index', ['collection' => $collection->slug, 'currency' => 'XCP']) }}" class="text-dark">
-                                    {{ $collection->volumeTotal(7) }} XCP
-                                </a>
-                                @if($collection->currency !== 'XCP')
-                                    <small class="d-block">
-                                        <a href="{{ route('matches.index', ['collection' => $collection->slug, 'currency' => $collection->currency]) }}" class="text-muted">
-                                            {{ $collection->volumeTotal(7, $collection->currency) }} {{ $collection->currency }}
-                                        </a>
-                                    </small>
-                                @endif
-                            </td>
-                            <td>
-                                {{ number_format($collection->txsCount(1)) }}
-                            </td>
-                            <td>
-                                {{ number_format($collection->txsCount(7)) }}
+                                {{ number_format($collection->txsCount(90)) }}
                             </td>
                         </tr>
                     @endforeach
