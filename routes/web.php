@@ -22,25 +22,18 @@ Route::resource('/cards/{card}/likes', 'CardLikesController', ['only' => ['index
 Route::get('/cards/{card}/claim', 'CardClaimsController@show')->name('claims.show');
 Route::post('/cards/{card}/claim', 'CardClaimsController@store')->name('claims.store');
 // Orders
-// Route::get('/market', 'OrdersController@index')->name('orders.index');
-// Route::get('/market/export', 'OrdersController@show')->name('orders.show');
-Route::view('/market', 'welcome')->name('orders.index');
-Route::view('/market/export', 'welcome')->name('orders.show');
+Route::get('/market', 'OrdersController@index')->name('orders.index');
+Route::get('/market/export', 'OrdersController@show')->name('orders.show');
 // Order Matches
-// Route::get('/trades', 'OrderMatchesController@index')->name('matches.index');
-// Route::get('/trades/export', 'OrderMatchesController@show')->name('matches.show');
-Route::view('/trades', 'welcome')->name('matches.index');
-Route::view('/trades/export', 'welcome')->name('matches.show');
+Route::get('/trades', 'OrderMatchesController@index')->name('matches.index');
+Route::get('/trades/export', 'OrderMatchesController@show')->name('matches.show');
 // Artists
 Route::resource('/artists', 'ArtistsController', ['only' => ['index', 'show']]);
 // Collectors
-// Route::resource('/collectors', 'CollectorsController', ['only' => ['index', 'show']]);
-Route::view('/collectors', 'welcome');
+Route::resource('/collectors', 'CollectorsController', ['only' => ['index', 'show']]);
 // Pages
-// Route::get('/charts', 'PagesController@charts')->name('pages.charts');
-// Route::get('/rankings', 'PagesController@rankings')->name('pages.rankings');
-Route::view('/charts', 'welcome')->name('pages.charts');
-Route::view('/rankings', 'welcome')->name('pages.rankings');
+Route::get('/charts', 'PagesController@charts')->name('pages.charts');
+Route::get('/rankings', 'PagesController@rankings')->name('pages.rankings');
 Route::get('/disclaimer', 'PagesController@disclaimer')->name('pages.disclaimer');
 Route::get('/investors', 'PagesController@investors')->name('pages.investors');
 Route::get('/privacy', 'PagesController@privacy')->name('pages.privacy');
