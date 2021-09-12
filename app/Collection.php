@@ -173,25 +173,23 @@ class Collection extends Model
             return in_array($this->slug, $collections) ? array_merge($assets, $currency) : $assets;
         });
 
-        return Cache::remember('collection_txs_count_' . $this->id, 1440, function () use ($assets, $subDays) {
-            $debits = Debit::whereIn('asset', $assets)
-                ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
-                ->selectRaw('event')
-                ->groupBy('event')
-                ->get()
-                ->toArray();
+        $debits = Debit::whereIn('asset', $assets)
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->selectRaw('event')
+            ->groupBy('event')
+            ->get()
+            ->toArray();
 
-            $credits = Credit::whereIn('asset', $assets)
-                ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
-                ->selectRaw('event')
-                ->groupBy('event')
-                ->get()
-                ->toArray();
+        $credits = Credit::whereIn('asset', $assets)
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->selectRaw('event')
+            ->groupBy('event')
+            ->get()
+            ->toArray();
 
-            $changes = collect(array_merge($credits, $debits));
+        $changes = collect(array_merge($credits, $debits));
 
-            return $changes->unique('event')->count();
-        });
+        return $changes->unique('event')->count();
     }
 
     /**
@@ -222,27 +220,25 @@ class Collection extends Model
             return in_array($this->slug, $collections) ? array_merge($assets, $currency) : $assets;
         });
 
-        return Cache::remember('collection_users_count_' . $this->id, 1440, function () use ($assets, $subDays) {
-            $debits = Debit::whereIn('asset', $assets)
-                ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
-                ->where('quantity', '>', 0)
-                ->selectRaw('address')
-                ->groupBy('address')
-                ->get()
-                ->toArray();
+        $debits = Debit::whereIn('asset', $assets)
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->where('quantity', '>', 0)
+            ->selectRaw('address')
+            ->groupBy('address')
+            ->get()
+            ->toArray();
 
-            $credits = Credit::whereIn('asset', $assets)
-                ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
-                ->where('quantity', '>', 0)
-                ->selectRaw('address')
-                ->groupBy('address')
-                ->get()
-                ->toArray();
+        $credits = Credit::whereIn('asset', $assets)
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->where('quantity', '>', 0)
+            ->selectRaw('address')
+            ->groupBy('address')
+            ->get()
+            ->toArray();
 
-            $changes = collect(array_merge($credits, $debits));
+        $changes = collect(array_merge($credits, $debits));
 
-            return $changes->unique('address')->count();
-        });
+        return $changes->unique('address')->count();
     }
 
     /**
@@ -262,21 +258,19 @@ class Collection extends Model
             return in_array($this->slug, $collections) ? array_merge($assets, $currency) : $assets;
         });
 
-        return Cache::remember('collection_volume_total_' . $this->id, 1440, function () use ($asset, $assets, $subDays) {
-            $asset = Asset::where('asset_name', '=', $asset)->first();
+        $asset = Asset::where('asset_name', '=', $asset)->first();
 
-            $buys = OrderMatch::whereIn('backward_asset', $assets)
-                ->where('forward_asset', '=', $asset->asset_name)
-                ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
-                ->sum('forward_quantity');
+        $buys = OrderMatch::whereIn('backward_asset', $assets)
+            ->where('forward_asset', '=', $asset->asset_name)
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->sum('forward_quantity');
 
-            $sells = OrderMatch::whereIn('forward_asset', $assets)
-                ->where('backward_asset', '=', $asset->asset_name)
-                ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
-                ->sum('backward_quantity');
+        $sells = OrderMatch::whereIn('forward_asset', $assets)
+            ->where('backward_asset', '=', $asset->asset_name)
+            ->where('confirmed_at', '>', Carbon::now()->subDays($subDays))
+            ->sum('backward_quantity');
 
-            return normalizeQuantity($buys + $sells, $asset->divisible);
-        });
+        return normalizeQuantity($buys + $sells, $asset->divisible);
     }
 
     /**
