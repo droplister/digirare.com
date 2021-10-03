@@ -358,6 +358,15 @@ class Card extends Model
             $cards = $cards->whereJsonContains($meta, (int) $request['category']);
         }
 
+
+        // By Default
+        if (! isset($request['collection']) && ! isset($request['category']) && ! isset($request['collector']) && ! isset($request['artist']) && ! isset($request['format']) && ! isset($request['keyword'])) {
+            // Build Query
+            $cards = $cards->whereHas('collections', function ($collection) {
+                return $collection->where('slug', '!=', 'freeport');
+            });
+        }
+
         // Cache Slug
         $cache_slug = 'search_' . str_slug(serialize($request));
 
