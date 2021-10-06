@@ -73,7 +73,7 @@ trait CardHelpers
     private function replyWithImage($card, $only_doc = false)
     {
         // Image URL
-        $image_url = url($card->primary_image_url);
+        $image_url = url($card->primary_image_url) . '?random=' . rand(0, 100000000);
 
         // Reply w/ Image
         if ($this->isAnimated($image_url) || $only_doc) {
