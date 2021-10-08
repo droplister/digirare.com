@@ -116,6 +116,9 @@ class CollectionsTableSeeder extends Seeder
             'Rare Pepe' => [
                 'currency' => 'PEPECASH',
             ],
+            'Fake Rare' => [
+                'currency' => 'XCP',
+            ],
             'Rare Scrilla' => [
                 'currency' => 'PEPECASH',
             ],

@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use App\Collection;
 use App\Jobs\UpdateBitcorn;
 use App\Jobs\UpdateRarePepe;
+use App\Jobs\UpdateFakeRare;
 use App\Jobs\UpdateMafiaWars;
 use App\Jobs\UpdateBookOfOrbs;
 use App\Jobs\UpdateFootballCoin;
@@ -51,6 +52,9 @@ class UpdateCards extends Command
         // Rare Pepe
         // $this->updateRarePepe();
 
+        // Fake Rare
+        // $this->updateFakeRare();
+
         // Mafia Wars
         $this->updateMafiaWars();
 
@@ -89,6 +93,18 @@ class UpdateCards extends Command
         $rarepepe = Collection::findBySlug('rare-pepe');
 
         UpdateRarePepe::dispatchNow($rarepepe, $this->option('o'));
+    }
+
+    /**
+     * Fake Rare
+     *
+     * @return void
+     */
+    private function updateFakeRare()
+    {
+        $fakerare = Collection::findBySlug('fake-rare');
+
+        UpdateFakeRare::dispatchNow($fakerare, $this->option('o'));
     }
 
     /**
