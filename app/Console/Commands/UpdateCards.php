@@ -53,7 +53,7 @@ class UpdateCards extends Command
         // $this->updateRarePepe();
 
         // Fake Rare
-        // $this->updateFakeRare();
+        $this->updateFakeRare();
 
         // Mafia Wars
         $this->updateMafiaWars();
