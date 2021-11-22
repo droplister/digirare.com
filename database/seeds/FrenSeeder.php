@@ -45,6 +45,9 @@ class FrenSeeder extends Seeder
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($name);
 
+            // Image URL
+            $image_url = $this->getImageUrl($image_url);
+
             // Creation
             $card = $this->firstOrCreateCard($xcp_core_asset_name, $name);
 
