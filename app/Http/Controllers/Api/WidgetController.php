@@ -17,7 +17,7 @@ class WidgetController extends Controller
     public function show(Request $request, $asset)
     {
         // New Query
-        $card = Card::with('collections')->where('xcp_core_asset_name', $asset)->firstOrFail();
+        $card = Card::with('collections')->where('xcp_core_asset_name', $asset)->orWhere('name', $asset)->firstOrFail();
 
         return new WidgetResource($card);
     }
