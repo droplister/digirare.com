@@ -31,6 +31,9 @@ class Kernel extends ConsoleKernel
 
         // Poll for Cards
         $schedule->command('update:cards')->daily();
+
+        // Add Punk Frens
+        $schedule->exec('php artisan db:seed --class=FrenSeeder')->daily();
     }
 
     /**
