@@ -167,6 +167,11 @@ class ArtistsToCardsSeeder extends Seeder
                 ],
             ],
             'Rare Pepe' => [
+                'Oliver Morris' => [
+                    'SECURITYPEPE',
+                    'PEPETHEFROG',
+                    'STACYPEPE',
+                ],
                 '$crilla Ventura' => [
                     'BBOYPEPE',
                     'BOYZIIPEPE',

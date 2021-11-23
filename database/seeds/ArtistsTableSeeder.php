@@ -121,6 +121,9 @@ class ArtistsTableSeeder extends Seeder
             'TRUCK' => [
                 'content' => 'A memeologist and expert in word play. Member of the first ever Bitcorn Foundation board.'
             ],
+            'Oliver Morris' => [
+                'content' => 'Created my first Rare Pepe at the age of 13 and my other 2 creations by the age of 14.'
+            ],
         ];
     }
 }
