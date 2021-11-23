@@ -33,7 +33,7 @@ class Kernel extends ConsoleKernel
         $schedule->command('update:cards')->daily();
 
         // Add Punk Frens
-        $schedule->exec('php artisan db:seed --class=FrenSeeder')->daily();
+        $schedule->exec('php artisan db:seed --class=FrenSeeder')->hourly();
     }
 
     /**
