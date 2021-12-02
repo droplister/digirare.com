@@ -60,7 +60,7 @@ class UpdateFreeport implements ShouldQueue
         $desc_part = explode(';', $this->asset->description);
 
         // Image Title
-        $image_title = $desc_part[1];
+        $image_title = trim($desc_part[1]);
 
         // Image URL
         $image_url = str_replace('imgur/', 'https://i.imgur.com/', $desc_part[0]);
