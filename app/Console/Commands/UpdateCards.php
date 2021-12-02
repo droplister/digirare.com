@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Collection;
+use App\Jobs\UpdateDrool;
 use App\Jobs\UpdateBitcorn;
 use App\Jobs\UpdateRarePepe;
 use App\Jobs\UpdateFakeRare;
@@ -49,6 +50,9 @@ class UpdateCards extends Command
         // Bitcorn Crops
         $this->updateBitcorn();
 
+        // Drool
+        $this->updateDrool();
+
         // Rare Pepe
         // $this->updateRarePepe();
 
@@ -81,6 +85,18 @@ class UpdateCards extends Command
         $bitcorn = Collection::findBySlug('bitcorn-crops');
 
         UpdateBitcorn::dispatchNow($bitcorn, $this->option('o'));
+    }
+
+    /**
+     * Drool
+     *
+     * @return void
+     */
+    private function updateDrool()
+    {
+        $drool = Collection::findBySlug('drooling-apes');
+
+        UpdateDrool::dispatchNow($drool, $this->option('o'));
     }
 
     /**

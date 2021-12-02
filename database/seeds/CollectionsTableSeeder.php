@@ -128,6 +128,9 @@ class CollectionsTableSeeder extends Seeder
             'Freeport' => [
                 'currency' => 'XCP',
             ],
+            'Drooling Apes' => [
+                'currency' => 'XCP',
+            ],
         ];
     }
 }
