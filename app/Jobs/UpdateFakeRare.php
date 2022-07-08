@@ -111,7 +111,7 @@ class UpdateFakeRare implements ShouldQueue
     private function getAPI()
     {
         // Get API
-        $this->curl->get('https://public-scarce-city.s3.amazonaws.com/fake-feed.json');
+        $this->curl->get('https://pepewtf.s3.amazonaws.com/collections/fake-rares/fake-rares.json');
 
         // API Error
         if ($this->curl->error) {
