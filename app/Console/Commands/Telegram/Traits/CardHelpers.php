@@ -39,6 +39,10 @@ trait CardHelpers
         $link = route('cards.show', ['card' => $card->slug]);
         $collection = $card->primaryCollection->name;
 
+        if ($collection === 'Freeport' && $card->collections()->count() > 1) {
+            $collection = $card->collections()->where('name', '!=', 'Freeport')->first()->name;
+        }
+
         // Text
         $text = "*{$name}*\n";
         $text.= "{$collection}   [Info]({$link})";
