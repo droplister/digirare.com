@@ -7,6 +7,7 @@ use App\Jobs\UpdateDrool;
 use App\Jobs\UpdateBitcorn;
 use App\Jobs\UpdateRarePepe;
 use App\Jobs\UpdateFakeRare;
+use App\Jobs\UpdateFakeCommons;
 use App\Jobs\UpdateMafiaWars;
 use App\Jobs\UpdateBookOfOrbs;
 use App\Jobs\UpdateFootballCoin;
@@ -48,7 +49,7 @@ class UpdateCards extends Command
     public function handle()
     {
         // Bitcorn Crops
-        $this->updateBitcorn();
+        // $this->updateBitcorn();
 
         // Drool
         $this->updateDrool();
@@ -58,6 +59,9 @@ class UpdateCards extends Command
 
         // Fake Rare
         $this->updateFakeRare();
+
+        // Fake Commons
+        $this->updateFakeCommons();
 
         // Mafia Wars
         $this->updateMafiaWars();
@@ -121,6 +125,18 @@ class UpdateCards extends Command
         $fakerare = Collection::findBySlug('fake-rare');
 
         UpdateFakeRare::dispatchNow($fakerare, $this->option('o'));
+    }
+
+    /**
+     * Fake Commons
+     *
+     * @return void
+     */
+    private function updateFakeCommons()
+    {
+        $fakecommons = Collection::findBySlug('fake-commons');
+
+        UpdateFakeCommons::dispatchNow($fakecommons, $this->option('o'));
     }
 
     /**
