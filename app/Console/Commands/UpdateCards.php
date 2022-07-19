@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Collection;
 use App\Jobs\UpdateDrool;
+use App\Jobs\UpdateWojak;
 use App\Jobs\UpdateBassmint;
 use App\Jobs\UpdateBitcorn;
 use App\Jobs\UpdateRarePepe;
@@ -81,6 +82,9 @@ class UpdateCards extends Command
 
         // Johnny Dollar
         // $this->updateJohnnyDollar();
+
+        // The Wojak Way
+        $this->updateWojak();
     }
 
     /**
@@ -215,5 +219,17 @@ class UpdateCards extends Command
         $johnnydollar = Collection::findBySlug('johnny-dollar');
 
         UpdateJohnnyDollar::dispatchNow($johnnydollar, $this->option('o'));
+    }
+
+    /**
+     * The Wojak Way
+     *
+     * @return void
+     */
+    private function updateWojak()
+    {
+        $wojak = Collection::findBySlug('the-wojak-way');
+
+        UpdateWojak::dispatchNow($wojak, $this->option('o'));
     }
 }

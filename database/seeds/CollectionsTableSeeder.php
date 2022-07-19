@@ -137,6 +137,9 @@ class CollectionsTableSeeder extends Seeder
             'Bassmint' => [
                 'currency' => 'XCP',
             ],
+            'The Wojak Way' => [
+                'currency' => 'XCP',
+            ],
         ];
     }
 }
