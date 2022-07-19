@@ -68,6 +68,8 @@ class UpdateKaleidoscope implements ShouldQueue
             // The Asset
             $xcp_core_asset_name = $this->getAssetName($data['asset_name']);
 
+            if(!$xcp_core_asset_name) continue;
+
             // Image URL
             $image_url = $this->getImageUrl('http://kaleidoscopexcp.com/' . $data['image'], $this->override);
 
