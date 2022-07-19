@@ -95,6 +95,6 @@ class UpdateBassmint implements ShouldQueue
         }
 
         // Response
-        return json_decode(str_replace('"BASSMINT:"', '"BASSMINT":', $this->curl->response), true);
+        return json_decode($this->curl->response, true);
     }
 }
