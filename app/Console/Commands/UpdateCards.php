@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Collection;
 use App\Jobs\UpdateDrool;
+use App\Jobs\UpdateBassmint;
 use App\Jobs\UpdateBitcorn;
 use App\Jobs\UpdateRarePepe;
 use App\Jobs\UpdateFakeRare;
@@ -48,6 +49,9 @@ class UpdateCards extends Command
      */
     public function handle()
     {
+        // Bassmint
+        $this->updateBassmint();
+
         // Bitcorn Crops
         // $this->updateBitcorn();
 
@@ -77,6 +81,18 @@ class UpdateCards extends Command
 
         // Johnny Dollar
         // $this->updateJohnnyDollar();
+    }
+
+    /**
+     * Bassmint
+     *
+     * @return void
+     */
+    private function updateBassmint()
+    {
+        $bassmint = Collection::findBySlug('bassmint');
+
+        UpdateBassmint::dispatchNow($bassmint, $this->option('o'));
     }
 
     /**

@@ -134,6 +134,9 @@ class CollectionsTableSeeder extends Seeder
             'Drooling Apes' => [
                 'currency' => 'XCP',
             ],
+            'Bassmint' => [
+                'currency' => 'XCP',
+            ],
         ];
     }
 }
