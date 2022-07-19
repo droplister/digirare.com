@@ -58,6 +58,8 @@ class UpdateBassmint implements ShouldQueue
         // Bassmint API
         $cards = $this->getAPI();
 
+        if (!$cards) return;
+
         // Update or Create
         foreach ($cards as $name => $image) {
             // Simple Guards
