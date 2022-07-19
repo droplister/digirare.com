@@ -63,6 +63,8 @@ class UpdateWojak implements ShouldQueue
             // Wojak API
             $data = $this->getAPI($api);
 
+            if(!isset($data['asset_name'])) continue;
+
             // Simple Guards
             if (in_array($data['asset_name'], ['BITCORN', 'BTC', 'XCP', 'PEPECASH'])) {
                 continue;
