@@ -36,16 +36,17 @@ trait CardHelpers
     {
         // Data
         $name = $card->name;
-        $link = route('cards.show', ['card' => $card->slug]);
-        $collection = $card->primaryCollection->name;
+        $collection = $card->primaryCollection;
 
-        if ($collection === 'Freeport' && $card->collections()->count() > 1) {
-            $collection = $card->collections()->where('name', '!=', 'Freeport')->first()->name;
+        if ($collection->name === 'Freeport' && $card->collections()->count() > 1) {
+            $collection = $card->collections()->where('name', '!=', 'Freeport')->first();
         }
+
+        $link = route('cards.index', ['collection' => $collection]);
 
         // Text
         $text = "*{$name}*\n";
-        $text.= "{$collection}   [Info]({$link})";
+        $text.= "[{$collection->name}]({$link})   [Info](https://xchain.io/asset/{$name})";
 
         return $text;
     }
