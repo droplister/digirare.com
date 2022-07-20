@@ -59,12 +59,11 @@ class UpdateFreeport implements ShouldQueue
         // Freeport Standard (lazy validation)
         $desc_part = explode(';', $this->asset->description);
 
-        // Image Title
-        $image_title = trim($desc_part[1]);
-
         // Image URL
         $image_url = str_replace('imgur/', 'https://i.imgur.com/', $desc_part[0]);
         $image_url = $this->getImageUrl($image_url, false);
+
+        if (!$image_url) return;
 
         // Creation
         $card = $this->firstOrCreateCard($this->asset->asset_name, $this->asset->display_name);

@@ -140,6 +140,9 @@ class CollectionsTableSeeder extends Seeder
             'The Wojak Way' => [
                 'currency' => 'XCP',
             ],
+            'Scannable NFTs' => [
+                'currency' => 'XCP',
+            ],
         ];
     }
 }

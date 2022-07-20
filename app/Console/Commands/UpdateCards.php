@@ -12,6 +12,7 @@ use App\Jobs\UpdateFakeRare;
 use App\Jobs\UpdateFakeCommons;
 use App\Jobs\UpdateMafiaWars;
 use App\Jobs\UpdateBookOfOrbs;
+use App\Jobs\UpdateScannable;
 use App\Jobs\UpdateFootballCoin;
 use App\Jobs\UpdateKaleidoscope;
 use App\Jobs\UpdateJohnnyDollar;
@@ -55,6 +56,9 @@ class UpdateCards extends Command
 
         // Bitcorn Crops
         // $this->updateBitcorn();
+
+        // Scannable NFTs
+        $this->updateScannable();
 
         // Drool
         $this->updateDrool();
@@ -231,5 +235,17 @@ class UpdateCards extends Command
         $wojak = Collection::findBySlug('the-wojak-way');
 
         UpdateWojak::dispatchNow($wojak, $this->option('o'));
+    }
+
+    /**
+     * Scannable NFTs
+     *
+     * @return void
+     */
+    private function updateScannable()
+    {
+        $scannable = Collection::findBySlug('scannable-nfts');
+
+        UpdateScannable::dispatchNow($scannable, $this->option('o'));
     }
 }
