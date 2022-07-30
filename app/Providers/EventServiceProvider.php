@@ -23,6 +23,10 @@ class EventServiceProvider extends ServiceProvider
         'Droplister\XcpCore\App\Events\CreditWasCreated' => [
             \App\Listeners\CollectorListener::class,
         ],
+        'Droplister\XcpCore\App\Events\AssettWasCreated' => [
+            \App\Listeners\FreeportListener::class,
+            \App\Listeners\EasyAssetListener::class,
+        ],
     ];
 
     /**

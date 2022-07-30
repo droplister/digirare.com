@@ -143,6 +143,9 @@ class CollectionsTableSeeder extends Seeder
             'Scannable NFTs' => [
                 'currency' => 'XCP',
             ],
+            'Easy Asset' => [
+                'currency' => 'XCP',
+            ],
         ];
     }
 }
