@@ -60,7 +60,7 @@ class UpdateEasyAsset implements ShouldQueue
         if(substr($this->asset->description, 0, 22) !== 'https://easyasset.art/') return;
 
         // Card Data
-        $card = $this->getAPI($this->asset->description);
+        $card = $this->getAPI();
 
         // Image URL
         $image_url = $this->getImageUrl($card->image_large, false);
@@ -81,10 +81,12 @@ class UpdateEasyAsset implements ShouldQueue
      *
      * @return array
      */
-    private function getAPI($url)
+    private function getAPI()
     {
+        \Log::info($this->asset->description);
+
         // Get API
-        $this->curl->get($url);
+        $this->curl->get($this->asset->description);
 
         // API Error
         if ($this->curl->error) {
