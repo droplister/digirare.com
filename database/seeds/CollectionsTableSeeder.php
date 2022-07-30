@@ -125,6 +125,9 @@ class CollectionsTableSeeder extends Seeder
             'Freeport' => [
                 'currency' => 'XCP',
             ],
+            'Easy Asset' => [
+                'currency' => 'XCP',
+            ],
         ];
     }
 }
