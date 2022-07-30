@@ -66,7 +66,7 @@ class UpdateEasyAsset implements ShouldQueue
         $image_url = $this->getImageUrl($card->image_large, false);
 
         // Creation
-        $card = $this->firstOrCreateCard($this->asset->asset_name, $card->name);
+        $card = $this->firstOrCreateCard($this->asset->asset_name, $card->name, $this->getMeta($card));
 
         // Safe Slug
         $card->slug = $this->asset->asset_name;
@@ -74,6 +74,25 @@ class UpdateEasyAsset implements ShouldQueue
 
         // Relation
         $card->collections()->syncWithoutDetaching([$this->collection->id => ['image_url' => $image_url]]);
+    }
+
+    /**
+     * Get Meta
+     *
+     * @param  array  $data
+     * @return array
+     */
+    private function getMeta($data)
+    {
+        $data = array_change_key_case($data, CASE_LOWER);
+
+        return array_only($data, [
+            'image',
+            'description',
+            'website',
+            'category',
+            'subcategory',
+        ]);
     }
 
     /**
