@@ -62,11 +62,15 @@ class UpdateEasyAsset implements ShouldQueue
         // Card Data
         $card = $this->getAPI();
 
+        if(!isset($card['image_large'])) return;
+
         // Image URL
-        $image_url = $this->getImageUrl($card->image_large, false);
+        $image_url = $this->getImageUrl($card['image_large'], false);
+
+        if(!$image_url) return;
 
         // Creation
-        $card = $this->firstOrCreateCard($this->asset->asset_name, $card->name, $this->getMeta($card));
+        $card = $this->firstOrCreateCard($this->asset->asset_name, $card['name'], $this->getMeta($card));
 
         // Safe Slug
         $card->slug = $this->asset->asset_name;
@@ -102,8 +106,6 @@ class UpdateEasyAsset implements ShouldQueue
      */
     private function getAPI()
     {
-        \Log::info($this->asset->description);
-
         // Get API
         $this->curl->get($this->asset->description);
 
